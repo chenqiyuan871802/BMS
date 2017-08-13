@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 护理项目信息表[bis_nurse_project]SQLMapper自动映射 -->
+<!--  注意:此文件由系统平台自动生成-禁止手工修改 2017-06-23 00:25:31 -->
+<mapper namespace="com.beauty.common.mapper.NurseProjectMapper">
+	
+	<!-- 插入一个数据持久化对象(插入字段为传入PO实体的非空属性) -->
+	<insert id="insert"  parameterType="com.beauty.common.po.NurseProjectPO">
+		INSERT INTO bis_nurse_project 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="project_name != null and project_name != ''">
+	         project_name, <!-- 护理项目名称 -->
+		</if>
+		<if test="type_id != null and type_id != ''">
+	         type_id, <!-- 类型编号 -->
+		</if>
+		<if test="cover_photo != null and cover_photo != ''">
+	         cover_photo, <!-- 封面图片 -->
+		</if>
+		<if test="cover_big_photo != null and cover_big_photo != ''">
+	         cover_big_photo, <!-- 封面大图片 -->
+		</if>
+		<if test="use_device != null and use_device != ''">
+	         use_device, <!-- use_device -->
+		</if>
+		<if test="server_time != null">
+	         server_time, <!-- 服务时长 -->
+		</if>
+		<if test="rmb_price != null and rmb_price != ''">
+	         rmb_price, <!-- 人民币售价 -->
+		</if>
+		<if test="beauty_price != null">
+	         beauty_price, <!-- 美丽币售价 -->
+		</if>
+		<if test="manual_price != null and manual_price != ''">
+	         manual_price, <!-- 手工价格 -->
+		</if>
+		<if test="active_price != null and active_price != ''">
+	         active_price, <!-- 活动价格 -->
+		</if>
+		<if test="status != null and status != ''">
+	         status, <!-- 状态 1在售 2下架 -->
+		</if>
+		<if test="sort_no != null">
+	         sort_no, <!-- 排序号 -->
+		</if>
+		<if test="content != null and content != ''">
+	         content, <!-- 内容描述 -->
+		</if>
+		<if test="is_del != null and is_del != ''">
+	         is_del, <!-- 是否删除0有效1删除 -->
+		</if>
+		<if test="create_time != null and create_time != ''">
+	         create_time, <!-- 创建时间 -->
+		</if>
+		<if test="create_user_id != null and create_user_id != ''">
+	         create_user_id, <!-- 创建人ID -->
+		</if>
+		<if test="modify_time != null and modify_time != ''">
+	         modify_time, <!-- 修改时间 -->
+		</if>
+		<if test="modify_user_id != null and modify_user_id != ''">
+	         modify_user_id, <!-- 修改用户ID -->
+		</if>
+		<if test="project_id != null and project_id != ''">
+	          project_id  <!-- 项目编号 -->
+	    </if>
+        </trim>
+	    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+		<if test="project_name != null and project_name != ''">
+	          #{project_name, jdbcType=VARCHAR}, <!-- 护理项目名称 -->
+	    </if>
+		<if test="type_id != null and type_id != ''">
+	          #{type_id, jdbcType=VARCHAR}, <!-- 类型编号 -->
+	    </if>
+		<if test="cover_photo != null and cover_photo != ''">
+	          #{cover_photo, jdbcType=VARCHAR}, <!-- 封面图片 -->
+	    </if>
+		<if test="cover_big_photo != null and cover_big_photo != ''">
+	          #{cover_big_photo, jdbcType=VARCHAR}, <!-- 封面大图片 -->
+	    </if>
+		<if test="use_device != null and use_device != ''">
+	          #{use_device, jdbcType=VARCHAR}, <!-- use_device -->
+	    </if>
+		<if test="server_time != null">
+	          #{server_time, jdbcType=INTEGER}, <!-- 服务时长 -->
+	    </if>
+		<if test="rmb_price != null and rmb_price != ''">
+	          #{rmb_price, jdbcType=VARCHAR}, <!-- 人民币售价 -->
+	    </if>
+		<if test="beauty_price != null">
+	          #{beauty_price, jdbcType=INTEGER}, <!-- 美丽币售价 -->
+	    </if>
+		<if test="manual_price != null and manual_price != ''">
+	          #{manual_price, jdbcType=VARCHAR}, <!-- 手工价格 -->
+	    </if>
+		<if test="active_price != null and active_price != ''">
+	          #{active_price, jdbcType=VARCHAR}, <!-- 活动价格 -->
+	    </if>
+		<if test="status != null and status != ''">
+	          #{status, jdbcType=VARCHAR}, <!-- 状态 1在售 2下架 -->
+	    </if>
+		<if test="sort_no != null">
+	          #{sort_no, jdbcType=INTEGER}, <!-- 排序号 -->
+	    </if>
+		<if test="content != null and content != ''">
+	          #{content, jdbcType=VARCHAR}, <!-- 内容描述 -->
+	    </if>
+		<if test="is_del != null and is_del != ''">
+	          #{is_del, jdbcType=VARCHAR}, <!-- 是否删除0有效1删除 -->
+	    </if>
+		<if test="create_time != null and create_time != ''">
+	          #{create_time, jdbcType=VARCHAR}, <!-- 创建时间 -->
+	    </if>
+		<if test="create_user_id != null and create_user_id != ''">
+	          #{create_user_id, jdbcType=VARCHAR}, <!-- 创建人ID -->
+	    </if>
+		<if test="modify_time != null and modify_time != ''">
+	          #{modify_time, jdbcType=VARCHAR}, <!-- 修改时间 -->
+	    </if>
+		<if test="modify_user_id != null and modify_user_id != ''">
+	          #{modify_user_id, jdbcType=VARCHAR}, <!-- 修改用户ID -->
+	    </if>
+		<if test="project_id != null and project_id != ''">
+		     #{project_id, jdbcType=VARCHAR}  <!-- 项目编号 -->
+	    </if>
+		</trim>
+		
+	</insert>
+	
+	<!-- 插入一个数据持久化对象(含所有字段) -->
+	<insert id="insertAll"  parameterType="com.beauty.common.po.NurseProjectPO">
+		INSERT INTO bis_nurse_project (
+          project_id,  <!-- 项目编号 -->
+		  project_name,  <!-- 护理项目名称 -->
+		  type_id,  <!-- 类型编号 -->
+		  cover_photo,  <!-- 封面图片 -->
+		  cover_big_photo,  <!-- 封面大图片 -->
+		  use_device,  <!-- use_device -->
+		  server_time,  <!-- 服务时长 -->
+		  rmb_price,  <!-- 人民币售价 -->
+		  beauty_price,  <!-- 美丽币售价 -->
+		  manual_price,  <!-- 手工价格 -->
+		  active_price,  <!-- 活动价格 -->
+		  status,  <!-- 状态 1在售 2下架 -->
+		  sort_no,  <!-- 排序号 -->
+		  content,  <!-- 内容描述 -->
+		  is_del,  <!-- 是否删除0有效1删除 -->
+		  create_time,  <!-- 创建时间 -->
+		  create_user_id,  <!-- 创建人ID -->
+		  modify_time,  <!-- 修改时间 -->
+		  modify_user_id  <!-- 修改用户ID -->
+		)
+		VALUES (
+            #{project_id, jdbcType=VARCHAR},   <!-- 项目编号 -->
+		    #{project_name, jdbcType=VARCHAR},  <!-- 护理项目名称 -->
+		    #{type_id, jdbcType=VARCHAR},  <!-- 类型编号 -->
+		    #{cover_photo, jdbcType=VARCHAR},  <!-- 封面图片 -->
+		    #{cover_big_photo, jdbcType=VARCHAR},  <!-- 封面大图片 -->
+		    #{use_device, jdbcType=VARCHAR},  <!-- use_device -->
+		    #{server_time, jdbcType=INTEGER},  <!-- 服务时长 -->
+		    #{rmb_price, jdbcType=VARCHAR},  <!-- 人民币售价 -->
+		    #{beauty_price, jdbcType=INTEGER},  <!-- 美丽币售价 -->
+		    #{manual_price, jdbcType=VARCHAR},  <!-- 手工价格 -->
+		    #{active_price, jdbcType=VARCHAR},  <!-- 活动价格 -->
+		    #{status, jdbcType=VARCHAR},  <!-- 状态 1在售 2下架 -->
+		    #{sort_no, jdbcType=INTEGER},  <!-- 排序号 -->
+		    #{content, jdbcType=VARCHAR},  <!-- 内容描述 -->
+		    #{is_del, jdbcType=VARCHAR},  <!-- 是否删除0有效1删除 -->
+		    #{create_time, jdbcType=VARCHAR},  <!-- 创建时间 -->
+		    #{create_user_id, jdbcType=VARCHAR},  <!-- 创建人ID -->
+		    #{modify_time, jdbcType=VARCHAR},  <!-- 修改时间 -->
+		    #{modify_user_id, jdbcType=VARCHAR}  <!-- 修改用户ID -->
+		)
+	</insert>
+
+	<!-- 根据主键修改数据持久化对象 -->
+	<update id="updateByKey" parameterType="com.beauty.common.po.NurseProjectPO">
+		UPDATE bis_nurse_project
+		<set>
+			<if test="project_name != null">
+		          project_name = #{project_name, jdbcType=VARCHAR},  <!-- 护理项目名称 -->
+			</if>
+			<if test="type_id != null">
+		          type_id = #{type_id, jdbcType=VARCHAR},  <!-- 类型编号 -->
+			</if>
+			<if test="cover_photo != null">
+		          cover_photo = #{cover_photo, jdbcType=VARCHAR},  <!-- 封面图片 -->
+			</if>
+			<if test="cover_big_photo != null">
+		          cover_big_photo = #{cover_big_photo, jdbcType=VARCHAR},  <!-- 封面大图片 -->
+			</if>
+			<if test="use_device != null">
+		          use_device = #{use_device, jdbcType=VARCHAR},  <!-- use_device -->
+			</if>
+			<if test="server_time != null">
+		          server_time = #{server_time, jdbcType=INTEGER},  <!-- 服务时长 -->
+			</if>
+			<if test="rmb_price != null">
+		          rmb_price = #{rmb_price, jdbcType=VARCHAR},  <!-- 人民币售价 -->
+			</if>
+			<if test="beauty_price != null">
+		          beauty_price = #{beauty_price, jdbcType=INTEGER},  <!-- 美丽币售价 -->
+			</if>
+			<if test="manual_price != null">
+		          manual_price = #{manual_price, jdbcType=VARCHAR},  <!-- 手工价格 -->
+			</if>
+			<if test="active_price != null">
+		          active_price = #{active_price, jdbcType=VARCHAR},  <!-- 活动价格 -->
+			</if>
+			<if test="status != null">
+		          status = #{status, jdbcType=VARCHAR},  <!-- 状态 1在售 2下架 -->
+			</if>
+			<if test="sort_no != null">
+		          sort_no = #{sort_no, jdbcType=INTEGER},  <!-- 排序号 -->
+			</if>
+			<if test="content != null">
+		          content = #{content, jdbcType=VARCHAR},  <!-- 内容描述 -->
+			</if>
+			<if test="is_del != null">
+		          is_del = #{is_del, jdbcType=VARCHAR},  <!-- 是否删除0有效1删除 -->
+			</if>
+			<if test="create_time != null">
+		          create_time = #{create_time, jdbcType=VARCHAR},  <!-- 创建时间 -->
+			</if>
+			<if test="create_user_id != null">
+		          create_user_id = #{create_user_id, jdbcType=VARCHAR},  <!-- 创建人ID -->
+			</if>
+			<if test="modify_time != null">
+		          modify_time = #{modify_time, jdbcType=VARCHAR},  <!-- 修改时间 -->
+			</if>
+			<if test="modify_user_id != null">
+		          modify_user_id = #{modify_user_id, jdbcType=VARCHAR},  <!-- 修改用户ID -->
+			</if>
+		</set>
+		WHERE  project_id = #{project_id}
+	</update>
+	
+	<!-- 根据主键删除数据持久化对象 -->
+	<delete id="deleteByKey">
+		DELETE FROM bis_nurse_project WHERE  project_id = #{project_id}
+	</delete>
+	
+	<!-- 批量根据主键删除数据持久化对象 -->
+	<delete id="batchDeleteByKey"  parameterType="java.lang.String">
+		DELETE FROM bis_nurse_project WHERE project_id IN 
+		<foreach item="project_id" index="index" collection="list" separator="," open="(" close=")">
+		#{project_id}
+	    </foreach>
+	</delete>
+
+	<!-- 根据主键查询并返回数据持久化对象 -->
+	<select id="selectByKey" resultType="com.beauty.common.po.NurseProjectPO">
+		SELECT
+		<include refid="column" />
+		FROM bis_nurse_project WHERE  project_id = #{project_id}
+	</select>
+
+	<!-- 根据唯一组合条件查询并返回数据持久化对象 -->
+	<select id="selectOne" parameterType="Dto" resultType="com.beauty.common.po.NurseProjectPO">
+		SELECT
+		    <include refid="column" />
+		FROM bis_nurse_project
+		<where>
+		    <include refid="equal" />
+		</where>		
+	</select>
+
+	<!-- 根据Dto查询并返回数据持久化对象集合 -->
+	<select id="list" parameterType="Dto" resultType="com.beauty.common.po.NurseProjectPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_nurse_project
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto查询并返回分页数据持久化对象集合 -->
+	<select id="listPage" parameterType="Dto" resultType="com.beauty.common.po.NurseProjectPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_nurse_project
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto模糊查询并返回数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="like" parameterType="Dto" resultType="com.beauty.common.po.NurseProjectPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_nurse_project
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto模糊查询并返回分页数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="likePage" parameterType="Dto" resultType="com.beauty.common.po.NurseProjectPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_nurse_project
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto统计行数 -->
+	<select id="rows" resultType="Integer" parameterType="Dto">
+		SELECT COUNT(1) AS rows_ FROM bis_nurse_project
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	<!-- 根据数学表达式进行数学运算 -->
+	<select id="calc" parameterType="Dto" resultType="String">
+		SELECT
+			${_expr}
+		FROM bis_nurse_project
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	
+	
+	<!-- 表字段 -->
+	<sql id="column">
+		  project_id,  <!-- 项目编号 -->
+		  project_name,  <!-- 护理项目名称 -->
+		  type_id,  <!-- 类型编号 -->
+		  cover_photo,  <!-- 封面图片 -->
+		  cover_big_photo,  <!-- 封面大图片 -->
+		  use_device,  <!-- use_device -->
+		  server_time,  <!-- 服务时长 -->
+		  rmb_price,  <!-- 人民币售价 -->
+		  beauty_price,  <!-- 美丽币售价 -->
+		  manual_price,  <!-- 手工价格 -->
+		  active_price,  <!-- 活动价格 -->
+		  status,  <!-- 状态 1在售 2下架 -->
+		  sort_no,  <!-- 排序号 -->
+		  content,  <!-- 内容描述 -->
+		  is_del,  <!-- 是否删除0有效1删除 -->
+		  create_time,  <!-- 创建时间 -->
+		  create_user_id,  <!-- 创建人ID -->
+		  modify_time,  <!-- 修改时间 -->
+		  modify_user_id  <!-- 修改用户ID -->
+	</sql>
+	
+	<!-- 表字段(用于外表的关联时引用) -->
+	<sql id="column2">
+		  bis_nurse_project.project_id,  <!-- 项目编号 -->
+		  bis_nurse_project.project_name,  <!-- 护理项目名称 -->
+		  bis_nurse_project.type_id,  <!-- 类型编号 -->
+		  bis_nurse_project.cover_photo,  <!-- 封面图片 -->
+		  bis_nurse_project.cover_big_photo,  <!-- 封面大图片 -->
+		  bis_nurse_project.use_device,  <!-- use_device -->
+		  bis_nurse_project.server_time,  <!-- 服务时长 -->
+		  bis_nurse_project.rmb_price,  <!-- 人民币售价 -->
+		  bis_nurse_project.beauty_price,  <!-- 美丽币售价 -->
+		  bis_nurse_project.manual_price,  <!-- 手工价格 -->
+		  bis_nurse_project.active_price,  <!-- 活动价格 -->
+		  bis_nurse_project.status,  <!-- 状态 1在售 2下架 -->
+		  bis_nurse_project.sort_no,  <!-- 排序号 -->
+		  bis_nurse_project.content,  <!-- 内容描述 -->
+		  bis_nurse_project.is_del,  <!-- 是否删除0有效1删除 -->
+		  bis_nurse_project.create_time,  <!-- 创建时间 -->
+		  bis_nurse_project.create_user_id,  <!-- 创建人ID -->
+		  bis_nurse_project.modify_time,  <!-- 修改时间 -->
+		  bis_nurse_project.modify_user_id  <!-- 修改用户ID -->
+	</sql>
+
+	<!-- Where精确匹配字段 -->
+	<sql id="equal">
+	    <if test="project_id != null and project_id != ''">
+		      AND project_id = #{project_id}  <!-- 项目编号 -->
+		</if>
+	    <if test="project_name != null and project_name != ''">
+		      AND project_name = #{project_name}  <!-- 护理项目名称 -->
+		</if>
+	    <if test="type_id != null and type_id != ''">
+		      AND type_id = #{type_id}  <!-- 类型编号 -->
+		</if>
+	    <if test="cover_photo != null and cover_photo != ''">
+		      AND cover_photo = #{cover_photo}  <!-- 封面图片 -->
+		</if>
+	    <if test="cover_big_photo != null and cover_big_photo != ''">
+		      AND cover_big_photo = #{cover_big_photo}  <!-- 封面大图片 -->
+		</if>
+	    <if test="use_device != null and use_device != ''">
+		      AND use_device = #{use_device}  <!-- use_device -->
+		</if>
+	   <if test="server_time != null ">
+		      AND server_time = #{server_time}  <!-- 服务时长 -->
+		</if>
+	    <if test="rmb_price != null and rmb_price != ''">
+		      AND rmb_price = #{rmb_price}  <!-- 人民币售价 -->
+		</if>
+	   <if test="beauty_price != null ">
+		      AND beauty_price = #{beauty_price}  <!-- 美丽币售价 -->
+		</if>
+	    <if test="manual_price != null and manual_price != ''">
+		      AND manual_price = #{manual_price}  <!-- 手工价格 -->
+		</if>
+	    <if test="active_price != null and active_price != ''">
+		      AND active_price = #{active_price}  <!-- 活动价格 -->
+		</if>
+	    <if test="status != null and status != ''">
+		      AND status = #{status}  <!-- 状态 1在售 2下架 -->
+		</if>
+	   <if test="sort_no != null ">
+		      AND sort_no = #{sort_no}  <!-- 排序号 -->
+		</if>
+	    <if test="content != null and content != ''">
+		      AND content = #{content}  <!-- 内容描述 -->
+		</if>
+	    <if test="is_del != null and is_del != ''">
+		      AND is_del = #{is_del}  <!-- 是否删除0有效1删除 -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time = #{create_time}  <!-- 创建时间 -->
+		</if>
+	    <if test="create_user_id != null and create_user_id != ''">
+		      AND create_user_id = #{create_user_id}  <!-- 创建人ID -->
+		</if>
+	    <if test="modify_time != null and modify_time != ''">
+		      AND modify_time = #{modify_time}  <!-- 修改时间 -->
+		</if>
+	    <if test="modify_user_id != null and modify_user_id != ''">
+		      AND modify_user_id = #{modify_user_id}  <!-- 修改用户ID -->
+		</if>
+	</sql>
+	
+	<!-- Where模糊匹配字段 -->
+	<sql id="like">
+	    <if test="project_id != null and project_id != ''">
+		      AND project_id LIKE '%${project_id}%'  <!-- 项目编号 -->
+		</if>
+	    <if test="project_name != null and project_name != ''">
+		      AND project_name LIKE '%${project_name}%'  <!-- 护理项目名称 -->
+		</if>
+	    <if test="type_id != null and type_id != ''">
+		      AND type_id LIKE '%${type_id}%'  <!-- 类型编号 -->
+		</if>
+	    <if test="cover_photo != null and cover_photo != ''">
+		      AND cover_photo LIKE '%${cover_photo}%'  <!-- 封面图片 -->
+		</if>
+	    <if test="cover_big_photo != null and cover_big_photo != ''">
+		      AND cover_big_photo LIKE '%${cover_big_photo}%'  <!-- 封面大图片 -->
+		</if>
+	    <if test="use_device != null and use_device != ''">
+		      AND use_device LIKE '%${use_device}%'  <!-- use_device -->
+		</if>
+	    <if test="rmb_price != null and rmb_price != ''">
+		      AND rmb_price LIKE '%${rmb_price}%'  <!-- 人民币售价 -->
+		</if>
+	    <if test="manual_price != null and manual_price != ''">
+		      AND manual_price LIKE '%${manual_price}%'  <!-- 手工价格 -->
+		</if>
+	    <if test="active_price != null and active_price != ''">
+		      AND active_price LIKE '%${active_price}%'  <!-- 活动价格 -->
+		</if>
+	    <if test="status != null and status != ''">
+		      AND status LIKE '%${status}%'  <!-- 状态 1在售 2下架 -->
+		</if>
+	    <if test="content != null and content != ''">
+		      AND content LIKE '%${content}%'  <!-- 内容描述 -->
+		</if>
+	    <if test="is_del != null and is_del != ''">
+		      AND is_del LIKE '%${is_del}%'  <!-- 是否删除0有效1删除 -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time LIKE '%${create_time}%'  <!-- 创建时间 -->
+		</if>
+	    <if test="create_user_id != null and create_user_id != ''">
+		      AND create_user_id LIKE '%${create_user_id}%'  <!-- 创建人ID -->
+		</if>
+	    <if test="modify_time != null and modify_time != ''">
+		      AND modify_time LIKE '%${modify_time}%'  <!-- 修改时间 -->
+		</if>
+	    <if test="modify_user_id != null and modify_user_id != ''">
+		      AND modify_user_id LIKE '%${modify_user_id}%'  <!-- 修改用户ID -->
+		</if>
+	</sql>
+	
+</mapper>

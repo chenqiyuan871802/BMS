@@ -1,0 +1,25 @@
+function ${field}Formatter(value) {
+  if(value!=undefined&&value!=''){
+  var returnVal=''
+  var dicArray=[#set($size = $codeList.size())#foreach($code in $codeList)['${code.dic_code}', '${code.dic_value}']#if($velocityCount != $size) ,#end#end]
+  var keyArray=value.split('${inMark}');
+  for(var i=0;i<dicArray.length;i++){
+	var codeArray=dicArray[i];
+	var codeKey=codeArray[0];
+	var codeValue=codeArray[1];
+	for(var j=0;j<keyArray.length;j++){
+	  var key=keyArray[j];
+	   if(key==codeKey){
+		   returnVal+=codeValue+'${outMark}'
+	    }
+	}		
+   }
+   if(returnVal!=''){
+	returnVal=returnVal.substring(0,returnVal.length-1);
+    }
+    return returnVal;
+  }else{
+    return '';
+  }
+
+}

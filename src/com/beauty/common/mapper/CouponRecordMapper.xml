@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 美研券兑换记录表[bis_coupon_record]SQLMapper自动映射 -->
+<!--  注意:此文件由系统平台自动生成-禁止手工修改 2017-04-26 21:47:37 -->
+<mapper namespace="com.beauty.common.mapper.CouponRecordMapper">
+	
+	<!-- 插入一个数据持久化对象(插入字段为传入PO实体的非空属性) -->
+	<insert id="insert"  parameterType="com.beauty.common.po.CouponRecordPO">
+		INSERT INTO bis_coupon_record 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="active_id != null and active_id != ''">
+	         active_id, <!-- 活动编号 -->
+		</if>
+		<if test="cdkey != null and cdkey != ''">
+	         cdkey, <!-- 兑换码 -->
+		</if>
+		<if test="mobile != null and mobile != ''">
+	         mobile, <!-- 兑换手机 -->
+		</if>
+		<if test="status != null and status != ''">
+	         status, <!-- 状态 1未兑换 2已兑换 3已失效 -->
+		</if>
+		<if test="create_time != null and create_time != ''">
+	         create_time, <!-- 创建时间 -->
+		</if>
+		<if test="exchange_time != null and exchange_time != ''">
+	         exchange_time, <!-- 兑换时间 -->
+		</if>
+		<if test="record_id != null and record_id != ''">
+	          record_id  <!-- 记录编号 -->
+	    </if>
+        </trim>
+	    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+		<if test="active_id != null and active_id != ''">
+	          #{active_id, jdbcType=VARCHAR}, <!-- 活动编号 -->
+	    </if>
+		<if test="cdkey != null and cdkey != ''">
+	          #{cdkey, jdbcType=VARCHAR}, <!-- 兑换码 -->
+	    </if>
+		<if test="mobile != null and mobile != ''">
+	          #{mobile, jdbcType=VARCHAR}, <!-- 兑换手机 -->
+	    </if>
+		<if test="status != null and status != ''">
+	          #{status, jdbcType=VARCHAR}, <!-- 状态 1未兑换 2已兑换 3已失效 -->
+	    </if>
+		<if test="create_time != null and create_time != ''">
+	          #{create_time, jdbcType=VARCHAR}, <!-- 创建时间 -->
+	    </if>
+		<if test="exchange_time != null and exchange_time != ''">
+	          #{exchange_time, jdbcType=VARCHAR}, <!-- 兑换时间 -->
+	    </if>
+		<if test="record_id != null and record_id != ''">
+		     #{record_id, jdbcType=VARCHAR}  <!-- 记录编号 -->
+	    </if>
+		</trim>
+		
+	</insert>
+	
+	<!-- 插入一个数据持久化对象(含所有字段) -->
+	<insert id="insertAll"  parameterType="com.beauty.common.po.CouponRecordPO">
+		INSERT INTO bis_coupon_record (
+          record_id,  <!-- 记录编号 -->
+		  active_id,  <!-- 活动编号 -->
+		  cdkey,  <!-- 兑换码 -->
+		  mobile,  <!-- 兑换手机 -->
+		  status,  <!-- 状态 1未兑换 2已兑换 3已失效 -->
+		  create_time,  <!-- 创建时间 -->
+		  exchange_time  <!-- 兑换时间 -->
+		)
+		VALUES (
+            #{record_id, jdbcType=VARCHAR},   <!-- 记录编号 -->
+		    #{active_id, jdbcType=VARCHAR},  <!-- 活动编号 -->
+		    #{cdkey, jdbcType=VARCHAR},  <!-- 兑换码 -->
+		    #{mobile, jdbcType=VARCHAR},  <!-- 兑换手机 -->
+		    #{status, jdbcType=VARCHAR},  <!-- 状态 1未兑换 2已兑换 3已失效 -->
+		    #{create_time, jdbcType=VARCHAR},  <!-- 创建时间 -->
+		    #{exchange_time, jdbcType=VARCHAR}  <!-- 兑换时间 -->
+		)
+	</insert>
+
+	<!-- 根据主键修改数据持久化对象 -->
+	<update id="updateByKey" parameterType="com.beauty.common.po.CouponRecordPO">
+		UPDATE bis_coupon_record
+		<set>
+			<if test="active_id != null">
+		          active_id = #{active_id, jdbcType=VARCHAR},  <!-- 活动编号 -->
+			</if>
+			<if test="cdkey != null">
+		          cdkey = #{cdkey, jdbcType=VARCHAR},  <!-- 兑换码 -->
+			</if>
+			<if test="mobile != null">
+		          mobile = #{mobile, jdbcType=VARCHAR},  <!-- 兑换手机 -->
+			</if>
+			<if test="status != null">
+		          status = #{status, jdbcType=VARCHAR},  <!-- 状态 1未兑换 2已兑换 3已失效 -->
+			</if>
+			<if test="create_time != null">
+		          create_time = #{create_time, jdbcType=VARCHAR},  <!-- 创建时间 -->
+			</if>
+			<if test="exchange_time != null">
+		          exchange_time = #{exchange_time, jdbcType=VARCHAR},  <!-- 兑换时间 -->
+			</if>
+		</set>
+		WHERE  record_id = #{record_id}
+	</update>
+	<!-- 根据主键删除数据持久化对象 -->
+	<delete id="deleteByKey">
+		DELETE FROM bis_coupon_record WHERE  record_id = #{record_id}
+	</delete>
+	
+	<!-- 批量根据主键删除数据持久化对象 -->
+	<delete id="batchDeleteByKey"  parameterType="java.lang.String">
+		DELETE FROM bis_coupon_record WHERE record_id IN 
+		<foreach item="record_id" index="index" collection="list" separator="," open="(" close=")">
+		#{record_id}
+	    </foreach>
+	</delete>
+
+	<!-- 根据主键查询并返回数据持久化对象 -->
+	<select id="selectByKey" resultType="com.beauty.common.po.CouponRecordPO">
+		SELECT
+		<include refid="column" />
+		FROM bis_coupon_record WHERE  record_id = #{record_id}
+	</select>
+
+	<!-- 根据唯一组合条件查询并返回数据持久化对象 -->
+	<select id="selectOne" parameterType="Dto" resultType="com.beauty.common.po.CouponRecordPO">
+		SELECT
+		    <include refid="column" />
+		FROM bis_coupon_record
+		<where>
+		    <include refid="equal" />
+		</where>		
+	</select>
+
+	<!-- 根据Dto查询并返回数据持久化对象集合 -->
+	<select id="list" parameterType="Dto" resultType="com.beauty.common.po.CouponRecordPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_coupon_record
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto查询并返回分页数据持久化对象集合 -->
+	<select id="listPage" parameterType="Dto" resultType="com.beauty.common.po.CouponRecordPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_coupon_record
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto模糊查询并返回数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="like" parameterType="Dto" resultType="com.beauty.common.po.CouponRecordPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_coupon_record
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto模糊查询并返回分页数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="likePage" parameterType="Dto" resultType="com.beauty.common.po.CouponRecordPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_coupon_record
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto统计行数 -->
+	<select id="rows" resultType="Integer" parameterType="Dto">
+		SELECT COUNT(1) AS rows_ FROM bis_coupon_record
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	<!-- 根据数学表达式进行数学运算 -->
+	<select id="calc" parameterType="Dto" resultType="String">
+		SELECT
+			${_expr}
+		FROM bis_coupon_record
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	
+	
+	<!-- 表字段 -->
+	<sql id="column">
+		  record_id,  <!-- 记录编号 -->
+		  active_id,  <!-- 活动编号 -->
+		  cdkey,  <!-- 兑换码 -->
+		  mobile,  <!-- 兑换手机 -->
+		  status,  <!-- 状态 1未兑换 2已兑换 3已失效 -->
+		  create_time,  <!-- 创建时间 -->
+		  exchange_time  <!-- 兑换时间 -->
+	</sql>
+	
+	<!-- 表字段(用于外表的关联时引用) -->
+	<sql id="column2">
+		  bis_coupon_record.record_id,  <!-- 记录编号 -->
+		  bis_coupon_record.active_id,  <!-- 活动编号 -->
+		  bis_coupon_record.cdkey,  <!-- 兑换码 -->
+		  bis_coupon_record.mobile,  <!-- 兑换手机 -->
+		  bis_coupon_record.status,  <!-- 状态 1未兑换 2已兑换 3已失效 -->
+		  bis_coupon_record.create_time,  <!-- 创建时间 -->
+		  bis_coupon_record.exchange_time  <!-- 兑换时间 -->
+	</sql>
+
+	<!-- Where精确匹配字段 -->
+	<sql id="equal">
+	    <if test="record_id != null and record_id != ''">
+		      AND record_id = #{record_id}  <!-- 记录编号 -->
+		</if>
+	    <if test="active_id != null and active_id != ''">
+		      AND active_id = #{active_id}  <!-- 活动编号 -->
+		</if>
+	    <if test="cdkey != null and cdkey != ''">
+		      AND cdkey = #{cdkey}  <!-- 兑换码 -->
+		</if>
+	    <if test="mobile != null and mobile != ''">
+		      AND mobile = #{mobile}  <!-- 兑换手机 -->
+		</if>
+	    <if test="status != null and status != ''">
+		      AND status = #{status}  <!-- 状态 1未兑换 2已兑换 3已失效 -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time = #{create_time}  <!-- 创建时间 -->
+		</if>
+	    <if test="exchange_time != null and exchange_time != ''">
+		      AND exchange_time = #{exchange_time}  <!-- 兑换时间 -->
+		</if>
+	</sql>
+	
+	<!-- Where模糊匹配字段 -->
+	<sql id="like">
+	    <if test="record_id != null and record_id != ''">
+		      AND record_id LIKE '%${record_id}%'  <!-- 记录编号 -->
+		</if>
+	   <if test="active_id != null and active_id != ''">
+		      AND active_id = #{active_id}  <!-- 活动编号 -->
+		</if>
+	    <if test="cdkey != null and cdkey != ''">
+		      AND cdkey LIKE '%${cdkey}%'  <!-- 兑换码 -->
+		</if>
+	    <if test="mobile != null and mobile != ''">
+		      AND mobile LIKE '%${mobile}%'  <!-- 兑换手机 -->
+		</if>
+	    <if test="status != null and status != ''">
+		      AND status = #{status}  <!-- 状态 1未兑换 2已兑换 3已失效 -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time LIKE '%${create_time}%'  <!-- 创建时间 -->
+		</if>
+	    <if test="exchange_time != null and exchange_time != ''">
+		      AND exchange_time LIKE '%${exchange_time}%'  <!-- 兑换时间 -->
+		</if>
+	</sql>
+	
+</mapper>

@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 美研币流水[bis_beauty_record]SQLMapper自动映射 -->
+<!--  注意:此文件由系统平台自动生成-禁止手工修改 2017-06-12 23:41:55 -->
+<mapper namespace="com.beauty.common.mapper.BeautyRecordMapper">
+	
+	<!-- 插入一个数据持久化对象(插入字段为传入PO实体的非空属性) -->
+	<insert id="insert"  parameterType="com.beauty.common.po.BeautyRecordPO">
+		INSERT INTO bis_beauty_record 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="order_id != null and order_id != ''">
+	         order_id, <!-- 订单编号 -->
+		</if>
+		<if test="cdkey != null and cdkey != ''">
+	         cdkey, <!-- 兑换编号 -->
+		</if>
+		<if test="custom_user_id != null and custom_user_id != ''">
+	         custom_user_id, <!-- 购买人编号 -->
+		</if>
+		<if test="beauty_num != null">
+	         beauty_num, <!-- 美研币数量 -->
+		</if>
+		<if test="give_num != null">
+	         give_num, <!-- 赠送数量 -->
+		</if>
+		<if test="total_money != null and total_money != ''">
+	         total_money, <!-- 总价 -->
+		</if>
+		<if test="singe_price != null and singe_price != ''">
+	         singe_price, <!-- 单个美研币价值 -->
+		</if>
+		<if test="record_type != null and record_type != ''">
+	         record_type, <!-- 1购买美丽币2 兑换美丽币3服务消费 -->
+		</if>
+		<if test="pay_time != null and pay_time != ''">
+	         pay_time, <!-- 支付时间 -->
+		</if>
+		<if test="vaild_status != null and vaild_status != ''">
+	         vaild_status, <!-- 美研币状态1有效 2过期 -->
+		</if>
+		<if test="shop_id != null and shop_id != ''">
+	         shop_id, <!-- 店铺编号 -->
+		</if>
+		<if test="remain_num != null">
+	         remain_num, <!-- remain_num -->
+		</if>
+		<if test="record_id != null and record_id != ''">
+	          record_id  <!-- 记录编号 -->
+	    </if>
+        </trim>
+	    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+		<if test="order_id != null and order_id != ''">
+	          #{order_id, jdbcType=VARCHAR}, <!-- 订单编号 -->
+	    </if>
+		<if test="cdkey != null and cdkey != ''">
+	          #{cdkey, jdbcType=VARCHAR}, <!-- 兑换编号 -->
+	    </if>
+		<if test="custom_user_id != null and custom_user_id != ''">
+	          #{custom_user_id, jdbcType=VARCHAR}, <!-- 购买人编号 -->
+	    </if>
+		<if test="beauty_num != null">
+	          #{beauty_num, jdbcType=INTEGER}, <!-- 美研币数量 -->
+	    </if>
+		<if test="give_num != null">
+	          #{give_num, jdbcType=INTEGER}, <!-- 赠送数量 -->
+	    </if>
+		<if test="total_money != null and total_money != ''">
+	          #{total_money, jdbcType=VARCHAR}, <!-- 总价 -->
+	    </if>
+		<if test="singe_price != null and singe_price != ''">
+	          #{singe_price, jdbcType=VARCHAR}, <!-- 单个美研币价值 -->
+	    </if>
+		<if test="record_type != null and record_type != ''">
+	          #{record_type, jdbcType=VARCHAR}, <!-- 1购买美丽币2 兑换美丽币3服务消费 -->
+	    </if>
+		<if test="pay_time != null and pay_time != ''">
+	          #{pay_time, jdbcType=VARCHAR}, <!-- 支付时间 -->
+	    </if>
+		<if test="vaild_status != null and vaild_status != ''">
+	          #{vaild_status, jdbcType=VARCHAR}, <!-- 美研币状态1有效 2过期 -->
+	    </if>
+		<if test="shop_id != null and shop_id != ''">
+	          #{shop_id, jdbcType=VARCHAR}, <!-- 店铺编号 -->
+	    </if>
+		<if test="remain_num != null">
+	          #{remain_num, jdbcType=INTEGER}, <!-- remain_num -->
+	    </if>
+		<if test="record_id != null and record_id != ''">
+		     #{record_id, jdbcType=VARCHAR}  <!-- 记录编号 -->
+	    </if>
+		</trim>
+		
+	</insert>
+	
+	<!-- 插入一个数据持久化对象(含所有字段) -->
+	<insert id="insertAll"  parameterType="com.beauty.common.po.BeautyRecordPO">
+		INSERT INTO bis_beauty_record (
+          record_id,  <!-- 记录编号 -->
+		  order_id,  <!-- 订单编号 -->
+		  cdkey,  <!-- 兑换编号 -->
+		  custom_user_id,  <!-- 购买人编号 -->
+		  beauty_num,  <!-- 美研币数量 -->
+		  give_num,  <!-- 赠送数量 -->
+		  total_money,  <!-- 总价 -->
+		  singe_price,  <!-- 单个美研币价值 -->
+		  record_type,  <!-- 1购买美丽币2 兑换美丽币3服务消费 -->
+		  pay_time,  <!-- 支付时间 -->
+		  vaild_status,  <!-- 美研币状态1有效 2过期 -->
+		  shop_id,  <!-- 店铺编号 -->
+		  remain_num  <!-- remain_num -->
+		)
+		VALUES (
+            #{record_id, jdbcType=VARCHAR},   <!-- 记录编号 -->
+		    #{order_id, jdbcType=VARCHAR},  <!-- 订单编号 -->
+		    #{cdkey, jdbcType=VARCHAR},  <!-- 兑换编号 -->
+		    #{custom_user_id, jdbcType=VARCHAR},  <!-- 购买人编号 -->
+		    #{beauty_num, jdbcType=INTEGER},  <!-- 美研币数量 -->
+		    #{give_num, jdbcType=INTEGER},  <!-- 赠送数量 -->
+		    #{total_money, jdbcType=VARCHAR},  <!-- 总价 -->
+		    #{singe_price, jdbcType=VARCHAR},  <!-- 单个美研币价值 -->
+		    #{record_type, jdbcType=VARCHAR},  <!-- 1购买美丽币2 兑换美丽币3服务消费 -->
+		    #{pay_time, jdbcType=VARCHAR},  <!-- 支付时间 -->
+		    #{vaild_status, jdbcType=VARCHAR},  <!-- 美研币状态1有效 2过期 -->
+		    #{shop_id, jdbcType=VARCHAR},  <!-- 店铺编号 -->
+		    #{remain_num, jdbcType=INTEGER}  <!-- remain_num -->
+		)
+	</insert>
+
+	<!-- 根据主键修改数据持久化对象 -->
+	<update id="updateByKey" parameterType="com.beauty.common.po.BeautyRecordPO">
+		UPDATE bis_beauty_record
+		<set>
+			<if test="order_id != null">
+		          order_id = #{order_id, jdbcType=VARCHAR},  <!-- 订单编号 -->
+			</if>
+			<if test="cdkey != null">
+		          cdkey = #{cdkey, jdbcType=VARCHAR},  <!-- 兑换编号 -->
+			</if>
+			<if test="custom_user_id != null">
+		          custom_user_id = #{custom_user_id, jdbcType=VARCHAR},  <!-- 购买人编号 -->
+			</if>
+			<if test="beauty_num != null">
+		          beauty_num = #{beauty_num, jdbcType=INTEGER},  <!-- 美研币数量 -->
+			</if>
+			<if test="give_num != null">
+		          give_num = #{give_num, jdbcType=INTEGER},  <!-- 赠送数量 -->
+			</if>
+			<if test="total_money != null">
+		          total_money = #{total_money, jdbcType=VARCHAR},  <!-- 总价 -->
+			</if>
+			<if test="singe_price != null">
+		          singe_price = #{singe_price, jdbcType=VARCHAR},  <!-- 单个美研币价值 -->
+			</if>
+			<if test="record_type != null">
+		          record_type = #{record_type, jdbcType=VARCHAR},  <!-- 1购买美丽币2 兑换美丽币3服务消费 -->
+			</if>
+			<if test="pay_time != null">
+		          pay_time = #{pay_time, jdbcType=VARCHAR},  <!-- 支付时间 -->
+			</if>
+			<if test="vaild_status != null">
+		          vaild_status = #{vaild_status, jdbcType=VARCHAR},  <!-- 美研币状态1有效 2过期 -->
+			</if>
+			<if test="shop_id != null">
+		          shop_id = #{shop_id, jdbcType=VARCHAR},  <!-- 店铺编号 -->
+			</if>
+			<if test="remain_num != null">
+		          remain_num = #{remain_num, jdbcType=INTEGER},  <!-- remain_num -->
+			</if>
+		</set>
+		WHERE  record_id = #{record_id}
+	</update>
+	
+	<!-- 根据主键删除数据持久化对象 -->
+	<delete id="deleteByKey">
+		DELETE FROM bis_beauty_record WHERE  record_id = #{record_id}
+	</delete>
+	
+	<!-- 批量根据主键删除数据持久化对象 -->
+	<delete id="batchDeleteByKey"  parameterType="java.lang.String">
+		DELETE FROM bis_beauty_record WHERE record_id IN 
+		<foreach item="record_id" index="index" collection="list" separator="," open="(" close=")">
+		#{record_id}
+	    </foreach>
+	</delete>
+
+	<!-- 根据主键查询并返回数据持久化对象 -->
+	<select id="selectByKey" resultType="com.beauty.common.po.BeautyRecordPO">
+		SELECT
+		<include refid="column" />
+		FROM bis_beauty_record WHERE  record_id = #{record_id}
+	</select>
+
+	<!-- 根据唯一组合条件查询并返回数据持久化对象 -->
+	<select id="selectOne" parameterType="Dto" resultType="com.beauty.common.po.BeautyRecordPO">
+		SELECT
+		    <include refid="column" />
+		FROM bis_beauty_record
+		<where>
+		    <include refid="equal" />
+		</where>		
+	</select>
+
+	<!-- 根据Dto查询并返回数据持久化对象集合 -->
+	<select id="list" parameterType="Dto" resultType="com.beauty.common.po.BeautyRecordPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_beauty_record
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto查询并返回分页数据持久化对象集合 -->
+	<select id="listPage" parameterType="Dto" resultType="com.beauty.common.po.BeautyRecordPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_beauty_record
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto模糊查询并返回数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="like" parameterType="Dto" resultType="com.beauty.common.po.BeautyRecordPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_beauty_record
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto模糊查询并返回分页数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="likePage" parameterType="Dto" resultType="com.beauty.common.po.BeautyRecordPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_beauty_record
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto统计行数 -->
+	<select id="rows" resultType="Integer" parameterType="Dto">
+		SELECT COUNT(1) AS rows_ FROM bis_beauty_record
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	<!-- 根据数学表达式进行数学运算 -->
+	<select id="calc" parameterType="Dto" resultType="String">
+		SELECT
+			${_expr}
+		FROM bis_beauty_record
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	
+	
+	<!-- 表字段 -->
+	<sql id="column">
+		  record_id,  <!-- 记录编号 -->
+		  order_id,  <!-- 订单编号 -->
+		  cdkey,  <!-- 兑换编号 -->
+		  custom_user_id,  <!-- 购买人编号 -->
+		  beauty_num,  <!-- 美研币数量 -->
+		  give_num,  <!-- 赠送数量 -->
+		  total_money,  <!-- 总价 -->
+		  singe_price,  <!-- 单个美研币价值 -->
+		  record_type,  <!-- 1购买美丽币2 兑换美丽币3服务消费 -->
+		  pay_time,  <!-- 支付时间 -->
+		  vaild_status,  <!-- 美研币状态1有效 2过期 -->
+		  shop_id,  <!-- 店铺编号 -->
+		  remain_num  <!-- remain_num -->
+	</sql>
+	
+	<!-- 表字段(用于外表的关联时引用) -->
+	<sql id="column2">
+		  bis_beauty_record.record_id,  <!-- 记录编号 -->
+		  bis_beauty_record.order_id,  <!-- 订单编号 -->
+		  bis_beauty_record.cdkey,  <!-- 兑换编号 -->
+		  bis_beauty_record.custom_user_id,  <!-- 购买人编号 -->
+		  bis_beauty_record.beauty_num,  <!-- 美研币数量 -->
+		  bis_beauty_record.give_num,  <!-- 赠送数量 -->
+		  bis_beauty_record.total_money,  <!-- 总价 -->
+		  bis_beauty_record.singe_price,  <!-- 单个美研币价值 -->
+		  bis_beauty_record.record_type,  <!-- 1购买美丽币2 兑换美丽币3服务消费 -->
+		  bis_beauty_record.pay_time,  <!-- 支付时间 -->
+		  bis_beauty_record.vaild_status,  <!-- 美研币状态1有效 2过期 -->
+		  bis_beauty_record.shop_id,  <!-- 店铺编号 -->
+		  bis_beauty_record.remain_num  <!-- remain_num -->
+	</sql>
+
+	<!-- Where精确匹配字段 -->
+	<sql id="equal">
+	    <if test="record_id != null and record_id != ''">
+		      AND record_id = #{record_id}  <!-- 记录编号 -->
+		</if>
+	    <if test="order_id != null and order_id != ''">
+		      AND order_id = #{order_id}  <!-- 订单编号 -->
+		</if>
+	    <if test="cdkey != null and cdkey != ''">
+		      AND cdkey = #{cdkey}  <!-- 兑换编号 -->
+		</if>
+	    <if test="custom_user_id != null and custom_user_id != ''">
+		      AND custom_user_id = #{custom_user_id}  <!-- 购买人编号 -->
+		</if>
+	   <if test="beauty_num != null ">
+		      AND beauty_num = #{beauty_num}  <!-- 美研币数量 -->
+		</if>
+	   <if test="give_num != null ">
+		      AND give_num = #{give_num}  <!-- 赠送数量 -->
+		</if>
+	    <if test="total_money != null and total_money != ''">
+		      AND total_money = #{total_money}  <!-- 总价 -->
+		</if>
+	    <if test="singe_price != null and singe_price != ''">
+		      AND singe_price = #{singe_price}  <!-- 单个美研币价值 -->
+		</if>
+	    <if test="record_type != null and record_type != ''">
+		      AND record_type = #{record_type}  <!-- 1购买美丽币2 兑换美丽币3服务消费 -->
+		</if>
+	    <if test="pay_time != null and pay_time != ''">
+		      AND pay_time = #{pay_time}  <!-- 支付时间 -->
+		</if>
+	    <if test="vaild_status != null and vaild_status != ''">
+		      AND vaild_status = #{vaild_status}  <!-- 美研币状态1有效 2过期 -->
+		</if>
+	    <if test="shop_id != null and shop_id != ''">
+		      AND shop_id = #{shop_id}  <!-- 店铺编号 -->
+		</if>
+	   <if test="remain_num != null ">
+		      AND remain_num = #{remain_num}  <!-- remain_num -->
+		</if>
+	</sql>
+	
+	<!-- Where模糊匹配字段 -->
+	<sql id="like">
+	    <if test="record_id != null and record_id != ''">
+		      AND record_id LIKE '%${record_id}%'  <!-- 记录编号 -->
+		</if>
+	    <if test="order_id != null and order_id != ''">
+		      AND order_id LIKE '%${order_id}%'  <!-- 订单编号 -->
+		</if>
+	    <if test="cdkey != null and cdkey != ''">
+		      AND cdkey LIKE '%${cdkey}%'  <!-- 兑换编号 -->
+		</if>
+	    <if test="custom_user_id != null and custom_user_id != ''">
+		      AND custom_user_id LIKE '%${custom_user_id}%'  <!-- 购买人编号 -->
+		</if>
+	    <if test="total_money != null and total_money != ''">
+		      AND total_money LIKE '%${total_money}%'  <!-- 总价 -->
+		</if>
+	    <if test="singe_price != null and singe_price != ''">
+		      AND singe_price LIKE '%${singe_price}%'  <!-- 单个美研币价值 -->
+		</if>
+	    <if test="record_type != null and record_type != ''">
+		      AND record_type LIKE '%${record_type}%'  <!-- 1购买美丽币2 兑换美丽币3服务消费 -->
+		</if>
+	    <if test="pay_time != null and pay_time != ''">
+		      AND pay_time LIKE '%${pay_time}%'  <!-- 支付时间 -->
+		</if>
+	    <if test="vaild_status != null and vaild_status != ''">
+		      AND vaild_status LIKE '%${vaild_status}%'  <!-- 美研币状态1有效 2过期 -->
+		</if>
+	    <if test="shop_id != null and shop_id != ''">
+		      AND shop_id LIKE '%${shop_id}%'  <!-- 店铺编号 -->
+		</if>
+	</sql>
+	
+</mapper>

@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 顾客用户信息表[bis_custom_user]SQLMapper自动映射 -->
+<!--  注意:此文件由系统平台自动生成-禁止手工修改 2017-05-28 21:28:01 -->
+<mapper namespace="com.beauty.common.mapper.CustomUserMapper">
+	
+	<!-- 插入一个数据持久化对象(插入字段为传入PO实体的非空属性) -->
+	<insert id="insert"  parameterType="com.beauty.common.po.CustomUserPO">
+		INSERT INTO bis_custom_user 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="mobile != null and mobile != ''">
+	         mobile, <!-- 手机 -->
+		</if>
+		<if test="username != null and username != ''">
+	         username, <!-- 姓名 -->
+		</if>
+		<if test="password != null and password != ''">
+	         password, <!-- 密码 -->
+		</if>
+		<if test="nikename != null and nikename != ''">
+	         nikename, <!-- 昵称 -->
+		</if>
+		<if test="openid != null and openid != ''">
+	         openid, <!-- 微信openid -->
+		</if>
+		<if test="unionid != null and unionid != ''">
+	         unionid, <!-- 微信唯一编号 -->
+		</if>
+		<if test="wechat != null and wechat != ''">
+	         wechat, <!-- 微信号 -->
+		</if>
+		<if test="photo != null and photo != ''">
+	         photo, <!-- 头像 -->
+		</if>
+		<if test="sex != null and sex != ''">
+	         sex, <!-- 性别1:男2:女3:保密 -->
+		</if>
+		<if test="phone != null and phone != ''">
+	         phone, <!-- 电话 -->
+		</if>
+		<if test="qq != null and qq != ''">
+	         qq, <!-- qq -->
+		</if>
+		<if test="email != null and email != ''">
+	         email, <!-- 邮箱 -->
+		</if>
+		<if test="born_date != null">
+	         born_date, <!-- 出生日期 -->
+		</if>
+		<if test="idno != null and idno != ''">
+	         idno, <!-- 身份证 -->
+		</if>
+		<if test="address != null and address != ''">
+	         address, <!-- 居住地址 -->
+		</if>
+		<if test="remark != null and remark != ''">
+	         remark, <!-- 备注 -->
+		</if>
+		<if test="enroll_mode != null and enroll_mode != ''">
+	         enroll_mode, <!-- 注册方式1微信2商家3后台 -->
+		</if>
+		<if test="enroll_time != null and enroll_time != ''">
+	         enroll_time, <!-- 注册时间 -->
+		</if>
+		<if test="is_del != null and is_del != ''">
+	         is_del, <!-- 是否删除 0 有效 1删除 -->
+		</if>
+		<if test="wechat_status != null and wechat_status != ''">
+	         wechat_status, <!-- 微信状态 1 未订阅 2已订阅 3已退订 -->
+		</if>
+		<if test="beauty_num != null">
+	         beauty_num, <!-- 美研币数量 -->
+		</if>
+		<if test="bag_num != null">
+	         bag_num, <!--  礼包数量 -->
+		</if>
+		<if test="custom_user_id != null and custom_user_id != ''">
+	          custom_user_id  <!-- 顾客编号 -->
+	    </if>
+        </trim>
+	    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+		<if test="mobile != null and mobile != ''">
+	          #{mobile, jdbcType=VARCHAR}, <!-- 手机 -->
+	    </if>
+		<if test="username != null and username != ''">
+	          #{username, jdbcType=VARCHAR}, <!-- 姓名 -->
+	    </if>
+		<if test="password != null and password != ''">
+	          #{password, jdbcType=VARCHAR}, <!-- 密码 -->
+	    </if>
+		<if test="nikename != null and nikename != ''">
+	          #{nikename, jdbcType=VARCHAR}, <!-- 昵称 -->
+	    </if>
+		<if test="openid != null and openid != ''">
+	          #{openid, jdbcType=VARCHAR}, <!-- 微信openid -->
+	    </if>
+		<if test="unionid != null and unionid != ''">
+	          #{unionid, jdbcType=VARCHAR}, <!-- 微信唯一编号 -->
+	    </if>
+		<if test="wechat != null and wechat != ''">
+	          #{wechat, jdbcType=VARCHAR}, <!-- 微信号 -->
+	    </if>
+		<if test="photo != null and photo != ''">
+	          #{photo, jdbcType=VARCHAR}, <!-- 头像 -->
+	    </if>
+		<if test="sex != null and sex != ''">
+	          #{sex, jdbcType=VARCHAR}, <!-- 性别1:男2:女3:保密 -->
+	    </if>
+		<if test="phone != null and phone != ''">
+	          #{phone, jdbcType=VARCHAR}, <!-- 电话 -->
+	    </if>
+		<if test="qq != null and qq != ''">
+	          #{qq, jdbcType=VARCHAR}, <!-- qq -->
+	    </if>
+		<if test="email != null and email != ''">
+	          #{email, jdbcType=VARCHAR}, <!-- 邮箱 -->
+	    </if>
+		<if test="born_date != null">
+	          #{born_date, jdbcType=DATE}, <!-- 出生日期 -->
+	    </if>
+		<if test="idno != null and idno != ''">
+	          #{idno, jdbcType=VARCHAR}, <!-- 身份证 -->
+	    </if>
+		<if test="address != null and address != ''">
+	          #{address, jdbcType=VARCHAR}, <!-- 居住地址 -->
+	    </if>
+		<if test="remark != null and remark != ''">
+	          #{remark, jdbcType=VARCHAR}, <!-- 备注 -->
+	    </if>
+		<if test="enroll_mode != null and enroll_mode != ''">
+	          #{enroll_mode, jdbcType=VARCHAR}, <!-- 注册方式1微信2商家3后台 -->
+	    </if>
+		<if test="enroll_time != null and enroll_time != ''">
+	          #{enroll_time, jdbcType=VARCHAR}, <!-- 注册时间 -->
+	    </if>
+		<if test="is_del != null and is_del != ''">
+	          #{is_del, jdbcType=VARCHAR}, <!-- 是否删除 0 有效 1删除 -->
+	    </if>
+		<if test="wechat_status != null and wechat_status != ''">
+	          #{wechat_status, jdbcType=VARCHAR}, <!-- 微信状态 1 未订阅 2已订阅 3已退订 -->
+	    </if>
+		<if test="beauty_num != null">
+	          #{beauty_num, jdbcType=INTEGER}, <!-- 美研币数量 -->
+	    </if>
+		<if test="bag_num != null">
+	          #{bag_num, jdbcType=INTEGER}, <!--  礼包数量 -->
+	    </if>
+		<if test="custom_user_id != null and custom_user_id != ''">
+		     #{custom_user_id, jdbcType=VARCHAR}  <!-- 顾客编号 -->
+	    </if>
+		</trim>
+		
+	</insert>
+	
+	<!-- 插入一个数据持久化对象(含所有字段) -->
+	<insert id="insertAll"  parameterType="com.beauty.common.po.CustomUserPO">
+		INSERT INTO bis_custom_user (
+          custom_user_id,  <!-- 顾客编号 -->
+		  mobile,  <!-- 手机 -->
+		  username,  <!-- 姓名 -->
+		  password,  <!-- 密码 -->
+		  nikename,  <!-- 昵称 -->
+		  openid,  <!-- 微信openid -->
+		  unionid,  <!-- 微信唯一编号 -->
+		  wechat,  <!-- 微信号 -->
+		  photo,  <!-- 头像 -->
+		  sex,  <!-- 性别1:男2:女3:保密 -->
+		  phone,  <!-- 电话 -->
+		  qq,  <!-- qq -->
+		  email,  <!-- 邮箱 -->
+		  born_date,  <!-- 出生日期 -->
+		  idno,  <!-- 身份证 -->
+		  address,  <!-- 居住地址 -->
+		  remark,  <!-- 备注 -->
+		  enroll_mode,  <!-- 注册方式1微信2商家3后台 -->
+		  enroll_time,  <!-- 注册时间 -->
+		  is_del,  <!-- 是否删除 0 有效 1删除 -->
+		  wechat_status,  <!-- 微信状态 1 未订阅 2已订阅 3已退订 -->
+		  beauty_num,  <!-- 美研币数量 -->
+		  bag_num  <!--  礼包数量 -->
+		)
+		VALUES (
+            #{custom_user_id, jdbcType=VARCHAR},   <!-- 顾客编号 -->
+		    #{mobile, jdbcType=VARCHAR},  <!-- 手机 -->
+		    #{username, jdbcType=VARCHAR},  <!-- 姓名 -->
+		    #{password, jdbcType=VARCHAR},  <!-- 密码 -->
+		    #{nikename, jdbcType=VARCHAR},  <!-- 昵称 -->
+		    #{openid, jdbcType=VARCHAR},  <!-- 微信openid -->
+		    #{unionid, jdbcType=VARCHAR},  <!-- 微信唯一编号 -->
+		    #{wechat, jdbcType=VARCHAR},  <!-- 微信号 -->
+		    #{photo, jdbcType=VARCHAR},  <!-- 头像 -->
+		    #{sex, jdbcType=VARCHAR},  <!-- 性别1:男2:女3:保密 -->
+		    #{phone, jdbcType=VARCHAR},  <!-- 电话 -->
+		    #{qq, jdbcType=VARCHAR},  <!-- qq -->
+		    #{email, jdbcType=VARCHAR},  <!-- 邮箱 -->
+		    #{born_date, jdbcType=DATE},  <!-- 出生日期 -->
+		    #{idno, jdbcType=VARCHAR},  <!-- 身份证 -->
+		    #{address, jdbcType=VARCHAR},  <!-- 居住地址 -->
+		    #{remark, jdbcType=VARCHAR},  <!-- 备注 -->
+		    #{enroll_mode, jdbcType=VARCHAR},  <!-- 注册方式1微信2商家3后台 -->
+		    #{enroll_time, jdbcType=VARCHAR},  <!-- 注册时间 -->
+		    #{is_del, jdbcType=VARCHAR},  <!-- 是否删除 0 有效 1删除 -->
+		    #{wechat_status, jdbcType=VARCHAR},  <!-- 微信状态 1 未订阅 2已订阅 3已退订 -->
+		    #{beauty_num, jdbcType=INTEGER},  <!-- 美研币数量 -->
+		    #{bag_num, jdbcType=INTEGER}  <!--  礼包数量 -->
+		)
+	</insert>
+
+	<!-- 根据主键修改数据持久化对象 -->
+	<update id="updateByKey" parameterType="com.beauty.common.po.CustomUserPO">
+		UPDATE bis_custom_user
+		<set>
+			<if test="mobile != null">
+		          mobile = #{mobile, jdbcType=VARCHAR},  <!-- 手机 -->
+			</if>
+			<if test="username != null">
+		          username = #{username, jdbcType=VARCHAR},  <!-- 姓名 -->
+			</if>
+			<if test="password != null">
+		          password = #{password, jdbcType=VARCHAR},  <!-- 密码 -->
+			</if>
+			<if test="nikename != null">
+		          nikename = #{nikename, jdbcType=VARCHAR},  <!-- 昵称 -->
+			</if>
+			<if test="openid != null">
+		          openid = #{openid, jdbcType=VARCHAR},  <!-- 微信openid -->
+			</if>
+			<if test="unionid != null">
+		          unionid = #{unionid, jdbcType=VARCHAR},  <!-- 微信唯一编号 -->
+			</if>
+			<if test="wechat != null">
+		          wechat = #{wechat, jdbcType=VARCHAR},  <!-- 微信号 -->
+			</if>
+			<if test="photo != null">
+		          photo = #{photo, jdbcType=VARCHAR},  <!-- 头像 -->
+			</if>
+			<if test="sex != null">
+		          sex = #{sex, jdbcType=VARCHAR},  <!-- 性别1:男2:女3:保密 -->
+			</if>
+			<if test="phone != null">
+		          phone = #{phone, jdbcType=VARCHAR},  <!-- 电话 -->
+			</if>
+			<if test="qq != null">
+		          qq = #{qq, jdbcType=VARCHAR},  <!-- qq -->
+			</if>
+			<if test="email != null">
+		          email = #{email, jdbcType=VARCHAR},  <!-- 邮箱 -->
+			</if>
+			<if test="born_date != null">
+		          born_date = #{born_date, jdbcType=DATE},  <!-- 出生日期 -->
+			</if>
+			<if test="idno != null">
+		          idno = #{idno, jdbcType=VARCHAR},  <!-- 身份证 -->
+			</if>
+			<if test="address != null">
+		          address = #{address, jdbcType=VARCHAR},  <!-- 居住地址 -->
+			</if>
+			<if test="remark != null">
+		          remark = #{remark, jdbcType=VARCHAR},  <!-- 备注 -->
+			</if>
+			<if test="enroll_mode != null">
+		          enroll_mode = #{enroll_mode, jdbcType=VARCHAR},  <!-- 注册方式1微信2商家3后台 -->
+			</if>
+			<if test="enroll_time != null">
+		          enroll_time = #{enroll_time, jdbcType=VARCHAR},  <!-- 注册时间 -->
+			</if>
+			<if test="is_del != null">
+		          is_del = #{is_del, jdbcType=VARCHAR},  <!-- 是否删除 0 有效 1删除 -->
+			</if>
+			<if test="wechat_status != null">
+		          wechat_status = #{wechat_status, jdbcType=VARCHAR},  <!-- 微信状态 1 未订阅 2已订阅 3已退订 -->
+			</if>
+			<if test="beauty_num != null">
+		          beauty_num = #{beauty_num, jdbcType=INTEGER},  <!-- 美研币数量 -->
+			</if>
+			<if test="bag_num != null">
+		          bag_num = #{bag_num, jdbcType=INTEGER},  <!--  礼包数量 -->
+			</if>
+		</set>
+		WHERE  custom_user_id = #{custom_user_id}
+	</update>
+	
+	<!-- 根据主键删除数据持久化对象 -->
+	<delete id="deleteByKey">
+		DELETE FROM bis_custom_user WHERE  custom_user_id = #{custom_user_id}
+	</delete>
+	
+	<!-- 批量根据主键删除数据持久化对象 -->
+	<delete id="batchDeleteByKey"  parameterType="java.lang.String">
+		DELETE FROM bis_custom_user WHERE custom_user_id IN 
+		<foreach item="custom_user_id" index="index" collection="list" separator="," open="(" close=")">
+		#{custom_user_id}
+	    </foreach>
+	</delete>
+
+	<!-- 根据主键查询并返回数据持久化对象 -->
+	<select id="selectByKey" resultType="com.beauty.common.po.CustomUserPO">
+		SELECT
+		<include refid="column" />
+		FROM bis_custom_user WHERE  custom_user_id = #{custom_user_id}
+	</select>
+
+	<!-- 根据唯一组合条件查询并返回数据持久化对象 -->
+	<select id="selectOne" parameterType="Dto" resultType="com.beauty.common.po.CustomUserPO">
+		SELECT
+		    <include refid="column" />
+		FROM bis_custom_user
+		<where>
+		    <include refid="equal" />
+		</where>		
+	</select>
+
+	<!-- 根据Dto查询并返回数据持久化对象集合 -->
+	<select id="list" parameterType="Dto" resultType="com.beauty.common.po.CustomUserPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_custom_user
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto查询并返回分页数据持久化对象集合 -->
+	<select id="listPage" parameterType="Dto" resultType="com.beauty.common.po.CustomUserPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_custom_user
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto模糊查询并返回数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="like" parameterType="Dto" resultType="com.beauty.common.po.CustomUserPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_custom_user
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto模糊查询并返回分页数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="likePage" parameterType="Dto" resultType="com.beauty.common.po.CustomUserPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_custom_user
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto统计行数 -->
+	<select id="rows" resultType="Integer" parameterType="Dto">
+		SELECT COUNT(1) AS rows_ FROM bis_custom_user
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	<!-- 根据数学表达式进行数学运算 -->
+	<select id="calc" parameterType="Dto" resultType="String">
+		SELECT
+			${_expr}
+		FROM bis_custom_user
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	
+	
+	<!-- 表字段 -->
+	<sql id="column">
+		  custom_user_id,  <!-- 顾客编号 -->
+		  mobile,  <!-- 手机 -->
+		  username,  <!-- 姓名 -->
+		  password,  <!-- 密码 -->
+		  nikename,  <!-- 昵称 -->
+		  openid,  <!-- 微信openid -->
+		  unionid,  <!-- 微信唯一编号 -->
+		  wechat,  <!-- 微信号 -->
+		  photo,  <!-- 头像 -->
+		  sex,  <!-- 性别1:男2:女3:保密 -->
+		  phone,  <!-- 电话 -->
+		  qq,  <!-- qq -->
+		  email,  <!-- 邮箱 -->
+		  born_date,  <!-- 出生日期 -->
+		  idno,  <!-- 身份证 -->
+		  address,  <!-- 居住地址 -->
+		  remark,  <!-- 备注 -->
+		  enroll_mode,  <!-- 注册方式1微信2商家3后台 -->
+		  enroll_time,  <!-- 注册时间 -->
+		  is_del,  <!-- 是否删除 0 有效 1删除 -->
+		  wechat_status,  <!-- 微信状态 1 未订阅 2已订阅 3已退订 -->
+		  beauty_num,  <!-- 美研币数量 -->
+		  bag_num  <!--  礼包数量 -->
+	</sql>
+	
+	<!-- 表字段(用于外表的关联时引用) -->
+	<sql id="column2">
+		  bis_custom_user.custom_user_id,  <!-- 顾客编号 -->
+		  bis_custom_user.mobile,  <!-- 手机 -->
+		  bis_custom_user.username,  <!-- 姓名 -->
+		  bis_custom_user.password,  <!-- 密码 -->
+		  bis_custom_user.nikename,  <!-- 昵称 -->
+		  bis_custom_user.openid,  <!-- 微信openid -->
+		  bis_custom_user.unionid,  <!-- 微信唯一编号 -->
+		  bis_custom_user.wechat,  <!-- 微信号 -->
+		  bis_custom_user.photo,  <!-- 头像 -->
+		  bis_custom_user.sex,  <!-- 性别1:男2:女3:保密 -->
+		  bis_custom_user.phone,  <!-- 电话 -->
+		  bis_custom_user.qq,  <!-- qq -->
+		  bis_custom_user.email,  <!-- 邮箱 -->
+		  bis_custom_user.born_date,  <!-- 出生日期 -->
+		  bis_custom_user.idno,  <!-- 身份证 -->
+		  bis_custom_user.address,  <!-- 居住地址 -->
+		  bis_custom_user.remark,  <!-- 备注 -->
+		  bis_custom_user.enroll_mode,  <!-- 注册方式1微信2商家3后台 -->
+		  bis_custom_user.enroll_time,  <!-- 注册时间 -->
+		  bis_custom_user.is_del,  <!-- 是否删除 0 有效 1删除 -->
+		  bis_custom_user.wechat_status,  <!-- 微信状态 1 未订阅 2已订阅 3已退订 -->
+		  bis_custom_user.beauty_num,  <!-- 美研币数量 -->
+		  bis_custom_user.bag_num  <!--  礼包数量 -->
+	</sql>
+
+	<!-- Where精确匹配字段 -->
+	<sql id="equal">
+	    <if test="custom_user_id != null and custom_user_id != ''">
+		      AND custom_user_id = #{custom_user_id}  <!-- 顾客编号 -->
+		</if>
+	    <if test="mobile != null and mobile != ''">
+		      AND mobile = #{mobile}  <!-- 手机 -->
+		</if>
+	    <if test="username != null and username != ''">
+		      AND username = #{username}  <!-- 姓名 -->
+		</if>
+	    <if test="password != null and password != ''">
+		      AND password = #{password}  <!-- 密码 -->
+		</if>
+	    <if test="nikename != null and nikename != ''">
+		      AND nikename = #{nikename}  <!-- 昵称 -->
+		</if>
+	    <if test="openid != null and openid != ''">
+		      AND openid = #{openid}  <!-- 微信openid -->
+		</if>
+	    <if test="unionid != null and unionid != ''">
+		      AND unionid = #{unionid}  <!-- 微信唯一编号 -->
+		</if>
+	    <if test="wechat != null and wechat != ''">
+		      AND wechat = #{wechat}  <!-- 微信号 -->
+		</if>
+	    <if test="photo != null and photo != ''">
+		      AND photo = #{photo}  <!-- 头像 -->
+		</if>
+	    <if test="sex != null and sex != ''">
+		      AND sex = #{sex}  <!-- 性别1:男2:女3:保密 -->
+		</if>
+	    <if test="phone != null and phone != ''">
+		      AND phone = #{phone}  <!-- 电话 -->
+		</if>
+	    <if test="qq != null and qq != ''">
+		      AND qq = #{qq}  <!-- qq -->
+		</if>
+	    <if test="email != null and email != ''">
+		      AND email = #{email}  <!-- 邮箱 -->
+		</if>
+	   <if test="born_date != null ">
+		      AND born_date = #{born_date}  <!-- 出生日期 -->
+		</if>
+	    <if test="idno != null and idno != ''">
+		      AND idno = #{idno}  <!-- 身份证 -->
+		</if>
+	    <if test="address != null and address != ''">
+		      AND address = #{address}  <!-- 居住地址 -->
+		</if>
+	    <if test="remark != null and remark != ''">
+		      AND remark = #{remark}  <!-- 备注 -->
+		</if>
+	    <if test="enroll_mode != null and enroll_mode != ''">
+		      AND enroll_mode = #{enroll_mode}  <!-- 注册方式1微信2商家3后台 -->
+		</if>
+	    <if test="enroll_time != null and enroll_time != ''">
+		      AND enroll_time = #{enroll_time}  <!-- 注册时间 -->
+		</if>
+	    <if test="is_del != null and is_del != ''">
+		      AND is_del = #{is_del}  <!-- 是否删除 0 有效 1删除 -->
+		</if>
+	    <if test="wechat_status != null and wechat_status != ''">
+		      AND wechat_status = #{wechat_status}  <!-- 微信状态 1 未订阅 2已订阅 3已退订 -->
+		</if>
+	   <if test="beauty_num != null ">
+		      AND beauty_num = #{beauty_num}  <!-- 美研币数量 -->
+		</if>
+	   <if test="bag_num != null ">
+		      AND bag_num = #{bag_num}  <!--  礼包数量 -->
+		</if>
+	</sql>
+	
+	<!-- Where模糊匹配字段 -->
+	<sql id="like">
+	    <if test="custom_user_id != null and custom_user_id != ''">
+		      AND custom_user_id LIKE '%${custom_user_id}%'  <!-- 顾客编号 -->
+		</if>
+	    <if test="mobile != null and mobile != ''">
+		      AND mobile LIKE '%${mobile}%'  <!-- 手机 -->
+		</if>
+	    <if test="username != null and username != ''">
+		      AND username LIKE '%${username}%'  <!-- 姓名 -->
+		</if>
+	    <if test="password != null and password != ''">
+		      AND password LIKE '%${password}%'  <!-- 密码 -->
+		</if>
+	    <if test="nikename != null and nikename != ''">
+		      AND nikename LIKE '%${nikename}%'  <!-- 昵称 -->
+		</if>
+	    <if test="openid != null and openid != ''">
+		      AND openid LIKE '%${openid}%'  <!-- 微信openid -->
+		</if>
+	    <if test="unionid != null and unionid != ''">
+		      AND unionid LIKE '%${unionid}%'  <!-- 微信唯一编号 -->
+		</if>
+	    <if test="wechat != null and wechat != ''">
+		      AND wechat LIKE '%${wechat}%'  <!-- 微信号 -->
+		</if>
+	    <if test="photo != null and photo != ''">
+		      AND photo LIKE '%${photo}%'  <!-- 头像 -->
+		</if>
+	    <if test="sex != null and sex != ''">
+		      AND sex LIKE '%${sex}%'  <!-- 性别1:男2:女3:保密 -->
+		</if>
+	    <if test="phone != null and phone != ''">
+		      AND phone LIKE '%${phone}%'  <!-- 电话 -->
+		</if>
+	    <if test="qq != null and qq != ''">
+		      AND qq LIKE '%${qq}%'  <!-- qq -->
+		</if>
+	    <if test="email != null and email != ''">
+		      AND email LIKE '%${email}%'  <!-- 邮箱 -->
+		</if>
+	    <if test="idno != null and idno != ''">
+		      AND idno LIKE '%${idno}%'  <!-- 身份证 -->
+		</if>
+	    <if test="address != null and address != ''">
+		      AND address LIKE '%${address}%'  <!-- 居住地址 -->
+		</if>
+	    <if test="remark != null and remark != ''">
+		      AND remark LIKE '%${remark}%'  <!-- 备注 -->
+		</if>
+	    <if test="enroll_mode != null and enroll_mode != ''">
+		      AND enroll_mode LIKE '%${enroll_mode}%'  <!-- 注册方式1微信2商家3后台 -->
+		</if>
+	    <if test="enroll_time != null and enroll_time != ''">
+		      AND enroll_time LIKE '%${enroll_time}%'  <!-- 注册时间 -->
+		</if>
+	    <if test="is_del != null and is_del != ''">
+		      AND is_del LIKE '%${is_del}%'  <!-- 是否删除 0 有效 1删除 -->
+		</if>
+	    <if test="wechat_status != null and wechat_status != ''">
+		      AND wechat_status LIKE '%${wechat_status}%'  <!-- 微信状态 1 未订阅 2已订阅 3已退订 -->
+		</if>
+	</sql>
+	
+</mapper>

@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 定金信息[bis_order_deposit]SQLMapper自动映射 -->
+<!--  注意:此文件由系统平台自动生成-禁止手工修改 2017-06-05 00:05:42 -->
+<mapper namespace="com.beauty.common.mapper.OrderDepositMapper">
+	
+	<!-- 插入一个数据持久化对象(插入字段为传入PO实体的非空属性) -->
+	<insert id="insert"  parameterType="com.beauty.common.po.OrderDepositPO">
+		INSERT INTO bis_order_deposit 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="order_id != null and order_id != ''">
+	         order_id, <!-- 订单编号 -->
+		</if>
+		<if test="pay_account != null and pay_account != ''">
+	         pay_account, <!-- 买家支付账号 -->
+		</if>
+		<if test="deposit_money != null and deposit_money != ''">
+	         deposit_money, <!-- deposit_money -->
+		</if>
+		<if test="pay_way != null and pay_way != ''">
+	         pay_way, <!-- pay_way -->
+		</if>
+		<if test="pay_time != null and pay_time != ''">
+	         pay_time, <!-- 支付时间 -->
+		</if>
+		<if test="deposit_status != null and deposit_status != ''">
+	         deposit_status, <!-- 定金状态 -->
+		</if>
+		<if test="back_time != null and back_time != ''">
+	         back_time, <!-- 退回时间 -->
+		</if>
+		<if test="custom_user_id != null and custom_user_id != ''">
+	         custom_user_id, <!-- 消费者编号 -->
+		</if>
+		<if test="deposit_id != null and deposit_id != ''">
+	          deposit_id  <!-- 定金编号 -->
+	    </if>
+        </trim>
+	    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+		<if test="order_id != null and order_id != ''">
+	          #{order_id, jdbcType=VARCHAR}, <!-- 订单编号 -->
+	    </if>
+		<if test="pay_account != null and pay_account != ''">
+	          #{pay_account, jdbcType=VARCHAR}, <!-- 买家支付账号 -->
+	    </if>
+		<if test="deposit_money != null and deposit_money != ''">
+	          #{deposit_money, jdbcType=VARCHAR}, <!-- deposit_money -->
+	    </if>
+		<if test="pay_way != null and pay_way != ''">
+	          #{pay_way, jdbcType=VARCHAR}, <!-- pay_way -->
+	    </if>
+		<if test="pay_time != null and pay_time != ''">
+	          #{pay_time, jdbcType=VARCHAR}, <!-- 支付时间 -->
+	    </if>
+		<if test="deposit_status != null and deposit_status != ''">
+	          #{deposit_status, jdbcType=VARCHAR}, <!-- 定金状态 -->
+	    </if>
+		<if test="back_time != null and back_time != ''">
+	          #{back_time, jdbcType=VARCHAR}, <!-- 退回时间 -->
+	    </if>
+		<if test="custom_user_id != null and custom_user_id != ''">
+	          #{custom_user_id, jdbcType=VARCHAR}, <!-- 消费者编号 -->
+	    </if>
+		<if test="deposit_id != null and deposit_id != ''">
+		     #{deposit_id, jdbcType=VARCHAR}  <!-- 定金编号 -->
+	    </if>
+		</trim>
+		
+	</insert>
+	
+	<!-- 插入一个数据持久化对象(含所有字段) -->
+	<insert id="insertAll"  parameterType="com.beauty.common.po.OrderDepositPO">
+		INSERT INTO bis_order_deposit (
+          deposit_id,  <!-- 定金编号 -->
+		  order_id,  <!-- 订单编号 -->
+		  pay_account,  <!-- 买家支付账号 -->
+		  deposit_money,  <!-- deposit_money -->
+		  pay_way,  <!-- pay_way -->
+		  pay_time,  <!-- 支付时间 -->
+		  deposit_status,  <!-- 定金状态 -->
+		  back_time,  <!-- 退回时间 -->
+		  custom_user_id  <!-- 消费者编号 -->
+		)
+		VALUES (
+            #{deposit_id, jdbcType=VARCHAR},   <!-- 定金编号 -->
+		    #{order_id, jdbcType=VARCHAR},  <!-- 订单编号 -->
+		    #{pay_account, jdbcType=VARCHAR},  <!-- 买家支付账号 -->
+		    #{deposit_money, jdbcType=VARCHAR},  <!-- deposit_money -->
+		    #{pay_way, jdbcType=VARCHAR},  <!-- pay_way -->
+		    #{pay_time, jdbcType=VARCHAR},  <!-- 支付时间 -->
+		    #{deposit_status, jdbcType=VARCHAR},  <!-- 定金状态 -->
+		    #{back_time, jdbcType=VARCHAR},  <!-- 退回时间 -->
+		    #{custom_user_id, jdbcType=VARCHAR}  <!-- 消费者编号 -->
+		)
+	</insert>
+
+	<!-- 根据主键修改数据持久化对象 -->
+	<update id="updateByKey" parameterType="com.beauty.common.po.OrderDepositPO">
+		UPDATE bis_order_deposit
+		<set>
+			<if test="order_id != null">
+		          order_id = #{order_id, jdbcType=VARCHAR},  <!-- 订单编号 -->
+			</if>
+			<if test="pay_account != null">
+		          pay_account = #{pay_account, jdbcType=VARCHAR},  <!-- 买家支付账号 -->
+			</if>
+			<if test="deposit_money != null">
+		          deposit_money = #{deposit_money, jdbcType=VARCHAR},  <!-- deposit_money -->
+			</if>
+			<if test="pay_way != null">
+		          pay_way = #{pay_way, jdbcType=VARCHAR},  <!-- pay_way -->
+			</if>
+			<if test="pay_time != null">
+		          pay_time = #{pay_time, jdbcType=VARCHAR},  <!-- 支付时间 -->
+			</if>
+			<if test="deposit_status != null">
+		          deposit_status = #{deposit_status, jdbcType=VARCHAR},  <!-- 定金状态 -->
+			</if>
+			<if test="back_time != null">
+		          back_time = #{back_time, jdbcType=VARCHAR},  <!-- 退回时间 -->
+			</if>
+			<if test="custom_user_id != null">
+		          custom_user_id = #{custom_user_id, jdbcType=VARCHAR},  <!-- 消费者编号 -->
+			</if>
+		</set>
+		WHERE  deposit_id = #{deposit_id}
+	</update>
+	
+	<!-- 根据主键删除数据持久化对象 -->
+	<delete id="deleteByKey">
+		DELETE FROM bis_order_deposit WHERE  deposit_id = #{deposit_id}
+	</delete>
+	
+	<!-- 批量根据主键删除数据持久化对象 -->
+	<delete id="batchDeleteByKey"  parameterType="java.lang.String">
+		DELETE FROM bis_order_deposit WHERE deposit_id IN 
+		<foreach item="deposit_id" index="index" collection="list" separator="," open="(" close=")">
+		#{deposit_id}
+	    </foreach>
+	</delete>
+
+	<!-- 根据主键查询并返回数据持久化对象 -->
+	<select id="selectByKey" resultType="com.beauty.common.po.OrderDepositPO">
+		SELECT
+		<include refid="column" />
+		FROM bis_order_deposit WHERE  deposit_id = #{deposit_id}
+	</select>
+
+	<!-- 根据唯一组合条件查询并返回数据持久化对象 -->
+	<select id="selectOne" parameterType="Dto" resultType="com.beauty.common.po.OrderDepositPO">
+		SELECT
+		    <include refid="column" />
+		FROM bis_order_deposit
+		<where>
+		    <include refid="equal" />
+		</where>		
+	</select>
+
+	<!-- 根据Dto查询并返回数据持久化对象集合 -->
+	<select id="list" parameterType="Dto" resultType="com.beauty.common.po.OrderDepositPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_order_deposit
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto查询并返回分页数据持久化对象集合 -->
+	<select id="listPage" parameterType="Dto" resultType="com.beauty.common.po.OrderDepositPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_order_deposit
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto模糊查询并返回数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="like" parameterType="Dto" resultType="com.beauty.common.po.OrderDepositPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_order_deposit
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto模糊查询并返回分页数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="likePage" parameterType="Dto" resultType="com.beauty.common.po.OrderDepositPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_order_deposit
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto统计行数 -->
+	<select id="rows" resultType="Integer" parameterType="Dto">
+		SELECT COUNT(1) AS rows_ FROM bis_order_deposit
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	<!-- 根据数学表达式进行数学运算 -->
+	<select id="calc" parameterType="Dto" resultType="String">
+		SELECT
+			${_expr}
+		FROM bis_order_deposit
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	
+	
+	<!-- 表字段 -->
+	<sql id="column">
+		  deposit_id,  <!-- 定金编号 -->
+		  order_id,  <!-- 订单编号 -->
+		  pay_account,  <!-- 买家支付账号 -->
+		  deposit_money,  <!-- deposit_money -->
+		  pay_way,  <!-- pay_way -->
+		  pay_time,  <!-- 支付时间 -->
+		  deposit_status,  <!-- 定金状态 -->
+		  back_time,  <!-- 退回时间 -->
+		  custom_user_id  <!-- 消费者编号 -->
+	</sql>
+	
+	<!-- 表字段(用于外表的关联时引用) -->
+	<sql id="column2">
+		  bis_order_deposit.deposit_id,  <!-- 定金编号 -->
+		  bis_order_deposit.order_id,  <!-- 订单编号 -->
+		  bis_order_deposit.pay_account,  <!-- 买家支付账号 -->
+		  bis_order_deposit.deposit_money,  <!-- deposit_money -->
+		  bis_order_deposit.pay_way,  <!-- pay_way -->
+		  bis_order_deposit.pay_time,  <!-- 支付时间 -->
+		  bis_order_deposit.deposit_status,  <!-- 定金状态 -->
+		  bis_order_deposit.back_time,  <!-- 退回时间 -->
+		  bis_order_deposit.custom_user_id  <!-- 消费者编号 -->
+	</sql>
+
+	<!-- Where精确匹配字段 -->
+	<sql id="equal">
+	    <if test="deposit_id != null and deposit_id != ''">
+		      AND deposit_id = #{deposit_id}  <!-- 定金编号 -->
+		</if>
+	    <if test="order_id != null and order_id != ''">
+		      AND order_id = #{order_id}  <!-- 订单编号 -->
+		</if>
+	    <if test="pay_account != null and pay_account != ''">
+		      AND pay_account = #{pay_account}  <!-- 买家支付账号 -->
+		</if>
+	    <if test="deposit_money != null and deposit_money != ''">
+		      AND deposit_money = #{deposit_money}  <!-- deposit_money -->
+		</if>
+	    <if test="pay_way != null and pay_way != ''">
+		      AND pay_way = #{pay_way}  <!-- pay_way -->
+		</if>
+	    <if test="pay_time != null and pay_time != ''">
+		      AND pay_time = #{pay_time}  <!-- 支付时间 -->
+		</if>
+	    <if test="deposit_status != null and deposit_status != ''">
+		      AND deposit_status = #{deposit_status}  <!-- 定金状态 -->
+		</if>
+	    <if test="back_time != null and back_time != ''">
+		      AND back_time = #{back_time}  <!-- 退回时间 -->
+		</if>
+	    <if test="custom_user_id != null and custom_user_id != ''">
+		      AND custom_user_id = #{custom_user_id}  <!-- 消费者编号 -->
+		</if>
+	</sql>
+	
+	<!-- Where模糊匹配字段 -->
+	<sql id="like">
+	    <if test="deposit_id != null and deposit_id != ''">
+		      AND deposit_id LIKE '%${deposit_id}%'  <!-- 定金编号 -->
+		</if>
+	    <if test="order_id != null and order_id != ''">
+		      AND order_id LIKE '%${order_id}%'  <!-- 订单编号 -->
+		</if>
+	    <if test="pay_account != null and pay_account != ''">
+		      AND pay_account LIKE '%${pay_account}%'  <!-- 买家支付账号 -->
+		</if>
+	    <if test="deposit_money != null and deposit_money != ''">
+		      AND deposit_money LIKE '%${deposit_money}%'  <!-- deposit_money -->
+		</if>
+	    <if test="pay_way != null and pay_way != ''">
+		      AND pay_way LIKE '%${pay_way}%'  <!-- pay_way -->
+		</if>
+	    <if test="pay_time != null and pay_time != ''">
+		      AND pay_time LIKE '%${pay_time}%'  <!-- 支付时间 -->
+		</if>
+	    <if test="deposit_status != null and deposit_status != ''">
+		      AND deposit_status LIKE '%${deposit_status}%'  <!-- 定金状态 -->
+		</if>
+	    <if test="back_time != null and back_time != ''">
+		      AND back_time LIKE '%${back_time}%'  <!-- 退回时间 -->
+		</if>
+	    <if test="custom_user_id != null and custom_user_id != ''">
+		      AND custom_user_id LIKE '%${custom_user_id}%'  <!-- 消费者编号 -->
+		</if>
+	</sql>
+	
+</mapper>

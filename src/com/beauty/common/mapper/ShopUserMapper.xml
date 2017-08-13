@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 店铺员工信息表[bis_shop_user]SQLMapper自动映射 -->
+<!--  注意:此文件由系统平台自动生成-禁止手工修改 2017-04-17 12:09:21 -->
+<mapper namespace="com.beauty.common.mapper.ShopUserMapper">
+	
+	<!-- 插入一个数据持久化对象(插入字段为传入PO实体的非空属性) -->
+	<insert id="insert"  parameterType="com.beauty.common.po.ShopUserPO">
+		INSERT INTO bis_shop_user 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="user_type != null and user_type != ''">
+	         user_type, <!-- 用户类型 1 店主 2员工 -->
+		</if>
+		<if test="shop_id != null and shop_id != ''">
+	         shop_id, <!-- 店铺编号 -->
+		</if>
+		<if test="account != null and account != ''">
+	         account, <!-- 账号 -->
+		</if>
+		<if test="username != null and username != ''">
+	         username, <!-- 姓名 -->
+		</if>
+		<if test="password != null and password != ''">
+	         password, <!-- 密码 -->
+		</if>
+		<if test="photo != null and photo != ''">
+	         photo, <!-- 头像照片 -->
+		</if>
+		<if test="work_number != null and work_number != ''">
+	         work_number, <!-- 工号 -->
+		</if>
+		<if test="sex != null and sex != ''">
+	         sex, <!-- 性别1:男2:女3:保密 -->
+		</if>
+		<if test="post_code != null and post_code != ''">
+	         post_code, <!-- 职位编码 -->
+		</if>
+		<if test="entry_date != null">
+	         entry_date, <!-- 入职日期 -->
+		</if>
+		<if test="mobile != null and mobile != ''">
+	         mobile, <!-- 手机号码 -->
+		</if>
+		<if test="phone != null and phone != ''">
+	         phone, <!-- 电话 -->
+		</if>
+		<if test="email != null and email != ''">
+	         email, <!-- 邮箱 -->
+		</if>
+		<if test="born_date != null">
+	         born_date, <!-- 出生日期 -->
+		</if>
+		<if test="idno != null and idno != ''">
+	         idno, <!-- 身份证 -->
+		</if>
+		<if test="address != null and address != ''">
+	         address, <!-- 居住地址 -->
+		</if>
+		<if test="linkman != null and linkman != ''">
+	         linkman, <!-- 紧急联系人 -->
+		</if>
+		<if test="linkphone != null and linkphone != ''">
+	         linkphone, <!-- 紧急联系电话 -->
+		</if>
+		<if test="status != null and status != ''">
+	         status, <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+		</if>
+		<if test="is_del != null and is_del != ''">
+	         is_del, <!-- 是否删除0有效1删除 -->
+		</if>
+		<if test="remark != null and remark != ''">
+	         remark, <!-- 备注 -->
+		</if>
+		<if test="create_time != null and create_time != ''">
+	         create_time, <!-- 创建时间 -->
+		</if>
+		<if test="create_user_id != null and create_user_id != ''">
+	         create_user_id, <!-- 创建人ID -->
+		</if>
+		<if test="modify_time != null and modify_time != ''">
+	         modify_time, <!-- 修改时间 -->
+		</if>
+		<if test="modify_user_id != null and modify_user_id != ''">
+	         modify_user_id, <!-- 修改用户ID -->
+		</if>
+		<if test="shop_user_id != null and shop_user_id != ''">
+	          shop_user_id  <!-- 用户编号 -->
+	    </if>
+        </trim>
+	    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+		<if test="user_type != null and user_type != ''">
+	          #{user_type, jdbcType=VARCHAR}, <!-- 用户类型 1 店主 2员工 -->
+	    </if>
+		<if test="shop_id != null and shop_id != ''">
+	          #{shop_id, jdbcType=VARCHAR}, <!-- 店铺编号 -->
+	    </if>
+		<if test="account != null and account != ''">
+	          #{account, jdbcType=VARCHAR}, <!-- 账号 -->
+	    </if>
+		<if test="username != null and username != ''">
+	          #{username, jdbcType=VARCHAR}, <!-- 姓名 -->
+	    </if>
+		<if test="password != null and password != ''">
+	          #{password, jdbcType=VARCHAR}, <!-- 密码 -->
+	    </if>
+		<if test="photo != null and photo != ''">
+	          #{photo, jdbcType=VARCHAR}, <!-- 头像照片 -->
+	    </if>
+		<if test="work_number != null and work_number != ''">
+	          #{work_number, jdbcType=VARCHAR}, <!-- 工号 -->
+	    </if>
+		<if test="sex != null and sex != ''">
+	          #{sex, jdbcType=VARCHAR}, <!-- 性别1:男2:女3:保密 -->
+	    </if>
+		<if test="post_code != null and post_code != ''">
+	          #{post_code, jdbcType=VARCHAR}, <!-- 职位编码 -->
+	    </if>
+		<if test="entry_date != null">
+	          #{entry_date, jdbcType=DATE}, <!-- 入职日期 -->
+	    </if>
+		<if test="mobile != null and mobile != ''">
+	          #{mobile, jdbcType=VARCHAR}, <!-- 手机号码 -->
+	    </if>
+		<if test="phone != null and phone != ''">
+	          #{phone, jdbcType=VARCHAR}, <!-- 电话 -->
+	    </if>
+		<if test="email != null and email != ''">
+	          #{email, jdbcType=VARCHAR}, <!-- 邮箱 -->
+	    </if>
+		<if test="born_date != null">
+	          #{born_date, jdbcType=DATE}, <!-- 出生日期 -->
+	    </if>
+		<if test="idno != null and idno != ''">
+	          #{idno, jdbcType=VARCHAR}, <!-- 身份证 -->
+	    </if>
+		<if test="address != null and address != ''">
+	          #{address, jdbcType=VARCHAR}, <!-- 居住地址 -->
+	    </if>
+		<if test="linkman != null and linkman != ''">
+	          #{linkman, jdbcType=VARCHAR}, <!-- 紧急联系人 -->
+	    </if>
+		<if test="linkphone != null and linkphone != ''">
+	          #{linkphone, jdbcType=VARCHAR}, <!-- 紧急联系电话 -->
+	    </if>
+		<if test="status != null and status != ''">
+	          #{status, jdbcType=VARCHAR}, <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+	    </if>
+		<if test="is_del != null and is_del != ''">
+	          #{is_del, jdbcType=VARCHAR}, <!-- 是否删除0有效1删除 -->
+	    </if>
+		<if test="remark != null and remark != ''">
+	          #{remark, jdbcType=VARCHAR}, <!-- 备注 -->
+	    </if>
+		<if test="create_time != null and create_time != ''">
+	          #{create_time, jdbcType=VARCHAR}, <!-- 创建时间 -->
+	    </if>
+		<if test="create_user_id != null and create_user_id != ''">
+	          #{create_user_id, jdbcType=VARCHAR}, <!-- 创建人ID -->
+	    </if>
+		<if test="modify_time != null and modify_time != ''">
+	          #{modify_time, jdbcType=VARCHAR}, <!-- 修改时间 -->
+	    </if>
+		<if test="modify_user_id != null and modify_user_id != ''">
+	          #{modify_user_id, jdbcType=VARCHAR}, <!-- 修改用户ID -->
+	    </if>
+		<if test="shop_user_id != null and shop_user_id != ''">
+		     #{shop_user_id, jdbcType=VARCHAR}  <!-- 用户编号 -->
+	    </if>
+		</trim>
+		
+	</insert>
+	
+	<!-- 插入一个数据持久化对象(含所有字段) -->
+	<insert id="insertAll"  parameterType="com.beauty.common.po.ShopUserPO">
+		INSERT INTO bis_shop_user (
+          shop_user_id,  <!-- 用户编号 -->
+		  user_type,  <!-- 用户类型 1 店主 2员工 -->
+		  shop_id,  <!-- 店铺编号 -->
+		  account,  <!-- 账号 -->
+		  username,  <!-- 姓名 -->
+		  password,  <!-- 密码 -->
+		  photo,  <!-- 头像照片 -->
+		  work_number,  <!-- 工号 -->
+		  sex,  <!-- 性别1:男2:女3:保密 -->
+		  post_code,  <!-- 职位编码 -->
+		  entry_date,  <!-- 入职日期 -->
+		  mobile,  <!-- 手机号码 -->
+		  phone,  <!-- 电话 -->
+		  email,  <!-- 邮箱 -->
+		  born_date,  <!-- 出生日期 -->
+		  idno,  <!-- 身份证 -->
+		  address,  <!-- 居住地址 -->
+		  linkman,  <!-- 紧急联系人 -->
+		  linkphone,  <!-- 紧急联系电话 -->
+		  status,  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+		  is_del,  <!-- 是否删除0有效1删除 -->
+		  remark,  <!-- 备注 -->
+		  create_time,  <!-- 创建时间 -->
+		  create_user_id,  <!-- 创建人ID -->
+		  modify_time,  <!-- 修改时间 -->
+		  modify_user_id  <!-- 修改用户ID -->
+		)
+		VALUES (
+            #{shop_user_id, jdbcType=VARCHAR},   <!-- 用户编号 -->
+		    #{user_type, jdbcType=VARCHAR},  <!-- 用户类型 1 店主 2员工 -->
+		    #{shop_id, jdbcType=VARCHAR},  <!-- 店铺编号 -->
+		    #{account, jdbcType=VARCHAR},  <!-- 账号 -->
+		    #{username, jdbcType=VARCHAR},  <!-- 姓名 -->
+		    #{password, jdbcType=VARCHAR},  <!-- 密码 -->
+		    #{photo, jdbcType=VARCHAR},  <!-- 头像照片 -->
+		    #{work_number, jdbcType=VARCHAR},  <!-- 工号 -->
+		    #{sex, jdbcType=VARCHAR},  <!-- 性别1:男2:女3:保密 -->
+		    #{post_code, jdbcType=VARCHAR},  <!-- 职位编码 -->
+		    #{entry_date, jdbcType=DATE},  <!-- 入职日期 -->
+		    #{mobile, jdbcType=VARCHAR},  <!-- 手机号码 -->
+		    #{phone, jdbcType=VARCHAR},  <!-- 电话 -->
+		    #{email, jdbcType=VARCHAR},  <!-- 邮箱 -->
+		    #{born_date, jdbcType=DATE},  <!-- 出生日期 -->
+		    #{idno, jdbcType=VARCHAR},  <!-- 身份证 -->
+		    #{address, jdbcType=VARCHAR},  <!-- 居住地址 -->
+		    #{linkman, jdbcType=VARCHAR},  <!-- 紧急联系人 -->
+		    #{linkphone, jdbcType=VARCHAR},  <!-- 紧急联系电话 -->
+		    #{status, jdbcType=VARCHAR},  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+		    #{is_del, jdbcType=VARCHAR},  <!-- 是否删除0有效1删除 -->
+		    #{remark, jdbcType=VARCHAR},  <!-- 备注 -->
+		    #{create_time, jdbcType=VARCHAR},  <!-- 创建时间 -->
+		    #{create_user_id, jdbcType=VARCHAR},  <!-- 创建人ID -->
+		    #{modify_time, jdbcType=VARCHAR},  <!-- 修改时间 -->
+		    #{modify_user_id, jdbcType=VARCHAR}  <!-- 修改用户ID -->
+		)
+	</insert>
+
+	<!-- 根据主键修改数据持久化对象 -->
+	<update id="updateByKey" parameterType="com.beauty.common.po.ShopUserPO">
+		UPDATE bis_shop_user
+		<set>
+			<if test="user_type != null">
+		          user_type = #{user_type, jdbcType=VARCHAR},  <!-- 用户类型 1 店主 2员工 -->
+			</if>
+			<if test="shop_id != null">
+		          shop_id = #{shop_id, jdbcType=VARCHAR},  <!-- 店铺编号 -->
+			</if>
+			<if test="account != null">
+		          account = #{account, jdbcType=VARCHAR},  <!-- 账号 -->
+			</if>
+			<if test="username != null">
+		          username = #{username, jdbcType=VARCHAR},  <!-- 姓名 -->
+			</if>
+			<if test="password != null">
+		          password = #{password, jdbcType=VARCHAR},  <!-- 密码 -->
+			</if>
+			<if test="photo != null">
+		          photo = #{photo, jdbcType=VARCHAR},  <!-- 头像照片 -->
+			</if>
+			<if test="work_number != null">
+		          work_number = #{work_number, jdbcType=VARCHAR},  <!-- 工号 -->
+			</if>
+			<if test="sex != null">
+		          sex = #{sex, jdbcType=VARCHAR},  <!-- 性别1:男2:女3:保密 -->
+			</if>
+			<if test="post_code != null">
+		          post_code = #{post_code, jdbcType=VARCHAR},  <!-- 职位编码 -->
+			</if>
+			<if test="entry_date != null">
+		          entry_date = #{entry_date, jdbcType=DATE},  <!-- 入职日期 -->
+			</if>
+			<if test="mobile != null">
+		          mobile = #{mobile, jdbcType=VARCHAR},  <!-- 手机号码 -->
+			</if>
+			<if test="phone != null">
+		          phone = #{phone, jdbcType=VARCHAR},  <!-- 电话 -->
+			</if>
+			<if test="email != null">
+		          email = #{email, jdbcType=VARCHAR},  <!-- 邮箱 -->
+			</if>
+			<if test="born_date != null">
+		          born_date = #{born_date, jdbcType=DATE},  <!-- 出生日期 -->
+			</if>
+			<if test="idno != null">
+		          idno = #{idno, jdbcType=VARCHAR},  <!-- 身份证 -->
+			</if>
+			<if test="address != null">
+		          address = #{address, jdbcType=VARCHAR},  <!-- 居住地址 -->
+			</if>
+			<if test="linkman != null">
+		          linkman = #{linkman, jdbcType=VARCHAR},  <!-- 紧急联系人 -->
+			</if>
+			<if test="linkphone != null">
+		          linkphone = #{linkphone, jdbcType=VARCHAR},  <!-- 紧急联系电话 -->
+			</if>
+			<if test="status != null">
+		          status = #{status, jdbcType=VARCHAR},  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="is_del != null">
+		          is_del = #{is_del, jdbcType=VARCHAR},  <!-- 是否删除0有效1删除 -->
+			</if>
+			<if test="remark != null">
+		          remark = #{remark, jdbcType=VARCHAR},  <!-- 备注 -->
+			</if>
+			<if test="create_time != null">
+		          create_time = #{create_time, jdbcType=VARCHAR},  <!-- 创建时间 -->
+			</if>
+			<if test="create_user_id != null">
+		          create_user_id = #{create_user_id, jdbcType=VARCHAR},  <!-- 创建人ID -->
+			</if>
+			<if test="modify_time != null">
+		          modify_time = #{modify_time, jdbcType=VARCHAR},  <!-- 修改时间 -->
+			</if>
+			<if test="modify_user_id != null">
+		          modify_user_id = #{modify_user_id, jdbcType=VARCHAR},  <!-- 修改用户ID -->
+			</if>
+		</set>
+		WHERE  shop_user_id = #{shop_user_id}
+	</update>
+	
+	<!-- 根据主键删除数据持久化对象 -->
+	<delete id="deleteByKey">
+		DELETE FROM bis_shop_user WHERE  shop_user_id = #{shop_user_id}
+	</delete>
+	
+	<!-- 批量根据主键删除数据持久化对象 -->
+	<delete id="batchDeleteByKey"  parameterType="java.lang.String">
+		DELETE FROM bis_shop_user WHERE shop_user_id IN 
+		<foreach item="shop_user_id" index="index" collection="list" separator="," open="(" close=")">
+		#{shop_user_id}
+	    </foreach>
+	</delete>
+
+	<!-- 根据主键查询并返回数据持久化对象 -->
+	<select id="selectByKey" resultType="com.beauty.common.po.ShopUserPO">
+		SELECT
+		<include refid="column" />
+		FROM bis_shop_user WHERE  shop_user_id = #{shop_user_id}
+	</select>
+
+	<!-- 根据唯一组合条件查询并返回数据持久化对象 -->
+	<select id="selectOne" parameterType="Dto" resultType="com.beauty.common.po.ShopUserPO">
+		SELECT
+		    <include refid="column" />
+		FROM bis_shop_user
+		<where>
+		    <include refid="equal" />
+		</where>		
+	</select>
+
+	<!-- 根据Dto查询并返回数据持久化对象集合 -->
+	<select id="list" parameterType="Dto" resultType="com.beauty.common.po.ShopUserPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_shop_user
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto查询并返回分页数据持久化对象集合 -->
+	<select id="listPage" parameterType="Dto" resultType="com.beauty.common.po.ShopUserPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_shop_user
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto模糊查询并返回数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="like" parameterType="Dto" resultType="com.beauty.common.po.ShopUserPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_shop_user
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto模糊查询并返回分页数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="likePage" parameterType="Dto" resultType="com.beauty.common.po.ShopUserPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_shop_user
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto统计行数 -->
+	<select id="rows" resultType="Integer" parameterType="Dto">
+		SELECT COUNT(1) AS rows_ FROM bis_shop_user
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	<!-- 根据数学表达式进行数学运算 -->
+	<select id="calc" parameterType="Dto" resultType="String">
+		SELECT
+			${_expr}
+		FROM bis_shop_user
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	
+	
+	<!-- 表字段 -->
+	<sql id="column">
+		  shop_user_id,  <!-- 用户编号 -->
+		  user_type,  <!-- 用户类型 1 店主 2员工 -->
+		  shop_id,  <!-- 店铺编号 -->
+		  account,  <!-- 账号 -->
+		  username,  <!-- 姓名 -->
+		  password,  <!-- 密码 -->
+		  photo,  <!-- 头像照片 -->
+		  work_number,  <!-- 工号 -->
+		  sex,  <!-- 性别1:男2:女3:保密 -->
+		  post_code,  <!-- 职位编码 -->
+		  entry_date,  <!-- 入职日期 -->
+		  mobile,  <!-- 手机号码 -->
+		  phone,  <!-- 电话 -->
+		  email,  <!-- 邮箱 -->
+		  born_date,  <!-- 出生日期 -->
+		  idno,  <!-- 身份证 -->
+		  address,  <!-- 居住地址 -->
+		  linkman,  <!-- 紧急联系人 -->
+		  linkphone,  <!-- 紧急联系电话 -->
+		  status,  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+		  is_del,  <!-- 是否删除0有效1删除 -->
+		  remark,  <!-- 备注 -->
+		  create_time,  <!-- 创建时间 -->
+		  create_user_id,  <!-- 创建人ID -->
+		  modify_time,  <!-- 修改时间 -->
+		  modify_user_id  <!-- 修改用户ID -->
+	</sql>
+	
+	<!-- 表字段(用于外表的关联时引用) -->
+	<sql id="column2">
+		  bis_shop_user.shop_user_id,  <!-- 用户编号 -->
+		  bis_shop_user.user_type,  <!-- 用户类型 1 店主 2员工 -->
+		  bis_shop_user.shop_id,  <!-- 店铺编号 -->
+		  bis_shop_user.account,  <!-- 账号 -->
+		  bis_shop_user.username,  <!-- 姓名 -->
+		  bis_shop_user.password,  <!-- 密码 -->
+		  bis_shop_user.photo,  <!-- 头像照片 -->
+		  bis_shop_user.work_number,  <!-- 工号 -->
+		  bis_shop_user.sex,  <!-- 性别1:男2:女3:保密 -->
+		  bis_shop_user.post_code,  <!-- 职位编码 -->
+		  bis_shop_user.entry_date,  <!-- 入职日期 -->
+		  bis_shop_user.mobile,  <!-- 手机号码 -->
+		  bis_shop_user.phone,  <!-- 电话 -->
+		  bis_shop_user.email,  <!-- 邮箱 -->
+		  bis_shop_user.born_date,  <!-- 出生日期 -->
+		  bis_shop_user.idno,  <!-- 身份证 -->
+		  bis_shop_user.address,  <!-- 居住地址 -->
+		  bis_shop_user.linkman,  <!-- 紧急联系人 -->
+		  bis_shop_user.linkphone,  <!-- 紧急联系电话 -->
+		  bis_shop_user.status,  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+		  bis_shop_user.is_del,  <!-- 是否删除0有效1删除 -->
+		  bis_shop_user.remark,  <!-- 备注 -->
+		  bis_shop_user.create_time,  <!-- 创建时间 -->
+		  bis_shop_user.create_user_id,  <!-- 创建人ID -->
+		  bis_shop_user.modify_time,  <!-- 修改时间 -->
+		  bis_shop_user.modify_user_id  <!-- 修改用户ID -->
+	</sql>
+
+	<!-- Where精确匹配字段 -->
+	<sql id="equal">
+	    <if test="shop_user_id != null and shop_user_id != ''">
+		      AND shop_user_id = #{shop_user_id}  <!-- 用户编号 -->
+		</if>
+	    <if test="user_type != null and user_type != ''">
+		      AND user_type = #{user_type}  <!-- 用户类型 1 店主 2员工 -->
+		</if>
+	    <if test="shop_id != null and shop_id != ''">
+		      AND shop_id = #{shop_id}  <!-- 店铺编号 -->
+		</if>
+	    <if test="account != null and account != ''">
+		      AND account = #{account}  <!-- 账号 -->
+		</if>
+	    <if test="username != null and username != ''">
+		      AND username = #{username}  <!-- 姓名 -->
+		</if>
+	    <if test="password != null and password != ''">
+		      AND password = #{password}  <!-- 密码 -->
+		</if>
+	    <if test="photo != null and photo != ''">
+		      AND photo = #{photo}  <!-- 头像照片 -->
+		</if>
+	    <if test="work_number != null and work_number != ''">
+		      AND work_number = #{work_number}  <!-- 工号 -->
+		</if>
+	    <if test="sex != null and sex != ''">
+		      AND sex = #{sex}  <!-- 性别1:男2:女3:保密 -->
+		</if>
+	    <if test="post_code != null and post_code != ''">
+		      AND post_code = #{post_code}  <!-- 职位编码 -->
+		</if>
+	   <if test="entry_date != null ">
+		      AND entry_date = #{entry_date}  <!-- 入职日期 -->
+		</if>
+	    <if test="mobile != null and mobile != ''">
+		      AND mobile = #{mobile}  <!-- 手机号码 -->
+		</if>
+	    <if test="phone != null and phone != ''">
+		      AND phone = #{phone}  <!-- 电话 -->
+		</if>
+	    <if test="email != null and email != ''">
+		      AND email = #{email}  <!-- 邮箱 -->
+		</if>
+	   <if test="born_date != null ">
+		      AND born_date = #{born_date}  <!-- 出生日期 -->
+		</if>
+	    <if test="idno != null and idno != ''">
+		      AND idno = #{idno}  <!-- 身份证 -->
+		</if>
+	    <if test="address != null and address != ''">
+		      AND address = #{address}  <!-- 居住地址 -->
+		</if>
+	    <if test="linkman != null and linkman != ''">
+		      AND linkman = #{linkman}  <!-- 紧急联系人 -->
+		</if>
+	    <if test="linkphone != null and linkphone != ''">
+		      AND linkphone = #{linkphone}  <!-- 紧急联系电话 -->
+		</if>
+	    <if test="status != null and status != ''">
+		      AND status = #{status}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+		</if>
+	    <if test="is_del != null and is_del != ''">
+		      AND is_del = #{is_del}  <!-- 是否删除0有效1删除 -->
+		</if>
+	    <if test="remark != null and remark != ''">
+		      AND remark = #{remark}  <!-- 备注 -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time = #{create_time}  <!-- 创建时间 -->
+		</if>
+	    <if test="create_user_id != null and create_user_id != ''">
+		      AND create_user_id = #{create_user_id}  <!-- 创建人ID -->
+		</if>
+	    <if test="modify_time != null and modify_time != ''">
+		      AND modify_time = #{modify_time}  <!-- 修改时间 -->
+		</if>
+	    <if test="modify_user_id != null and modify_user_id != ''">
+		      AND modify_user_id = #{modify_user_id}  <!-- 修改用户ID -->
+		</if>
+	</sql>
+	
+	<!-- Where模糊匹配字段 -->
+	<sql id="like">
+	    <if test="shop_user_id != null and shop_user_id != ''">
+		      AND shop_user_id LIKE '%${shop_user_id}%'  <!-- 用户编号 -->
+		</if>
+	    <if test="user_type != null and user_type != ''">
+		      AND user_type LIKE '%${user_type}%'  <!-- 用户类型 1 店主 2员工 -->
+		</if>
+	    <if test="shop_id != null and shop_id != ''">
+		      AND shop_id LIKE '%${shop_id}%'  <!-- 店铺编号 -->
+		</if>
+	    <if test="account != null and account != ''">
+		      AND account LIKE '%${account}%'  <!-- 账号 -->
+		</if>
+	    <if test="username != null and username != ''">
+		      AND username LIKE '%${username}%'  <!-- 姓名 -->
+		</if>
+	    <if test="password != null and password != ''">
+		      AND password LIKE '%${password}%'  <!-- 密码 -->
+		</if>
+	    <if test="photo != null and photo != ''">
+		      AND photo LIKE '%${photo}%'  <!-- 头像照片 -->
+		</if>
+	    <if test="work_number != null and work_number != ''">
+		      AND work_number LIKE '%${work_number}%'  <!-- 工号 -->
+		</if>
+	    <if test="sex != null and sex != ''">
+		      AND sex LIKE '%${sex}%'  <!-- 性别1:男2:女3:保密 -->
+		</if>
+	    <if test="post_code != null and post_code != ''">
+		      AND post_code LIKE '%${post_code}%'  <!-- 职位编码 -->
+		</if>
+	    <if test="mobile != null and mobile != ''">
+		      AND mobile LIKE '%${mobile}%'  <!-- 手机号码 -->
+		</if>
+	    <if test="phone != null and phone != ''">
+		      AND phone LIKE '%${phone}%'  <!-- 电话 -->
+		</if>
+	    <if test="email != null and email != ''">
+		      AND email LIKE '%${email}%'  <!-- 邮箱 -->
+		</if>
+	    <if test="idno != null and idno != ''">
+		      AND idno LIKE '%${idno}%'  <!-- 身份证 -->
+		</if>
+	    <if test="address != null and address != ''">
+		      AND address LIKE '%${address}%'  <!-- 居住地址 -->
+		</if>
+	    <if test="linkman != null and linkman != ''">
+		      AND linkman LIKE '%${linkman}%'  <!-- 紧急联系人 -->
+		</if>
+	    <if test="linkphone != null and linkphone != ''">
+		      AND linkphone LIKE '%${linkphone}%'  <!-- 紧急联系电话 -->
+		</if>
+	    <if test="status != null and status != ''">
+		      AND status LIKE '%${status}%'  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+		</if>
+	    <if test="is_del != null and is_del != ''">
+		      AND is_del LIKE '%${is_del}%'  <!-- 是否删除0有效1删除 -->
+		</if>
+	    <if test="remark != null and remark != ''">
+		      AND remark LIKE '%${remark}%'  <!-- 备注 -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time LIKE '%${create_time}%'  <!-- 创建时间 -->
+		</if>
+	    <if test="create_user_id != null and create_user_id != ''">
+		      AND create_user_id LIKE '%${create_user_id}%'  <!-- 创建人ID -->
+		</if>
+	    <if test="modify_time != null and modify_time != ''">
+		      AND modify_time LIKE '%${modify_time}%'  <!-- 修改时间 -->
+		</if>
+	    <if test="modify_user_id != null and modify_user_id != ''">
+		      AND modify_user_id LIKE '%${modify_user_id}%'  <!-- 修改用户ID -->
+		</if>
+	</sql>
+	
+</mapper>

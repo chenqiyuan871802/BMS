@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 美容管理后台通用处理数据接口 -->
+<mapper namespace="SystemCommonMapper">
+   <!-- 分页查短信记录 -->
+   <select id="listSmsRecordPage" parameterType="Dto" resultType="Dto" useCache="false">
+	SELECT a.*  FROM bis_sms_record a 
+	<where>
+	    <if test="mobile != null and mobile != ''">
+		      AND a.mobile LIKE '%${mobile}%'  <!-- 手机号码 -->
+		</if>
+	    <if test="content != null and content != ''">
+		      AND a.content LIKE '%${content}%'  <!-- 内容 -->
+		</if>
+	    <if test="sms_type != null and sms_type != ''">
+		      AND a.sms_type = #{sms_type}  <!-- 短信类型 1普通短信 2验证短信 3支付验证短信 -->
+		</if>
+		 <if test="status != null and status != ''">
+		      AND a.status = #{status}  <!-- 短信状态  0失败 1成功 -->
+		 </if>
+		 <if test="create_time_begin!= null and create_time_begin != ''">
+		     AND DATE_FORMAT( a.create_time,"%Y-%m-%d") &gt;=#{create_time_begin}
+		</if>
+	    <if test="create_time_end!= null and create_time_end != ''">
+		      AND DATE_FORMAT(a.send_time,"%Y-%m-%d") &lt;=#{create_time_end}
+		</if>
+		 <if test="send_time_begin!= null and send_time_begin != ''">
+		     AND DATE_FORMAT( a.create_time,"%Y-%m-%d") &gt;=#{send_time_begin}
+		</if>
+	    <if test="carete_time_end!= null and send_time_end != ''">
+		      AND DATE_FORMAT(a.send_time,"%Y-%m-%d") &lt;=#{send_time_end}
+		</if>
+	</where>
+	</select>
+   <!-- 分页查询站内信记录 -->
+   <select id="listWechatRecordPage" parameterType="Dto" resultType="Dto" useCache="false">
+	SELECT a.*,b.mobile,b.username,b.openid,b.nikename ,b.photo FROM bis_wechat_record a INNER JOIN bis_custom_user b ON a.send_user_id=b.custom_user_id
+	<where>
+	    <if test="mobile != null and mobile != ''">
+		      AND b.mobile LIKE '%${mobile}%'  <!-- 手机号码 -->
+		</if>
+	    <if test="username != null and username != ''">
+		      AND b.username LIKE '%${username}%'  <!-- 手机号码 -->
+		</if>
+	    <if test="content != null and content != ''">
+		      AND a.content LIKE '%${content}%'  <!-- 内容 -->
+		</if>
+	    <if test="record_type != null and record_type != ''">
+		      AND a.record_type = #{record_type}  <!-- 短信类型 1普通短信 2验证短信 3支付验证短信 -->
+		</if>
+		 <if test="status != null and status != ''">
+		      AND a.status = #{status}  <!-- 短信状态  0失败 1成功 -->
+		 </if>
+		 <if test="create_time_begin!= null and create_time_begin != ''">
+		     AND DATE_FORMAT( a.create_time,"%Y-%m-%d") &gt;=#{create_time_begin}
+		</if>
+	    <if test="create_time_end!= null and create_time_end != ''">
+		      AND DATE_FORMAT(a.send_time,"%Y-%m-%d") &lt;=#{create_time_end}
+		</if>
+		 <if test="send_time_begin!= null and send_time_begin != ''">
+		     AND DATE_FORMAT( a.create_time,"%Y-%m-%d") &gt;=#{send_time_begin}
+		</if>
+	    <if test="carete_time_end!= null and send_time_end != ''">
+		      AND DATE_FORMAT(a.send_time,"%Y-%m-%d") &lt;=#{send_time_end}
+		</if>
+	</where>
+	</select>
+</mapper>

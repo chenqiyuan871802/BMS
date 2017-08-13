@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 店铺信息表[bis_shop]SQLMapper自动映射 -->
+<!--  注意:此文件由系统平台自动生成-禁止手工修改 2017-06-15 22:00:03 -->
+<mapper namespace="com.beauty.common.mapper.ShopMapper">
+	
+	<!-- 插入一个数据持久化对象(插入字段为传入PO实体的非空属性) -->
+	<insert id="insert"  parameterType="com.beauty.common.po.ShopPO">
+		INSERT INTO bis_shop 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="owner_id != null and owner_id != ''">
+	         owner_id, <!-- 店主编号 -->
+		</if>
+		<if test="shop_name != null and shop_name != ''">
+	         shop_name, <!-- 商店名称 -->
+		</if>
+		<if test="short_name != null and short_name != ''">
+	         short_name, <!-- 商家简称 -->
+		</if>
+		<if test="month_cash_in != null and month_cash_in != ''">
+	         month_cash_in, <!-- 月目标现金收入 -->
+		</if>
+		<if test="month_expend_in != null and month_expend_in != ''">
+	         month_expend_in, <!-- 月目标消耗收入 -->
+		</if>
+		<if test="shop_license != null and shop_license != ''">
+	         shop_license, <!-- 商家营业执照 -->
+		</if>
+		<if test="shop_image != null and shop_image != ''">
+	         shop_image, <!-- 商家标志图片 -->
+		</if>
+		<if test="shop_detail_image != null and shop_detail_image != ''">
+	         shop_detail_image, <!-- 详情图片 -->
+		</if>
+		<if test="gps_x != null and gps_x != ''">
+	         gps_x, <!-- x坐标 -->
+		</if>
+		<if test="gps_y != null and gps_y != ''">
+	         gps_y, <!-- y坐标 -->
+		</if>
+		<if test="sort_no != null">
+	         sort_no, <!-- 排序号 -->
+		</if>
+		<if test="shop_address != null and shop_address != ''">
+	         shop_address, <!-- 店铺地址 -->
+		</if>
+		<if test="shop_qrcode != null and shop_qrcode != ''">
+	         shop_qrcode, <!-- 店铺二维码 -->
+		</if>
+		<if test="shop_phone != null and shop_phone != ''">
+	         shop_phone, <!-- 店铺电话 -->
+		</if>
+		<if test="shop_area != null and shop_area != ''">
+	         shop_area, <!-- 店铺面积 -->
+		</if>
+		<if test="shop_project != null and shop_project != ''">
+	         shop_project, <!-- 店铺主营项目 -->
+		</if>
+		<if test="shop_type != null and shop_type != ''">
+	         shop_type, <!-- 店铺类型 -->
+		</if>
+		<if test="shop_intro != null and shop_intro != ''">
+	         shop_intro, <!-- 商家介绍 -->
+		</if>
+		<if test="show_status != null and show_status != ''">
+	         show_status, <!-- 显示状态 0禁用 1启用 -->
+		</if>
+		<if test="is_del != null and is_del != ''">
+	         is_del, <!-- 是否删除 0:有效1:删除 -->
+		</if>
+		<if test="shop_remark != null and shop_remark != ''">
+	         shop_remark, <!-- shop_remark -->
+		</if>
+		<if test="begin_time != null and begin_time != ''">
+	         begin_time, <!-- 营业开始时间 -->
+		</if>
+		<if test="end_time != null and end_time != ''">
+	         end_time, <!-- 营业结束时间 -->
+		</if>
+		<if test="create_time != null and create_time != ''">
+	         create_time, <!-- 创建时间 -->
+		</if>
+		<if test="create_user_id != null and create_user_id != ''">
+	         create_user_id, <!-- 创建人ID -->
+		</if>
+		<if test="modify_time != null and modify_time != ''">
+	         modify_time, <!-- 修改时间 -->
+		</if>
+		<if test="modify_user_id != null and modify_user_id != ''">
+	         modify_user_id, <!-- 修改用户ID -->
+		</if>
+		<if test="shop_id != null and shop_id != ''">
+	          shop_id  <!-- 店铺编号 -->
+	    </if>
+        </trim>
+	    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+		<if test="owner_id != null and owner_id != ''">
+	          #{owner_id, jdbcType=VARCHAR}, <!-- 店主编号 -->
+	    </if>
+		<if test="shop_name != null and shop_name != ''">
+	          #{shop_name, jdbcType=VARCHAR}, <!-- 商店名称 -->
+	    </if>
+		<if test="short_name != null and short_name != ''">
+	          #{short_name, jdbcType=VARCHAR}, <!-- 商家简称 -->
+	    </if>
+		<if test="month_cash_in != null and month_cash_in != ''">
+	          #{month_cash_in, jdbcType=VARCHAR}, <!-- 月目标现金收入 -->
+	    </if>
+		<if test="month_expend_in != null and month_expend_in != ''">
+	          #{month_expend_in, jdbcType=VARCHAR}, <!-- 月目标消耗收入 -->
+	    </if>
+		<if test="shop_license != null and shop_license != ''">
+	          #{shop_license, jdbcType=VARCHAR}, <!-- 商家营业执照 -->
+	    </if>
+		<if test="shop_image != null and shop_image != ''">
+	          #{shop_image, jdbcType=VARCHAR}, <!-- 商家标志图片 -->
+	    </if>
+		<if test="shop_detail_image != null and shop_detail_image != ''">
+	          #{shop_detail_image, jdbcType=VARCHAR}, <!-- 详情图片 -->
+	    </if>
+		<if test="gps_x != null and gps_x != ''">
+	          #{gps_x, jdbcType=VARCHAR}, <!-- x坐标 -->
+	    </if>
+		<if test="gps_y != null and gps_y != ''">
+	          #{gps_y, jdbcType=VARCHAR}, <!-- y坐标 -->
+	    </if>
+		<if test="sort_no != null">
+	          #{sort_no, jdbcType=INTEGER}, <!-- 排序号 -->
+	    </if>
+		<if test="shop_address != null and shop_address != ''">
+	          #{shop_address, jdbcType=VARCHAR}, <!-- 店铺地址 -->
+	    </if>
+		<if test="shop_qrcode != null and shop_qrcode != ''">
+	          #{shop_qrcode, jdbcType=VARCHAR}, <!-- 店铺二维码 -->
+	    </if>
+		<if test="shop_phone != null and shop_phone != ''">
+	          #{shop_phone, jdbcType=VARCHAR}, <!-- 店铺电话 -->
+	    </if>
+		<if test="shop_area != null and shop_area != ''">
+	          #{shop_area, jdbcType=VARCHAR}, <!-- 店铺面积 -->
+	    </if>
+		<if test="shop_project != null and shop_project != ''">
+	          #{shop_project, jdbcType=VARCHAR}, <!-- 店铺主营项目 -->
+	    </if>
+		<if test="shop_type != null and shop_type != ''">
+	          #{shop_type, jdbcType=VARCHAR}, <!-- 店铺类型 -->
+	    </if>
+		<if test="shop_intro != null and shop_intro != ''">
+	          #{shop_intro, jdbcType=VARCHAR}, <!-- 商家介绍 -->
+	    </if>
+		<if test="show_status != null and show_status != ''">
+	          #{show_status, jdbcType=VARCHAR}, <!-- 显示状态 0禁用 1启用 -->
+	    </if>
+		<if test="is_del != null and is_del != ''">
+	          #{is_del, jdbcType=VARCHAR}, <!-- 是否删除 0:有效1:删除 -->
+	    </if>
+		<if test="shop_remark != null and shop_remark != ''">
+	          #{shop_remark, jdbcType=VARCHAR}, <!-- shop_remark -->
+	    </if>
+		<if test="begin_time != null and begin_time != ''">
+	          #{begin_time, jdbcType=VARCHAR}, <!-- 营业开始时间 -->
+	    </if>
+		<if test="end_time != null and end_time != ''">
+	          #{end_time, jdbcType=VARCHAR}, <!-- 营业结束时间 -->
+	    </if>
+		<if test="create_time != null and create_time != ''">
+	          #{create_time, jdbcType=VARCHAR}, <!-- 创建时间 -->
+	    </if>
+		<if test="create_user_id != null and create_user_id != ''">
+	          #{create_user_id, jdbcType=VARCHAR}, <!-- 创建人ID -->
+	    </if>
+		<if test="modify_time != null and modify_time != ''">
+	          #{modify_time, jdbcType=VARCHAR}, <!-- 修改时间 -->
+	    </if>
+		<if test="modify_user_id != null and modify_user_id != ''">
+	          #{modify_user_id, jdbcType=VARCHAR}, <!-- 修改用户ID -->
+	    </if>
+		<if test="shop_id != null and shop_id != ''">
+		     #{shop_id, jdbcType=VARCHAR}  <!-- 店铺编号 -->
+	    </if>
+		</trim>
+		
+	</insert>
+	
+	<!-- 插入一个数据持久化对象(含所有字段) -->
+	<insert id="insertAll"  parameterType="com.beauty.common.po.ShopPO">
+		INSERT INTO bis_shop (
+          shop_id,  <!-- 店铺编号 -->
+		  owner_id,  <!-- 店主编号 -->
+		  shop_name,  <!-- 商店名称 -->
+		  short_name,  <!-- 商家简称 -->
+		  month_cash_in,  <!-- 月目标现金收入 -->
+		  month_expend_in,  <!-- 月目标消耗收入 -->
+		  shop_license,  <!-- 商家营业执照 -->
+		  shop_image,  <!-- 商家标志图片 -->
+		  shop_detail_image,  <!-- 详情图片 -->
+		  gps_x,  <!-- x坐标 -->
+		  gps_y,  <!-- y坐标 -->
+		  sort_no,  <!-- 排序号 -->
+		  shop_address,  <!-- 店铺地址 -->
+		  shop_qrcode,  <!-- 店铺二维码 -->
+		  shop_phone,  <!-- 店铺电话 -->
+		  shop_area,  <!-- 店铺面积 -->
+		  shop_project,  <!-- 店铺主营项目 -->
+		  shop_type,  <!-- 店铺类型 -->
+		  shop_intro,  <!-- 商家介绍 -->
+		  show_status,  <!-- 显示状态 0禁用 1启用 -->
+		  is_del,  <!-- 是否删除 0:有效1:删除 -->
+		  shop_remark,  <!-- shop_remark -->
+		  begin_time,  <!-- 营业开始时间 -->
+		  end_time,  <!-- 营业结束时间 -->
+		  create_time,  <!-- 创建时间 -->
+		  create_user_id,  <!-- 创建人ID -->
+		  modify_time,  <!-- 修改时间 -->
+		  modify_user_id  <!-- 修改用户ID -->
+		)
+		VALUES (
+            #{shop_id, jdbcType=VARCHAR},   <!-- 店铺编号 -->
+		    #{owner_id, jdbcType=VARCHAR},  <!-- 店主编号 -->
+		    #{shop_name, jdbcType=VARCHAR},  <!-- 商店名称 -->
+		    #{short_name, jdbcType=VARCHAR},  <!-- 商家简称 -->
+		    #{month_cash_in, jdbcType=VARCHAR},  <!-- 月目标现金收入 -->
+		    #{month_expend_in, jdbcType=VARCHAR},  <!-- 月目标消耗收入 -->
+		    #{shop_license, jdbcType=VARCHAR},  <!-- 商家营业执照 -->
+		    #{shop_image, jdbcType=VARCHAR},  <!-- 商家标志图片 -->
+		    #{shop_detail_image, jdbcType=VARCHAR},  <!-- 详情图片 -->
+		    #{gps_x, jdbcType=VARCHAR},  <!-- x坐标 -->
+		    #{gps_y, jdbcType=VARCHAR},  <!-- y坐标 -->
+		    #{sort_no, jdbcType=INTEGER},  <!-- 排序号 -->
+		    #{shop_address, jdbcType=VARCHAR},  <!-- 店铺地址 -->
+		    #{shop_qrcode, jdbcType=VARCHAR},  <!-- 店铺二维码 -->
+		    #{shop_phone, jdbcType=VARCHAR},  <!-- 店铺电话 -->
+		    #{shop_area, jdbcType=VARCHAR},  <!-- 店铺面积 -->
+		    #{shop_project, jdbcType=VARCHAR},  <!-- 店铺主营项目 -->
+		    #{shop_type, jdbcType=VARCHAR},  <!-- 店铺类型 -->
+		    #{shop_intro, jdbcType=VARCHAR},  <!-- 商家介绍 -->
+		    #{show_status, jdbcType=VARCHAR},  <!-- 显示状态 0禁用 1启用 -->
+		    #{is_del, jdbcType=VARCHAR},  <!-- 是否删除 0:有效1:删除 -->
+		    #{shop_remark, jdbcType=VARCHAR},  <!-- shop_remark -->
+		    #{begin_time, jdbcType=VARCHAR},  <!-- 营业开始时间 -->
+		    #{end_time, jdbcType=VARCHAR},  <!-- 营业结束时间 -->
+		    #{create_time, jdbcType=VARCHAR},  <!-- 创建时间 -->
+		    #{create_user_id, jdbcType=VARCHAR},  <!-- 创建人ID -->
+		    #{modify_time, jdbcType=VARCHAR},  <!-- 修改时间 -->
+		    #{modify_user_id, jdbcType=VARCHAR}  <!-- 修改用户ID -->
+		)
+	</insert>
+
+	<!-- 根据主键修改数据持久化对象 -->
+	<update id="updateByKey" parameterType="com.beauty.common.po.ShopPO">
+		UPDATE bis_shop
+		<set>
+			<if test="owner_id != null">
+		          owner_id = #{owner_id, jdbcType=VARCHAR},  <!-- 店主编号 -->
+			</if>
+			<if test="shop_name != null">
+		          shop_name = #{shop_name, jdbcType=VARCHAR},  <!-- 商店名称 -->
+			</if>
+			<if test="short_name != null">
+		          short_name = #{short_name, jdbcType=VARCHAR},  <!-- 商家简称 -->
+			</if>
+			<if test="month_cash_in != null">
+		          month_cash_in = #{month_cash_in, jdbcType=VARCHAR},  <!-- 月目标现金收入 -->
+			</if>
+			<if test="month_expend_in != null">
+		          month_expend_in = #{month_expend_in, jdbcType=VARCHAR},  <!-- 月目标消耗收入 -->
+			</if>
+			<if test="shop_license != null">
+		          shop_license = #{shop_license, jdbcType=VARCHAR},  <!-- 商家营业执照 -->
+			</if>
+			<if test="shop_image != null">
+		          shop_image = #{shop_image, jdbcType=VARCHAR},  <!-- 商家标志图片 -->
+			</if>
+			<if test="shop_detail_image != null">
+		          shop_detail_image = #{shop_detail_image, jdbcType=VARCHAR},  <!-- 详情图片 -->
+			</if>
+			<if test="gps_x != null">
+		          gps_x = #{gps_x, jdbcType=VARCHAR},  <!-- x坐标 -->
+			</if>
+			<if test="gps_y != null">
+		          gps_y = #{gps_y, jdbcType=VARCHAR},  <!-- y坐标 -->
+			</if>
+			<if test="sort_no != null">
+		          sort_no = #{sort_no, jdbcType=INTEGER},  <!-- 排序号 -->
+			</if>
+			<if test="shop_address != null">
+		          shop_address = #{shop_address, jdbcType=VARCHAR},  <!-- 店铺地址 -->
+			</if>
+			<if test="shop_qrcode != null">
+		          shop_qrcode = #{shop_qrcode, jdbcType=VARCHAR},  <!-- 店铺二维码 -->
+			</if>
+			<if test="shop_phone != null">
+		          shop_phone = #{shop_phone, jdbcType=VARCHAR},  <!-- 店铺电话 -->
+			</if>
+			<if test="shop_area != null">
+		          shop_area = #{shop_area, jdbcType=VARCHAR},  <!-- 店铺面积 -->
+			</if>
+			<if test="shop_project != null">
+		          shop_project = #{shop_project, jdbcType=VARCHAR},  <!-- 店铺主营项目 -->
+			</if>
+			<if test="shop_type != null">
+		          shop_type = #{shop_type, jdbcType=VARCHAR},  <!-- 店铺类型 -->
+			</if>
+			<if test="shop_intro != null">
+		          shop_intro = #{shop_intro, jdbcType=VARCHAR},  <!-- 商家介绍 -->
+			</if>
+			<if test="show_status != null">
+		          show_status = #{show_status, jdbcType=VARCHAR},  <!-- 显示状态 0禁用 1启用 -->
+			</if>
+			<if test="is_del != null">
+		          is_del = #{is_del, jdbcType=VARCHAR},  <!-- 是否删除 0:有效1:删除 -->
+			</if>
+			<if test="shop_remark != null">
+		          shop_remark = #{shop_remark, jdbcType=VARCHAR},  <!-- shop_remark -->
+			</if>
+			<if test="begin_time != null">
+		          begin_time = #{begin_time, jdbcType=VARCHAR},  <!-- 营业开始时间 -->
+			</if>
+			<if test="end_time != null">
+		          end_time = #{end_time, jdbcType=VARCHAR},  <!-- 营业结束时间 -->
+			</if>
+			<if test="create_time != null">
+		          create_time = #{create_time, jdbcType=VARCHAR},  <!-- 创建时间 -->
+			</if>
+			<if test="create_user_id != null">
+		          create_user_id = #{create_user_id, jdbcType=VARCHAR},  <!-- 创建人ID -->
+			</if>
+			<if test="modify_time != null">
+		          modify_time = #{modify_time, jdbcType=VARCHAR},  <!-- 修改时间 -->
+			</if>
+			<if test="modify_user_id != null">
+		          modify_user_id = #{modify_user_id, jdbcType=VARCHAR},  <!-- 修改用户ID -->
+			</if>
+		</set>
+		WHERE  shop_id = #{shop_id}
+	</update>
+	
+	<!-- 根据主键删除数据持久化对象 -->
+	<delete id="deleteByKey">
+		DELETE FROM bis_shop WHERE  shop_id = #{shop_id}
+	</delete>
+	
+	<!-- 批量根据主键删除数据持久化对象 -->
+	<delete id="batchDeleteByKey"  parameterType="java.lang.String">
+		DELETE FROM bis_shop WHERE shop_id IN 
+		<foreach item="shop_id" index="index" collection="list" separator="," open="(" close=")">
+		#{shop_id}
+	    </foreach>
+	</delete>
+
+	<!-- 根据主键查询并返回数据持久化对象 -->
+	<select id="selectByKey" resultType="com.beauty.common.po.ShopPO">
+		SELECT
+		<include refid="column" />
+		FROM bis_shop WHERE  shop_id = #{shop_id}
+	</select>
+
+	<!-- 根据唯一组合条件查询并返回数据持久化对象 -->
+	<select id="selectOne" parameterType="Dto" resultType="com.beauty.common.po.ShopPO">
+		SELECT
+		    <include refid="column" />
+		FROM bis_shop
+		<where>
+		    <include refid="equal" />
+		</where>		
+	</select>
+
+	<!-- 根据Dto查询并返回数据持久化对象集合 -->
+	<select id="list" parameterType="Dto" resultType="com.beauty.common.po.ShopPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_shop
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto查询并返回分页数据持久化对象集合 -->
+	<select id="listPage" parameterType="Dto" resultType="com.beauty.common.po.ShopPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_shop
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto模糊查询并返回数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="like" parameterType="Dto" resultType="com.beauty.common.po.ShopPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_shop
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto模糊查询并返回分页数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="likePage" parameterType="Dto" resultType="com.beauty.common.po.ShopPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_shop
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto统计行数 -->
+	<select id="rows" resultType="Integer" parameterType="Dto">
+		SELECT COUNT(1) AS rows_ FROM bis_shop
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	<!-- 根据数学表达式进行数学运算 -->
+	<select id="calc" parameterType="Dto" resultType="String">
+		SELECT
+			${_expr}
+		FROM bis_shop
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	
+	
+	<!-- 表字段 -->
+	<sql id="column">
+		  shop_id,  <!-- 店铺编号 -->
+		  owner_id,  <!-- 店主编号 -->
+		  shop_name,  <!-- 商店名称 -->
+		  short_name,  <!-- 商家简称 -->
+		  month_cash_in,  <!-- 月目标现金收入 -->
+		  month_expend_in,  <!-- 月目标消耗收入 -->
+		  shop_license,  <!-- 商家营业执照 -->
+		  shop_image,  <!-- 商家标志图片 -->
+		  shop_detail_image,  <!-- 详情图片 -->
+		  gps_x,  <!-- x坐标 -->
+		  gps_y,  <!-- y坐标 -->
+		  sort_no,  <!-- 排序号 -->
+		  shop_address,  <!-- 店铺地址 -->
+		  shop_qrcode,  <!-- 店铺二维码 -->
+		  shop_phone,  <!-- 店铺电话 -->
+		  shop_area,  <!-- 店铺面积 -->
+		  shop_project,  <!-- 店铺主营项目 -->
+		  shop_type,  <!-- 店铺类型 -->
+		  shop_intro,  <!-- 商家介绍 -->
+		  show_status,  <!-- 显示状态 0禁用 1启用 -->
+		  is_del,  <!-- 是否删除 0:有效1:删除 -->
+		  shop_remark,  <!-- shop_remark -->
+		  begin_time,  <!-- 营业开始时间 -->
+		  end_time,  <!-- 营业结束时间 -->
+		  create_time,  <!-- 创建时间 -->
+		  create_user_id,  <!-- 创建人ID -->
+		  modify_time,  <!-- 修改时间 -->
+		  modify_user_id  <!-- 修改用户ID -->
+	</sql>
+	
+	<!-- 表字段(用于外表的关联时引用) -->
+	<sql id="column2">
+		  bis_shop.shop_id,  <!-- 店铺编号 -->
+		  bis_shop.owner_id,  <!-- 店主编号 -->
+		  bis_shop.shop_name,  <!-- 商店名称 -->
+		  bis_shop.short_name,  <!-- 商家简称 -->
+		  bis_shop.month_cash_in,  <!-- 月目标现金收入 -->
+		  bis_shop.month_expend_in,  <!-- 月目标消耗收入 -->
+		  bis_shop.shop_license,  <!-- 商家营业执照 -->
+		  bis_shop.shop_image,  <!-- 商家标志图片 -->
+		  bis_shop.shop_detail_image,  <!-- 详情图片 -->
+		  bis_shop.gps_x,  <!-- x坐标 -->
+		  bis_shop.gps_y,  <!-- y坐标 -->
+		  bis_shop.sort_no,  <!-- 排序号 -->
+		  bis_shop.shop_address,  <!-- 店铺地址 -->
+		  bis_shop.shop_qrcode,  <!-- 店铺二维码 -->
+		  bis_shop.shop_phone,  <!-- 店铺电话 -->
+		  bis_shop.shop_area,  <!-- 店铺面积 -->
+		  bis_shop.shop_project,  <!-- 店铺主营项目 -->
+		  bis_shop.shop_type,  <!-- 店铺类型 -->
+		  bis_shop.shop_intro,  <!-- 商家介绍 -->
+		  bis_shop.show_status,  <!-- 显示状态 0禁用 1启用 -->
+		  bis_shop.is_del,  <!-- 是否删除 0:有效1:删除 -->
+		  bis_shop.shop_remark,  <!-- shop_remark -->
+		  bis_shop.begin_time,  <!-- 营业开始时间 -->
+		  bis_shop.end_time,  <!-- 营业结束时间 -->
+		  bis_shop.create_time,  <!-- 创建时间 -->
+		  bis_shop.create_user_id,  <!-- 创建人ID -->
+		  bis_shop.modify_time,  <!-- 修改时间 -->
+		  bis_shop.modify_user_id  <!-- 修改用户ID -->
+	</sql>
+
+	<!-- Where精确匹配字段 -->
+	<sql id="equal">
+	    <if test="shop_id != null and shop_id != ''">
+		      AND shop_id = #{shop_id}  <!-- 店铺编号 -->
+		</if>
+	    <if test="owner_id != null and owner_id != ''">
+		      AND owner_id = #{owner_id}  <!-- 店主编号 -->
+		</if>
+	    <if test="shop_name != null and shop_name != ''">
+		      AND shop_name = #{shop_name}  <!-- 商店名称 -->
+		</if>
+	    <if test="short_name != null and short_name != ''">
+		      AND short_name = #{short_name}  <!-- 商家简称 -->
+		</if>
+	    <if test="month_cash_in != null and month_cash_in != ''">
+		      AND month_cash_in = #{month_cash_in}  <!-- 月目标现金收入 -->
+		</if>
+	    <if test="month_expend_in != null and month_expend_in != ''">
+		      AND month_expend_in = #{month_expend_in}  <!-- 月目标消耗收入 -->
+		</if>
+	    <if test="shop_license != null and shop_license != ''">
+		      AND shop_license = #{shop_license}  <!-- 商家营业执照 -->
+		</if>
+	    <if test="shop_image != null and shop_image != ''">
+		      AND shop_image = #{shop_image}  <!-- 商家标志图片 -->
+		</if>
+	    <if test="shop_detail_image != null and shop_detail_image != ''">
+		      AND shop_detail_image = #{shop_detail_image}  <!-- 详情图片 -->
+		</if>
+	    <if test="gps_x != null and gps_x != ''">
+		      AND gps_x = #{gps_x}  <!-- x坐标 -->
+		</if>
+	    <if test="gps_y != null and gps_y != ''">
+		      AND gps_y = #{gps_y}  <!-- y坐标 -->
+		</if>
+	   <if test="sort_no != null ">
+		      AND sort_no = #{sort_no}  <!-- 排序号 -->
+		</if>
+	    <if test="shop_address != null and shop_address != ''">
+		      AND shop_address = #{shop_address}  <!-- 店铺地址 -->
+		</if>
+	    <if test="shop_qrcode != null and shop_qrcode != ''">
+		      AND shop_qrcode = #{shop_qrcode}  <!-- 店铺二维码 -->
+		</if>
+	    <if test="shop_phone != null and shop_phone != ''">
+		      AND shop_phone = #{shop_phone}  <!-- 店铺电话 -->
+		</if>
+	    <if test="shop_area != null and shop_area != ''">
+		      AND shop_area = #{shop_area}  <!-- 店铺面积 -->
+		</if>
+	    <if test="shop_project != null and shop_project != ''">
+		      AND shop_project = #{shop_project}  <!-- 店铺主营项目 -->
+		</if>
+	    <if test="shop_type != null and shop_type != ''">
+		      AND shop_type = #{shop_type}  <!-- 店铺类型 -->
+		</if>
+	    <if test="shop_intro != null and shop_intro != ''">
+		      AND shop_intro = #{shop_intro}  <!-- 商家介绍 -->
+		</if>
+	    <if test="show_status != null and show_status != ''">
+		      AND show_status = #{show_status}  <!-- 显示状态 0禁用 1启用 -->
+		</if>
+	    <if test="is_del != null and is_del != ''">
+		      AND is_del = #{is_del}  <!-- 是否删除 0:有效1:删除 -->
+		</if>
+	    <if test="shop_remark != null and shop_remark != ''">
+		      AND shop_remark = #{shop_remark}  <!-- shop_remark -->
+		</if>
+	    <if test="begin_time != null and begin_time != ''">
+		      AND begin_time = #{begin_time}  <!-- 营业开始时间 -->
+		</if>
+	    <if test="end_time != null and end_time != ''">
+		      AND end_time = #{end_time}  <!-- 营业结束时间 -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time = #{create_time}  <!-- 创建时间 -->
+		</if>
+	    <if test="create_user_id != null and create_user_id != ''">
+		      AND create_user_id = #{create_user_id}  <!-- 创建人ID -->
+		</if>
+	    <if test="modify_time != null and modify_time != ''">
+		      AND modify_time = #{modify_time}  <!-- 修改时间 -->
+		</if>
+	    <if test="modify_user_id != null and modify_user_id != ''">
+		      AND modify_user_id = #{modify_user_id}  <!-- 修改用户ID -->
+		</if>
+	</sql>
+	
+	<!-- Where模糊匹配字段 -->
+	<sql id="like">
+	    <if test="shop_id != null and shop_id != ''">
+		      AND shop_id LIKE '%${shop_id}%'  <!-- 店铺编号 -->
+		</if>
+	    <if test="owner_id != null and owner_id != ''">
+		      AND owner_id LIKE '%${owner_id}%'  <!-- 店主编号 -->
+		</if>
+	    <if test="shop_name != null and shop_name != ''">
+		      AND shop_name LIKE '%${shop_name}%'  <!-- 商店名称 -->
+		</if>
+	    <if test="short_name != null and short_name != ''">
+		      AND short_name LIKE '%${short_name}%'  <!-- 商家简称 -->
+		</if>
+	    <if test="month_cash_in != null and month_cash_in != ''">
+		      AND month_cash_in LIKE '%${month_cash_in}%'  <!-- 月目标现金收入 -->
+		</if>
+	    <if test="month_expend_in != null and month_expend_in != ''">
+		      AND month_expend_in LIKE '%${month_expend_in}%'  <!-- 月目标消耗收入 -->
+		</if>
+	    <if test="shop_license != null and shop_license != ''">
+		      AND shop_license LIKE '%${shop_license}%'  <!-- 商家营业执照 -->
+		</if>
+	    <if test="shop_image != null and shop_image != ''">
+		      AND shop_image LIKE '%${shop_image}%'  <!-- 商家标志图片 -->
+		</if>
+	    <if test="shop_detail_image != null and shop_detail_image != ''">
+		      AND shop_detail_image LIKE '%${shop_detail_image}%'  <!-- 详情图片 -->
+		</if>
+	    <if test="gps_x != null and gps_x != ''">
+		      AND gps_x LIKE '%${gps_x}%'  <!-- x坐标 -->
+		</if>
+	    <if test="gps_y != null and gps_y != ''">
+		      AND gps_y LIKE '%${gps_y}%'  <!-- y坐标 -->
+		</if>
+	    <if test="shop_address != null and shop_address != ''">
+		      AND shop_address LIKE '%${shop_address}%'  <!-- 店铺地址 -->
+		</if>
+	    <if test="shop_qrcode != null and shop_qrcode != ''">
+		      AND shop_qrcode LIKE '%${shop_qrcode}%'  <!-- 店铺二维码 -->
+		</if>
+	    <if test="shop_phone != null and shop_phone != ''">
+		      AND shop_phone LIKE '%${shop_phone}%'  <!-- 店铺电话 -->
+		</if>
+	    <if test="shop_area != null and shop_area != ''">
+		      AND shop_area LIKE '%${shop_area}%'  <!-- 店铺面积 -->
+		</if>
+	    <if test="shop_project != null and shop_project != ''">
+		      AND shop_project LIKE '%${shop_project}%'  <!-- 店铺主营项目 -->
+		</if>
+	    <if test="shop_type != null and shop_type != ''">
+		      AND shop_type LIKE '%${shop_type}%'  <!-- 店铺类型 -->
+		</if>
+	    <if test="shop_intro != null and shop_intro != ''">
+		      AND shop_intro LIKE '%${shop_intro}%'  <!-- 商家介绍 -->
+		</if>
+	    <if test="show_status != null and show_status != ''">
+		      AND show_status LIKE '%${show_status}%'  <!-- 显示状态 0禁用 1启用 -->
+		</if>
+	    <if test="is_del != null and is_del != ''">
+		      AND is_del LIKE '%${is_del}%'  <!-- 是否删除 0:有效1:删除 -->
+		</if>
+	    <if test="shop_remark != null and shop_remark != ''">
+		      AND shop_remark LIKE '%${shop_remark}%'  <!-- shop_remark -->
+		</if>
+	    <if test="begin_time != null and begin_time != ''">
+		      AND begin_time LIKE '%${begin_time}%'  <!-- 营业开始时间 -->
+		</if>
+	    <if test="end_time != null and end_time != ''">
+		      AND end_time LIKE '%${end_time}%'  <!-- 营业结束时间 -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time LIKE '%${create_time}%'  <!-- 创建时间 -->
+		</if>
+	    <if test="create_user_id != null and create_user_id != ''">
+		      AND create_user_id LIKE '%${create_user_id}%'  <!-- 创建人ID -->
+		</if>
+	    <if test="modify_time != null and modify_time != ''">
+		      AND modify_time LIKE '%${modify_time}%'  <!-- 修改时间 -->
+		</if>
+	    <if test="modify_user_id != null and modify_user_id != ''">
+		      AND modify_user_id LIKE '%${modify_user_id}%'  <!-- 修改用户ID -->
+		</if>
+	</sql>
+	
+</mapper>

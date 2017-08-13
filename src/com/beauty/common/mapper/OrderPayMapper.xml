@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 订单支付信息[bis_order_pay]SQLMapper自动映射 -->
+<!--  注意:此文件由系统平台自动生成-禁止手工修改 2017-06-08 00:09:14 -->
+<mapper namespace="com.beauty.common.mapper.OrderPayMapper">
+	
+	<!-- 插入一个数据持久化对象(插入字段为传入PO实体的非空属性) -->
+	<insert id="insert"  parameterType="com.beauty.common.po.OrderPayPO">
+		INSERT INTO bis_order_pay 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="order_id != null and order_id != ''">
+	         order_id, <!-- 订单编号 -->
+		</if>
+		<if test="buy_account != null and buy_account != ''">
+	         buy_account, <!-- 买家支付账号 -->
+		</if>
+		<if test="pay_code != null and pay_code != ''">
+	         pay_code, <!-- 发送给银行或第三方支付平台的支付订单号 -->
+		</if>
+		<if test="pay_way != null and pay_way != ''">
+	         pay_way, <!-- 支付方式 -->
+		</if>
+		<if test="create_time != null and create_time != ''">
+	         create_time, <!-- 创建时间 -->
+		</if>
+		<if test="pay_time != null and pay_time != ''">
+	         pay_time, <!-- 支付时间 -->
+		</if>
+		<if test="pay_money != null and pay_money != ''">
+	         pay_money, <!-- 支付金额 -->
+		</if>
+		<if test="pay_status != null and pay_status != ''">
+	         pay_status, <!-- 支付状态1待支付 2 支付成功 3支付失败 -->
+		</if>
+		<if test="pay_back != null and pay_back != ''">
+	         pay_back, <!-- 支付回执1 已收到 2 未收到 -->
+		</if>
+		<if test="pay_type != null and pay_type != ''">
+	         pay_type, <!-- pay_type 1收款 2 退款 -->
+		</if>
+		<if test="error_message != null and error_message != ''">
+	         error_message, <!-- 错误信息 -->
+		</if>
+		<if test="nodify_time != null and nodify_time != ''">
+	         nodify_time, <!-- 通知时间 -->
+		</if>
+		<if test="transaction_id != null and transaction_id != ''">
+	         transaction_id, <!-- 威富通交易号 -->
+		</if>
+		<if test="out_transaction_id != null and out_transaction_id != ''">
+	         out_transaction_id, <!-- 微信订单号 -->
+		</if>
+		<if test="refund_id != null and refund_id != ''">
+	         refund_id, <!-- 威富通退款单号 -->
+		</if>
+		<if test="auth_code != null and auth_code != ''">
+	         auth_code, <!-- 授权码 -->
+		</if>
+		<if test="pay_id != null and pay_id != ''">
+	          pay_id  <!-- 编号 -->
+	    </if>
+        </trim>
+	    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+		<if test="order_id != null and order_id != ''">
+	          #{order_id, jdbcType=VARCHAR}, <!-- 订单编号 -->
+	    </if>
+		<if test="buy_account != null and buy_account != ''">
+	          #{buy_account, jdbcType=VARCHAR}, <!-- 买家支付账号 -->
+	    </if>
+		<if test="pay_code != null and pay_code != ''">
+	          #{pay_code, jdbcType=VARCHAR}, <!-- 发送给银行或第三方支付平台的支付订单号 -->
+	    </if>
+		<if test="pay_way != null and pay_way != ''">
+	          #{pay_way, jdbcType=VARCHAR}, <!-- 支付方式 -->
+	    </if>
+		<if test="create_time != null and create_time != ''">
+	          #{create_time, jdbcType=VARCHAR}, <!-- 创建时间 -->
+	    </if>
+		<if test="pay_time != null and pay_time != ''">
+	          #{pay_time, jdbcType=VARCHAR}, <!-- 支付时间 -->
+	    </if>
+		<if test="pay_money != null and pay_money != ''">
+	          #{pay_money, jdbcType=VARCHAR}, <!-- 支付金额 -->
+	    </if>
+		<if test="pay_status != null and pay_status != ''">
+	          #{pay_status, jdbcType=VARCHAR}, <!-- 支付状态1待支付 2 支付成功 3支付失败 -->
+	    </if>
+		<if test="pay_back != null and pay_back != ''">
+	          #{pay_back, jdbcType=VARCHAR}, <!-- 支付回执1 已收到 2 未收到 -->
+	    </if>
+		<if test="pay_type != null and pay_type != ''">
+	          #{pay_type, jdbcType=VARCHAR}, <!-- pay_type 1收款 2 退款 -->
+	    </if>
+		<if test="error_message != null and error_message != ''">
+	          #{error_message, jdbcType=VARCHAR}, <!-- 错误信息 -->
+	    </if>
+		<if test="nodify_time != null and nodify_time != ''">
+	          #{nodify_time, jdbcType=VARCHAR}, <!-- 通知时间 -->
+	    </if>
+		<if test="transaction_id != null and transaction_id != ''">
+	          #{transaction_id, jdbcType=VARCHAR}, <!-- 威富通交易号 -->
+	    </if>
+		<if test="out_transaction_id != null and out_transaction_id != ''">
+	          #{out_transaction_id, jdbcType=VARCHAR}, <!-- 微信订单号 -->
+	    </if>
+		<if test="refund_id != null and refund_id != ''">
+	          #{refund_id, jdbcType=VARCHAR}, <!-- 威富通退款单号 -->
+	    </if>
+		<if test="auth_code != null and auth_code != ''">
+	          #{auth_code, jdbcType=VARCHAR}, <!-- 授权码 -->
+	    </if>
+		<if test="pay_id != null and pay_id != ''">
+		     #{pay_id, jdbcType=VARCHAR}  <!-- 编号 -->
+	    </if>
+		</trim>
+		
+	</insert>
+	
+	<!-- 插入一个数据持久化对象(含所有字段) -->
+	<insert id="insertAll"  parameterType="com.beauty.common.po.OrderPayPO">
+		INSERT INTO bis_order_pay (
+          pay_id,  <!-- 编号 -->
+		  order_id,  <!-- 订单编号 -->
+		  buy_account,  <!-- 买家支付账号 -->
+		  pay_code,  <!-- 发送给银行或第三方支付平台的支付订单号 -->
+		  pay_way,  <!-- 支付方式 -->
+		  create_time,  <!-- 创建时间 -->
+		  pay_time,  <!-- 支付时间 -->
+		  pay_money,  <!-- 支付金额 -->
+		  pay_status,  <!-- 支付状态1待支付 2 支付成功 3支付失败 -->
+		  pay_back,  <!-- 支付回执1 已收到 2 未收到 -->
+		  pay_type,  <!-- pay_type 1收款 2 退款 -->
+		  error_message,  <!-- 错误信息 -->
+		  nodify_time,  <!-- 通知时间 -->
+		  transaction_id,  <!-- 威富通交易号 -->
+		  out_transaction_id,  <!-- 微信订单号 -->
+		  refund_id,  <!-- 威富通退款单号 -->
+		  auth_code  <!-- 授权码 -->
+		)
+		VALUES (
+            #{pay_id, jdbcType=VARCHAR},   <!-- 编号 -->
+		    #{order_id, jdbcType=VARCHAR},  <!-- 订单编号 -->
+		    #{buy_account, jdbcType=VARCHAR},  <!-- 买家支付账号 -->
+		    #{pay_code, jdbcType=VARCHAR},  <!-- 发送给银行或第三方支付平台的支付订单号 -->
+		    #{pay_way, jdbcType=VARCHAR},  <!-- 支付方式 -->
+		    #{create_time, jdbcType=VARCHAR},  <!-- 创建时间 -->
+		    #{pay_time, jdbcType=VARCHAR},  <!-- 支付时间 -->
+		    #{pay_money, jdbcType=VARCHAR},  <!-- 支付金额 -->
+		    #{pay_status, jdbcType=VARCHAR},  <!-- 支付状态1待支付 2 支付成功 3支付失败 -->
+		    #{pay_back, jdbcType=VARCHAR},  <!-- 支付回执1 已收到 2 未收到 -->
+		    #{pay_type, jdbcType=VARCHAR},  <!-- pay_type 1收款 2 退款 -->
+		    #{error_message, jdbcType=VARCHAR},  <!-- 错误信息 -->
+		    #{nodify_time, jdbcType=VARCHAR},  <!-- 通知时间 -->
+		    #{transaction_id, jdbcType=VARCHAR},  <!-- 威富通交易号 -->
+		    #{out_transaction_id, jdbcType=VARCHAR},  <!-- 微信订单号 -->
+		    #{refund_id, jdbcType=VARCHAR},  <!-- 威富通退款单号 -->
+		    #{auth_code, jdbcType=VARCHAR}  <!-- 授权码 -->
+		)
+	</insert>
+
+	<!-- 根据主键修改数据持久化对象 -->
+	<update id="updateByKey" parameterType="com.beauty.common.po.OrderPayPO">
+		UPDATE bis_order_pay
+		<set>
+			<if test="order_id != null">
+		          order_id = #{order_id, jdbcType=VARCHAR},  <!-- 订单编号 -->
+			</if>
+			<if test="buy_account != null">
+		          buy_account = #{buy_account, jdbcType=VARCHAR},  <!-- 买家支付账号 -->
+			</if>
+			<if test="pay_code != null">
+		          pay_code = #{pay_code, jdbcType=VARCHAR},  <!-- 发送给银行或第三方支付平台的支付订单号 -->
+			</if>
+			<if test="pay_way != null">
+		          pay_way = #{pay_way, jdbcType=VARCHAR},  <!-- 支付方式 -->
+			</if>
+			<if test="create_time != null">
+		          create_time = #{create_time, jdbcType=VARCHAR},  <!-- 创建时间 -->
+			</if>
+			<if test="pay_time != null">
+		          pay_time = #{pay_time, jdbcType=VARCHAR},  <!-- 支付时间 -->
+			</if>
+			<if test="pay_money != null">
+		          pay_money = #{pay_money, jdbcType=VARCHAR},  <!-- 支付金额 -->
+			</if>
+			<if test="pay_status != null">
+		          pay_status = #{pay_status, jdbcType=VARCHAR},  <!-- 支付状态1待支付 2 支付成功 3支付失败 -->
+			</if>
+			<if test="pay_back != null">
+		          pay_back = #{pay_back, jdbcType=VARCHAR},  <!-- 支付回执1 已收到 2 未收到 -->
+			</if>
+			<if test="pay_type != null">
+		          pay_type = #{pay_type, jdbcType=VARCHAR},  <!-- pay_type 1收款 2 退款 -->
+			</if>
+			<if test="error_message != null">
+		          error_message = #{error_message, jdbcType=VARCHAR},  <!-- 错误信息 -->
+			</if>
+			<if test="nodify_time != null">
+		          nodify_time = #{nodify_time, jdbcType=VARCHAR},  <!-- 通知时间 -->
+			</if>
+			<if test="transaction_id != null">
+		          transaction_id = #{transaction_id, jdbcType=VARCHAR},  <!-- 威富通交易号 -->
+			</if>
+			<if test="out_transaction_id != null">
+		          out_transaction_id = #{out_transaction_id, jdbcType=VARCHAR},  <!-- 微信订单号 -->
+			</if>
+			<if test="refund_id != null">
+		          refund_id = #{refund_id, jdbcType=VARCHAR},  <!-- 威富通退款单号 -->
+			</if>
+			<if test="auth_code != null">
+		          auth_code = #{auth_code, jdbcType=VARCHAR},  <!-- 授权码 -->
+			</if>
+		</set>
+		WHERE  pay_id = #{pay_id}
+	</update>
+	
+	<!-- 根据主键删除数据持久化对象 -->
+	<delete id="deleteByKey">
+		DELETE FROM bis_order_pay WHERE  pay_id = #{pay_id}
+	</delete>
+	
+	<!-- 批量根据主键删除数据持久化对象 -->
+	<delete id="batchDeleteByKey"  parameterType="java.lang.String">
+		DELETE FROM bis_order_pay WHERE pay_id IN 
+		<foreach item="pay_id" index="index" collection="list" separator="," open="(" close=")">
+		#{pay_id}
+	    </foreach>
+	</delete>
+
+	<!-- 根据主键查询并返回数据持久化对象 -->
+	<select id="selectByKey" resultType="com.beauty.common.po.OrderPayPO">
+		SELECT
+		<include refid="column" />
+		FROM bis_order_pay WHERE  pay_id = #{pay_id}
+	</select>
+
+	<!-- 根据唯一组合条件查询并返回数据持久化对象 -->
+	<select id="selectOne" parameterType="Dto" resultType="com.beauty.common.po.OrderPayPO">
+		SELECT
+		    <include refid="column" />
+		FROM bis_order_pay
+		<where>
+		    <include refid="equal" />
+		</where>		
+	</select>
+
+	<!-- 根据Dto查询并返回数据持久化对象集合 -->
+	<select id="list" parameterType="Dto" resultType="com.beauty.common.po.OrderPayPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_order_pay
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto查询并返回分页数据持久化对象集合 -->
+	<select id="listPage" parameterType="Dto" resultType="com.beauty.common.po.OrderPayPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_order_pay
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto模糊查询并返回数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="like" parameterType="Dto" resultType="com.beauty.common.po.OrderPayPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_order_pay
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto模糊查询并返回分页数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="likePage" parameterType="Dto" resultType="com.beauty.common.po.OrderPayPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_order_pay
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto统计行数 -->
+	<select id="rows" resultType="Integer" parameterType="Dto">
+		SELECT COUNT(1) AS rows_ FROM bis_order_pay
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	<!-- 根据数学表达式进行数学运算 -->
+	<select id="calc" parameterType="Dto" resultType="String">
+		SELECT
+			${_expr}
+		FROM bis_order_pay
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	
+	
+	<!-- 表字段 -->
+	<sql id="column">
+		  pay_id,  <!-- 编号 -->
+		  order_id,  <!-- 订单编号 -->
+		  buy_account,  <!-- 买家支付账号 -->
+		  pay_code,  <!-- 发送给银行或第三方支付平台的支付订单号 -->
+		  pay_way,  <!-- 支付方式 -->
+		  create_time,  <!-- 创建时间 -->
+		  pay_time,  <!-- 支付时间 -->
+		  pay_money,  <!-- 支付金额 -->
+		  pay_status,  <!-- 支付状态1待支付 2 支付成功 3支付失败 -->
+		  pay_back,  <!-- 支付回执1 已收到 2 未收到 -->
+		  pay_type,  <!-- pay_type 1收款 2 退款 -->
+		  error_message,  <!-- 错误信息 -->
+		  nodify_time,  <!-- 通知时间 -->
+		  transaction_id,  <!-- 威富通交易号 -->
+		  out_transaction_id,  <!-- 微信订单号 -->
+		  refund_id,  <!-- 威富通退款单号 -->
+		  auth_code  <!-- 授权码 -->
+	</sql>
+	
+	<!-- 表字段(用于外表的关联时引用) -->
+	<sql id="column2">
+		  bis_order_pay.pay_id,  <!-- 编号 -->
+		  bis_order_pay.order_id,  <!-- 订单编号 -->
+		  bis_order_pay.buy_account,  <!-- 买家支付账号 -->
+		  bis_order_pay.pay_code,  <!-- 发送给银行或第三方支付平台的支付订单号 -->
+		  bis_order_pay.pay_way,  <!-- 支付方式 -->
+		  bis_order_pay.create_time,  <!-- 创建时间 -->
+		  bis_order_pay.pay_time,  <!-- 支付时间 -->
+		  bis_order_pay.pay_money,  <!-- 支付金额 -->
+		  bis_order_pay.pay_status,  <!-- 支付状态1待支付 2 支付成功 3支付失败 -->
+		  bis_order_pay.pay_back,  <!-- 支付回执1 已收到 2 未收到 -->
+		  bis_order_pay.pay_type,  <!-- pay_type 1收款 2 退款 -->
+		  bis_order_pay.error_message,  <!-- 错误信息 -->
+		  bis_order_pay.nodify_time,  <!-- 通知时间 -->
+		  bis_order_pay.transaction_id,  <!-- 威富通交易号 -->
+		  bis_order_pay.out_transaction_id,  <!-- 微信订单号 -->
+		  bis_order_pay.refund_id,  <!-- 威富通退款单号 -->
+		  bis_order_pay.auth_code  <!-- 授权码 -->
+	</sql>
+
+	<!-- Where精确匹配字段 -->
+	<sql id="equal">
+	    <if test="pay_id != null and pay_id != ''">
+		      AND pay_id = #{pay_id}  <!-- 编号 -->
+		</if>
+	    <if test="order_id != null and order_id != ''">
+		      AND order_id = #{order_id}  <!-- 订单编号 -->
+		</if>
+	    <if test="buy_account != null and buy_account != ''">
+		      AND buy_account = #{buy_account}  <!-- 买家支付账号 -->
+		</if>
+	    <if test="pay_code != null and pay_code != ''">
+		      AND pay_code = #{pay_code}  <!-- 发送给银行或第三方支付平台的支付订单号 -->
+		</if>
+	    <if test="pay_way != null and pay_way != ''">
+		      AND pay_way = #{pay_way}  <!-- 支付方式 -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time = #{create_time}  <!-- 创建时间 -->
+		</if>
+	    <if test="pay_time != null and pay_time != ''">
+		      AND pay_time = #{pay_time}  <!-- 支付时间 -->
+		</if>
+	    <if test="pay_money != null and pay_money != ''">
+		      AND pay_money = #{pay_money}  <!-- 支付金额 -->
+		</if>
+	    <if test="pay_status != null and pay_status != ''">
+		      AND pay_status = #{pay_status}  <!-- 支付状态1待支付 2 支付成功 3支付失败 -->
+		</if>
+	    <if test="pay_back != null and pay_back != ''">
+		      AND pay_back = #{pay_back}  <!-- 支付回执1 已收到 2 未收到 -->
+		</if>
+	    <if test="pay_type != null and pay_type != ''">
+		      AND pay_type = #{pay_type}  <!-- pay_type 1收款 2 退款 -->
+		</if>
+	    <if test="error_message != null and error_message != ''">
+		      AND error_message = #{error_message}  <!-- 错误信息 -->
+		</if>
+	    <if test="nodify_time != null and nodify_time != ''">
+		      AND nodify_time = #{nodify_time}  <!-- 通知时间 -->
+		</if>
+	    <if test="transaction_id != null and transaction_id != ''">
+		      AND transaction_id = #{transaction_id}  <!-- 威富通交易号 -->
+		</if>
+	    <if test="out_transaction_id != null and out_transaction_id != ''">
+		      AND out_transaction_id = #{out_transaction_id}  <!-- 微信订单号 -->
+		</if>
+	    <if test="refund_id != null and refund_id != ''">
+		      AND refund_id = #{refund_id}  <!-- 威富通退款单号 -->
+		</if>
+	    <if test="auth_code != null and auth_code != ''">
+		      AND auth_code = #{auth_code}  <!-- 授权码 -->
+		</if>
+	</sql>
+	
+	<!-- Where模糊匹配字段 -->
+	<sql id="like">
+	    <if test="pay_id != null and pay_id != ''">
+		      AND pay_id LIKE '%${pay_id}%'  <!-- 编号 -->
+		</if>
+	    <if test="order_id != null and order_id != ''">
+		      AND order_id LIKE '%${order_id}%'  <!-- 订单编号 -->
+		</if>
+	    <if test="buy_account != null and buy_account != ''">
+		      AND buy_account LIKE '%${buy_account}%'  <!-- 买家支付账号 -->
+		</if>
+	    <if test="pay_code != null and pay_code != ''">
+		      AND pay_code LIKE '%${pay_code}%'  <!-- 发送给银行或第三方支付平台的支付订单号 -->
+		</if>
+	    <if test="pay_way != null and pay_way != ''">
+		      AND pay_way LIKE '%${pay_way}%'  <!-- 支付方式 -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time LIKE '%${create_time}%'  <!-- 创建时间 -->
+		</if>
+	    <if test="pay_time != null and pay_time != ''">
+		      AND pay_time LIKE '%${pay_time}%'  <!-- 支付时间 -->
+		</if>
+	    <if test="pay_money != null and pay_money != ''">
+		      AND pay_money LIKE '%${pay_money}%'  <!-- 支付金额 -->
+		</if>
+	    <if test="pay_status != null and pay_status != ''">
+		      AND pay_status LIKE '%${pay_status}%'  <!-- 支付状态1待支付 2 支付成功 3支付失败 -->
+		</if>
+	    <if test="pay_back != null and pay_back != ''">
+		      AND pay_back LIKE '%${pay_back}%'  <!-- 支付回执1 已收到 2 未收到 -->
+		</if>
+	    <if test="pay_type != null and pay_type != ''">
+		      AND pay_type LIKE '%${pay_type}%'  <!-- pay_type 1收款 2 退款 -->
+		</if>
+	    <if test="error_message != null and error_message != ''">
+		      AND error_message LIKE '%${error_message}%'  <!-- 错误信息 -->
+		</if>
+	    <if test="nodify_time != null and nodify_time != ''">
+		      AND nodify_time LIKE '%${nodify_time}%'  <!-- 通知时间 -->
+		</if>
+	    <if test="transaction_id != null and transaction_id != ''">
+		      AND transaction_id LIKE '%${transaction_id}%'  <!-- 威富通交易号 -->
+		</if>
+	    <if test="out_transaction_id != null and out_transaction_id != ''">
+		      AND out_transaction_id LIKE '%${out_transaction_id}%'  <!-- 微信订单号 -->
+		</if>
+	    <if test="refund_id != null and refund_id != ''">
+		      AND refund_id LIKE '%${refund_id}%'  <!-- 威富通退款单号 -->
+		</if>
+	    <if test="auth_code != null and auth_code != ''">
+		      AND auth_code LIKE '%${auth_code}%'  <!-- 授权码 -->
+		</if>
+	</sql>
+	
+</mapper>

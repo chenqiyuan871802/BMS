@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 微信菜单信息[wechat_menu]SQLMapper自动映射 -->
+<!--  注意:此文件由系统平台自动生成-禁止手工修改 2017-05-02 12:29:51 -->
+<mapper namespace="com.ims.common.system.modules.mapper.WechatMenuMapper">
+	
+	<!-- 插入一个数据持久化对象(插入字段为传入PO实体的非空属性) -->
+	<insert id="insert"  parameterType="com.ims.common.system.modules.po.WechatMenuPO">
+		INSERT INTO wechat_menu 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="menu_name != null and menu_name != ''">
+	         menu_name, <!-- 菜单名称 -->
+		</if>
+		<if test="parent_id != null and parent_id != ''">
+	         parent_id, <!-- 父级菜单编号 -->
+		</if>
+		<if test="menu_type != null and menu_type != ''">
+	         menu_type, <!-- 菜单类型 -->
+		</if>
+		<if test="menu_key != null and menu_key != ''">
+	         menu_key, <!-- 菜单键值 -->
+		</if>
+		<if test="url != null and url != ''">
+	         url, <!-- 菜单URL -->
+		</if>
+		<if test="media_id != null and media_id != ''">
+	         media_id, <!-- media_id -->
+		</if>
+		<if test="template_id != null and template_id != ''">
+	         template_id, <!-- 消息模板编号 -->
+		</if>
+		<if test="is_auto_expand != null and is_auto_expand != ''">
+	         is_auto_expand, <!-- 是否自动展开 -->
+		</if>
+		<if test="sort_no != null">
+	         sort_no, <!-- 排序 -->
+		</if>
+		<if test="remark != null and remark != ''">
+	         remark, <!-- 备注 -->
+		</if>
+		<if test="create_time != null and create_time != ''">
+	         create_time, <!-- 创建时间 -->
+		</if>
+		<if test="create_user_id != null and create_user_id != ''">
+	         create_user_id, <!-- 创建用户编号 -->
+		</if>
+		<if test="modify_time != null and modify_time != ''">
+	         modify_time, <!-- 修改时间 -->
+		</if>
+		<if test="modify_user_id != null and modify_user_id != ''">
+	         modify_user_id, <!-- 修改用户ID -->
+		</if>
+		<if test="menu_id != null and menu_id != ''">
+	          menu_id  <!-- 菜单编号 -->
+	    </if>
+        </trim>
+	    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+		<if test="menu_name != null and menu_name != ''">
+	          #{menu_name, jdbcType=VARCHAR}, <!-- 菜单名称 -->
+	    </if>
+		<if test="parent_id != null and parent_id != ''">
+	          #{parent_id, jdbcType=VARCHAR}, <!-- 父级菜单编号 -->
+	    </if>
+		<if test="menu_type != null and menu_type != ''">
+	          #{menu_type, jdbcType=VARCHAR}, <!-- 菜单类型 -->
+	    </if>
+		<if test="menu_key != null and menu_key != ''">
+	          #{menu_key, jdbcType=VARCHAR}, <!-- 菜单键值 -->
+	    </if>
+		<if test="url != null and url != ''">
+	          #{url, jdbcType=VARCHAR}, <!-- 菜单URL -->
+	    </if>
+		<if test="media_id != null and media_id != ''">
+	          #{media_id, jdbcType=VARCHAR}, <!-- media_id -->
+	    </if>
+		<if test="template_id != null and template_id != ''">
+	          #{template_id, jdbcType=VARCHAR}, <!-- 消息模板编号 -->
+	    </if>
+		<if test="is_auto_expand != null and is_auto_expand != ''">
+	          #{is_auto_expand, jdbcType=VARCHAR}, <!-- 是否自动展开 -->
+	    </if>
+		<if test="sort_no != null">
+	          #{sort_no, jdbcType=INTEGER}, <!-- 排序 -->
+	    </if>
+		<if test="remark != null and remark != ''">
+	          #{remark, jdbcType=VARCHAR}, <!-- 备注 -->
+	    </if>
+		<if test="create_time != null and create_time != ''">
+	          #{create_time, jdbcType=VARCHAR}, <!-- 创建时间 -->
+	    </if>
+		<if test="create_user_id != null and create_user_id != ''">
+	          #{create_user_id, jdbcType=VARCHAR}, <!-- 创建用户编号 -->
+	    </if>
+		<if test="modify_time != null and modify_time != ''">
+	          #{modify_time, jdbcType=VARCHAR}, <!-- 修改时间 -->
+	    </if>
+		<if test="modify_user_id != null and modify_user_id != ''">
+	          #{modify_user_id, jdbcType=VARCHAR}, <!-- 修改用户ID -->
+	    </if>
+		<if test="menu_id != null and menu_id != ''">
+		     #{menu_id, jdbcType=VARCHAR}  <!-- 菜单编号 -->
+	    </if>
+		</trim>
+		
+	</insert>
+	
+	<!-- 插入一个数据持久化对象(含所有字段) -->
+	<insert id="insertAll"  parameterType="com.ims.common.system.modules.po.WechatMenuPO">
+		INSERT INTO wechat_menu (
+          menu_id,  <!-- 菜单编号 -->
+		  menu_name,  <!-- 菜单名称 -->
+		  parent_id,  <!-- 父级菜单编号 -->
+		  menu_type,  <!-- 菜单类型 -->
+		  menu_key,  <!-- 菜单键值 -->
+		  url,  <!-- 菜单URL -->
+		  media_id,  <!-- media_id -->
+		  template_id,  <!-- 消息模板编号 -->
+		  is_auto_expand,  <!-- 是否自动展开 -->
+		  sort_no,  <!-- 排序 -->
+		  remark,  <!-- 备注 -->
+		  create_time,  <!-- 创建时间 -->
+		  create_user_id,  <!-- 创建用户编号 -->
+		  modify_time,  <!-- 修改时间 -->
+		  modify_user_id  <!-- 修改用户ID -->
+		)
+		VALUES (
+            #{menu_id, jdbcType=VARCHAR},   <!-- 菜单编号 -->
+		    #{menu_name, jdbcType=VARCHAR},  <!-- 菜单名称 -->
+		    #{parent_id, jdbcType=VARCHAR},  <!-- 父级菜单编号 -->
+		    #{menu_type, jdbcType=VARCHAR},  <!-- 菜单类型 -->
+		    #{menu_key, jdbcType=VARCHAR},  <!-- 菜单键值 -->
+		    #{url, jdbcType=VARCHAR},  <!-- 菜单URL -->
+		    #{media_id, jdbcType=VARCHAR},  <!-- media_id -->
+		    #{template_id, jdbcType=VARCHAR},  <!-- 消息模板编号 -->
+		    #{is_auto_expand, jdbcType=VARCHAR},  <!-- 是否自动展开 -->
+		    #{sort_no, jdbcType=INTEGER},  <!-- 排序 -->
+		    #{remark, jdbcType=VARCHAR},  <!-- 备注 -->
+		    #{create_time, jdbcType=VARCHAR},  <!-- 创建时间 -->
+		    #{create_user_id, jdbcType=VARCHAR},  <!-- 创建用户编号 -->
+		    #{modify_time, jdbcType=VARCHAR},  <!-- 修改时间 -->
+		    #{modify_user_id, jdbcType=VARCHAR}  <!-- 修改用户ID -->
+		)
+	</insert>
+
+	<!-- 根据主键修改数据持久化对象 -->
+	<update id="updateByKey" parameterType="com.ims.common.system.modules.po.WechatMenuPO">
+		UPDATE wechat_menu
+		<set>
+			<if test="menu_name != null">
+		          menu_name = #{menu_name, jdbcType=VARCHAR},  <!-- 菜单名称 -->
+			</if>
+			<if test="parent_id != null">
+		          parent_id = #{parent_id, jdbcType=VARCHAR},  <!-- 父级菜单编号 -->
+			</if>
+			<if test="menu_type != null">
+		          menu_type = #{menu_type, jdbcType=VARCHAR},  <!-- 菜单类型 -->
+			</if>
+			<if test="menu_key != null">
+		          menu_key = #{menu_key, jdbcType=VARCHAR},  <!-- 菜单键值 -->
+			</if>
+			<if test="url != null">
+		          url = #{url, jdbcType=VARCHAR},  <!-- 菜单URL -->
+			</if>
+			<if test="media_id != null">
+		          media_id = #{media_id, jdbcType=VARCHAR},  <!-- media_id -->
+			</if>
+			<if test="template_id != null">
+		          template_id = #{template_id, jdbcType=VARCHAR},  <!-- 消息模板编号 -->
+			</if>
+			<if test="is_auto_expand != null">
+		          is_auto_expand = #{is_auto_expand, jdbcType=VARCHAR},  <!-- 是否自动展开 -->
+			</if>
+			<if test="sort_no != null">
+		          sort_no = #{sort_no, jdbcType=INTEGER},  <!-- 排序 -->
+			</if>
+			<if test="remark != null">
+		          remark = #{remark, jdbcType=VARCHAR},  <!-- 备注 -->
+			</if>
+			<if test="create_time != null">
+		          create_time = #{create_time, jdbcType=VARCHAR},  <!-- 创建时间 -->
+			</if>
+			<if test="create_user_id != null">
+		          create_user_id = #{create_user_id, jdbcType=VARCHAR},  <!-- 创建用户编号 -->
+			</if>
+			<if test="modify_time != null">
+		          modify_time = #{modify_time, jdbcType=VARCHAR},  <!-- 修改时间 -->
+			</if>
+			<if test="modify_user_id != null">
+		          modify_user_id = #{modify_user_id, jdbcType=VARCHAR},  <!-- 修改用户ID -->
+			</if>
+		</set>
+		WHERE  menu_id = #{menu_id}
+	</update>
+	
+	<!-- 根据主键删除数据持久化对象 -->
+	<delete id="deleteByKey">
+		DELETE FROM wechat_menu WHERE  menu_id = #{menu_id}
+	</delete>
+	
+	<!-- 批量根据主键删除数据持久化对象 -->
+	<delete id="batchDeleteByKey"  parameterType="java.lang.String">
+		DELETE FROM wechat_menu WHERE menu_id IN 
+		<foreach item="menu_id" index="index" collection="list" separator="," open="(" close=")">
+		#{menu_id}
+	    </foreach>
+	</delete>
+
+	<!-- 根据主键查询并返回数据持久化对象 -->
+	<select id="selectByKey" resultType="com.ims.common.system.modules.po.WechatMenuPO">
+		SELECT
+		<include refid="column" />
+		FROM wechat_menu WHERE  menu_id = #{menu_id}
+	</select>
+
+	<!-- 根据唯一组合条件查询并返回数据持久化对象 -->
+	<select id="selectOne" parameterType="Dto" resultType="com.ims.common.system.modules.po.WechatMenuPO">
+		SELECT
+		    <include refid="column" />
+		FROM wechat_menu
+		<where>
+		    <include refid="equal" />
+		</where>		
+	</select>
+
+	<!-- 根据Dto查询并返回数据持久化对象集合 -->
+	<select id="list" parameterType="Dto" resultType="com.ims.common.system.modules.po.WechatMenuPO">
+		SELECT
+			<include refid="column" />	
+		FROM wechat_menu
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto查询并返回分页数据持久化对象集合 -->
+	<select id="listPage" parameterType="Dto" resultType="com.ims.common.system.modules.po.WechatMenuPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM wechat_menu
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto模糊查询并返回数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="like" parameterType="Dto" resultType="com.ims.common.system.modules.po.WechatMenuPO">
+		SELECT
+			<include refid="column" />	
+		FROM wechat_menu
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto模糊查询并返回分页数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="likePage" parameterType="Dto" resultType="com.ims.common.system.modules.po.WechatMenuPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM wechat_menu
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto统计行数 -->
+	<select id="rows" resultType="Integer" parameterType="Dto">
+		SELECT COUNT(1) AS rows_ FROM wechat_menu
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	<!-- 根据数学表达式进行数学运算 -->
+	<select id="calc" parameterType="Dto" resultType="String">
+		SELECT
+			${_expr}
+		FROM wechat_menu
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	
+	
+	<!-- 表字段 -->
+	<sql id="column">
+		  menu_id,  <!-- 菜单编号 -->
+		  menu_name,  <!-- 菜单名称 -->
+		  parent_id,  <!-- 父级菜单编号 -->
+		  menu_type,  <!-- 菜单类型 -->
+		  menu_key,  <!-- 菜单键值 -->
+		  url,  <!-- 菜单URL -->
+		  media_id,  <!-- media_id -->
+		  template_id,  <!-- 消息模板编号 -->
+		  is_auto_expand,  <!-- 是否自动展开 -->
+		  sort_no,  <!-- 排序 -->
+		  remark,  <!-- 备注 -->
+		  create_time,  <!-- 创建时间 -->
+		  create_user_id,  <!-- 创建用户编号 -->
+		  modify_time,  <!-- 修改时间 -->
+		  modify_user_id,  <!-- 修改用户ID -->
+		  (SELECT COUNT(*) FROM wechat_menu a where a.parent_id=wechat_menu.menu_id) AS child_count <!-- 子节点个数 -->
+	</sql>
+	
+	<!-- 表字段(用于外表的关联时引用) -->
+	<sql id="column2">
+		  wechat_menu.menu_id,  <!-- 菜单编号 -->
+		  wechat_menu.menu_name,  <!-- 菜单名称 -->
+		  wechat_menu.parent_id,  <!-- 父级菜单编号 -->
+		  wechat_menu.menu_type,  <!-- 菜单类型 -->
+		  wechat_menu.menu_key,  <!-- 菜单键值 -->
+		  wechat_menu.url,  <!-- 菜单URL -->
+		  wechat_menu.media_id,  <!-- media_id -->
+		  wechat_menu.template_id,  <!-- 消息模板编号 -->
+		  wechat_menu.is_auto_expand,  <!-- 是否自动展开 -->
+		  wechat_menu.sort_no,  <!-- 排序 -->
+		  wechat_menu.remark,  <!-- 备注 -->
+		  wechat_menu.create_time,  <!-- 创建时间 -->
+		  wechat_menu.create_user_id,  <!-- 创建用户编号 -->
+		  wechat_menu.modify_time,  <!-- 修改时间 -->
+		  wechat_menu.modify_user_id  <!-- 修改用户ID -->
+	</sql>
+
+	<!-- Where精确匹配字段 -->
+	<sql id="equal">
+	    <if test="menu_id != null and menu_id != ''">
+		      AND menu_id = #{menu_id}  <!-- 菜单编号 -->
+		</if>
+	    <if test="menu_name != null and menu_name != ''">
+		      AND menu_name = #{menu_name}  <!-- 菜单名称 -->
+		</if>
+	    <if test="parent_id != null and parent_id != ''">
+		      AND parent_id = #{parent_id}  <!-- 父级菜单编号 -->
+		</if>
+	    <if test="menu_type != null and menu_type != ''">
+		      AND menu_type = #{menu_type}  <!-- 菜单类型 -->
+		</if>
+	    <if test="menu_key != null and menu_key != ''">
+		      AND menu_key = #{menu_key}  <!-- 菜单键值 -->
+		</if>
+	    <if test="url != null and url != ''">
+		      AND url = #{url}  <!-- 菜单URL -->
+		</if>
+	    <if test="media_id != null and media_id != ''">
+		      AND media_id = #{media_id}  <!-- media_id -->
+		</if>
+	    <if test="template_id != null and template_id != ''">
+		      AND template_id = #{template_id}  <!-- 消息模板编号 -->
+		</if>
+	    <if test="is_auto_expand != null and is_auto_expand != ''">
+		      AND is_auto_expand = #{is_auto_expand}  <!-- 是否自动展开 -->
+		</if>
+	   <if test="sort_no != null ">
+		      AND sort_no = #{sort_no}  <!-- 排序 -->
+		</if>
+	    <if test="remark != null and remark != ''">
+		      AND remark = #{remark}  <!-- 备注 -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time = #{create_time}  <!-- 创建时间 -->
+		</if>
+	    <if test="create_user_id != null and create_user_id != ''">
+		      AND create_user_id = #{create_user_id}  <!-- 创建用户编号 -->
+		</if>
+	    <if test="modify_time != null and modify_time != ''">
+		      AND modify_time = #{modify_time}  <!-- 修改时间 -->
+		</if>
+	    <if test="modify_user_id != null and modify_user_id != ''">
+		      AND modify_user_id = #{modify_user_id}  <!-- 修改用户ID -->
+		</if>
+	</sql>
+	
+	<!-- Where模糊匹配字段 -->
+	<sql id="like">
+	    <if test="menu_id != null and menu_id != ''">
+		      AND menu_id LIKE '%${menu_id}%'  <!-- 菜单编号 -->
+		</if>
+	    <if test="menu_name != null and menu_name != ''">
+		      AND menu_name LIKE '%${menu_name}%'  <!-- 菜单名称 -->
+		</if>
+	    <if test="parent_id != null and parent_id != ''">
+		      AND parent_id LIKE '%${parent_id}%'  <!-- 父级菜单编号 -->
+		</if>
+	    <if test="menu_type != null and menu_type != ''">
+		      AND menu_type LIKE '%${menu_type}%'  <!-- 菜单类型 -->
+		</if>
+	    <if test="menu_key != null and menu_key != ''">
+		      AND menu_key LIKE '%${menu_key}%'  <!-- 菜单键值 -->
+		</if>
+	    <if test="url != null and url != ''">
+		      AND url LIKE '%${url}%'  <!-- 菜单URL -->
+		</if>
+	    <if test="media_id != null and media_id != ''">
+		      AND media_id LIKE '%${media_id}%'  <!-- media_id -->
+		</if>
+	    <if test="template_id != null and template_id != ''">
+		      AND template_id LIKE '%${template_id}%'  <!-- 消息模板编号 -->
+		</if>
+	    <if test="is_auto_expand != null and is_auto_expand != ''">
+		      AND is_auto_expand LIKE '%${is_auto_expand}%'  <!-- 是否自动展开 -->
+		</if>
+	    <if test="remark != null and remark != ''">
+		      AND remark LIKE '%${remark}%'  <!-- 备注 -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time LIKE '%${create_time}%'  <!-- 创建时间 -->
+		</if>
+	    <if test="create_user_id != null and create_user_id != ''">
+		      AND create_user_id LIKE '%${create_user_id}%'  <!-- 创建用户编号 -->
+		</if>
+	    <if test="modify_time != null and modify_time != ''">
+		      AND modify_time LIKE '%${modify_time}%'  <!-- 修改时间 -->
+		</if>
+	    <if test="modify_user_id != null and modify_user_id != ''">
+		      AND modify_user_id LIKE '%${modify_user_id}%'  <!-- 修改用户ID -->
+		</if>
+	</sql>
+	
+</mapper>

@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 礼包信息[bis_nurse_bag]SQLMapper自动映射 -->
+<!--  注意:此文件由系统平台自动生成-禁止手工修改 2017-07-13 00:56:54 -->
+<mapper namespace="com.beauty.common.mapper.NurseBagMapper">
+	
+	<!-- 插入一个数据持久化对象(插入字段为传入PO实体的非空属性) -->
+	<insert id="insert"  parameterType="com.beauty.common.po.NurseBagPO">
+		INSERT INTO bis_nurse_bag 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="bag_name != null and bag_name != ''">
+	         bag_name, <!-- 礼包名称 -->
+		</if>
+		<if test="bag_total_price != null and bag_total_price != ''">
+	         bag_total_price, <!-- 礼包总价格 -->
+		</if>
+		<if test="cover_photo != null and cover_photo != ''">
+	         cover_photo, <!-- 礼包封面图片 -->
+		</if>
+		<if test="cover_big_photo != null and cover_big_photo != ''">
+	         cover_big_photo, <!-- cover_big_photo -->
+		</if>
+		<if test="open_card_num != null">
+	         open_card_num, <!-- 开卡数量 -->
+		</if>
+		<if test="remain_num != null">
+	         remain_num, <!-- 卡剩余量 -->
+		</if>
+		<if test="max_buy_num != null">
+	         max_buy_num, <!-- 最大购买量 -->
+		</if>
+		<if test="min_buy_num != null">
+	         min_buy_num, <!-- 最少购买量 -->
+		</if>
+		<if test="putaway_time != null">
+	         putaway_time, <!-- 上架时间 -->
+		</if>
+		<if test="soldout_time != null">
+	         soldout_time, <!-- 下架时间 -->
+		</if>
+		<if test="overdue_time != null">
+	         overdue_time, <!-- 礼包过期时间 -->
+		</if>
+		<if test="content != null and content != ''">
+	         content, <!-- content -->
+		</if>
+		<if test="status != null and status != ''">
+	         status, <!-- 状态 1 在售 2 下架 -->
+		</if>
+		<if test="sort_no != null">
+	         sort_no, <!-- sort_no -->
+		</if>
+		<if test="is_del != null and is_del != ''">
+	         is_del, <!-- 是否删除 0 有效 1 删除 -->
+		</if>
+		<if test="create_time != null and create_time != ''">
+	         create_time, <!-- 创建时间 -->
+		</if>
+		<if test="create_user_id != null and create_user_id != ''">
+	         create_user_id, <!-- 创建人ID -->
+		</if>
+		<if test="modify_time != null and modify_time != ''">
+	         modify_time, <!-- 修改时间 -->
+		</if>
+		<if test="modify_user_id != null and modify_user_id != ''">
+	         modify_user_id, <!-- 修改用户ID -->
+		</if>
+		<if test="bag_introduce != null and bag_introduce != ''">
+	         bag_introduce, <!-- 礼包介绍 -->
+		</if>
+		<if test="buy_count != null">
+	         buy_count, <!-- 购买次数 -->
+		</if>
+		<if test="bag_id != null and bag_id != ''">
+	          bag_id  <!-- 礼包编号 -->
+	    </if>
+        </trim>
+	    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+		<if test="bag_name != null and bag_name != ''">
+	          #{bag_name, jdbcType=VARCHAR}, <!-- 礼包名称 -->
+	    </if>
+		<if test="bag_total_price != null and bag_total_price != ''">
+	          #{bag_total_price, jdbcType=VARCHAR}, <!-- 礼包总价格 -->
+	    </if>
+		<if test="cover_photo != null and cover_photo != ''">
+	          #{cover_photo, jdbcType=VARCHAR}, <!-- 礼包封面图片 -->
+	    </if>
+		<if test="cover_big_photo != null and cover_big_photo != ''">
+	          #{cover_big_photo, jdbcType=VARCHAR}, <!-- cover_big_photo -->
+	    </if>
+		<if test="open_card_num != null">
+	          #{open_card_num, jdbcType=INTEGER}, <!-- 开卡数量 -->
+	    </if>
+		<if test="remain_num != null">
+	          #{remain_num, jdbcType=INTEGER}, <!-- 卡剩余量 -->
+	    </if>
+		<if test="max_buy_num != null">
+	          #{max_buy_num, jdbcType=INTEGER}, <!-- 最大购买量 -->
+	    </if>
+		<if test="min_buy_num != null">
+	          #{min_buy_num, jdbcType=INTEGER}, <!-- 最少购买量 -->
+	    </if>
+		<if test="putaway_time != null">
+	          #{putaway_time, jdbcType=DATE}, <!-- 上架时间 -->
+	    </if>
+		<if test="soldout_time != null">
+	          #{soldout_time, jdbcType=DATE}, <!-- 下架时间 -->
+	    </if>
+		<if test="overdue_time != null">
+	          #{overdue_time, jdbcType=INTEGER}, <!-- 礼包过期时间 -->
+	    </if>
+		<if test="content != null and content != ''">
+	          #{content, jdbcType=VARCHAR}, <!-- content -->
+	    </if>
+		<if test="status != null and status != ''">
+	          #{status, jdbcType=VARCHAR}, <!-- 状态 1 在售 2 下架 -->
+	    </if>
+		<if test="sort_no != null">
+	          #{sort_no, jdbcType=INTEGER}, <!-- sort_no -->
+	    </if>
+		<if test="is_del != null and is_del != ''">
+	          #{is_del, jdbcType=VARCHAR}, <!-- 是否删除 0 有效 1 删除 -->
+	    </if>
+		<if test="create_time != null and create_time != ''">
+	          #{create_time, jdbcType=VARCHAR}, <!-- 创建时间 -->
+	    </if>
+		<if test="create_user_id != null and create_user_id != ''">
+	          #{create_user_id, jdbcType=VARCHAR}, <!-- 创建人ID -->
+	    </if>
+		<if test="modify_time != null and modify_time != ''">
+	          #{modify_time, jdbcType=VARCHAR}, <!-- 修改时间 -->
+	    </if>
+		<if test="modify_user_id != null and modify_user_id != ''">
+	          #{modify_user_id, jdbcType=VARCHAR}, <!-- 修改用户ID -->
+	    </if>
+		<if test="bag_introduce != null and bag_introduce != ''">
+	          #{bag_introduce, jdbcType=VARCHAR}, <!-- 礼包介绍 -->
+	    </if>
+		<if test="buy_count != null">
+	          #{buy_count, jdbcType=INTEGER}, <!-- 购买次数 -->
+	    </if>
+		<if test="bag_id != null and bag_id != ''">
+		     #{bag_id, jdbcType=VARCHAR}  <!-- 礼包编号 -->
+	    </if>
+		</trim>
+		
+	</insert>
+	
+	<!-- 插入一个数据持久化对象(含所有字段) -->
+	<insert id="insertAll"  parameterType="com.beauty.common.po.NurseBagPO">
+		INSERT INTO bis_nurse_bag (
+          bag_id,  <!-- 礼包编号 -->
+		  bag_name,  <!-- 礼包名称 -->
+		  bag_total_price,  <!-- 礼包总价格 -->
+		  cover_photo,  <!-- 礼包封面图片 -->
+		  cover_big_photo,  <!-- cover_big_photo -->
+		  open_card_num,  <!-- 开卡数量 -->
+		  remain_num,  <!-- 卡剩余量 -->
+		  max_buy_num,  <!-- 最大购买量 -->
+		  min_buy_num,  <!-- 最少购买量 -->
+		  putaway_time,  <!-- 上架时间 -->
+		  soldout_time,  <!-- 下架时间 -->
+		  overdue_time,  <!-- 礼包过期时间 -->
+		  content,  <!-- content -->
+		  status,  <!-- 状态 1 在售 2 下架 -->
+		  sort_no,  <!-- sort_no -->
+		  is_del,  <!-- 是否删除 0 有效 1 删除 -->
+		  create_time,  <!-- 创建时间 -->
+		  create_user_id,  <!-- 创建人ID -->
+		  modify_time,  <!-- 修改时间 -->
+		  modify_user_id,  <!-- 修改用户ID -->
+		  bag_introduce,  <!-- 礼包介绍 -->
+		  buy_count  <!-- 购买次数 -->
+		)
+		VALUES (
+            #{bag_id, jdbcType=VARCHAR},   <!-- 礼包编号 -->
+		    #{bag_name, jdbcType=VARCHAR},  <!-- 礼包名称 -->
+		    #{bag_total_price, jdbcType=VARCHAR},  <!-- 礼包总价格 -->
+		    #{cover_photo, jdbcType=VARCHAR},  <!-- 礼包封面图片 -->
+		    #{cover_big_photo, jdbcType=VARCHAR},  <!-- cover_big_photo -->
+		    #{open_card_num, jdbcType=INTEGER},  <!-- 开卡数量 -->
+		    #{remain_num, jdbcType=INTEGER},  <!-- 卡剩余量 -->
+		    #{max_buy_num, jdbcType=INTEGER},  <!-- 最大购买量 -->
+		    #{min_buy_num, jdbcType=INTEGER},  <!-- 最少购买量 -->
+		    #{putaway_time, jdbcType=DATE},  <!-- 上架时间 -->
+		    #{soldout_time, jdbcType=DATE},  <!-- 下架时间 -->
+		    #{overdue_time, jdbcType=INTEGER},  <!-- 礼包过期时间 -->
+		    #{content, jdbcType=VARCHAR},  <!-- content -->
+		    #{status, jdbcType=VARCHAR},  <!-- 状态 1 在售 2 下架 -->
+		    #{sort_no, jdbcType=INTEGER},  <!-- sort_no -->
+		    #{is_del, jdbcType=VARCHAR},  <!-- 是否删除 0 有效 1 删除 -->
+		    #{create_time, jdbcType=VARCHAR},  <!-- 创建时间 -->
+		    #{create_user_id, jdbcType=VARCHAR},  <!-- 创建人ID -->
+		    #{modify_time, jdbcType=VARCHAR},  <!-- 修改时间 -->
+		    #{modify_user_id, jdbcType=VARCHAR},  <!-- 修改用户ID -->
+		    #{bag_introduce, jdbcType=VARCHAR},  <!-- 礼包介绍 -->
+		    #{buy_count, jdbcType=INTEGER}  <!-- 购买次数 -->
+		)
+	</insert>
+
+	<!-- 根据主键修改数据持久化对象 -->
+	<update id="updateByKey" parameterType="com.beauty.common.po.NurseBagPO">
+		UPDATE bis_nurse_bag
+		<set>
+			<if test="bag_name != null">
+		          bag_name = #{bag_name, jdbcType=VARCHAR},  <!-- 礼包名称 -->
+			</if>
+			<if test="bag_total_price != null">
+		          bag_total_price = #{bag_total_price, jdbcType=VARCHAR},  <!-- 礼包总价格 -->
+			</if>
+			<if test="cover_photo != null">
+		          cover_photo = #{cover_photo, jdbcType=VARCHAR},  <!-- 礼包封面图片 -->
+			</if>
+			<if test="cover_big_photo != null">
+		          cover_big_photo = #{cover_big_photo, jdbcType=VARCHAR},  <!-- cover_big_photo -->
+			</if>
+			<if test="open_card_num != null">
+		          open_card_num = #{open_card_num, jdbcType=INTEGER},  <!-- 开卡数量 -->
+			</if>
+			<if test="remain_num != null">
+		          remain_num = #{remain_num, jdbcType=INTEGER},  <!-- 卡剩余量 -->
+			</if>
+			<if test="max_buy_num != null">
+		          max_buy_num = #{max_buy_num, jdbcType=INTEGER},  <!-- 最大购买量 -->
+			</if>
+			<if test="min_buy_num != null">
+		          min_buy_num = #{min_buy_num, jdbcType=INTEGER},  <!-- 最少购买量 -->
+			</if>
+			<if test="putaway_time != null">
+		          putaway_time = #{putaway_time, jdbcType=DATE},  <!-- 上架时间 -->
+			</if>
+			<if test="soldout_time != null">
+		          soldout_time = #{soldout_time, jdbcType=DATE},  <!-- 下架时间 -->
+			</if>
+			<if test="overdue_time != null">
+		          overdue_time = #{overdue_time, jdbcType=INTEGER},  <!-- 礼包过期时间 -->
+			</if>
+			<if test="content != null">
+		          content = #{content, jdbcType=VARCHAR},  <!-- content -->
+			</if>
+			<if test="status != null">
+		          status = #{status, jdbcType=VARCHAR},  <!-- 状态 1 在售 2 下架 -->
+			</if>
+			<if test="sort_no != null">
+		          sort_no = #{sort_no, jdbcType=INTEGER},  <!-- sort_no -->
+			</if>
+			<if test="is_del != null">
+		          is_del = #{is_del, jdbcType=VARCHAR},  <!-- 是否删除 0 有效 1 删除 -->
+			</if>
+			<if test="create_time != null">
+		          create_time = #{create_time, jdbcType=VARCHAR},  <!-- 创建时间 -->
+			</if>
+			<if test="create_user_id != null">
+		          create_user_id = #{create_user_id, jdbcType=VARCHAR},  <!-- 创建人ID -->
+			</if>
+			<if test="modify_time != null">
+		          modify_time = #{modify_time, jdbcType=VARCHAR},  <!-- 修改时间 -->
+			</if>
+			<if test="modify_user_id != null">
+		          modify_user_id = #{modify_user_id, jdbcType=VARCHAR},  <!-- 修改用户ID -->
+			</if>
+			<if test="bag_introduce != null">
+		          bag_introduce = #{bag_introduce, jdbcType=VARCHAR},  <!-- 礼包介绍 -->
+			</if>
+			<if test="buy_count != null">
+		          buy_count = #{buy_count, jdbcType=INTEGER},  <!-- 购买次数 -->
+			</if>
+		</set>
+		WHERE  bag_id = #{bag_id}
+	</update>
+	
+	<!-- 根据主键删除数据持久化对象 -->
+	<delete id="deleteByKey">
+		DELETE FROM bis_nurse_bag WHERE  bag_id = #{bag_id}
+	</delete>
+	
+	<!-- 批量根据主键删除数据持久化对象 -->
+	<delete id="batchDeleteByKey"  parameterType="java.lang.String">
+		DELETE FROM bis_nurse_bag WHERE bag_id IN 
+		<foreach item="bag_id" index="index" collection="list" separator="," open="(" close=")">
+		#{bag_id}
+	    </foreach>
+	</delete>
+
+	<!-- 根据主键查询并返回数据持久化对象 -->
+	<select id="selectByKey" resultType="com.beauty.common.po.NurseBagPO">
+		SELECT
+		<include refid="column" />
+		FROM bis_nurse_bag WHERE  bag_id = #{bag_id}
+	</select>
+
+	<!-- 根据唯一组合条件查询并返回数据持久化对象 -->
+	<select id="selectOne" parameterType="Dto" resultType="com.beauty.common.po.NurseBagPO">
+		SELECT
+		    <include refid="column" />
+		FROM bis_nurse_bag
+		<where>
+		    <include refid="equal" />
+		</where>		
+	</select>
+
+	<!-- 根据Dto查询并返回数据持久化对象集合 -->
+	<select id="list" parameterType="Dto" resultType="com.beauty.common.po.NurseBagPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_nurse_bag
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto查询并返回分页数据持久化对象集合 -->
+	<select id="listPage" parameterType="Dto" resultType="com.beauty.common.po.NurseBagPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_nurse_bag
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto模糊查询并返回数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="like" parameterType="Dto" resultType="com.beauty.common.po.NurseBagPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_nurse_bag
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto模糊查询并返回分页数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="likePage" parameterType="Dto" resultType="com.beauty.common.po.NurseBagPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_nurse_bag
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto统计行数 -->
+	<select id="rows" resultType="Integer" parameterType="Dto">
+		SELECT COUNT(1) AS rows_ FROM bis_nurse_bag
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	<!-- 根据数学表达式进行数学运算 -->
+	<select id="calc" parameterType="Dto" resultType="String">
+		SELECT
+			${_expr}
+		FROM bis_nurse_bag
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	
+	
+	<!-- 表字段 -->
+	<sql id="column">
+		  bag_id,  <!-- 礼包编号 -->
+		  bag_name,  <!-- 礼包名称 -->
+		  bag_total_price,  <!-- 礼包总价格 -->
+		  cover_photo,  <!-- 礼包封面图片 -->
+		  cover_big_photo,  <!-- cover_big_photo -->
+		  open_card_num,  <!-- 开卡数量 -->
+		  remain_num,  <!-- 卡剩余量 -->
+		  max_buy_num,  <!-- 最大购买量 -->
+		  min_buy_num,  <!-- 最少购买量 -->
+		  putaway_time,  <!-- 上架时间 -->
+		  soldout_time,  <!-- 下架时间 -->
+		  overdue_time,  <!-- 礼包过期时间 -->
+		  content,  <!-- content -->
+		  status,  <!-- 状态 1 在售 2 下架 -->
+		  sort_no,  <!-- sort_no -->
+		  is_del,  <!-- 是否删除 0 有效 1 删除 -->
+		  create_time,  <!-- 创建时间 -->
+		  create_user_id,  <!-- 创建人ID -->
+		  modify_time,  <!-- 修改时间 -->
+		  modify_user_id,  <!-- 修改用户ID -->
+		  bag_introduce,  <!-- 礼包介绍 -->
+		  buy_count  <!-- 购买次数 -->
+	</sql>
+	
+	<!-- 表字段(用于外表的关联时引用) -->
+	<sql id="column2">
+		  bis_nurse_bag.bag_id,  <!-- 礼包编号 -->
+		  bis_nurse_bag.bag_name,  <!-- 礼包名称 -->
+		  bis_nurse_bag.bag_total_price,  <!-- 礼包总价格 -->
+		  bis_nurse_bag.cover_photo,  <!-- 礼包封面图片 -->
+		  bis_nurse_bag.cover_big_photo,  <!-- cover_big_photo -->
+		  bis_nurse_bag.open_card_num,  <!-- 开卡数量 -->
+		  bis_nurse_bag.remain_num,  <!-- 卡剩余量 -->
+		  bis_nurse_bag.max_buy_num,  <!-- 最大购买量 -->
+		  bis_nurse_bag.min_buy_num,  <!-- 最少购买量 -->
+		  bis_nurse_bag.putaway_time,  <!-- 上架时间 -->
+		  bis_nurse_bag.soldout_time,  <!-- 下架时间 -->
+		  bis_nurse_bag.overdue_time,  <!-- 礼包过期时间 -->
+		  bis_nurse_bag.content,  <!-- content -->
+		  bis_nurse_bag.status,  <!-- 状态 1 在售 2 下架 -->
+		  bis_nurse_bag.sort_no,  <!-- sort_no -->
+		  bis_nurse_bag.is_del,  <!-- 是否删除 0 有效 1 删除 -->
+		  bis_nurse_bag.create_time,  <!-- 创建时间 -->
+		  bis_nurse_bag.create_user_id,  <!-- 创建人ID -->
+		  bis_nurse_bag.modify_time,  <!-- 修改时间 -->
+		  bis_nurse_bag.modify_user_id,  <!-- 修改用户ID -->
+		  bis_nurse_bag.bag_introduce,  <!-- 礼包介绍 -->
+		  bis_nurse_bag.buy_count  <!-- 购买次数 -->
+	</sql>
+
+	<!-- Where精确匹配字段 -->
+	<sql id="equal">
+	    <if test="bag_id != null and bag_id != ''">
+		      AND bag_id = #{bag_id}  <!-- 礼包编号 -->
+		</if>
+	    <if test="bag_name != null and bag_name != ''">
+		      AND bag_name = #{bag_name}  <!-- 礼包名称 -->
+		</if>
+	    <if test="bag_total_price != null and bag_total_price != ''">
+		      AND bag_total_price = #{bag_total_price}  <!-- 礼包总价格 -->
+		</if>
+	    <if test="cover_photo != null and cover_photo != ''">
+		      AND cover_photo = #{cover_photo}  <!-- 礼包封面图片 -->
+		</if>
+	    <if test="cover_big_photo != null and cover_big_photo != ''">
+		      AND cover_big_photo = #{cover_big_photo}  <!-- cover_big_photo -->
+		</if>
+	   <if test="open_card_num != null ">
+		      AND open_card_num = #{open_card_num}  <!-- 开卡数量 -->
+		</if>
+	   <if test="remain_num != null ">
+		      AND remain_num = #{remain_num}  <!-- 卡剩余量 -->
+		</if>
+	   <if test="max_buy_num != null ">
+		      AND max_buy_num = #{max_buy_num}  <!-- 最大购买量 -->
+		</if>
+	   <if test="min_buy_num != null ">
+		      AND min_buy_num = #{min_buy_num}  <!-- 最少购买量 -->
+		</if>
+	   <if test="putaway_time != null ">
+		      AND putaway_time = #{putaway_time}  <!-- 上架时间 -->
+		</if>
+	   <if test="soldout_time != null ">
+		      AND soldout_time = #{soldout_time}  <!-- 下架时间 -->
+		</if>
+	   <if test="overdue_time != null ">
+		      AND overdue_time = #{overdue_time}  <!-- 礼包过期时间 -->
+		</if>
+	    <if test="content != null and content != ''">
+		      AND content = #{content}  <!-- content -->
+		</if>
+	    <if test="status != null and status != ''">
+		      AND status = #{status}  <!-- 状态 1 在售 2 下架 -->
+		</if>
+	   <if test="sort_no != null ">
+		      AND sort_no = #{sort_no}  <!-- sort_no -->
+		</if>
+	    <if test="is_del != null and is_del != ''">
+		      AND is_del = #{is_del}  <!-- 是否删除 0 有效 1 删除 -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time = #{create_time}  <!-- 创建时间 -->
+		</if>
+	    <if test="create_user_id != null and create_user_id != ''">
+		      AND create_user_id = #{create_user_id}  <!-- 创建人ID -->
+		</if>
+	    <if test="modify_time != null and modify_time != ''">
+		      AND modify_time = #{modify_time}  <!-- 修改时间 -->
+		</if>
+	    <if test="modify_user_id != null and modify_user_id != ''">
+		      AND modify_user_id = #{modify_user_id}  <!-- 修改用户ID -->
+		</if>
+	    <if test="bag_introduce != null and bag_introduce != ''">
+		      AND bag_introduce = #{bag_introduce}  <!-- 礼包介绍 -->
+		</if>
+	   <if test="buy_count != null ">
+		      AND buy_count = #{buy_count}  <!-- 购买次数 -->
+		</if>
+	</sql>
+	
+	<!-- Where模糊匹配字段 -->
+	<sql id="like">
+	    <if test="bag_id != null and bag_id != ''">
+		      AND bag_id LIKE '%${bag_id}%'  <!-- 礼包编号 -->
+		</if>
+	    <if test="bag_name != null and bag_name != ''">
+		      AND bag_name LIKE '%${bag_name}%'  <!-- 礼包名称 -->
+		</if>
+	    <if test="bag_total_price != null and bag_total_price != ''">
+		      AND bag_total_price LIKE '%${bag_total_price}%'  <!-- 礼包总价格 -->
+		</if>
+	    <if test="cover_photo != null and cover_photo != ''">
+		      AND cover_photo LIKE '%${cover_photo}%'  <!-- 礼包封面图片 -->
+		</if>
+	    <if test="cover_big_photo != null and cover_big_photo != ''">
+		      AND cover_big_photo LIKE '%${cover_big_photo}%'  <!-- cover_big_photo -->
+		</if>
+	    <if test="content != null and content != ''">
+		      AND content LIKE '%${content}%'  <!-- content -->
+		</if>
+	    <if test="status != null and status != ''">
+		      AND status LIKE '%${status}%'  <!-- 状态 1 在售 2 下架 -->
+		</if>
+	    <if test="is_del != null and is_del != ''">
+		      AND is_del LIKE '%${is_del}%'  <!-- 是否删除 0 有效 1 删除 -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time LIKE '%${create_time}%'  <!-- 创建时间 -->
+		</if>
+	    <if test="create_user_id != null and create_user_id != ''">
+		      AND create_user_id LIKE '%${create_user_id}%'  <!-- 创建人ID -->
+		</if>
+	    <if test="modify_time != null and modify_time != ''">
+		      AND modify_time LIKE '%${modify_time}%'  <!-- 修改时间 -->
+		</if>
+	    <if test="modify_user_id != null and modify_user_id != ''">
+		      AND modify_user_id LIKE '%${modify_user_id}%'  <!-- 修改用户ID -->
+		</if>
+	    <if test="bag_introduce != null and bag_introduce != ''">
+		      AND bag_introduce LIKE '%${bag_introduce}%'  <!-- 礼包介绍 -->
+		</if>
+	</sql>
+	
+</mapper>

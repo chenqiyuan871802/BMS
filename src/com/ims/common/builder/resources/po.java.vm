@@ -1,0 +1,66 @@
+package ${package};
+
+
+import com.ims.common.core.matatype.BasePO;
+#if(${importDto.bigDecimal})
+import java.math.BigDecimal;
+#end
+#if(${importDto.data})
+import java.util.Date;
+#end
+#if(${importDto.timestamp})
+import java.sql.Timestamp;
+#end
+##java.lang.*下的类型不需要导入
+/**
+ * 
+ * 类描述： <b>$!{tableDto.comment}[${tableDto.name}]数据持久化对象</b>
+ * 创建人：$!author
+ * 邮箱：240823329@qq.com
+ * 创建时间：$!sysdate
+ * 修改人：
+ * 修改时间：
+ * 修改备注： 
+ * @version 1.0
+ */
+
+public class ${className}PO extends BasePO {
+
+	private static final long serialVersionUID = 1L;
+
+##变量声明
+#foreach($columnDto in $columnDtos)
+	/**
+	 * ${columnDto.comment}
+	 */
+	private ${columnDto.javatype} ${columnDto.name};
+	
+#end
+
+##get方法
+#foreach($columnDto in $columnDtos)
+	/**
+	 * ${columnDto.comment}
+	 * 
+	 * @return ${columnDto.name}
+	 */
+	public ${columnDto.javatype} get${columnDto.upname}() {
+		return ${columnDto.name};
+	}
+	
+#end
+
+##set方法
+#foreach($columnDto in $columnDtos)
+	/**
+	 * ${columnDto.comment}
+	 * 
+	 * @param ${columnDto.name}
+	 */
+	public void set${columnDto.upname}(${columnDto.javatype} ${columnDto.name}) {
+		this.${columnDto.name} = ${columnDto.name};
+	}
+	
+#end
+
+}

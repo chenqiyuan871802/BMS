@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 组织机构[sys_dept]SQLMapper自动映射 -->
+<!--  注意:此文件由系统平台自动生成-禁止手工修改 2016-12-10 10:00:30 -->
+<mapper namespace="com.ims.common.system.modules.mapper.DeptMapper">
+	
+	<!-- 插入一个数据持久化对象(插入字段为传入PO实体的非空属性) -->
+	<insert id="insert"  parameterType="com.ims.common.system.modules.po.DeptPO">
+		INSERT INTO sys_dept 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="cascade_id != null and cascade_id != ''">
+	         cascade_id, <!-- 节点语义ID -->
+		</if>
+		<if test="dept_name != null and dept_name != ''">
+	         dept_name, <!-- 组织名称 -->
+		</if>
+		<if test="parent_id != null and parent_id != ''">
+	         parent_id, <!-- 父节点流水号 -->
+		</if>
+		<if test="dept_code != null and dept_code != ''">
+	         dept_code, <!-- 机构代码 -->
+		</if>
+		<if test="manager != null and manager != ''">
+	         manager, <!-- 主要负责人 -->
+		</if>
+		<if test="phone != null and phone != ''">
+	         phone, <!-- 部门电话 -->
+		</if>
+		<if test="fax != null and fax != ''">
+	         fax, <!-- 传真 -->
+		</if>
+		<if test="address != null and address != ''">
+	         address, <!-- 地址 -->
+		</if>
+		<if test="is_auto_expand != null and is_auto_expand != ''">
+	         is_auto_expand, <!-- 是否自动展开 -->
+		</if>
+		<if test="icon_name != null and icon_name != ''">
+	         icon_name, <!-- 节点图标文件名称 -->
+		</if>
+		<if test="sort_no != null">
+	         sort_no, <!-- 排序号 -->
+		</if>
+		<if test="remark != null and remark != ''">
+	         remark, <!-- 备注 -->
+		</if>
+		<if test="is_del != null and is_del != ''">
+	         is_del, <!-- 是否已删除 0有效 1删除 -->
+		</if>
+		<if test="create_time != null and create_time != ''">
+	         create_time, <!-- 创建时间 -->
+		</if>
+		<if test="create_user_id != null and create_user_id != ''">
+	         create_user_id, <!-- 创建人ID -->
+		</if>
+		<if test="modify_time != null and modify_time != ''">
+	         modify_time, <!-- 修改时间 -->
+		</if>
+		<if test="modify_user_id != null and modify_user_id != ''">
+	         modify_user_id, <!-- 修改用户ID -->
+		</if>
+		<if test="dept_id != null and dept_id != ''">
+	          dept_id  <!-- 流水号 -->
+	    </if>
+        </trim>
+	    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+		<if test="cascade_id != null and cascade_id != ''">
+	          #{cascade_id, jdbcType=VARCHAR}, <!-- 节点语义ID -->
+	    </if>
+		<if test="dept_name != null and dept_name != ''">
+	          #{dept_name, jdbcType=VARCHAR}, <!-- 组织名称 -->
+	    </if>
+		<if test="parent_id != null and parent_id != ''">
+	          #{parent_id, jdbcType=VARCHAR}, <!-- 父节点流水号 -->
+	    </if>
+		<if test="dept_code != null and dept_code != ''">
+	          #{dept_code, jdbcType=VARCHAR}, <!-- 机构代码 -->
+	    </if>
+		<if test="manager != null and manager != ''">
+	          #{manager, jdbcType=VARCHAR}, <!-- 主要负责人 -->
+	    </if>
+		<if test="phone != null and phone != ''">
+	          #{phone, jdbcType=VARCHAR}, <!-- 部门电话 -->
+	    </if>
+		<if test="fax != null and fax != ''">
+	          #{fax, jdbcType=VARCHAR}, <!-- 传真 -->
+	    </if>
+		<if test="address != null and address != ''">
+	          #{address, jdbcType=VARCHAR}, <!-- 地址 -->
+	    </if>
+		<if test="is_auto_expand != null and is_auto_expand != ''">
+	          #{is_auto_expand, jdbcType=VARCHAR}, <!-- 是否自动展开 -->
+	    </if>
+		<if test="icon_name != null and icon_name != ''">
+	          #{icon_name, jdbcType=VARCHAR}, <!-- 节点图标文件名称 -->
+	    </if>
+		<if test="sort_no != null">
+	          #{sort_no, jdbcType=INTEGER}, <!-- 排序号 -->
+	    </if>
+		<if test="remark != null and remark != ''">
+	          #{remark, jdbcType=VARCHAR}, <!-- 备注 -->
+	    </if>
+		<if test="is_del != null and is_del != ''">
+	          #{is_del, jdbcType=VARCHAR}, <!-- 是否已删除 0有效 1删除 -->
+	    </if>
+		<if test="create_time != null and create_time != ''">
+	          #{create_time, jdbcType=VARCHAR}, <!-- 创建时间 -->
+	    </if>
+		<if test="create_user_id != null and create_user_id != ''">
+	          #{create_user_id, jdbcType=VARCHAR}, <!-- 创建人ID -->
+	    </if>
+		<if test="modify_time != null and modify_time != ''">
+	          #{modify_time, jdbcType=VARCHAR}, <!-- 修改时间 -->
+	    </if>
+		<if test="modify_user_id != null and modify_user_id != ''">
+	          #{modify_user_id, jdbcType=VARCHAR}, <!-- 修改用户ID -->
+	    </if>
+		<if test="dept_id != null and dept_id != ''">
+		     #{dept_id, jdbcType=VARCHAR}  <!-- 流水号 -->
+	    </if>
+		</trim>
+		
+	</insert>
+	
+	<!-- 插入一个数据持久化对象(含所有字段) -->
+	<insert id="insertAll"  parameterType="com.ims.common.system.modules.po.DeptPO">
+		INSERT INTO sys_dept (
+          dept_id,  <!-- 流水号 -->
+		  cascade_id,  <!-- 节点语义ID -->
+		  dept_name,  <!-- 组织名称 -->
+		  parent_id,  <!-- 父节点流水号 -->
+		  dept_code,  <!-- 机构代码 -->
+		  manager,  <!-- 主要负责人 -->
+		  phone,  <!-- 部门电话 -->
+		  fax,  <!-- 传真 -->
+		  address,  <!-- 地址 -->
+		  is_auto_expand,  <!-- 是否自动展开 -->
+		  icon_name,  <!-- 节点图标文件名称 -->
+		  sort_no,  <!-- 排序号 -->
+		  remark,  <!-- 备注 -->
+		  is_del,  <!-- 是否已删除 0有效 1删除 -->
+		  create_time,  <!-- 创建时间 -->
+		  create_user_id,  <!-- 创建人ID -->
+		  modify_time,  <!-- 修改时间 -->
+		  modify_user_id  <!-- 修改用户ID -->
+		)
+		VALUES (
+            #{dept_id, jdbcType=VARCHAR},   <!-- 流水号 -->
+		    #{cascade_id, jdbcType=VARCHAR},  <!-- 节点语义ID -->
+		    #{dept_name, jdbcType=VARCHAR},  <!-- 组织名称 -->
+		    #{parent_id, jdbcType=VARCHAR},  <!-- 父节点流水号 -->
+		    #{dept_code, jdbcType=VARCHAR},  <!-- 机构代码 -->
+		    #{manager, jdbcType=VARCHAR},  <!-- 主要负责人 -->
+		    #{phone, jdbcType=VARCHAR},  <!-- 部门电话 -->
+		    #{fax, jdbcType=VARCHAR},  <!-- 传真 -->
+		    #{address, jdbcType=VARCHAR},  <!-- 地址 -->
+		    #{is_auto_expand, jdbcType=VARCHAR},  <!-- 是否自动展开 -->
+		    #{icon_name, jdbcType=VARCHAR},  <!-- 节点图标文件名称 -->
+		    #{sort_no, jdbcType=INTEGER},  <!-- 排序号 -->
+		    #{remark, jdbcType=VARCHAR},  <!-- 备注 -->
+		    #{is_del, jdbcType=VARCHAR},  <!-- 是否已删除 0有效 1删除 -->
+		    #{create_time, jdbcType=VARCHAR},  <!-- 创建时间 -->
+		    #{create_user_id, jdbcType=VARCHAR},  <!-- 创建人ID -->
+		    #{modify_time, jdbcType=VARCHAR},  <!-- 修改时间 -->
+		    #{modify_user_id, jdbcType=VARCHAR}  <!-- 修改用户ID -->
+		)
+	</insert>
+
+	<!-- 根据主键修改数据持久化对象 -->
+	<update id="updateByKey" parameterType="com.ims.common.system.modules.po.DeptPO">
+		UPDATE sys_dept
+		<set>
+			<if test="cascade_id != null">
+		          cascade_id = #{cascade_id, jdbcType=VARCHAR},  <!-- 节点语义ID -->
+			</if>
+			<if test="dept_name != null">
+		          dept_name = #{dept_name, jdbcType=VARCHAR},  <!-- 组织名称 -->
+			</if>
+			<if test="parent_id != null">
+		          parent_id = #{parent_id, jdbcType=VARCHAR},  <!-- 父节点流水号 -->
+			</if>
+			<if test="dept_code != null">
+		          dept_code = #{dept_code, jdbcType=VARCHAR},  <!-- 机构代码 -->
+			</if>
+			<if test="manager != null">
+		          manager = #{manager, jdbcType=VARCHAR},  <!-- 主要负责人 -->
+			</if>
+			<if test="phone != null">
+		          phone = #{phone, jdbcType=VARCHAR},  <!-- 部门电话 -->
+			</if>
+			<if test="fax != null">
+		          fax = #{fax, jdbcType=VARCHAR},  <!-- 传真 -->
+			</if>
+			<if test="address != null">
+		          address = #{address, jdbcType=VARCHAR},  <!-- 地址 -->
+			</if>
+			<if test="is_auto_expand != null">
+		          is_auto_expand = #{is_auto_expand, jdbcType=VARCHAR},  <!-- 是否自动展开 -->
+			</if>
+			<if test="icon_name != null">
+		          icon_name = #{icon_name, jdbcType=VARCHAR},  <!-- 节点图标文件名称 -->
+			</if>
+			<if test="sort_no != null">
+		          sort_no = #{sort_no, jdbcType=INTEGER},  <!-- 排序号 -->
+			</if>
+			<if test="remark != null">
+		          remark = #{remark, jdbcType=VARCHAR},  <!-- 备注 -->
+			</if>
+			<if test="is_del != null">
+		          is_del = #{is_del, jdbcType=VARCHAR},  <!-- 是否已删除 0有效 1删除 -->
+			</if>
+			<if test="create_time != null">
+		          create_time = #{create_time, jdbcType=VARCHAR},  <!-- 创建时间 -->
+			</if>
+			<if test="create_user_id != null">
+		          create_user_id = #{create_user_id, jdbcType=VARCHAR},  <!-- 创建人ID -->
+			</if>
+			<if test="modify_time != null">
+		          modify_time = #{modify_time, jdbcType=VARCHAR},  <!-- 修改时间 -->
+			</if>
+			<if test="modify_user_id != null">
+		          modify_user_id = #{modify_user_id, jdbcType=VARCHAR},  <!-- 修改用户ID -->
+			</if>
+		</set>
+		WHERE  dept_id = #{dept_id}
+	</update>
+	
+	<!-- 根据主键删除数据持久化对象 -->
+	<delete id="deleteByKey">
+		DELETE FROM sys_dept WHERE  dept_id = #{dept_id}
+	</delete>
+	
+	<!-- 批量根据主键删除数据持久化对象 -->
+	<delete id="batchDeleteByKey"  parameterType="java.lang.String">
+		DELETE FROM sys_dept WHERE dept_id IN 
+		<foreach item="dept_id" index="index" collection="list" separator="," open="(" close=")">
+		#{dept_id}
+	    </foreach>
+	</delete>
+
+	<!-- 根据主键查询并返回数据持久化对象 -->
+	<select id="selectByKey" resultType="com.ims.common.system.modules.po.DeptPO">
+		SELECT
+		<include refid="column" />
+		FROM sys_dept WHERE  dept_id = #{dept_id}
+	</select>
+
+	<!-- 根据唯一组合条件查询并返回数据持久化对象 -->
+	<select id="selectOne" parameterType="Dto" resultType="com.ims.common.system.modules.po.DeptPO">
+		SELECT
+		    <include refid="column" />
+		FROM sys_dept
+		<where>
+		    <include refid="equal" />
+		</where>		
+	</select>
+
+	<!-- 根据Dto查询并返回数据持久化对象集合 -->
+	<select id="list" parameterType="Dto" resultType="com.ims.common.system.modules.po.DeptPO">
+		SELECT
+			<include refid="column" />	
+		FROM sys_dept
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto查询并返回分页数据持久化对象集合 -->
+	<select id="listPage" parameterType="Dto" resultType="com.ims.common.system.modules.po.DeptPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM sys_dept
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto模糊查询并返回数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="like" parameterType="Dto" resultType="com.ims.common.system.modules.po.DeptPO">
+		SELECT
+			<include refid="column" />	
+		FROM sys_dept
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto模糊查询并返回分页数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="likePage" parameterType="Dto" resultType="com.ims.common.system.modules.po.DeptPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM sys_dept
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto统计行数 -->
+	<select id="rows" resultType="Integer" parameterType="Dto">
+		SELECT COUNT(1) AS rows_ FROM sys_dept
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	<!-- 根据数学表达式进行数学运算 -->
+	<select id="calc" parameterType="Dto" resultType="String">
+		SELECT
+			${_expr}
+		FROM sys_dept
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	
+	
+	<!-- 表字段 -->
+	<sql id="column">
+		  dept_id,  <!-- 流水号 -->
+		  cascade_id,  <!-- 节点语义ID -->
+		  dept_name,  <!-- 组织名称 -->
+		  parent_id,  <!-- 父节点流水号 -->
+		  dept_code,  <!-- 机构代码 -->
+		  manager,  <!-- 主要负责人 -->
+		  phone,  <!-- 部门电话 -->
+		  fax,  <!-- 传真 -->
+		  address,  <!-- 地址 -->
+		  is_auto_expand,  <!-- 是否自动展开 -->
+		  icon_name,  <!-- 节点图标文件名称 -->
+		  sort_no,  <!-- 排序号 -->
+		  remark,  <!-- 备注 -->
+		  is_del,  <!-- 是否已删除 0有效 1删除 -->
+		  create_time,  <!-- 创建时间 -->
+		  create_user_id,  <!-- 创建人ID -->
+		  modify_time,  <!-- 修改时间 -->
+		  modify_user_id , <!-- 修改用户ID -->
+		 (SELECT COUNT(*) FROM sys_dept a where a.parent_id=sys_dept.dept_id) AS child_count
+	</sql>
+	
+	<!-- 表字段(用于外表的关联时引用) -->
+	<sql id="column2">
+		  sys_dept.dept_id,  <!-- 流水号 -->
+		  sys_dept.cascade_id,  <!-- 节点语义ID -->
+		  sys_dept.dept_name,  <!-- 组织名称 -->
+		  sys_dept.parent_id,  <!-- 父节点流水号 -->
+		  sys_dept.dept_code,  <!-- 机构代码 -->
+		  sys_dept.manager,  <!-- 主要负责人 -->
+		  sys_dept.phone,  <!-- 部门电话 -->
+		  sys_dept.fax,  <!-- 传真 -->
+		  sys_dept.address,  <!-- 地址 -->
+		  sys_dept.is_auto_expand,  <!-- 是否自动展开 -->
+		  sys_dept.icon_name,  <!-- 节点图标文件名称 -->
+		  sys_dept.sort_no,  <!-- 排序号 -->
+		  sys_dept.remark,  <!-- 备注 -->
+		  sys_dept.is_del,  <!-- 是否已删除 0有效 1删除 -->
+		  sys_dept.create_time,  <!-- 创建时间 -->
+		  sys_dept.create_user_id,  <!-- 创建人ID -->
+		  sys_dept.modify_time,  <!-- 修改时间 -->
+		  sys_dept.modify_user_id  <!-- 修改用户ID -->
+	</sql>
+
+	<!-- Where精确匹配字段 -->
+	<sql id="equal">
+	    <if test="dept_id != null and dept_id != ''">
+		      AND dept_id = #{dept_id}  <!-- 流水号 -->
+		</if>
+	    <if test="cascade_id != null and cascade_id != ''">
+		      AND cascade_id = #{cascade_id}  <!-- 节点语义ID -->
+		</if>
+	    <if test="dept_name != null and dept_name != ''">
+		      AND dept_name = #{dept_name}  <!-- 组织名称 -->
+		</if>
+	    <if test="parent_id != null and parent_id != ''">
+		      AND parent_id = #{parent_id}  <!-- 父节点流水号 -->
+		</if>
+	    <if test="dept_code != null and dept_code != ''">
+		      AND dept_code = #{dept_code}  <!-- 机构代码 -->
+		</if>
+	    <if test="manager != null and manager != ''">
+		      AND manager = #{manager}  <!-- 主要负责人 -->
+		</if>
+	    <if test="phone != null and phone != ''">
+		      AND phone = #{phone}  <!-- 部门电话 -->
+		</if>
+	    <if test="fax != null and fax != ''">
+		      AND fax = #{fax}  <!-- 传真 -->
+		</if>
+	    <if test="address != null and address != ''">
+		      AND address = #{address}  <!-- 地址 -->
+		</if>
+	    <if test="is_auto_expand != null and is_auto_expand != ''">
+		      AND is_auto_expand = #{is_auto_expand}  <!-- 是否自动展开 -->
+		</if>
+	    <if test="icon_name != null and icon_name != ''">
+		      AND icon_name = #{icon_name}  <!-- 节点图标文件名称 -->
+		</if>
+	   <if test="sort_no != null ">
+		      AND sort_no = #{sort_no}  <!-- 排序号 -->
+		</if>
+	    <if test="remark != null and remark != ''">
+		      AND remark = #{remark}  <!-- 备注 -->
+		</if>
+	    <if test="is_del != null and is_del != ''">
+		      AND is_del = #{is_del}  <!-- 是否已删除 0有效 1删除 -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time = #{create_time}  <!-- 创建时间 -->
+		</if>
+	    <if test="create_user_id != null and create_user_id != ''">
+		      AND create_user_id = #{create_user_id}  <!-- 创建人ID -->
+		</if>
+	    <if test="modify_time != null and modify_time != ''">
+		      AND modify_time = #{modify_time}  <!-- 修改时间 -->
+		</if>
+	    <if test="modify_user_id != null and modify_user_id != ''">
+		      AND modify_user_id = #{modify_user_id}  <!-- 修改用户ID -->
+		</if>
+	</sql>
+	
+	<!-- Where模糊匹配字段 -->
+	<sql id="like">
+	    <if test="dept_id != null and dept_id != ''">
+		      AND dept_id LIKE '%${dept_id}%'  <!-- 流水号 -->
+		</if>
+	    <if test="cascade_id != null and cascade_id != ''">
+		      AND cascade_id LIKE '%${cascade_id}%'  <!-- 节点语义ID -->
+		</if>
+	    <if test="dept_name != null and dept_name != ''">
+		      AND dept_name LIKE '%${dept_name}%'  <!-- 组织名称 -->
+		</if>
+	    <if test="parent_id != null and parent_id != ''">
+		      AND parent_id LIKE '%${parent_id}%'  <!-- 父节点流水号 -->
+		</if>
+	    <if test="dept_code != null and dept_code != ''">
+		      AND dept_code LIKE '%${dept_code}%'  <!-- 机构代码 -->
+		</if>
+	    <if test="manager != null and manager != ''">
+		      AND manager LIKE '%${manager}%'  <!-- 主要负责人 -->
+		</if>
+	    <if test="phone != null and phone != ''">
+		      AND phone LIKE '%${phone}%'  <!-- 部门电话 -->
+		</if>
+	    <if test="fax != null and fax != ''">
+		      AND fax LIKE '%${fax}%'  <!-- 传真 -->
+		</if>
+	    <if test="address != null and address != ''">
+		      AND address LIKE '%${address}%'  <!-- 地址 -->
+		</if>
+	    <if test="is_auto_expand != null and is_auto_expand != ''">
+		      AND is_auto_expand LIKE '%${is_auto_expand}%'  <!-- 是否自动展开 -->
+		</if>
+	    <if test="icon_name != null and icon_name != ''">
+		      AND icon_name LIKE '%${icon_name}%'  <!-- 节点图标文件名称 -->
+		</if>
+	    <if test="remark != null and remark != ''">
+		      AND remark LIKE '%${remark}%'  <!-- 备注 -->
+		</if>
+	    <if test="is_del != null and is_del != ''">
+		      AND is_del LIKE '%${is_del}%'  <!-- 是否已删除 0有效 1删除 -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time LIKE '%${create_time}%'  <!-- 创建时间 -->
+		</if>
+	    <if test="create_user_id != null and create_user_id != ''">
+		      AND create_user_id LIKE '%${create_user_id}%'  <!-- 创建人ID -->
+		</if>
+	    <if test="modify_time != null and modify_time != ''">
+		      AND modify_time LIKE '%${modify_time}%'  <!-- 修改时间 -->
+		</if>
+	    <if test="modify_user_id != null and modify_user_id != ''">
+		      AND modify_user_id LIKE '%${modify_user_id}%'  <!-- 修改用户ID -->
+		</if>
+	</sql>
+</mapper>

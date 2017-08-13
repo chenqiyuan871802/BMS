@@ -1,0 +1,147 @@
+package ${package};
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import com.ims.common.core.asset.IMSJson;
+import com.ims.common.core.asset.IMSCxt;
+import com.ims.common.core.matatype.Dto;
+import com.ims.common.core.matatype.Dtos;
+import com.ims.common.core.asset.IMSFormater;
+import ${package_base}.po.${className}PO;
+import ${package_base}.service.${className}Service;
+
+/**
+ * 
+ * 类描述：<b>$!{tableDto.comment}[${tableDto.name}]控制类</b>
+ * 创建人：$!author
+ * 邮箱：240823329@qq.com
+ * 创建时间：$!sysdate
+ * 修改人：
+ * 修改时间：
+ * 修改备注： 
+ * @version 1.0
+ */
+@Controller
+@RequestMapping(value = "${paramName}")
+public class ${className}Controller {
+  
+    @Autowired
+	private  ${className}Service ${paramName}Service;
+	
+	
+	/**
+	 * 页面初始化
+	 *
+	 * @return
+	 */
+	@RequestMapping(value = "init")
+	public ModelAndView init() {
+		return new ModelAndView("${paramName}List.jsp");
+	}
+	
+	/**
+	 * 
+	 * 分页查询$!{tableDto.comment}信息
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value = "list${className}")
+	public void list${className}(HttpServletRequest request, HttpServletResponse response) {
+		Dto pDto = Dtos.newDto(request);
+		List<${className}PO> ${paramName}List =${paramName}Service.likePage(pDto);
+		String outString = IMSJson.toGridJson(${paramName}List, pDto.getPageTotal());
+		IMSCxt.write(response, outString);
+	}
+	/**
+	 * 
+	 * 初始化新增$!{tableDto.comment}页面
+	 * @return
+	 * 
+	 */
+	@RequestMapping(value = "goAdd")
+	public ModelAndView goAdd() {
+		return new ModelAndView("add${className}.jsp");
+	}
+	/**
+	 * 保存$!{tableDto.comment}信息
+	 * @param response
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "save${className}")
+	public void save${className}(HttpServletRequest request, HttpServletResponse response) {
+	    Dto inDto = Dtos.newDto(request);
+		Dto outDto = ${paramName}Service.save(inDto);
+		IMSCxt.write(response, IMSJson.toJson(outDto));
+	}
+	/**
+	 * 查看$!{tableDto.comment}详情页面
+	 * @param response
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "goShow")
+	public ModelAndView goShow(${bykey}) {
+	   ModelAndView modelAndView= new ModelAndView();
+	   ${className}PO ${paramName}PO=${paramName}Service.selectByKey(${bykeyParam});
+	   modelAndView.addObject("${paramName}PO",${paramName}PO);
+	   modelAndView.setViewName("show${className}.jsp");
+	   return modelAndView;
+	}
+	/**
+	 * 初始化修改$!{tableDto.comment}页面
+	 * @param response
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "goModify")
+	public ModelAndView goModify(${bykey}) {
+	   ModelAndView modelAndView= new ModelAndView();
+	   ${className}PO ${paramName}PO=${paramName}Service.selectByKey(${bykeyParam});
+	   modelAndView.addObject("${paramName}PO",${paramName}PO);
+	   modelAndView.setViewName("modify${className}.jsp");
+	   return modelAndView;
+	}
+	/**
+	 * 修改$!{tableDto.comment}信息
+	 * @param response
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "update${className}")
+	public void update${className}(HttpServletRequest request, HttpServletResponse response) {
+		Dto inDto = Dtos.newDto(request);
+		Dto outDto =${paramName}Service.update(inDto);
+		IMSCxt.write(response, IMSJson.toJson(outDto));
+	}
+	/**
+	 * 删除$!{tableDto.comment}信息
+	 * @param response
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "delete${className}")
+	public void delete${className}(${bykey},HttpServletResponse response) {
+		Dto outDto =${paramName}Service.delete(${bykeyParam});
+		IMSCxt.write(response, IMSJson.toJson(outDto));
+	}
+	/**
+	 * 批量删除$!{tableDto.comment}信息
+	 * @param response
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "batchDelete${className}")
+	public void batchDelete${className}(${bykey}s,HttpServletResponse response) {
+	    List<String> ${bykeyParam}List=IMSFormater.separatStringToList(${bykeyParam}s);
+		Dto outDto =${paramName}Service.batchDelete(${bykeyParam}List);
+		IMSCxt.write(response, IMSJson.toJson(outDto));
+	}
+	
+}

@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 店铺职位信息表[bis_shop_post]SQLMapper自动映射 -->
+<!--  注意:此文件由系统平台自动生成-禁止手工修改 2017-04-17 12:10:12 -->
+<mapper namespace="com.beauty.common.mapper.ShopPostMapper">
+	
+	<!-- 插入一个数据持久化对象(插入字段为传入PO实体的非空属性) -->
+	<insert id="insert"  parameterType="com.beauty.common.po.ShopPostPO">
+		INSERT INTO bis_shop_post 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="post_name != null and post_name != ''">
+	         post_name, <!-- 职位名称 -->
+		</if>
+		<if test="post_code != null and post_code != ''">
+	         post_code, <!-- 职位编码 -->
+		</if>
+		<if test="post_desc != null and post_desc != ''">
+	         post_desc, <!-- 职位描述 -->
+		</if>
+		<if test="create_time != null and create_time != ''">
+	         create_time, <!-- 创建时间 -->
+		</if>
+		<if test="create_user_id != null and create_user_id != ''">
+	         create_user_id, <!-- 创建人ID -->
+		</if>
+		<if test="modify_time != null and modify_time != ''">
+	         modify_time, <!-- 修改时间 -->
+		</if>
+		<if test="modify_user_id != null and modify_user_id != ''">
+	         modify_user_id, <!-- 修改用户ID -->
+		</if>
+		<if test="post_id != null and post_id != ''">
+	          post_id  <!-- 职位编号 -->
+	    </if>
+        </trim>
+	    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+		<if test="post_name != null and post_name != ''">
+	          #{post_name, jdbcType=VARCHAR}, <!-- 职位名称 -->
+	    </if>
+		<if test="post_code != null and post_code != ''">
+	          #{post_code, jdbcType=VARCHAR}, <!-- 职位编码 -->
+	    </if>
+		<if test="post_desc != null and post_desc != ''">
+	          #{post_desc, jdbcType=VARCHAR}, <!-- 职位描述 -->
+	    </if>
+		<if test="create_time != null and create_time != ''">
+	          #{create_time, jdbcType=VARCHAR}, <!-- 创建时间 -->
+	    </if>
+		<if test="create_user_id != null and create_user_id != ''">
+	          #{create_user_id, jdbcType=VARCHAR}, <!-- 创建人ID -->
+	    </if>
+		<if test="modify_time != null and modify_time != ''">
+	          #{modify_time, jdbcType=VARCHAR}, <!-- 修改时间 -->
+	    </if>
+		<if test="modify_user_id != null and modify_user_id != ''">
+	          #{modify_user_id, jdbcType=VARCHAR}, <!-- 修改用户ID -->
+	    </if>
+		<if test="post_id != null and post_id != ''">
+		     #{post_id, jdbcType=VARCHAR}  <!-- 职位编号 -->
+	    </if>
+		</trim>
+		
+	</insert>
+	
+	<!-- 插入一个数据持久化对象(含所有字段) -->
+	<insert id="insertAll"  parameterType="com.beauty.common.po.ShopPostPO">
+		INSERT INTO bis_shop_post (
+          post_id,  <!-- 职位编号 -->
+		  post_name,  <!-- 职位名称 -->
+		  post_code,  <!-- 职位编码 -->
+		  post_desc,  <!-- 职位描述 -->
+		  create_time,  <!-- 创建时间 -->
+		  create_user_id,  <!-- 创建人ID -->
+		  modify_time,  <!-- 修改时间 -->
+		  modify_user_id  <!-- 修改用户ID -->
+		)
+		VALUES (
+            #{post_id, jdbcType=VARCHAR},   <!-- 职位编号 -->
+		    #{post_name, jdbcType=VARCHAR},  <!-- 职位名称 -->
+		    #{post_code, jdbcType=VARCHAR},  <!-- 职位编码 -->
+		    #{post_desc, jdbcType=VARCHAR},  <!-- 职位描述 -->
+		    #{create_time, jdbcType=VARCHAR},  <!-- 创建时间 -->
+		    #{create_user_id, jdbcType=VARCHAR},  <!-- 创建人ID -->
+		    #{modify_time, jdbcType=VARCHAR},  <!-- 修改时间 -->
+		    #{modify_user_id, jdbcType=VARCHAR}  <!-- 修改用户ID -->
+		)
+	</insert>
+
+	<!-- 根据主键修改数据持久化对象 -->
+	<update id="updateByKey" parameterType="com.beauty.common.po.ShopPostPO">
+		UPDATE bis_shop_post
+		<set>
+			<if test="post_name != null">
+		          post_name = #{post_name, jdbcType=VARCHAR},  <!-- 职位名称 -->
+			</if>
+			<if test="post_code != null">
+		          post_code = #{post_code, jdbcType=VARCHAR},  <!-- 职位编码 -->
+			</if>
+			<if test="post_desc != null">
+		          post_desc = #{post_desc, jdbcType=VARCHAR},  <!-- 职位描述 -->
+			</if>
+			<if test="create_time != null">
+		          create_time = #{create_time, jdbcType=VARCHAR},  <!-- 创建时间 -->
+			</if>
+			<if test="create_user_id != null">
+		          create_user_id = #{create_user_id, jdbcType=VARCHAR},  <!-- 创建人ID -->
+			</if>
+			<if test="modify_time != null">
+		          modify_time = #{modify_time, jdbcType=VARCHAR},  <!-- 修改时间 -->
+			</if>
+			<if test="modify_user_id != null">
+		          modify_user_id = #{modify_user_id, jdbcType=VARCHAR},  <!-- 修改用户ID -->
+			</if>
+		</set>
+		WHERE  post_id = #{post_id}
+	</update>
+	
+	<!-- 根据主键删除数据持久化对象 -->
+	<delete id="deleteByKey">
+		DELETE FROM bis_shop_post WHERE  post_id = #{post_id}
+	</delete>
+	
+	<!-- 批量根据主键删除数据持久化对象 -->
+	<delete id="batchDeleteByKey"  parameterType="java.lang.String">
+		DELETE FROM bis_shop_post WHERE post_id IN 
+		<foreach item="post_id" index="index" collection="list" separator="," open="(" close=")">
+		#{post_id}
+	    </foreach>
+	</delete>
+
+	<!-- 根据主键查询并返回数据持久化对象 -->
+	<select id="selectByKey" resultType="com.beauty.common.po.ShopPostPO">
+		SELECT
+		<include refid="column" />
+		FROM bis_shop_post WHERE  post_id = #{post_id}
+	</select>
+
+	<!-- 根据唯一组合条件查询并返回数据持久化对象 -->
+	<select id="selectOne" parameterType="Dto" resultType="com.beauty.common.po.ShopPostPO">
+		SELECT
+		    <include refid="column" />
+		FROM bis_shop_post
+		<where>
+		    <include refid="equal" />
+		</where>		
+	</select>
+
+	<!-- 根据Dto查询并返回数据持久化对象集合 -->
+	<select id="list" parameterType="Dto" resultType="com.beauty.common.po.ShopPostPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_shop_post
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto查询并返回分页数据持久化对象集合 -->
+	<select id="listPage" parameterType="Dto" resultType="com.beauty.common.po.ShopPostPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_shop_post
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto模糊查询并返回数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="like" parameterType="Dto" resultType="com.beauty.common.po.ShopPostPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_shop_post
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto模糊查询并返回分页数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="likePage" parameterType="Dto" resultType="com.beauty.common.po.ShopPostPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_shop_post
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto统计行数 -->
+	<select id="rows" resultType="Integer" parameterType="Dto">
+		SELECT COUNT(1) AS rows_ FROM bis_shop_post
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	<!-- 根据数学表达式进行数学运算 -->
+	<select id="calc" parameterType="Dto" resultType="String">
+		SELECT
+			${_expr}
+		FROM bis_shop_post
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	
+	
+	<!-- 表字段 -->
+	<sql id="column">
+		  post_id,  <!-- 职位编号 -->
+		  post_name,  <!-- 职位名称 -->
+		  post_code,  <!-- 职位编码 -->
+		  post_desc,  <!-- 职位描述 -->
+		  create_time,  <!-- 创建时间 -->
+		  create_user_id,  <!-- 创建人ID -->
+		  modify_time,  <!-- 修改时间 -->
+		  modify_user_id  <!-- 修改用户ID -->
+	</sql>
+	
+	<!-- 表字段(用于外表的关联时引用) -->
+	<sql id="column2">
+		  bis_shop_post.post_id,  <!-- 职位编号 -->
+		  bis_shop_post.post_name,  <!-- 职位名称 -->
+		  bis_shop_post.post_code,  <!-- 职位编码 -->
+		  bis_shop_post.post_desc,  <!-- 职位描述 -->
+		  bis_shop_post.create_time,  <!-- 创建时间 -->
+		  bis_shop_post.create_user_id,  <!-- 创建人ID -->
+		  bis_shop_post.modify_time,  <!-- 修改时间 -->
+		  bis_shop_post.modify_user_id  <!-- 修改用户ID -->
+	</sql>
+
+	<!-- Where精确匹配字段 -->
+	<sql id="equal">
+	    <if test="post_id != null and post_id != ''">
+		      AND post_id = #{post_id}  <!-- 职位编号 -->
+		</if>
+	    <if test="post_name != null and post_name != ''">
+		      AND post_name = #{post_name}  <!-- 职位名称 -->
+		</if>
+	    <if test="post_code != null and post_code != ''">
+		      AND post_code = #{post_code}  <!-- 职位编码 -->
+		</if>
+	    <if test="post_desc != null and post_desc != ''">
+		      AND post_desc = #{post_desc}  <!-- 职位描述 -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time = #{create_time}  <!-- 创建时间 -->
+		</if>
+	    <if test="create_user_id != null and create_user_id != ''">
+		      AND create_user_id = #{create_user_id}  <!-- 创建人ID -->
+		</if>
+	    <if test="modify_time != null and modify_time != ''">
+		      AND modify_time = #{modify_time}  <!-- 修改时间 -->
+		</if>
+	    <if test="modify_user_id != null and modify_user_id != ''">
+		      AND modify_user_id = #{modify_user_id}  <!-- 修改用户ID -->
+		</if>
+	</sql>
+	
+	<!-- Where模糊匹配字段 -->
+	<sql id="like">
+	    <if test="post_id != null and post_id != ''">
+		      AND post_id LIKE '%${post_id}%'  <!-- 职位编号 -->
+		</if>
+	    <if test="post_name != null and post_name != ''">
+		      AND post_name LIKE '%${post_name}%'  <!-- 职位名称 -->
+		</if>
+	    <if test="post_code != null and post_code != ''">
+		      AND post_code LIKE '%${post_code}%'  <!-- 职位编码 -->
+		</if>
+	    <if test="post_desc != null and post_desc != ''">
+		      AND post_desc LIKE '%${post_desc}%'  <!-- 职位描述 -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time LIKE '%${create_time}%'  <!-- 创建时间 -->
+		</if>
+	    <if test="create_user_id != null and create_user_id != ''">
+		      AND create_user_id LIKE '%${create_user_id}%'  <!-- 创建人ID -->
+		</if>
+	    <if test="modify_time != null and modify_time != ''">
+		      AND modify_time LIKE '%${modify_time}%'  <!-- 修改时间 -->
+		</if>
+	    <if test="modify_user_id != null and modify_user_id != ''">
+		      AND modify_user_id LIKE '%${modify_user_id}%'  <!-- 修改用户ID -->
+		</if>
+	</sql>
+	
+</mapper>

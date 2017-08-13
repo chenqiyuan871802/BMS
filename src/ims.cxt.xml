@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+		http://www.springframework.org/schema/task
+        http://www.springframework.org/schema/task/spring-task-4.3.xsd"
+	default-lazy-init="true">
+
+	<description>系统全局上下文环境</description>
+	<!-- 引入属性配置文件 -->
+	<bean class="com.ims.common.core.asset.IMSPropertiesUtil">
+		<property name="locations">
+			<list>
+				<value>classpath:misc/ims.properties</value>
+				<value>classpath:jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+	<!-- Spring服务组件扫描(排除@Controller相关组件) -->
+	<context:component-scan base-package="com.ims.common;com.beauty" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+		<context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />
+	</context:component-scan>
+	<!-- 启动异步注解 -->
+	<context:annotation-config />
+	 <!--扫描注解 -->
+	<context:component-scan base-package="com.beauty.asyncTask" />
+    <!-- 支持异步方法执行 -->
+    <task:annotation-driven /> 
+	
+	<!-- 导入DAO组件 -->
+	<import resource="core/ims.dao.c3p.xml" />
+	<!-- 导入缓存组件 -->
+	<import resource="core/ims.cache.xml" />
+	<!-- 导入缓存组件 -->
+	<import resource="core/ims.quartz.xml" />
+</beans>

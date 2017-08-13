@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- ID配置表[sys_sequence]SQLMapper自动映射 -->
+<!--  注意:此文件由系统平台自动生成-禁止手工修改 2016-09-24 00:39:05 -->
+<mapper namespace="com.ims.common.system.modules.mapper.Sys_sequenceMapper">
+	
+	<!-- 插入一个数据持久化对象(插入字段为传入PO实体的非空属性) -->
+	<insert id="insert"  parameterType="com.ims.common.system.modules.po.Sys_sequencePO">
+		INSERT INTO sys_sequence 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="seq_name != null and seq_name != ''">
+	         seq_name, <!-- 名称 -->
+		</if>
+		<if test="seq_type != null and seq_type != ''">
+	         seq_type, <!-- 类型 -->
+		</if>
+		<if test="seq_prefix != null and seq_prefix != ''">
+	         seq_prefix, <!-- 前缀 -->
+		</if>
+		<if test="seq_start != null and seq_start != ''">
+	         seq_start, <!-- 起始值 -->
+		</if>
+		<if test="seq_step != null and seq_step != ''">
+	         seq_step, <!-- 递增步长 -->
+		</if>
+		<if test="seq_cur_value != null and seq_cur_value != ''">
+	         seq_cur_value, <!-- 当前值 -->
+		</if>
+		<if test="seq_status != null and seq_status != ''">
+	         seq_status, <!-- 当前状态 -->
+		</if>
+		<if test="seq_connector != null and seq_connector != ''">
+	         seq_connector, <!-- 连接符 -->
+		</if>
+		<if test="seq_seq_suffix != null and seq_seq_suffix != ''">
+	         seq_seq_suffix, <!-- 后缀 -->
+		</if>
+		<if test="seq_seq_db_seq_name != null and seq_seq_db_seq_name != ''">
+	         seq_seq_db_seq_name, <!-- DBSequence名称 -->
+		</if>
+		<if test="seq_max_value != null and seq_max_value != ''">
+	         seq_max_value, <!-- 最大值 -->
+		</if>
+		<if test="seq_is_circul != null and seq_is_circul != ''">
+	         seq_is_circul, <!-- 是否循环 -->
+		</if>
+		<if test="seq_min_value != null and seq_min_value != ''">
+	         seq_min_value, <!-- 最小值 -->
+		</if>
+		<if test="seq_is_leftpad != null and seq_is_leftpad != ''">
+	         seq_is_leftpad, <!-- 是否左补足 -->
+		</if>
+		<if test="seq_format_value != null and seq_format_value != ''">
+	         seq_format_value, <!-- 当前格式化值 -->
+		</if>
+		<if test="seq_remark != null and seq_remark != ''">
+	         seq_remark, <!-- 备注 -->
+		</if>
+		<if test="seq_id != null and seq_id != ''">
+	          seq_id  <!-- 流水号 -->
+	    </if>
+        </trim>
+	    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+		<if test="seq_name != null and seq_name != ''">
+	          #{seq_name, jdbcType=VARCHAR}, <!-- 名称 -->
+	    </if>
+		<if test="seq_type != null and seq_type != ''">
+	          #{seq_type, jdbcType=VARCHAR}, <!-- 类型 -->
+	    </if>
+		<if test="seq_prefix != null and seq_prefix != ''">
+	          #{seq_prefix, jdbcType=VARCHAR}, <!-- 前缀 -->
+	    </if>
+		<if test="seq_start != null and seq_start != ''">
+	          #{seq_start, jdbcType=VARCHAR}, <!-- 起始值 -->
+	    </if>
+		<if test="seq_step != null and seq_step != ''">
+	          #{seq_step, jdbcType=VARCHAR}, <!-- 递增步长 -->
+	    </if>
+		<if test="seq_cur_value != null and seq_cur_value != ''">
+	          #{seq_cur_value, jdbcType=VARCHAR}, <!-- 当前值 -->
+	    </if>
+		<if test="seq_status != null and seq_status != ''">
+	          #{seq_status, jdbcType=VARCHAR}, <!-- 当前状态 -->
+	    </if>
+		<if test="seq_connector != null and seq_connector != ''">
+	          #{seq_connector, jdbcType=VARCHAR}, <!-- 连接符 -->
+	    </if>
+		<if test="seq_seq_suffix != null and seq_seq_suffix != ''">
+	          #{seq_seq_suffix, jdbcType=VARCHAR}, <!-- 后缀 -->
+	    </if>
+		<if test="seq_seq_db_seq_name != null and seq_seq_db_seq_name != ''">
+	          #{seq_seq_db_seq_name, jdbcType=VARCHAR}, <!-- DBSequence名称 -->
+	    </if>
+		<if test="seq_max_value != null and seq_max_value != ''">
+	          #{seq_max_value, jdbcType=VARCHAR}, <!-- 最大值 -->
+	    </if>
+		<if test="seq_is_circul != null and seq_is_circul != ''">
+	          #{seq_is_circul, jdbcType=VARCHAR}, <!-- 是否循环 -->
+	    </if>
+		<if test="seq_min_value != null and seq_min_value != ''">
+	          #{seq_min_value, jdbcType=VARCHAR}, <!-- 最小值 -->
+	    </if>
+		<if test="seq_is_leftpad != null and seq_is_leftpad != ''">
+	          #{seq_is_leftpad, jdbcType=VARCHAR}, <!-- 是否左补足 -->
+	    </if>
+		<if test="seq_format_value != null and seq_format_value != ''">
+	          #{seq_format_value, jdbcType=VARCHAR}, <!-- 当前格式化值 -->
+	    </if>
+		<if test="seq_remark != null and seq_remark != ''">
+	          #{seq_remark, jdbcType=VARCHAR}, <!-- 备注 -->
+	    </if>
+		<if test="seq_id != null and seq_id != ''">
+		     #{seq_id, jdbcType=VARCHAR}  <!-- 流水号 -->
+	    </if>
+		</trim>
+		
+	</insert>
+	
+	<!-- 插入一个数据持久化对象(含所有字段) -->
+	<insert id="insertAll"  parameterType="com.ims.common.system.modules.po.Sys_sequencePO">
+		INSERT INTO sys_sequence (
+          seq_id,  <!-- 流水号 -->
+		  seq_name,  <!-- 名称 -->
+		  seq_type,  <!-- 类型 -->
+		  seq_prefix,  <!-- 前缀 -->
+		  seq_start,  <!-- 起始值 -->
+		  seq_step,  <!-- 递增步长 -->
+		  seq_cur_value,  <!-- 当前值 -->
+		  seq_status,  <!-- 当前状态 -->
+		  seq_connector,  <!-- 连接符 -->
+		  seq_seq_suffix,  <!-- 后缀 -->
+		  seq_seq_db_seq_name,  <!-- DBSequence名称 -->
+		  seq_max_value,  <!-- 最大值 -->
+		  seq_is_circul,  <!-- 是否循环 -->
+		  seq_min_value,  <!-- 最小值 -->
+		  seq_is_leftpad,  <!-- 是否左补足 -->
+		  seq_format_value,  <!-- 当前格式化值 -->
+		  seq_remark  <!-- 备注 -->
+		)
+		VALUES (
+            #{seq_id, jdbcType=VARCHAR},   <!-- 流水号 -->
+		    #{seq_name, jdbcType=VARCHAR},  <!-- 名称 -->
+		    #{seq_type, jdbcType=VARCHAR},  <!-- 类型 -->
+		    #{seq_prefix, jdbcType=VARCHAR},  <!-- 前缀 -->
+		    #{seq_start, jdbcType=VARCHAR},  <!-- 起始值 -->
+		    #{seq_step, jdbcType=VARCHAR},  <!-- 递增步长 -->
+		    #{seq_cur_value, jdbcType=VARCHAR},  <!-- 当前值 -->
+		    #{seq_status, jdbcType=VARCHAR},  <!-- 当前状态 -->
+		    #{seq_connector, jdbcType=VARCHAR},  <!-- 连接符 -->
+		    #{seq_seq_suffix, jdbcType=VARCHAR},  <!-- 后缀 -->
+		    #{seq_seq_db_seq_name, jdbcType=VARCHAR},  <!-- DBSequence名称 -->
+		    #{seq_max_value, jdbcType=VARCHAR},  <!-- 最大值 -->
+		    #{seq_is_circul, jdbcType=VARCHAR},  <!-- 是否循环 -->
+		    #{seq_min_value, jdbcType=VARCHAR},  <!-- 最小值 -->
+		    #{seq_is_leftpad, jdbcType=VARCHAR},  <!-- 是否左补足 -->
+		    #{seq_format_value, jdbcType=VARCHAR},  <!-- 当前格式化值 -->
+		    #{seq_remark, jdbcType=VARCHAR}  <!-- 备注 -->
+		)
+	</insert>
+
+	<!-- 根据主键修改数据持久化对象 -->
+	<update id="updateByKey" parameterType="com.ims.common.system.modules.po.Sys_sequencePO">
+		UPDATE sys_sequence
+		<set>
+			<if test="seq_name != null">
+		          seq_name = #{seq_name, jdbcType=VARCHAR},  <!-- 名称 -->
+			</if>
+			<if test="seq_type != null">
+		          seq_type = #{seq_type, jdbcType=VARCHAR},  <!-- 类型 -->
+			</if>
+			<if test="seq_prefix != null">
+		          seq_prefix = #{seq_prefix, jdbcType=VARCHAR},  <!-- 前缀 -->
+			</if>
+			<if test="seq_start != null">
+		          seq_start = #{seq_start, jdbcType=VARCHAR},  <!-- 起始值 -->
+			</if>
+			<if test="seq_step != null">
+		          seq_step = #{seq_step, jdbcType=VARCHAR},  <!-- 递增步长 -->
+			</if>
+			<if test="seq_cur_value != null">
+		          seq_cur_value = #{seq_cur_value, jdbcType=VARCHAR},  <!-- 当前值 -->
+			</if>
+			<if test="seq_status != null">
+		          seq_status = #{seq_status, jdbcType=VARCHAR},  <!-- 当前状态 -->
+			</if>
+			<if test="seq_connector != null">
+		          seq_connector = #{seq_connector, jdbcType=VARCHAR},  <!-- 连接符 -->
+			</if>
+			<if test="seq_seq_suffix != null">
+		          seq_seq_suffix = #{seq_seq_suffix, jdbcType=VARCHAR},  <!-- 后缀 -->
+			</if>
+			<if test="seq_seq_db_seq_name != null">
+		          seq_seq_db_seq_name = #{seq_seq_db_seq_name, jdbcType=VARCHAR},  <!-- DBSequence名称 -->
+			</if>
+			<if test="seq_max_value != null">
+		          seq_max_value = #{seq_max_value, jdbcType=VARCHAR},  <!-- 最大值 -->
+			</if>
+			<if test="seq_is_circul != null">
+		          seq_is_circul = #{seq_is_circul, jdbcType=VARCHAR},  <!-- 是否循环 -->
+			</if>
+			<if test="seq_min_value != null">
+		          seq_min_value = #{seq_min_value, jdbcType=VARCHAR},  <!-- 最小值 -->
+			</if>
+			<if test="seq_is_leftpad != null">
+		          seq_is_leftpad = #{seq_is_leftpad, jdbcType=VARCHAR},  <!-- 是否左补足 -->
+			</if>
+			<if test="seq_format_value != null">
+		          seq_format_value = #{seq_format_value, jdbcType=VARCHAR},  <!-- 当前格式化值 -->
+			</if>
+			<if test="seq_remark != null">
+		          seq_remark = #{seq_remark, jdbcType=VARCHAR},  <!-- 备注 -->
+			</if>
+		</set>
+		WHERE  seq_id = #{seq_id}
+	</update>
+	
+	<!-- 根据主键删除数据持久化对象 -->
+	<delete id="deleteByKey">
+		DELETE FROM sys_sequence WHERE  seq_id = #{seq_id}
+	</delete>
+	
+	<!-- 批量根据主键删除数据持久化对象 -->
+	<delete id="batchDeleteByKey"  parameterType="java.lang.String">
+		DELETE FROM sys_sequence WHERE seq_id IN 
+		<foreach item="seq_id" index="index" collection="list" separator="," open="(" close=")">
+		#{seq_id}
+	    </foreach>
+	</delete>
+
+	<!-- 根据主键查询并返回数据持久化对象 -->
+	<select id="selectByKey" resultType="com.ims.common.system.modules.po.Sys_sequencePO">
+		SELECT
+		<include refid="column" />
+		FROM sys_sequence WHERE  seq_id = #{seq_id}
+	</select>
+
+	<!-- 根据唯一组合条件查询并返回数据持久化对象 -->
+	<select id="selectOne" parameterType="Dto" resultType="com.ims.common.system.modules.po.Sys_sequencePO">
+		SELECT
+		    <include refid="column" />
+		FROM sys_sequence
+		<where>
+		    <include refid="equal" />
+		</where>		
+	</select>
+
+	<!-- 根据Dto查询并返回数据持久化对象集合 -->
+	<select id="list" parameterType="Dto" resultType="com.ims.common.system.modules.po.Sys_sequencePO">
+		SELECTz
+			<include refid="column" />	
+		FROM sys_sequence
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto查询并返回分页数据持久化对象集合 -->
+	<select id="listPage" parameterType="Dto" resultType="com.ims.common.system.modules.po.Sys_sequencePO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM sys_sequence
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto模糊查询并返回数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="like" parameterType="Dto" resultType="com.ims.common.system.modules.po.Sys_sequencePO">
+		SELECT
+			<include refid="column" />	
+		FROM sys_sequence
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto模糊查询并返回分页数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="likePage" parameterType="Dto" resultType="com.ims.common.system.modules.po.Sys_sequencePO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM sys_sequence
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto统计行数 -->
+	<select id="rows" resultType="Integer" parameterType="Dto">
+		SELECT COUNT(1) AS rows_ FROM sys_sequence
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	<!-- 根据数学表达式进行数学运算 -->
+	<select id="calc" parameterType="Dto" resultType="String">
+		SELECT
+			${_expr}
+		FROM sys_sequence
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	
+	
+	<!-- 表字段 -->
+	<sql id="column">
+		  seq_id,  <!-- 流水号 -->
+		  seq_name,  <!-- 名称 -->
+		  seq_type,  <!-- 类型 -->
+		  seq_prefix,  <!-- 前缀 -->
+		  seq_start,  <!-- 起始值 -->
+		  seq_step,  <!-- 递增步长 -->
+		  seq_cur_value,  <!-- 当前值 -->
+		  seq_status,  <!-- 当前状态 -->
+		  seq_connector,  <!-- 连接符 -->
+		  seq_seq_suffix,  <!-- 后缀 -->
+		  seq_seq_db_seq_name,  <!-- DBSequence名称 -->
+		  seq_max_value,  <!-- 最大值 -->
+		  seq_is_circul,  <!-- 是否循环 -->
+		  seq_min_value,  <!-- 最小值 -->
+		  seq_is_leftpad,  <!-- 是否左补足 -->
+		  seq_format_value,  <!-- 当前格式化值 -->
+		  seq_remark  <!-- 备注 -->
+	</sql>
+	
+	<!-- 表字段(用于外表的关联时引用) -->
+	<sql id="column2">
+		  sys_sequence.seq_id,  <!-- 流水号 -->
+		  sys_sequence.seq_name,  <!-- 名称 -->
+		  sys_sequence.seq_type,  <!-- 类型 -->
+		  sys_sequence.seq_prefix,  <!-- 前缀 -->
+		  sys_sequence.seq_start,  <!-- 起始值 -->
+		  sys_sequence.seq_step,  <!-- 递增步长 -->
+		  sys_sequence.seq_cur_value,  <!-- 当前值 -->
+		  sys_sequence.seq_status,  <!-- 当前状态 -->
+		  sys_sequence.seq_connector,  <!-- 连接符 -->
+		  sys_sequence.seq_seq_suffix,  <!-- 后缀 -->
+		  sys_sequence.seq_seq_db_seq_name,  <!-- DBSequence名称 -->
+		  sys_sequence.seq_max_value,  <!-- 最大值 -->
+		  sys_sequence.seq_is_circul,  <!-- 是否循环 -->
+		  sys_sequence.seq_min_value,  <!-- 最小值 -->
+		  sys_sequence.seq_is_leftpad,  <!-- 是否左补足 -->
+		  sys_sequence.seq_format_value,  <!-- 当前格式化值 -->
+		  sys_sequence.seq_remark  <!-- 备注 -->
+	</sql>
+
+	<!-- Where精确匹配字段 -->
+	<sql id="equal">
+	    <if test="seq_id != null and seq_id != ''">
+		      AND seq_id = #{seq_id}  <!-- 流水号 -->
+		</if>
+	    <if test="seq_name != null and seq_name != ''">
+		      AND seq_name = #{seq_name}  <!-- 名称 -->
+		</if>
+	    <if test="seq_type != null and seq_type != ''">
+		      AND seq_type = #{seq_type}  <!-- 类型 -->
+		</if>
+	    <if test="seq_prefix != null and seq_prefix != ''">
+		      AND seq_prefix = #{seq_prefix}  <!-- 前缀 -->
+		</if>
+	    <if test="seq_start != null and seq_start != ''">
+		      AND seq_start = #{seq_start}  <!-- 起始值 -->
+		</if>
+	    <if test="seq_step != null and seq_step != ''">
+		      AND seq_step = #{seq_step}  <!-- 递增步长 -->
+		</if>
+	    <if test="seq_cur_value != null and seq_cur_value != ''">
+		      AND seq_cur_value = #{seq_cur_value}  <!-- 当前值 -->
+		</if>
+	    <if test="seq_status != null and seq_status != ''">
+		      AND seq_status = #{seq_status}  <!-- 当前状态 -->
+		</if>
+	    <if test="seq_connector != null and seq_connector != ''">
+		      AND seq_connector = #{seq_connector}  <!-- 连接符 -->
+		</if>
+	    <if test="seq_seq_suffix != null and seq_seq_suffix != ''">
+		      AND seq_seq_suffix = #{seq_seq_suffix}  <!-- 后缀 -->
+		</if>
+	    <if test="seq_seq_db_seq_name != null and seq_seq_db_seq_name != ''">
+		      AND seq_seq_db_seq_name = #{seq_seq_db_seq_name}  <!-- DBSequence名称 -->
+		</if>
+	    <if test="seq_max_value != null and seq_max_value != ''">
+		      AND seq_max_value = #{seq_max_value}  <!-- 最大值 -->
+		</if>
+	    <if test="seq_is_circul != null and seq_is_circul != ''">
+		      AND seq_is_circul = #{seq_is_circul}  <!-- 是否循环 -->
+		</if>
+	    <if test="seq_min_value != null and seq_min_value != ''">
+		      AND seq_min_value = #{seq_min_value}  <!-- 最小值 -->
+		</if>
+	    <if test="seq_is_leftpad != null and seq_is_leftpad != ''">
+		      AND seq_is_leftpad = #{seq_is_leftpad}  <!-- 是否左补足 -->
+		</if>
+	    <if test="seq_format_value != null and seq_format_value != ''">
+		      AND seq_format_value = #{seq_format_value}  <!-- 当前格式化值 -->
+		</if>
+	    <if test="seq_remark != null and seq_remark != ''">
+		      AND seq_remark = #{seq_remark}  <!-- 备注 -->
+		</if>
+	</sql>
+	
+	<!-- Where模糊匹配字段 -->
+	<sql id="like">
+	    <if test="seq_id != null and seq_id != ''">
+		      AND seq_id like '%${seq_id}%'  <!-- 流水号 -->
+		</if>
+	    <if test="seq_name != null and seq_name != ''">
+		      AND seq_name like '%${seq_name}%'  <!-- 名称 -->
+		</if>
+	    <if test="seq_type != null and seq_type != ''">
+		      AND seq_type like '%${seq_type}%'  <!-- 类型 -->
+		</if>
+	    <if test="seq_prefix != null and seq_prefix != ''">
+		      AND seq_prefix like '%${seq_prefix}%'  <!-- 前缀 -->
+		</if>
+	    <if test="seq_start != null and seq_start != ''">
+		      AND seq_start like '%${seq_start}%'  <!-- 起始值 -->
+		</if>
+	    <if test="seq_step != null and seq_step != ''">
+		      AND seq_step like '%${seq_step}%'  <!-- 递增步长 -->
+		</if>
+	    <if test="seq_cur_value != null and seq_cur_value != ''">
+		      AND seq_cur_value like '%${seq_cur_value}%'  <!-- 当前值 -->
+		</if>
+	    <if test="seq_status != null and seq_status != ''">
+		      AND seq_status like '%${seq_status}%'  <!-- 当前状态 -->
+		</if>
+	    <if test="seq_connector != null and seq_connector != ''">
+		      AND seq_connector like '%${seq_connector}%'  <!-- 连接符 -->
+		</if>
+	    <if test="seq_seq_suffix != null and seq_seq_suffix != ''">
+		      AND seq_seq_suffix like '%${seq_seq_suffix}%'  <!-- 后缀 -->
+		</if>
+	    <if test="seq_seq_db_seq_name != null and seq_seq_db_seq_name != ''">
+		      AND seq_seq_db_seq_name like '%${seq_seq_db_seq_name}%'  <!-- DBSequence名称 -->
+		</if>
+	    <if test="seq_max_value != null and seq_max_value != ''">
+		      AND seq_max_value like '%${seq_max_value}%'  <!-- 最大值 -->
+		</if>
+	    <if test="seq_is_circul != null and seq_is_circul != ''">
+		      AND seq_is_circul like '%${seq_is_circul}%'  <!-- 是否循环 -->
+		</if>
+	    <if test="seq_min_value != null and seq_min_value != ''">
+		      AND seq_min_value like '%${seq_min_value}%'  <!-- 最小值 -->
+		</if>
+	    <if test="seq_is_leftpad != null and seq_is_leftpad != ''">
+		      AND seq_is_leftpad like '%${seq_is_leftpad}%'  <!-- 是否左补足 -->
+		</if>
+	    <if test="seq_format_value != null and seq_format_value != ''">
+		      AND seq_format_value like '%${seq_format_value}%'  <!-- 当前格式化值 -->
+		</if>
+	    <if test="seq_remark != null and seq_remark != ''">
+		      AND seq_remark like '%${seq_remark}%'  <!-- 备注 -->
+		</if>
+	</sql>
+	
+</mapper>

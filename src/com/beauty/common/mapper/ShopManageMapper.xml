@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 商店管理数据库通用处理 -->
+<mapper namespace="com.beauty.common.mapper.ShopManageMapper">
+	<!-- 查询门店的销售情况-->
+	<select id="queryShopCashSum" parameterType="Dto" resultType="Dto" useCache="false">
+	SELECT IFNULL(SUM(r.pay_money),0)  AS in_money FROM bis_business_order r WHERE r.shop_id=#{shop_id}
+	 AND r.order_status IN('4','5') AND date_format(r.pay_time,'%Y-%m-%d')=#{query_date}
+	</select>
+	<!-- 门店订单的统计 -->
+	<select id="queryShopOrderCount" parameterType="Dto" resultType="Integer" useCache="false">
+	SELECT COUNT(1) FROM bis_business_order  a 
+	WHERE a.order_status!='0' AND a.shop_id=#{shop_id}  AND  DATE_FORMAT(a.create_time,"%Y-%m-%d")=#{query_date}
+	</select>
+</mapper>

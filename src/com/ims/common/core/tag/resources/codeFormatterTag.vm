@@ -1,0 +1,10 @@
+function ${field}Formatter(value) {
+  #if($codeList.size()>0)
+  #foreach($code in $codeList)
+  	if (value == '${code.dic_code}') #if("$!code.show_color"=="")return '${code.dic_value}'#else return '<span style="color:${code.show_color}">${code.dic_value}'#end ;
+  #end 
+    else return value;
+  #else
+  return value;
+  #end
+}

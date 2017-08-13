@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../css/aui.2.0.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui-slide.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <script type="text/javascript" src="../js/jquery-1.8.3.min.js" ></script>
+    <script type="text/javascript" src="../js/aui-tab.js" ></script>
+</head>
+<body>
+    <header class="topbar">
+        <span class="top-left-back" onClick="javascript:history.go(-1)">返回</span>
+        <h2>我的大礼包</h2>
+    </header>
+    <div class="h88"></div>
+    <div class="my-project-list">
+        <div class="aui-tab" id="tab">
+            <div class="aui-tab-item aui-active"><span>未使用</span></div>
+            <div class="aui-tab-item"><span>已使用</span></div>
+            <div class="aui-tab-item"><span>已过期</span></div>
+        </div>
+        <div class="null-page">
+            <img src="../images/none-gift.png">
+            <span>您还没有项目哦~</span>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../js/jav-ui.js"></script>
+<script type="text/javascript">
+    /*切换*/
+    var tab = new auiTab({
+        element:document.getElementById("tab"),
+    });
+</script>
+</html>

@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 用户基本信息表[sys_user]SQLMapper自动映射 -->
+<!--  注意:此文件由系统平台自动生成-禁止手工修改 2016-12-18 08:25:38 -->
+<mapper namespace="com.ims.common.system.modules.mapper.UserMapper">
+	
+	<!-- 插入一个数据持久化对象(插入字段为传入PO实体的非空属性) -->
+	<insert id="insert"  parameterType="com.ims.common.system.modules.po.UserPO">
+		INSERT INTO sys_user 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="account != null and account != ''">
+	         account, <!-- 用户登录帐号 -->
+		</if>
+		<if test="password != null and password != ''">
+	         password, <!-- 密码 -->
+		</if>
+		<if test="username != null and username != ''">
+	         username, <!-- 用户姓名 -->
+		</if>
+		<if test="lock_num != null">
+	         lock_num, <!-- 锁定次数 默认5次 -->
+		</if>
+		<if test="error_num != null">
+	         error_num, <!-- 密码错误次数  如果等于锁定次数就自动锁定用户 -->
+		</if>
+		<if test="sex != null and sex != ''">
+	         sex, <!-- 性别  1:男2:女3:未知 -->
+		</if>
+		<if test="status != null and status != ''">
+	         status, <!-- 用户状态 1:有效2:停用 3:锁定 -->
+		</if>
+		<if test="user_type != null and user_type != ''">
+	         user_type, <!-- 用户类型 -->
+		</if>
+		<if test="dept_id != null and dept_id != ''">
+	         dept_id, <!-- 所属部门流水号 -->
+		</if>
+		<if test="mobile != null and mobile != ''">
+	         mobile, <!-- 联系电话 -->
+		</if>
+		<if test="qq != null and qq != ''">
+	         qq, <!-- QQ号码 -->
+		</if>
+		<if test="wechat != null and wechat != ''">
+	         wechat, <!-- 微信 -->
+		</if>
+		<if test="email != null and email != ''">
+	         email, <!-- 电子邮件 -->
+		</if>
+		<if test="idno != null and idno != ''">
+	         idno, <!-- 身份证号 -->
+		</if>
+		<if test="style != null and style != ''">
+	         style, <!-- 界面风格 -->
+		</if>
+		<if test="address != null and address != ''">
+	         address, <!-- 联系地址 -->
+		</if>
+		<if test="remark != null and remark != ''">
+	         remark, <!-- 备注 -->
+		</if>
+		<if test="is_del != null and is_del != ''">
+	         is_del, <!-- 是否已删除 0有效 1删除 -->
+		</if>
+		<if test="create_time != null and create_time != ''">
+	         create_time, <!-- 创建时间 -->
+		</if>
+		<if test="create_user_id != null and create_user_id != ''">
+	         create_user_id, <!-- 创建人ID -->
+		</if>
+		<if test="modify_time != null and modify_time != ''">
+	         modify_time, <!-- modify_time -->
+		</if>
+		<if test="modify_user_id != null and modify_user_id != ''">
+	         modify_user_id, <!-- 修改用户编号 -->
+		</if>
+		<if test="user_id != null and user_id != ''">
+	          user_id  <!-- 用户编号 -->
+	    </if>
+        </trim>
+	    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+		<if test="account != null and account != ''">
+	          #{account, jdbcType=VARCHAR}, <!-- 用户登录帐号 -->
+	    </if>
+		<if test="password != null and password != ''">
+	          #{password, jdbcType=VARCHAR}, <!-- 密码 -->
+	    </if>
+		<if test="username != null and username != ''">
+	          #{username, jdbcType=VARCHAR}, <!-- 用户姓名 -->
+	    </if>
+		<if test="lock_num != null">
+	          #{lock_num, jdbcType=INTEGER}, <!-- 锁定次数 默认5次 -->
+	    </if>
+		<if test="error_num != null">
+	          #{error_num, jdbcType=INTEGER}, <!-- 密码错误次数  如果等于锁定次数就自动锁定用户 -->
+	    </if>
+		<if test="sex != null and sex != ''">
+	          #{sex, jdbcType=VARCHAR}, <!-- 性别  1:男2:女3:未知 -->
+	    </if>
+		<if test="status != null and status != ''">
+	          #{status, jdbcType=VARCHAR}, <!-- 用户状态 1:有效2:停用 3:锁定 -->
+	    </if>
+		<if test="user_type != null and user_type != ''">
+	          #{user_type, jdbcType=VARCHAR}, <!-- 用户类型 -->
+	    </if>
+		<if test="dept_id != null and dept_id != ''">
+	          #{dept_id, jdbcType=VARCHAR}, <!-- 所属部门流水号 -->
+	    </if>
+		<if test="mobile != null and mobile != ''">
+	          #{mobile, jdbcType=VARCHAR}, <!-- 联系电话 -->
+	    </if>
+		<if test="qq != null and qq != ''">
+	          #{qq, jdbcType=VARCHAR}, <!-- QQ号码 -->
+	    </if>
+		<if test="wechat != null and wechat != ''">
+	          #{wechat, jdbcType=VARCHAR}, <!-- 微信 -->
+	    </if>
+		<if test="email != null and email != ''">
+	          #{email, jdbcType=VARCHAR}, <!-- 电子邮件 -->
+	    </if>
+		<if test="idno != null and idno != ''">
+	          #{idno, jdbcType=VARCHAR}, <!-- 身份证号 -->
+	    </if>
+		<if test="style != null and style != ''">
+	          #{style, jdbcType=VARCHAR}, <!-- 界面风格 -->
+	    </if>
+		<if test="address != null and address != ''">
+	          #{address, jdbcType=VARCHAR}, <!-- 联系地址 -->
+	    </if>
+		<if test="remark != null and remark != ''">
+	          #{remark, jdbcType=VARCHAR}, <!-- 备注 -->
+	    </if>
+		<if test="is_del != null and is_del != ''">
+	          #{is_del, jdbcType=VARCHAR}, <!-- 是否已删除 0有效 1删除 -->
+	    </if>
+		<if test="create_time != null and create_time != ''">
+	          #{create_time, jdbcType=VARCHAR}, <!-- 创建时间 -->
+	    </if>
+		<if test="create_user_id != null and create_user_id != ''">
+	          #{create_user_id, jdbcType=VARCHAR}, <!-- 创建人ID -->
+	    </if>
+		<if test="modify_time != null and modify_time != ''">
+	          #{modify_time, jdbcType=VARCHAR}, <!-- modify_time -->
+	    </if>
+		<if test="modify_user_id != null and modify_user_id != ''">
+	          #{modify_user_id, jdbcType=VARCHAR}, <!-- 修改用户编号 -->
+	    </if>
+		<if test="user_id != null and user_id != ''">
+		     #{user_id, jdbcType=VARCHAR}  <!-- 用户编号 -->
+	    </if>
+		</trim>
+		
+	</insert>
+	
+	<!-- 插入一个数据持久化对象(含所有字段) -->
+	<insert id="insertAll"  parameterType="com.ims.common.system.modules.po.UserPO">
+		INSERT INTO sys_user (
+          user_id,  <!-- 用户编号 -->
+		  account,  <!-- 用户登录帐号 -->
+		  password,  <!-- 密码 -->
+		  username,  <!-- 用户姓名 -->
+		  lock_num,  <!-- 锁定次数 默认5次 -->
+		  error_num,  <!-- 密码错误次数  如果等于锁定次数就自动锁定用户 -->
+		  sex,  <!-- 性别  1:男2:女3:未知 -->
+		  status,  <!-- 用户状态 1:有效2:停用 3:锁定 -->
+		  user_type,  <!-- 用户类型 -->
+		  dept_id,  <!-- 所属部门流水号 -->
+		  mobile,  <!-- 联系电话 -->
+		  qq,  <!-- QQ号码 -->
+		  wechat,  <!-- 微信 -->
+		  email,  <!-- 电子邮件 -->
+		  idno,  <!-- 身份证号 -->
+		  style,  <!-- 界面风格 -->
+		  address,  <!-- 联系地址 -->
+		  remark,  <!-- 备注 -->
+		  is_del,  <!-- 是否已删除 0有效 1删除 -->
+		  create_time,  <!-- 创建时间 -->
+		  create_user_id,  <!-- 创建人ID -->
+		  modify_time,  <!-- modify_time -->
+		  modify_user_id  <!-- 修改用户编号 -->
+		)
+		VALUES (
+            #{user_id, jdbcType=VARCHAR},   <!-- 用户编号 -->
+		    #{account, jdbcType=VARCHAR},  <!-- 用户登录帐号 -->
+		    #{password, jdbcType=VARCHAR},  <!-- 密码 -->
+		    #{username, jdbcType=VARCHAR},  <!-- 用户姓名 -->
+		    #{lock_num, jdbcType=INTEGER},  <!-- 锁定次数 默认5次 -->
+		    #{error_num, jdbcType=INTEGER},  <!-- 密码错误次数  如果等于锁定次数就自动锁定用户 -->
+		    #{sex, jdbcType=VARCHAR},  <!-- 性别  1:男2:女3:未知 -->
+		    #{status, jdbcType=VARCHAR},  <!-- 用户状态 1:有效2:停用 3:锁定 -->
+		    #{user_type, jdbcType=VARCHAR},  <!-- 用户类型 -->
+		    #{dept_id, jdbcType=VARCHAR},  <!-- 所属部门流水号 -->
+		    #{mobile, jdbcType=VARCHAR},  <!-- 联系电话 -->
+		    #{qq, jdbcType=VARCHAR},  <!-- QQ号码 -->
+		    #{wechat, jdbcType=VARCHAR},  <!-- 微信 -->
+		    #{email, jdbcType=VARCHAR},  <!-- 电子邮件 -->
+		    #{idno, jdbcType=VARCHAR},  <!-- 身份证号 -->
+		    #{style, jdbcType=VARCHAR},  <!-- 界面风格 -->
+		    #{address, jdbcType=VARCHAR},  <!-- 联系地址 -->
+		    #{remark, jdbcType=VARCHAR},  <!-- 备注 -->
+		    #{is_del, jdbcType=VARCHAR},  <!-- 是否已删除 0有效 1删除 -->
+		    #{create_time, jdbcType=VARCHAR},  <!-- 创建时间 -->
+		    #{create_user_id, jdbcType=VARCHAR},  <!-- 创建人ID -->
+		    #{modify_time, jdbcType=VARCHAR},  <!-- modify_time -->
+		    #{modify_user_id, jdbcType=VARCHAR}  <!-- 修改用户编号 -->
+		)
+	</insert>
+
+	<!-- 根据主键修改数据持久化对象 -->
+	<update id="updateByKey" parameterType="com.ims.common.system.modules.po.UserPO">
+		UPDATE sys_user
+		<set>
+			<if test="account != null">
+		          account = #{account, jdbcType=VARCHAR},  <!-- 用户登录帐号 -->
+			</if>
+			<if test="password != null">
+		          password = #{password, jdbcType=VARCHAR},  <!-- 密码 -->
+			</if>
+			<if test="username != null">
+		          username = #{username, jdbcType=VARCHAR},  <!-- 用户姓名 -->
+			</if>
+			<if test="lock_num != null">
+		          lock_num = #{lock_num, jdbcType=INTEGER},  <!-- 锁定次数 默认5次 -->
+			</if>
+			<if test="error_num != null">
+		          error_num = #{error_num, jdbcType=INTEGER},  <!-- 密码错误次数  如果等于锁定次数就自动锁定用户 -->
+			</if>
+			<if test="sex != null">
+		          sex = #{sex, jdbcType=VARCHAR},  <!-- 性别  1:男2:女3:未知 -->
+			</if>
+			<if test="status != null">
+		          status = #{status, jdbcType=VARCHAR},  <!-- 用户状态 1:有效2:停用 3:锁定 -->
+			</if>
+			<if test="user_type != null">
+		          user_type = #{user_type, jdbcType=VARCHAR},  <!-- 用户类型 -->
+			</if>
+			<if test="dept_id != null">
+		          dept_id = #{dept_id, jdbcType=VARCHAR},  <!-- 所属部门流水号 -->
+			</if>
+			<if test="mobile != null">
+		          mobile = #{mobile, jdbcType=VARCHAR},  <!-- 联系电话 -->
+			</if>
+			<if test="qq != null">
+		          qq = #{qq, jdbcType=VARCHAR},  <!-- QQ号码 -->
+			</if>
+			<if test="wechat != null">
+		          wechat = #{wechat, jdbcType=VARCHAR},  <!-- 微信 -->
+			</if>
+			<if test="email != null">
+		          email = #{email, jdbcType=VARCHAR},  <!-- 电子邮件 -->
+			</if>
+			<if test="idno != null">
+		          idno = #{idno, jdbcType=VARCHAR},  <!-- 身份证号 -->
+			</if>
+			<if test="style != null">
+		          style = #{style, jdbcType=VARCHAR},  <!-- 界面风格 -->
+			</if>
+			<if test="address != null">
+		          address = #{address, jdbcType=VARCHAR},  <!-- 联系地址 -->
+			</if>
+			<if test="remark != null">
+		          remark = #{remark, jdbcType=VARCHAR},  <!-- 备注 -->
+			</if>
+			<if test="is_del != null">
+		          is_del = #{is_del, jdbcType=VARCHAR},  <!-- 是否已删除 0有效 1删除 -->
+			</if>
+			<if test="create_time != null">
+		          create_time = #{create_time, jdbcType=VARCHAR},  <!-- 创建时间 -->
+			</if>
+			<if test="create_user_id != null">
+		          create_user_id = #{create_user_id, jdbcType=VARCHAR},  <!-- 创建人ID -->
+			</if>
+			<if test="modify_time != null">
+		          modify_time = #{modify_time, jdbcType=VARCHAR},  <!-- modify_time -->
+			</if>
+			<if test="modify_user_id != null">
+		          modify_user_id = #{modify_user_id, jdbcType=VARCHAR},  <!-- 修改用户编号 -->
+			</if>
+		</set>
+		WHERE  user_id = #{user_id}
+	</update>
+	
+	<!-- 根据主键删除数据持久化对象 -->
+	<delete id="deleteByKey">
+		DELETE FROM sys_user WHERE  user_id = #{user_id}
+	</delete>
+	
+	<!-- 批量根据主键删除数据持久化对象 -->
+	<delete id="batchDeleteByKey"  parameterType="java.lang.String">
+		DELETE FROM sys_user WHERE user_id IN 
+		<foreach item="user_id" index="index" collection="list" separator="," open="(" close=")">
+		#{user_id}
+	    </foreach>
+	</delete>
+
+	<!-- 根据主键查询并返回数据持久化对象 -->
+	<select id="selectByKey" resultType="com.ims.common.system.modules.po.UserPO">
+		SELECT
+		<include refid="column" />
+		FROM sys_user WHERE  user_id = #{user_id}
+	</select>
+
+	<!-- 根据唯一组合条件查询并返回数据持久化对象 -->
+	<select id="selectOne" parameterType="Dto" resultType="com.ims.common.system.modules.po.UserPO">
+		SELECT
+		    <include refid="column" />
+		FROM sys_user
+		<where>
+		    <include refid="equal" />
+		</where>		
+	</select>
+
+	<!-- 根据Dto查询并返回数据持久化对象集合 -->
+	<select id="list" parameterType="Dto" resultType="com.ims.common.system.modules.po.UserPO">
+		SELECT
+			<include refid="column" />	
+		FROM sys_user
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto查询并返回分页数据持久化对象集合 -->
+	<select id="listPage" parameterType="Dto" resultType="com.ims.common.system.modules.po.UserPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM sys_user
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto模糊查询并返回数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="like" parameterType="Dto" resultType="com.ims.common.system.modules.po.UserPO">
+		SELECT
+			<include refid="column" />	
+		FROM sys_user
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto模糊查询并返回分页数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="likePage" parameterType="Dto" resultType="com.ims.common.system.modules.po.UserPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM sys_user
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto统计行数 -->
+	<select id="rows" resultType="Integer" parameterType="Dto">
+		SELECT COUNT(1) AS rows_ FROM sys_user
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	<!-- 根据数学表达式进行数学运算 -->
+	<select id="calc" parameterType="Dto" resultType="String">
+		SELECT
+			${_expr}
+		FROM sys_user
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	
+	
+	<!-- 表字段 -->
+	<sql id="column">
+		  user_id,  <!-- 用户编号 -->
+		  account,  <!-- 用户登录帐号 -->
+		  password,  <!-- 密码 -->
+		  username,  <!-- 用户姓名 -->
+		  lock_num,  <!-- 锁定次数 默认5次 -->
+		  error_num,  <!-- 密码错误次数  如果等于锁定次数就自动锁定用户 -->
+		  sex,  <!-- 性别  1:男2:女3:未知 -->
+		  status,  <!-- 用户状态 1:有效2:停用 3:锁定 -->
+		  user_type,  <!-- 用户类型 -->
+		  dept_id,  <!-- 所属部门流水号 -->
+		  mobile,  <!-- 联系电话 -->
+		  qq,  <!-- QQ号码 -->
+		  wechat,  <!-- 微信 -->
+		  email,  <!-- 电子邮件 -->
+		  idno,  <!-- 身份证号 -->
+		  style,  <!-- 界面风格 -->
+		  address,  <!-- 联系地址 -->
+		  remark,  <!-- 备注 -->
+		  is_del,  <!-- 是否已删除 0有效 1删除 -->
+		  create_time,  <!-- 创建时间 -->
+		  create_user_id,  <!-- 创建人ID -->
+		  modify_time,  <!-- modify_time -->
+		  modify_user_id  <!-- 修改用户编号 -->
+	</sql>
+	
+	<!-- 表字段(用于外表的关联时引用) -->
+	<sql id="column2">
+		  sys_user.user_id,  <!-- 用户编号 -->
+		  sys_user.account,  <!-- 用户登录帐号 -->
+		  sys_user.password,  <!-- 密码 -->
+		  sys_user.username,  <!-- 用户姓名 -->
+		  sys_user.lock_num,  <!-- 锁定次数 默认5次 -->
+		  sys_user.error_num,  <!-- 密码错误次数  如果等于锁定次数就自动锁定用户 -->
+		  sys_user.sex,  <!-- 性别  1:男2:女3:未知 -->
+		  sys_user.status,  <!-- 用户状态 1:有效2:停用 3:锁定 -->
+		  sys_user.user_type,  <!-- 用户类型 -->
+		  sys_user.dept_id,  <!-- 所属部门流水号 -->
+		  sys_user.mobile,  <!-- 联系电话 -->
+		  sys_user.qq,  <!-- QQ号码 -->
+		  sys_user.wechat,  <!-- 微信 -->
+		  sys_user.email,  <!-- 电子邮件 -->
+		  sys_user.idno,  <!-- 身份证号 -->
+		  sys_user.style,  <!-- 界面风格 -->
+		  sys_user.address,  <!-- 联系地址 -->
+		  sys_user.remark,  <!-- 备注 -->
+		  sys_user.is_del,  <!-- 是否已删除 0有效 1删除 -->
+		  sys_user.create_time,  <!-- 创建时间 -->
+		  sys_user.create_user_id,  <!-- 创建人ID -->
+		  sys_user.modify_time,  <!-- modify_time -->
+		  sys_user.modify_user_id  <!-- 修改用户编号 -->
+	</sql>
+
+	<!-- Where精确匹配字段 -->
+	<sql id="equal">
+	    <if test="user_id != null and user_id != ''">
+		      AND user_id = #{user_id}  <!-- 用户编号 -->
+		</if>
+	    <if test="account != null and account != ''">
+		      AND account = #{account}  <!-- 用户登录帐号 -->
+		</if>
+	    <if test="password != null and password != ''">
+		      AND password = #{password}  <!-- 密码 -->
+		</if>
+	    <if test="username != null and username != ''">
+		      AND username = #{username}  <!-- 用户姓名 -->
+		</if>
+	   <if test="lock_num != null ">
+		      AND lock_num = #{lock_num}  <!-- 锁定次数 默认5次 -->
+		</if>
+	   <if test="error_num != null ">
+		      AND error_num = #{error_num}  <!-- 密码错误次数  如果等于锁定次数就自动锁定用户 -->
+		</if>
+	    <if test="sex != null and sex != ''">
+		      AND sex = #{sex}  <!-- 性别  1:男2:女3:未知 -->
+		</if>
+	    <if test="status != null and status != ''">
+		      AND status = #{status}  <!-- 用户状态 1:有效2:停用 3:锁定 -->
+		</if>
+	    <if test="user_type != null and user_type != ''">
+		      AND user_type = #{user_type}  <!-- 用户类型 -->
+		</if>
+	    <if test="dept_id != null and dept_id != ''">
+		      AND dept_id = #{dept_id}  <!-- 所属部门流水号 -->
+		</if>
+	    <if test="mobile != null and mobile != ''">
+		      AND mobile = #{mobile}  <!-- 联系电话 -->
+		</if>
+	    <if test="qq != null and qq != ''">
+		      AND qq = #{qq}  <!-- QQ号码 -->
+		</if>
+	    <if test="wechat != null and wechat != ''">
+		      AND wechat = #{wechat}  <!-- 微信 -->
+		</if>
+	    <if test="email != null and email != ''">
+		      AND email = #{email}  <!-- 电子邮件 -->
+		</if>
+	    <if test="idno != null and idno != ''">
+		      AND idno = #{idno}  <!-- 身份证号 -->
+		</if>
+	    <if test="style != null and style != ''">
+		      AND style = #{style}  <!-- 界面风格 -->
+		</if>
+	    <if test="address != null and address != ''">
+		      AND address = #{address}  <!-- 联系地址 -->
+		</if>
+	    <if test="remark != null and remark != ''">
+		      AND remark = #{remark}  <!-- 备注 -->
+		</if>
+	    <if test="is_del != null and is_del != ''">
+		      AND is_del = #{is_del}  <!-- 是否已删除 0有效 1删除 -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time = #{create_time}  <!-- 创建时间 -->
+		</if>
+	    <if test="create_user_id != null and create_user_id != ''">
+		      AND create_user_id = #{create_user_id}  <!-- 创建人ID -->
+		</if>
+	    <if test="modify_time != null and modify_time != ''">
+		      AND modify_time = #{modify_time}  <!-- modify_time -->
+		</if>
+	    <if test="modify_user_id != null and modify_user_id != ''">
+		      AND modify_user_id = #{modify_user_id}  <!-- 修改用户编号 -->
+		</if>
+	</sql>
+	
+	<!-- Where模糊匹配字段 -->
+	<sql id="like">
+	    <if test="user_id != null and user_id != ''">
+		      AND user_id LIKE '%${user_id}%'  <!-- 用户编号 -->
+		</if>
+	    <if test="account != null and account != ''">
+		      AND account LIKE '%${account}%'  <!-- 用户登录帐号 -->
+		</if>
+	    <if test="password != null and password != ''">
+		      AND password LIKE '%${password}%'  <!-- 密码 -->
+		</if>
+	    <if test="username != null and username != ''">
+		      AND username LIKE '%${username}%'  <!-- 用户姓名 -->
+		</if>
+	    <if test="sex != null and sex != ''">
+		      AND sex LIKE '%${sex}%'  <!-- 性别  1:男2:女3:未知 -->
+		</if>
+	    <if test="status != null and status != ''">
+		      AND status LIKE '%${status}%'  <!-- 用户状态 1:正常2:停用 3:锁定 -->
+		</if>
+	    <if test="user_type != null and user_type != ''">
+		      AND user_type LIKE '%${user_type}%'  <!-- 用户类型 -->
+		</if>
+	    <if test="dept_id != null and dept_id != ''">
+		      AND dept_id LIKE '%${dept_id}%'  <!-- 所属部门流水号 -->
+		</if>
+	    <if test="mobile != null and mobile != ''">
+		      AND mobile LIKE '%${mobile}%'  <!-- 联系电话 -->
+		</if>
+	    <if test="qq != null and qq != ''">
+		      AND qq LIKE '%${qq}%'  <!-- QQ号码 -->
+		</if>
+	    <if test="wechat != null and wechat != ''">
+		      AND wechat LIKE '%${wechat}%'  <!-- 微信 -->
+		</if>
+	    <if test="email != null and email != ''">
+		      AND email LIKE '%${email}%'  <!-- 电子邮件 -->
+		</if>
+	    <if test="idno != null and idno != ''">
+		      AND idno LIKE '%${idno}%'  <!-- 身份证号 -->
+		</if>
+	    <if test="style != null and style != ''">
+		      AND style LIKE '%${style}%'  <!-- 界面风格 -->
+		</if>
+	    <if test="address != null and address != ''">
+		      AND address LIKE '%${address}%'  <!-- 联系地址 -->
+		</if>
+	    <if test="remark != null and remark != ''">
+		      AND remark LIKE '%${remark}%'  <!-- 备注 -->
+		</if>
+	    <if test="is_del != null and is_del != ''">
+		      AND is_del LIKE '%${is_del}%'  <!-- 是否已删除 0有效 1删除 -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time LIKE '%${create_time}%'  <!-- 创建时间 -->
+		</if>
+	    <if test="create_user_id != null and create_user_id != ''">
+		      AND create_user_id LIKE '%${create_user_id}%'  <!-- 创建人ID -->
+		</if>
+	    <if test="modify_time != null and modify_time != ''">
+		      AND modify_time LIKE '%${modify_time}%'  <!-- modify_time -->
+		</if>
+	    <if test="modify_user_id != null and modify_user_id != ''">
+		      AND modify_user_id LIKE '%${modify_user_id}%'  <!-- 修改用户编号 -->
+		</if>
+	</sql>
+	
+	<!-- 根据Dto对象分页查询 -->
+	<select id="queryPage" parameterType="Dto" resultType="com.ims.common.system.modules.po.UserPO">
+		SELECT
+		sys_dept.dept_name,
+		(SELECT role_name FROM sys_role WHERE sys_role.role_id = (
+		SELECT  max(sys_role_user.role_id) FROM  sys_role_user WHERE
+		 sys_role_user.user_id=sys_user.user_id) ) AS role_name,
+			<include refid="column2" />	
+		FROM sys_user INNER JOIN sys_dept
+		ON sys_user.dept_id=sys_dept.dept_id
+		<where>
+		
+	    <if test="cascade_id != null and cascade_id != ''">
+		      AND sys_dept.cascade_id LIKE '${cascade_id}%'    <!-- 使用语义ID关联 -->
+		</if>
+	    <if test="account != null and account != ''">
+		      AND sys_user.account LIKE '%${account}%'  <!-- 用户登录帐号 -->
+		</if>
+	  
+	    <if test="username != null and username != ''">
+		      AND sys_user.username LIKE '%${username}%'  <!-- 用户姓名 -->
+		</if>
+	     <if test="sex != null and sex != ''">
+		      AND sys_user.sex = #{sex}  <!-- 性别  1:男2:女3:未知 -->
+		</if>
+	   <if test="status != null and status != ''">
+		      AND sys_user.status = #{status}  <!-- 用户状态 1:有效2:停用 3:锁定 -->
+		</if>
+	    <if test="user_type != null and user_type != ''">
+		      AND sys_user.user_type =#{user_type}
+		</if>
+	    <if test="dept_id != null and dept_id != ''">
+		      AND sys_user.dept_id=#{dept_id}
+		</if>
+	    <if test="mobile != null and mobile != ''">
+		      AND sys_user.mobile LIKE '%${mobile}%'  <!-- 联系电话 -->
+		</if>
+	    <if test="qq != null and qq != ''">
+		      AND sys_user.qq LIKE '%${qq}%'   <!-- QQ号码 -->
+		</if>
+	    <if test="wechat != null and wechat != ''">
+		      AND sys_user.wechat LIKE '%${wechat}%'  <!-- 微信 -->
+		</if>
+	    <if test="email != null and email != ''">
+		      AND sys_user.email LIKE '%${email}%'  <!-- 电子邮件 -->
+		</if>
+	    <if test="idno != null and idno != ''">
+		      AND sys_user.idno LIKE '%${idno}%'  <!-- 身份证号 -->
+		</if>
+	    <if test="style != null and style != ''">
+		      AND sys_user.style =#{style}
+		</if>
+	    <if test="address != null and address != ''">
+		      AND sys_user.address LIKE '%${address}%'  <!-- 联系地址 -->
+		</if>
+	   
+	    <if test="is_del != null and is_del != ''">
+		      AND sys_user.is_del =#{is_del} AND sys_dept.is_del=#{is_del}
+		</if>
+	    
+	     <if test="carete_time_begin!= null and carete_time_begin != ''">
+		      AND sys_user.create_time &gt;=#{carete_time_begin}
+		</if>
+	    <if test="carete_time_end!= null and carete_time_end != ''">
+		      AND sys_user.create_time &lt;=#{carete_time_end}
+		</if>
+		</where>	
+	</select>
+	
+</mapper>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+
+	<display-name>BMS</display-name>
+	<description>BMS应用基础平台</description>
+
+	<!-- 应用上下文配置文件 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+            classpath:ims.cxt.xml
+        </param-value>
+	</context-param>
+
+	<!-- 字符集编码过滤器 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.jhtml</url-pattern>
+	</filter-mapping>
+
+	<!-- 初始化应用上下文环境 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- 导出WebApplicationContext对象 -->
+	<listener>
+		<listener-class>com.ims.common.core.web.WebApplicationContextExporterListener</listener-class>
+	</listener>
+	<!-- 系统启动监听器 -->
+	<listener>
+		<listener-class>com.ims.common.system.web.IMSInitListener</listener-class>
+	</listener>
+	<!-- 设置Session时长:以分钟为单位 -->
+	<session-config>
+		<session-timeout>120</session-timeout>
+	</session-config>
+ <servlet>
+    <servlet-name>TestPay</servlet-name>
+    <servlet-class>com.beauty.pay.wechatpay.web.TestPayServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TestPay</servlet-name>
+    <url-pattern>/testPay</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>TestPayResult</servlet-name>
+    <servlet-class>com.beauty.pay.wechatpay.web.TestPayResultSerlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TestPayResult</servlet-name>
+    <url-pattern>/testPayResult</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>TestPayResultQuery</servlet-name>
+    <servlet-class>com.beauty.pay.wechatpay.web.TestPayResultQuery</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TestPayResultQuery</servlet-name>
+    <url-pattern>/testPayResultQuery</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>TestQuery</servlet-name>
+    <servlet-class>com.beauty.pay.wechatpay.web.TestQueryServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TestQuery</servlet-name>
+    <url-pattern>/testQuery</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>TestRefund</servlet-name>
+    <servlet-class>com.beauty.pay.wechatpay.web.TestRefundServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TestRefund</servlet-name>
+    <url-pattern>/testRefund</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>TestRefundQuery</servlet-name>
+    <servlet-class>com.beauty.pay.wechatpay.web.TestRefundQueryServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TestRefundQuery</servlet-name>
+    <url-pattern>/testRefundQuery</url-pattern>
+  </servlet-mapping>
+	<!-- SpringDispatcherServlet配置 -->
+	<servlet>
+		<servlet-name>springDispatcherServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:ims.web.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>springDispatcherServlet</servlet-name>
+		<url-pattern>*.jhtml</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Http请求拦截过滤器 -->
+	<filter>
+		<filter-name>httpRequestFilter</filter-name>
+		<filter-class>com.ims.common.system.web.HttpRequestFilter</filter-class>
+		<init-param>
+			<param-name>enabled</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>excludes</param-name>
+			<param-value>
+			goLogin.jhtml,doLogin.jhtml,index.jhtml,subscribe.jhtml,showServerDeal.jhtml,initWechatLogin.jhtml,goAppLogin.jhtml,goWechatLogin.jhtml,sendCheckCode.jhtml
+			</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>httpRequestFilter</filter-name>
+		<url-pattern>*.jhtml</url-pattern>
+	</filter-mapping>
+	
+	<!-- 阿里里巴巴durid连接池监控开始
+	<servlet>
+		<servlet-name>DruidStatView</servlet-name>
+		<servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DruidStatView</servlet-name>
+		<url-pattern>/druid/*</url-pattern>
+	</servlet-mapping>
+	 阿里里巴巴durid连接池监控结束--> 
+	
+	<!-- 缺省首页 -->
+	<welcome-file-list>
+		<welcome-file>/index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<error-page>
+		<error-code>505</error-code>
+		<location>/webpage/common/504.jsp</location>
+	</error-page>
+
+	<!-- 错误响应页面 <error-page> <error-code>404</error-code> <location>/WEB-INF/jsp/common/404.jsp</location> 
+		</error-page> -->
+</web-app>

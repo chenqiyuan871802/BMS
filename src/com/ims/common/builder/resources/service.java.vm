@@ -1,0 +1,281 @@
+package ${package};
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import com.ims.common.core.asset.IMSUtils;
+import com.ims.common.core.matatype.Dto;
+#if(!${tableDto.autoincrementPkName})
+#if( "$!upkey" != "")
+import com.ims.common.core.id.IMSId;
+#end
+#end
+import com.ims.common.core.asset.IMSCons;
+import com.ims.common.core.matatype.Dtos;
+import ${package_base}.mapper.${className}Mapper;
+import ${package_base}.po.${className}PO;
+
+/**
+ * 
+ * 类描述：<b>$!{tableDto.comment}[${tableDto.name}业务逻辑</b>
+ * 创建人：$!author
+ * 邮箱：240823329@qq.com
+ * 创建时间：$!sysdate
+ * 修改人：
+ * 修改时间：
+ * 修改备注： 
+ * @version 1.0
+ */
+@Service
+public class ${className}Service {
+  
+    @Autowired
+	private  ${className}Mapper ${paramName}Mapper;
+	
+	/**
+	 * 插入一个数据持久化对象(插入字段为传入PO实体的非空属性)
+	 * <p> 防止DB字段缺省值需要程序中再次赋值
+	 *
+	 * @param ${paramName}PO
+	 *            要插入的数据持久化对象
+	 * @return 返回影响行数
+	 */
+	@Transactional
+	public int insert(${className}PO ${paramName}PO){
+	
+	     return ${paramName}Mapper.insert(${paramName}PO);
+	     
+	};
+	/**
+	 * 保存一个持久化对象 并返回一个Dto对象
+	 * <p> 防止DB字段缺省值需要程序中再次赋值
+	 *
+	 * @param inDto Dto参数对象
+	 *            
+	 * @return 返回Dto对象
+	 */
+	@Transactional
+	public Dto save(Dto inDto){
+	   Dto outDto = Dtos.newDto();
+	   ${className}PO ${paramName}PO =new  ${className}PO();
+#if(!${tableDto.autoincrementPkName})
+#if( "$!upkey" != "")
+	   ${paramName}PO.set${upkey}(IMSId.uuid());
+#end
+#end
+	   IMSUtils.copyProperties(inDto,  ${paramName}PO); 
+	   int row=${paramName}Mapper.insert(${paramName}PO);
+	   if(row>0){
+		   outDto.setAppCode(IMSCons.SUCCESS);
+		   outDto.setAppMsg("操作完成，$!{tableDto.comment}数据新增成功。");
+	   }else{
+		   outDto.setAppCode(IMSCons.ERROR);
+		   outDto.setAppMsg("操作失败，$!{tableDto.comment}数据新增失败。");
+	   }
+	   return outDto;
+	     
+	};
+	
+	/**
+	 * 插入一个数据持久化对象(含所有字段)
+	 * 
+	 * @param ${paramName}PO
+	 *            要插入的数据持久化对象
+	 * @return 返回影响行数
+	 */
+    @Transactional
+	public int insertAll(${className}PO ${paramName}PO){
+	
+	     return ${paramName}Mapper.insertAll(${paramName}PO);
+	     
+	};
+
+	/**
+	 * 根据主键修改数据持久化对象
+	 * 
+	 * @param ${paramName}PO
+	 *            要修改的数据持久化对象
+	 * @return int 返回影响行数
+	 */
+	 @Transactional
+	public int updateByKey(${className}PO ${paramName}PO){
+	
+	     return ${paramName}Mapper.updateByKey(${paramName}PO);
+	
+	};
+	/**
+	 * 根据主键修改数据持久化对象
+	 * 
+	 * @param inDto传入参数
+	 *            要修改的数据持久化对象
+	 * @return Dto 返回影Dto对象
+	 */
+    @Transactional
+	public Dto update(Dto inDto){
+	   Dto outDto = Dtos.newDto();
+	   ${className}PO ${paramName}PO =new  ${className}PO();
+	   IMSUtils.copyProperties(inDto,  ${paramName}PO); 
+	   int row=${paramName}Mapper.updateByKey(${paramName}PO);
+	   if(row>0){
+		   outDto.setAppCode(IMSCons.SUCCESS);
+		   outDto.setAppMsg("操作完成，$!{tableDto.comment}数据修改成功。");
+	   }else{
+		   outDto.setAppCode(IMSCons.ERROR);
+		   outDto.setAppMsg("操作失败，$!{tableDto.comment}数据修改失败。");
+	   }
+	   return outDto;
+	     
+	};
+	/**
+	 * 根据主键查询并返回数据持久化对象
+	 * 
+	 * @return ${className}PO
+	 */
+	public ${className}PO selectByKey(${bykey}){
+	
+	    return ${paramName}Mapper.selectByKey(${bykeyParam});
+	   
+	};
+
+	/**
+	 * 根据唯一组合条件查询并返回数据持久化对象
+	 * 
+	 * @return ${className}PO
+	 */
+	public ${className}PO selectOne(Dto pDto){
+	
+	    return ${paramName}Mapper.selectOne(pDto);
+	
+	};
+
+	/**
+	 * 根据Dto查询并返回数据持久化对象集合
+	 * 
+	 * @return List<${className}PO>
+	 */
+	public List<${className}PO> list(Dto pDto){
+	
+	     return ${paramName}Mapper.list(pDto);
+	
+	};
+
+	/**
+	 * 根据Dto查询并返回分页数据持久化对象集合
+	 * 
+	 * @return List<${className}PO>
+	 */
+	public List<${className}PO> listPage(Dto pDto){
+	
+	     return ${paramName}Mapper.listPage( pDto);
+	
+	};
+		
+	/**
+	 * 根据Dto模糊查询并返回数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配)
+	 * 
+	 * @return List<${className}PO>
+	 */
+	public List<${className}PO> like(Dto pDto){
+	  
+	      return ${paramName}Mapper.like( pDto);
+	
+	};
+
+	/**
+	 * 根据Dto模糊查询并返回分页数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配)
+	 * 
+	 * @return List<${className}PO>
+	 */
+	public List<${className}PO> likePage(Dto pDto){
+	
+	    return ${paramName}Mapper.likePage( pDto);
+	
+	};
+	
+	/**
+	 * 根据主键删除数据持久化对象
+	 *
+	 * @return 影响行数
+	 */
+   @Transactional
+    public int  deleteByKey(${bykey}){
+	
+	    return ${paramName}Mapper.deleteByKey(${bykeyParam});
+	};
+	
+	/**
+	 * 根据主键删除数据持久化对象
+	 *
+	 * @return 返回一个Dto对象
+	 */
+	@Transactional
+	public Dto delete(${bykey}){
+	   Dto outDto = Dtos.newDto();
+	   int row=${paramName}Mapper.deleteByKey(${bykeyParam});
+	   if(row>0){
+		   outDto.setAppCode(IMSCons.SUCCESS);
+		   outDto.setAppMsg("操作完成，$!{tableDto.comment}数据删除成功。");
+	   }else{
+		   outDto.setAppCode(IMSCons.ERROR);
+		   outDto.setAppMsg("操作失败，$!{tableDto.comment}数据删除失败。");
+	   }
+	    return outDto;
+	};
+	
+	/**
+	 * 批量根据主键删除数据持久化对象
+	 *
+	 * @return 影响行数
+	 */
+	@Transactional
+	public int batchDeleteByKey(List<String> ${bykeyParam}List){
+	     
+	     return ${paramName}Mapper.batchDeleteByKey(${bykeyParam}List);
+	
+	};
+	/**
+	 * 批量根据主键删除数据持久化对象
+	 *
+	 * @return 返回一个Dto对象
+	 */
+	@Transactional
+	public Dto batchDelete(List<String> ${bykeyParam}List){
+	    Dto outDto = Dtos.newDto();
+	    int row=${paramName}Mapper.batchDeleteByKey(${bykeyParam}List);
+	    if(row>0){
+	       outDto.setAppCode(IMSCons.SUCCESS);
+		   outDto.setAppMsg("操作完成，批量$!{tableDto.comment}数据删除成功。");
+	    }else{
+	       outDto.setAppCode(IMSCons.ERROR);
+		   outDto.setAppMsg("操作失败，批量$!{tableDto.comment}数据删除失败。");
+	    }
+	    return outDto;
+	
+	};
+	
+	/**
+	 * 根据Dto统计行数
+	 * 
+	 * @param pDto
+	 * @return
+	 */
+	public int rows(Dto pDto){
+	
+	    return ${paramName}Mapper.rows( pDto);
+	
+	};
+	
+	/**
+	 * 根据数学表达式进行数学运算
+	 * 
+	 * @param pDto
+	 * @return String
+	 */
+	public String calc(Dto pDto){
+	 
+	    return ${paramName}Mapper.calc(pDto);
+	
+	};
+	
+}

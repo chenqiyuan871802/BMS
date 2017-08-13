@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 商家登陆日志[bis_shop_loginlog]SQLMapper自动映射 -->
+<!--  注意:此文件由系统平台自动生成-禁止手工修改 2017-05-07 01:03:08 -->
+<mapper namespace="com.beauty.common.mapper.ShopLoginLogMapper">
+	
+	<!-- 插入一个数据持久化对象(插入字段为传入PO实体的非空属性) -->
+	<insert id="insert"  parameterType="com.beauty.common.po.ShopLoginLogPO">
+		INSERT INTO bis_shop_loginlog 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="session_id != null and session_id != ''">
+	         session_id, <!-- 会话ID -->
+		</if>
+		<if test="username != null and username != ''">
+	         username, <!-- 用户姓名 -->
+		</if>
+		<if test="account != null and account != ''">
+	         account, <!-- 用户账号 -->
+		</if>
+		<if test="login_time != null and login_time != ''">
+	         login_time, <!-- 登陆用户时间 -->
+		</if>
+		<if test="user_id != null and user_id != ''">
+	         user_id, <!-- 用户编号 -->
+		</if>
+		<if test="login_ip != null and login_ip != ''">
+	         login_ip, <!-- 登陆IP -->
+		</if>
+		<if test="explorer != null and explorer != ''">
+	         explorer, <!-- 登陆浏览器 -->
+		</if>
+		<if test="exit_time != null and exit_time != ''">
+	         exit_time, <!-- 退出时间 -->
+		</if>
+		<if test="exit_type != null and exit_type != ''">
+	         exit_type, <!-- 退出类型 1超时退出 2自动退出 -->
+		</if>
+		<if test="log_id != null and log_id != ''">
+	          log_id  <!-- 日志编号 -->
+	    </if>
+        </trim>
+	    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+		<if test="session_id != null and session_id != ''">
+	          #{session_id, jdbcType=VARCHAR}, <!-- 会话ID -->
+	    </if>
+		<if test="username != null and username != ''">
+	          #{username, jdbcType=VARCHAR}, <!-- 用户姓名 -->
+	    </if>
+		<if test="account != null and account != ''">
+	          #{account, jdbcType=VARCHAR}, <!-- 用户账号 -->
+	    </if>
+		<if test="login_time != null and login_time != ''">
+	          #{login_time, jdbcType=VARCHAR}, <!-- 登陆用户时间 -->
+	    </if>
+		<if test="user_id != null and user_id != ''">
+	          #{user_id, jdbcType=VARCHAR}, <!-- 用户编号 -->
+	    </if>
+		<if test="login_ip != null and login_ip != ''">
+	          #{login_ip, jdbcType=VARCHAR}, <!-- 登陆IP -->
+	    </if>
+		<if test="explorer != null and explorer != ''">
+	          #{explorer, jdbcType=VARCHAR}, <!-- 登陆浏览器 -->
+	    </if>
+		<if test="exit_time != null and exit_time != ''">
+	          #{exit_time, jdbcType=VARCHAR}, <!-- 退出时间 -->
+	    </if>
+		<if test="exit_type != null and exit_type != ''">
+	          #{exit_type, jdbcType=VARCHAR}, <!-- 退出类型 1超时退出 2自动退出 -->
+	    </if>
+		<if test="log_id != null and log_id != ''">
+		     #{log_id, jdbcType=VARCHAR}  <!-- 日志编号 -->
+	    </if>
+		</trim>
+		
+	</insert>
+	
+	<!-- 插入一个数据持久化对象(含所有字段) -->
+	<insert id="insertAll"  parameterType="com.beauty.common.po.ShopLoginLogPO">
+		INSERT INTO bis_shop_loginlog (
+          log_id,  <!-- 日志编号 -->
+		  session_id,  <!-- 会话ID -->
+		  username,  <!-- 用户姓名 -->
+		  account,  <!-- 用户账号 -->
+		  login_time,  <!-- 登陆用户时间 -->
+		  user_id,  <!-- 用户编号 -->
+		  login_ip,  <!-- 登陆IP -->
+		  explorer,  <!-- 登陆浏览器 -->
+		  exit_time,  <!-- 退出时间 -->
+		  exit_type  <!-- 退出类型 1超时退出 2自动退出 -->
+		)
+		VALUES (
+            #{log_id, jdbcType=VARCHAR},   <!-- 日志编号 -->
+		    #{session_id, jdbcType=VARCHAR},  <!-- 会话ID -->
+		    #{username, jdbcType=VARCHAR},  <!-- 用户姓名 -->
+		    #{account, jdbcType=VARCHAR},  <!-- 用户账号 -->
+		    #{login_time, jdbcType=VARCHAR},  <!-- 登陆用户时间 -->
+		    #{user_id, jdbcType=VARCHAR},  <!-- 用户编号 -->
+		    #{login_ip, jdbcType=VARCHAR},  <!-- 登陆IP -->
+		    #{explorer, jdbcType=VARCHAR},  <!-- 登陆浏览器 -->
+		    #{exit_time, jdbcType=VARCHAR},  <!-- 退出时间 -->
+		    #{exit_type, jdbcType=VARCHAR}  <!-- 退出类型 1超时退出 2自动退出 -->
+		)
+	</insert>
+
+	<!-- 根据主键修改数据持久化对象 -->
+	<update id="updateByKey" parameterType="com.beauty.common.po.ShopLoginLogPO">
+		UPDATE bis_shop_loginlog
+		<set>
+			<if test="session_id != null">
+		          session_id = #{session_id, jdbcType=VARCHAR},  <!-- 会话ID -->
+			</if>
+			<if test="username != null">
+		          username = #{username, jdbcType=VARCHAR},  <!-- 用户姓名 -->
+			</if>
+			<if test="account != null">
+		          account = #{account, jdbcType=VARCHAR},  <!-- 用户账号 -->
+			</if>
+			<if test="login_time != null">
+		          login_time = #{login_time, jdbcType=VARCHAR},  <!-- 登陆用户时间 -->
+			</if>
+			<if test="user_id != null">
+		          user_id = #{user_id, jdbcType=VARCHAR},  <!-- 用户编号 -->
+			</if>
+			<if test="login_ip != null">
+		          login_ip = #{login_ip, jdbcType=VARCHAR},  <!-- 登陆IP -->
+			</if>
+			<if test="explorer != null">
+		          explorer = #{explorer, jdbcType=VARCHAR},  <!-- 登陆浏览器 -->
+			</if>
+			<if test="exit_time != null">
+		          exit_time = #{exit_time, jdbcType=VARCHAR},  <!-- 退出时间 -->
+			</if>
+			<if test="exit_type != null">
+		          exit_type = #{exit_type, jdbcType=VARCHAR},  <!-- 退出类型 1超时退出 2自动退出 -->
+			</if>
+		</set>
+		WHERE  log_id = #{log_id}
+	</update>
+	
+	<!-- 根据主键删除数据持久化对象 -->
+	<delete id="deleteByKey">
+		DELETE FROM bis_shop_loginlog WHERE  log_id = #{log_id}
+	</delete>
+	
+	<!-- 批量根据主键删除数据持久化对象 -->
+	<delete id="batchDeleteByKey"  parameterType="java.lang.String">
+		DELETE FROM bis_shop_loginlog WHERE log_id IN 
+		<foreach item="log_id" index="index" collection="list" separator="," open="(" close=")">
+		#{log_id}
+	    </foreach>
+	</delete>
+
+	<!-- 根据主键查询并返回数据持久化对象 -->
+	<select id="selectByKey" resultType="com.beauty.common.po.ShopLoginLogPO">
+		SELECT
+		<include refid="column" />
+		FROM bis_shop_loginlog WHERE  log_id = #{log_id}
+	</select>
+
+	<!-- 根据唯一组合条件查询并返回数据持久化对象 -->
+	<select id="selectOne" parameterType="Dto" resultType="com.beauty.common.po.ShopLoginLogPO">
+		SELECT
+		    <include refid="column" />
+		FROM bis_shop_loginlog
+		<where>
+		    <include refid="equal" />
+		</where>		
+	</select>
+
+	<!-- 根据Dto查询并返回数据持久化对象集合 -->
+	<select id="list" parameterType="Dto" resultType="com.beauty.common.po.ShopLoginLogPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_shop_loginlog
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto查询并返回分页数据持久化对象集合 -->
+	<select id="listPage" parameterType="Dto" resultType="com.beauty.common.po.ShopLoginLogPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_shop_loginlog
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto模糊查询并返回数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="like" parameterType="Dto" resultType="com.beauty.common.po.ShopLoginLogPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_shop_loginlog
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto模糊查询并返回分页数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="likePage" parameterType="Dto" resultType="com.beauty.common.po.ShopLoginLogPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_shop_loginlog
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto统计行数 -->
+	<select id="rows" resultType="Integer" parameterType="Dto">
+		SELECT COUNT(1) AS rows_ FROM bis_shop_loginlog
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	<!-- 根据数学表达式进行数学运算 -->
+	<select id="calc" parameterType="Dto" resultType="String">
+		SELECT
+			${_expr}
+		FROM bis_shop_loginlog
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	
+	
+	<!-- 表字段 -->
+	<sql id="column">
+		  log_id,  <!-- 日志编号 -->
+		  session_id,  <!-- 会话ID -->
+		  username,  <!-- 用户姓名 -->
+		  account,  <!-- 用户账号 -->
+		  login_time,  <!-- 登陆用户时间 -->
+		  user_id,  <!-- 用户编号 -->
+		  login_ip,  <!-- 登陆IP -->
+		  explorer,  <!-- 登陆浏览器 -->
+		  exit_time,  <!-- 退出时间 -->
+		  exit_type  <!-- 退出类型 1超时退出 2自动退出 -->
+	</sql>
+	
+	<!-- 表字段(用于外表的关联时引用) -->
+	<sql id="column2">
+		  bis_shop_loginlog.log_id,  <!-- 日志编号 -->
+		  bis_shop_loginlog.session_id,  <!-- 会话ID -->
+		  bis_shop_loginlog.username,  <!-- 用户姓名 -->
+		  bis_shop_loginlog.account,  <!-- 用户账号 -->
+		  bis_shop_loginlog.login_time,  <!-- 登陆用户时间 -->
+		  bis_shop_loginlog.user_id,  <!-- 用户编号 -->
+		  bis_shop_loginlog.login_ip,  <!-- 登陆IP -->
+		  bis_shop_loginlog.explorer,  <!-- 登陆浏览器 -->
+		  bis_shop_loginlog.exit_time,  <!-- 退出时间 -->
+		  bis_shop_loginlog.exit_type  <!-- 退出类型 1超时退出 2自动退出 -->
+	</sql>
+
+	<!-- Where精确匹配字段 -->
+	<sql id="equal">
+	    <if test="log_id != null and log_id != ''">
+		      AND log_id = #{log_id}  <!-- 日志编号 -->
+		</if>
+	    <if test="session_id != null and session_id != ''">
+		      AND session_id = #{session_id}  <!-- 会话ID -->
+		</if>
+	    <if test="username != null and username != ''">
+		      AND username = #{username}  <!-- 用户姓名 -->
+		</if>
+	    <if test="account != null and account != ''">
+		      AND account = #{account}  <!-- 用户账号 -->
+		</if>
+	    <if test="login_time != null and login_time != ''">
+		      AND login_time = #{login_time}  <!-- 登陆用户时间 -->
+		</if>
+	    <if test="user_id != null and user_id != ''">
+		      AND user_id = #{user_id}  <!-- 用户编号 -->
+		</if>
+	    <if test="login_ip != null and login_ip != ''">
+		      AND login_ip = #{login_ip}  <!-- 登陆IP -->
+		</if>
+	    <if test="explorer != null and explorer != ''">
+		      AND explorer = #{explorer}  <!-- 登陆浏览器 -->
+		</if>
+	    <if test="exit_time != null and exit_time != ''">
+		      AND exit_time = #{exit_time}  <!-- 退出时间 -->
+		</if>
+	    <if test="exit_type != null and exit_type != ''">
+		      AND exit_type = #{exit_type}  <!-- 退出类型 1超时退出 2自动退出 -->
+		</if>
+	</sql>
+	
+	<!-- Where模糊匹配字段 -->
+	<sql id="like">
+	    <if test="log_id != null and log_id != ''">
+		      AND log_id LIKE '%${log_id}%'  <!-- 日志编号 -->
+		</if>
+	    <if test="session_id != null and session_id != ''">
+		      AND session_id LIKE '%${session_id}%'  <!-- 会话ID -->
+		</if>
+	    <if test="username != null and username != ''">
+		      AND username LIKE '%${username}%'  <!-- 用户姓名 -->
+		</if>
+	    <if test="account != null and account != ''">
+		      AND account LIKE '%${account}%'  <!-- 用户账号 -->
+		</if>
+	    <if test="login_time != null and login_time != ''">
+		      AND login_time LIKE '%${login_time}%'  <!-- 登陆用户时间 -->
+		</if>
+	    <if test="user_id != null and user_id != ''">
+		      AND user_id LIKE '%${user_id}%'  <!-- 用户编号 -->
+		</if>
+	    <if test="login_ip != null and login_ip != ''">
+		      AND login_ip LIKE '%${login_ip}%'  <!-- 登陆IP -->
+		</if>
+	    <if test="explorer != null and explorer != ''">
+		      AND explorer LIKE '%${explorer}%'  <!-- 登陆浏览器 -->
+		</if>
+	    <if test="exit_time != null and exit_time != ''">
+		      AND exit_time LIKE '%${exit_time}%'  <!-- 退出时间 -->
+		</if>
+	    <if test="exit_type != null and exit_type != ''">
+		      AND exit_type LIKE '%${exit_type}%'  <!-- 退出类型 1超时退出 2自动退出 -->
+		</if>
+	</sql>
+	
+</mapper>

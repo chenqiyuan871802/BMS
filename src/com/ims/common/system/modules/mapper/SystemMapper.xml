@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 系统通用语句 -->
+<mapper namespace="System">
+
+	<!--根据角色编号获取已经授权关联的菜单-->
+	<select id="listGrantMenuOfRoleId" parameterType="Dto" resultType="Dto">
+		SELECT *  FROM sys_menu INNER JOIN sys_role_menu  ON sys_menu.menu_id=sys_role_menu.menu_id
+		<where>
+		 <if test="role_id != null and role_id!= ''">
+		      AND sys_role_menu.role_id = #{role_id}  <!-- 角色编号 -->
+		</if>
+		<if test="grant_type!= null and grant_type!= ''">
+		      AND sys_role_menu.grant_type = #{grant_type}  <!-- 授权类型 -->
+		</if>
+		<if test="menu_type!= null and menu_type!= ''">
+		      AND sys_menu.menu_type = #{menu_type}  <!--菜单类型 -->
+		</if>
+		</where>
+	</select>
+	<!-- 查询用户角色权限菜单 -->
+	<select id="listUserRoleMenu" parameterType="com.ims.common.core.matatype.Dto" resultType="com.ims.common.system.modules.po.MenuPO">
+	  SELECT 
+	   <include refid="com.ims.common.system.modules.mapper.MenuMapper.column2" />	
+	   FROM sys_menu  INNER JOIN sys_role_menu  ON sys_menu.menu_id=sys_role_menu.menu_id INNER JOIN sys_role_user ON sys_role_menu.role_id=sys_role_user.role_id
+	   <where>
+	        sys_menu.status='1' AND sys_role_user.user_id=#{user_id}
+			<if test="parent_id!= null and parent_id!= ''">
+				AND sys_menu.parent_id =#{parent_id}
+			</if>
+			<if test="menu_type!= null and menu_type!= ''">
+		      AND sys_menu.menu_type = #{menu_type}  <!--菜单类型 -->
+		  </if>
+		</where>
+	</select>
+	<!-- 统计角色菜单数量-->
+	<select id="queryCountByRoleId" parameterType="com.ims.common.core.matatype.Dto" resultType="Integer">
+	  SELECT 
+	  COUNT(1)
+	   FROM sys_menu  INNER JOIN sys_role_menu  ON sys_menu.menu_id=sys_role_menu.menu_id 
+	   <where>
+	        sys_menu.status='1' AND sys_role_menu.role_id=#{role_id}
+		</where>
+	</select>
+	<!-- 查询待选的用户列表-->
+	<select id="listUserPage" parameterType="Dto" resultType="com.ims.common.system.modules.po.UserPO">
+		SELECT
+		sys_dept.dept_name,
+			<include refid="com.ims.common.system.modules.mapper.UserMapper.column2" />	
+		FROM sys_user INNER JOIN sys_dept
+		ON sys_user.dept_id=sys_dept.dept_id
+		<where>
+		NOT EXISTS (SELECT  user_id FROM sys_role_user WHERE sys_role_user.user_id=sys_user.user_id )
+		AND sys_user.user_type='1' AND sys_dept.is_del='0' AND sys_user.is_del='0'
+	    <if test="cascade_id != null and cascade_id != ''">
+		      AND sys_dept.cascade_id LIKE '${cascade_id}%'  <!-- 使用语义ID关联 -->
+		</if>
+	    <if test="queryParam!= null and queryParam != ''">
+		      AND (sys_user.account LIKE '%${queryParam}%' OR sys_user.username LIKE '%${queryParam}%')<!-- 登陆账号或登陆名 -->
+		</if>
+	    
+		</where>	
+		ORDER BY sys_user.create_time DESC 
+	</select>
+	<!-- 查询角色已经选择的用户的用户列表-->
+	<select id="listSelectUserPage" parameterType="Dto" resultType="com.ims.common.system.modules.po.UserPO">
+		SELECT
+		sys_dept.dept_name,
+			<include refid="com.ims.common.system.modules.mapper.UserMapper.column2" />	
+		FROM sys_user INNER JOIN sys_dept
+		ON sys_user.dept_id=sys_dept.dept_id INNER JOIN sys_role_user ON sys_user.user_id=sys_role_user.user_id
+		<where>
+		AND sys_user.user_type='1' AND sys_dept.is_del='0' AND sys_user.is_del='0' AND sys_role_user.role_id=#{role_id} 
+	    <if test="queryParam!= null and queryParam != ''">
+		      AND (sys_user.account LIKE '%${queryParam}%' OR sys_user.username LIKE '%${queryParam}%')<!-- 登陆账号或登陆名 -->
+		</if>
+	    
+		</where>	
+		ORDER BY sys_user.create_time DESC 
+	</select>
+	<!-- 查询启用的菜单 -->
+	<select id="listEnabledMenu" parameterType="Dto" resultType="com.ims.common.system.modules.po.MenuPO">
+	  SELECT 
+	     <include refid="com.ims.common.system.modules.mapper.MenuMapper.column" />	
+	   FROM sys_menu  
+	   <where>
+	   status='1'
+	   <if test="menu_type!= null and menu_type!= ''">
+		      AND sys_menu.menu_type = #{menu_type}  <!--菜单类型 -->
+		</if>
+	   </where>
+	</select>
+	<!--根据用户编号查询关联的角色信息-->
+	<select id="queryRoleByUserId" parameterType="String" resultType="com.ims.common.system.modules.po.RolePO">
+		SELECT   
+		<include refid="com.ims.common.system.modules.mapper.RoleMapper.column2" />	
+		  FROM sys_role INNER JOIN  sys_role_user ON sys_role.role_id=sys_role_user.role_id WHERE sys_role_user.user_id=#{user_id}
+	</select>
+	<!-- 根据角色编号删除角色与菜单关联信息 -->
+	<delete id="deleteRoleMenu" parameterType="String">
+		DELETE FROM sys_role_menu WHERE role_id= #{role_id}
+	</delete>
+	<!-- 批量保存角色与菜单关联信息 -->
+	<insert id="saveRoleMenu" parameterType="Dto">  
+     INSERT INTO sys_role_menu (role_id,menu_id,grant_type,create_user_id,create_time) 
+     VALUES(#{role_id},#{menu_id},#{grant_type},#{create_user_id},#{create_time}) 
+    </insert>  
+	<!-- 保存用户与角色关联信息 -->
+	<insert id="saveRoleUser" parameterType="Dto">
+	INSERT INTO sys_role_user (role_id,user_id,create_user_id,create_time) 
+		VALUES(#{role_id},#{user_id},#{create_user_id},#{create_time})
+	</insert>
+	<!-- 根据用户编号删除用户与角色关联信息 -->
+	<delete id="deleteRoleUserByUserId" parameterType="String">
+		DELETE FROM sys_role_user WHERE  user_id=#{user_id}
+	</delete>
+	<!-- 根据角色编号删除角色与用户关联信息 -->
+	<delete id="deleteRoleUserByRoleId" parameterType="String">
+		DELETE FROM sys_role_user WHERE role_id= #{role_id}
+	</delete>
+	<!-- 更新密码 -->
+	<update id="updatePassword" parameterType="Dto">
+		UPDATE sys_user SET password=#{password} WHERE user_id=#{user_id}
+	</update>
+	
+	<!-- 获取字典数据 -->
+	<select id="listDic" parameterType="Dto" resultType="com.ims.common.system.modules.po.DictionaryPO">
+	  SELECT 
+	  sys_dictionary_index.dic_key,
+	   <include refid="com.ims.common.system.modules.mapper.DictionaryMapper.column2" />   
+	   FROM sys_dictionary_index INNER JOIN sys_dictionary  ON sys_dictionary_index.dic_index_id=sys_dictionary.dic_index_id
+	   <where>
+	      
+		 <if test="dic_index_id != null and dic_index_id != ''">
+		      AND sys_dictionary.dic_index_id = #{dic_index_id}  <!-- 所属字典流水号 -->
+		</if>
+		<if test="dic_key != null and dic_key != ''">
+		      AND sys_dictionary_index.dic_key = #{dic_key}  <!-- 字典标识 -->
+		</if>
+	    <if test="status != null and status != ''">
+		      AND sys_dictionary.status = #{status}  <!-- 当前状态(0:停用;1:启用) -->
+		</if>
+		</where>
+		ORDER BY sys_dictionary.dic_index_id ASC,sys_dictionary.sort_no ASC 
+	</select>
+	<!-- 根据Dto查询并键值参数 -->
+	<select id="listParam" parameterType="Dto" resultType="com.ims.common.system.modules.po.ParamPO">
+		SELECT
+			<include refid="com.ims.common.system.modules.mapper.ParamMapper.column" />	
+		FROM sys_param
+		<where>
+		  
+	    <if test="param_name != null and param_name != ''">
+		      AND param_name LIKE '%${param_name}%'  <!-- 参数名称 -->
+		</if>
+	    <if test="param_key != null and param_key != ''">
+		      AND param_key LIKE '%${param_key}%'  <!-- 参数键名 -->
+		</if>
+	    <if test="param_value != null and param_value != ''">
+		      AND param_value LIKE '%${param_value}%'  <!-- 参数键值 -->
+		</if>
+	    <if test="status != null and status != ''">
+		      AND status = #{status}  <!-- 当前状态(0:停用;1:启用) -->
+		</if>
+	    <if test="edit_mode != null and edit_mode != ''">
+		      AND edit_mode = #{edit_mode}  <!-- 编辑模式(0:只读;1:可编辑) -->
+		</if>
+		<if test="param_idList!=null and param_idList.size()>0"> <!-- 多组的获取 -->
+				AND param_id IN
+	    <foreach item="item" index="index" collection="param_idList" separator="," open="(" close=")">
+		       #{item}
+	    </foreach>
+		</if>
+	   
+		</where>	
+	</select>
+	
+	<!-- 根据数学表达式进行数学运算 -->
+	<select id="calc" parameterType="Dto" resultType="String">
+		SELECT
+			${_expr}
+		FROM ${tableName}
+	</select>
+	
+	
+</mapper>

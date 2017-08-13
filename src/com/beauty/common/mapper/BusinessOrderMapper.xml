@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 营业订单[bis_business_order]SQLMapper自动映射 -->
+<!--  注意:此文件由系统平台自动生成-禁止手工修改 2017-07-23 21:59:59 -->
+<mapper namespace="com.beauty.common.mapper.BusinessOrderMapper">
+	
+	<!-- 插入一个数据持久化对象(插入字段为传入PO实体的非空属性) -->
+	<insert id="insert"  parameterType="com.beauty.common.po.BusinessOrderPO">
+		INSERT INTO bis_business_order 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="order_content != null and order_content != ''">
+	         order_content, <!-- 订单内容 -->
+		</if>
+		<if test="project_id != null and project_id != ''">
+	         project_id, <!-- 项目编号 -->
+		</if>
+		<if test="shop_id != null and shop_id != ''">
+	         shop_id, <!-- 店铺编号 -->
+		</if>
+		<if test="custom_user_id != null and custom_user_id != ''">
+	         custom_user_id, <!-- 消费者编号 -->
+		</if>
+		<if test="subscribe_time != null and subscribe_time != ''">
+	         subscribe_time, <!-- 预约时间 -->
+		</if>
+		<if test="order_type != null and order_type != ''">
+	         order_type, <!-- 订单类型 1美研币 2礼包3项目 -->
+		</if>
+		<if test="order_money != null and order_money != ''">
+	         order_money, <!-- 订单金额 -->
+		</if>
+		<if test="buy_num != null">
+	         buy_num, <!-- 购买数量 -->
+		</if>
+		<if test="pay_money != null and pay_money != ''">
+	         pay_money, <!-- 实际支付金额 -->
+		</if>
+		<if test="extend_beauty_num != null">
+	         extend_beauty_num, <!-- 消耗美研币数量 -->
+		</if>
+		<if test="cash_income != null and cash_income != ''">
+	         cash_income, <!-- 现金收入 -->
+		</if>
+		<if test="extend_income != null and extend_income != ''">
+	         extend_income, <!-- 消耗收入 -->
+		</if>
+		<if test="pay_way != null and pay_way != ''">
+	         pay_way, <!-- 支付方式1 微信 2支付宝 3美颜币 4套餐 -->
+		</if>
+		<if test="pay_time != null and pay_time != ''">
+	         pay_time, <!-- 支付时间 -->
+		</if>
+		<if test="check_code != null and check_code != ''">
+	         check_code, <!-- 美研币支付验证码 -->
+		</if>
+		<if test="order_status != null and order_status != ''">
+	         order_status, <!-- 订单状态 -->
+		</if>
+		<if test="order_remark != null and order_remark != ''">
+	         order_remark, <!-- 订单备注 -->
+		</if>
+		<if test="server_user_id != null and server_user_id != ''">
+	         server_user_id, <!-- server_user_id -->
+		</if>
+		<if test="handle_user_id != null and handle_user_id != ''">
+	         handle_user_id, <!-- 经手员工编号 -->
+		</if>
+		<if test="create_time != null and create_time != ''">
+	         create_time, <!-- 订单创建时间 -->
+		</if>
+		<if test="service_time != null and service_time != ''">
+	         service_time, <!-- 服务时间 -->
+		</if>
+		<if test="cancel_time != null and cancel_time != ''">
+	         cancel_time, <!-- 撤销时间 -->
+		</if>
+		<if test="cancel_type != null and cancel_type != ''">
+	         cancel_type, <!-- cancel_type -->
+		</if>
+		<if test="finish_time != null and finish_time != ''">
+	         finish_time, <!-- 订单完成时间 -->
+		</if>
+		<if test="order_source != null and order_source != ''">
+	         order_source, <!-- 订单所属 1平台 2商家 -->
+		</if>
+		<if test="modify_status != null and modify_status != ''">
+	         modify_status, <!-- 修改状态 1已经修改0未修改 -->
+		</if>
+		<if test="free_num != null">
+	         free_num, <!-- 免费美研币 -->
+		</if>
+		<if test="order_id != null and order_id != ''">
+	          order_id  <!-- 订单编号 -->
+	    </if>
+        </trim>
+	    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+		<if test="order_content != null and order_content != ''">
+	          #{order_content, jdbcType=VARCHAR}, <!-- 订单内容 -->
+	    </if>
+		<if test="project_id != null and project_id != ''">
+	          #{project_id, jdbcType=VARCHAR}, <!-- 项目编号 -->
+	    </if>
+		<if test="shop_id != null and shop_id != ''">
+	          #{shop_id, jdbcType=VARCHAR}, <!-- 店铺编号 -->
+	    </if>
+		<if test="custom_user_id != null and custom_user_id != ''">
+	          #{custom_user_id, jdbcType=VARCHAR}, <!-- 消费者编号 -->
+	    </if>
+		<if test="subscribe_time != null and subscribe_time != ''">
+	          #{subscribe_time, jdbcType=VARCHAR}, <!-- 预约时间 -->
+	    </if>
+		<if test="order_type != null and order_type != ''">
+	          #{order_type, jdbcType=VARCHAR}, <!-- 订单类型 1美研币 2礼包3项目 -->
+	    </if>
+		<if test="order_money != null and order_money != ''">
+	          #{order_money, jdbcType=VARCHAR}, <!-- 订单金额 -->
+	    </if>
+		<if test="buy_num != null">
+	          #{buy_num, jdbcType=INTEGER}, <!-- 购买数量 -->
+	    </if>
+		<if test="pay_money != null and pay_money != ''">
+	          #{pay_money, jdbcType=VARCHAR}, <!-- 实际支付金额 -->
+	    </if>
+		<if test="extend_beauty_num != null">
+	          #{extend_beauty_num, jdbcType=INTEGER}, <!-- 消耗美研币数量 -->
+	    </if>
+		<if test="cash_income != null and cash_income != ''">
+	          #{cash_income, jdbcType=VARCHAR}, <!-- 现金收入 -->
+	    </if>
+		<if test="extend_income != null and extend_income != ''">
+	          #{extend_income, jdbcType=VARCHAR}, <!-- 消耗收入 -->
+	    </if>
+		<if test="pay_way != null and pay_way != ''">
+	          #{pay_way, jdbcType=VARCHAR}, <!-- 支付方式1 微信 2支付宝 3美颜币 4套餐 -->
+	    </if>
+		<if test="pay_time != null and pay_time != ''">
+	          #{pay_time, jdbcType=VARCHAR}, <!-- 支付时间 -->
+	    </if>
+		<if test="check_code != null and check_code != ''">
+	          #{check_code, jdbcType=VARCHAR}, <!-- 美研币支付验证码 -->
+	    </if>
+		<if test="order_status != null and order_status != ''">
+	          #{order_status, jdbcType=VARCHAR}, <!-- 订单状态 -->
+	    </if>
+		<if test="order_remark != null and order_remark != ''">
+	          #{order_remark, jdbcType=VARCHAR}, <!-- 订单备注 -->
+	    </if>
+		<if test="server_user_id != null and server_user_id != ''">
+	          #{server_user_id, jdbcType=VARCHAR}, <!-- server_user_id -->
+	    </if>
+		<if test="handle_user_id != null and handle_user_id != ''">
+	          #{handle_user_id, jdbcType=VARCHAR}, <!-- 经手员工编号 -->
+	    </if>
+		<if test="create_time != null and create_time != ''">
+	          #{create_time, jdbcType=VARCHAR}, <!-- 订单创建时间 -->
+	    </if>
+		<if test="service_time != null and service_time != ''">
+	          #{service_time, jdbcType=VARCHAR}, <!-- 服务时间 -->
+	    </if>
+		<if test="cancel_time != null and cancel_time != ''">
+	          #{cancel_time, jdbcType=VARCHAR}, <!-- 撤销时间 -->
+	    </if>
+		<if test="cancel_type != null and cancel_type != ''">
+	          #{cancel_type, jdbcType=VARCHAR}, <!-- cancel_type -->
+	    </if>
+		<if test="finish_time != null and finish_time != ''">
+	          #{finish_time, jdbcType=VARCHAR}, <!-- 订单完成时间 -->
+	    </if>
+		<if test="order_source != null and order_source != ''">
+	          #{order_source, jdbcType=VARCHAR}, <!-- 订单所属 1平台 2商家 -->
+	    </if>
+		<if test="modify_status != null and modify_status != ''">
+	          #{modify_status, jdbcType=VARCHAR}, <!-- 修改状态 1已经修改0未修改 -->
+	    </if>
+		<if test="free_num != null">
+	          #{free_num, jdbcType=INTEGER}, <!-- 免费美研币 -->
+	    </if>
+		<if test="order_id != null and order_id != ''">
+		     #{order_id, jdbcType=VARCHAR}  <!-- 订单编号 -->
+	    </if>
+		</trim>
+		
+	</insert>
+	
+	<!-- 插入一个数据持久化对象(含所有字段) -->
+	<insert id="insertAll"  parameterType="com.beauty.common.po.BusinessOrderPO">
+		INSERT INTO bis_business_order (
+          order_id,  <!-- 订单编号 -->
+		  order_content,  <!-- 订单内容 -->
+		  project_id,  <!-- 项目编号 -->
+		  shop_id,  <!-- 店铺编号 -->
+		  custom_user_id,  <!-- 消费者编号 -->
+		  subscribe_time,  <!-- 预约时间 -->
+		  order_type,  <!-- 订单类型 1美研币 2礼包3项目 -->
+		  order_money,  <!-- 订单金额 -->
+		  buy_num,  <!-- 购买数量 -->
+		  pay_money,  <!-- 实际支付金额 -->
+		  extend_beauty_num,  <!-- 消耗美研币数量 -->
+		  cash_income,  <!-- 现金收入 -->
+		  extend_income,  <!-- 消耗收入 -->
+		  pay_way,  <!-- 支付方式1 微信 2支付宝 3美颜币 4套餐 -->
+		  pay_time,  <!-- 支付时间 -->
+		  check_code,  <!-- 美研币支付验证码 -->
+		  order_status,  <!-- 订单状态 -->
+		  order_remark,  <!-- 订单备注 -->
+		  server_user_id,  <!-- server_user_id -->
+		  handle_user_id,  <!-- 经手员工编号 -->
+		  create_time,  <!-- 订单创建时间 -->
+		  service_time,  <!-- 服务时间 -->
+		  cancel_time,  <!-- 撤销时间 -->
+		  cancel_type,  <!-- cancel_type -->
+		  finish_time,  <!-- 订单完成时间 -->
+		  order_source,  <!-- 订单所属 1平台 2商家 -->
+		  modify_status,  <!-- 修改状态 1已经修改0未修改 -->
+		  free_num  <!-- 免费美研币 -->
+		)
+		VALUES (
+            #{order_id, jdbcType=VARCHAR},   <!-- 订单编号 -->
+		    #{order_content, jdbcType=VARCHAR},  <!-- 订单内容 -->
+		    #{project_id, jdbcType=VARCHAR},  <!-- 项目编号 -->
+		    #{shop_id, jdbcType=VARCHAR},  <!-- 店铺编号 -->
+		    #{custom_user_id, jdbcType=VARCHAR},  <!-- 消费者编号 -->
+		    #{subscribe_time, jdbcType=VARCHAR},  <!-- 预约时间 -->
+		    #{order_type, jdbcType=VARCHAR},  <!-- 订单类型 1美研币 2礼包3项目 -->
+		    #{order_money, jdbcType=VARCHAR},  <!-- 订单金额 -->
+		    #{buy_num, jdbcType=INTEGER},  <!-- 购买数量 -->
+		    #{pay_money, jdbcType=VARCHAR},  <!-- 实际支付金额 -->
+		    #{extend_beauty_num, jdbcType=INTEGER},  <!-- 消耗美研币数量 -->
+		    #{cash_income, jdbcType=VARCHAR},  <!-- 现金收入 -->
+		    #{extend_income, jdbcType=VARCHAR},  <!-- 消耗收入 -->
+		    #{pay_way, jdbcType=VARCHAR},  <!-- 支付方式1 微信 2支付宝 3美颜币 4套餐 -->
+		    #{pay_time, jdbcType=VARCHAR},  <!-- 支付时间 -->
+		    #{check_code, jdbcType=VARCHAR},  <!-- 美研币支付验证码 -->
+		    #{order_status, jdbcType=VARCHAR},  <!-- 订单状态 -->
+		    #{order_remark, jdbcType=VARCHAR},  <!-- 订单备注 -->
+		    #{server_user_id, jdbcType=VARCHAR},  <!-- server_user_id -->
+		    #{handle_user_id, jdbcType=VARCHAR},  <!-- 经手员工编号 -->
+		    #{create_time, jdbcType=VARCHAR},  <!-- 订单创建时间 -->
+		    #{service_time, jdbcType=VARCHAR},  <!-- 服务时间 -->
+		    #{cancel_time, jdbcType=VARCHAR},  <!-- 撤销时间 -->
+		    #{cancel_type, jdbcType=VARCHAR},  <!-- cancel_type -->
+		    #{finish_time, jdbcType=VARCHAR},  <!-- 订单完成时间 -->
+		    #{order_source, jdbcType=VARCHAR},  <!-- 订单所属 1平台 2商家 -->
+		    #{modify_status, jdbcType=VARCHAR},  <!-- 修改状态 1已经修改0未修改 -->
+		    #{free_num, jdbcType=INTEGER}  <!-- 免费美研币 -->
+		)
+	</insert>
+
+	<!-- 根据主键修改数据持久化对象 -->
+	<update id="updateByKey" parameterType="com.beauty.common.po.BusinessOrderPO">
+		UPDATE bis_business_order
+		<set>
+			<if test="order_content != null">
+		          order_content = #{order_content, jdbcType=VARCHAR},  <!-- 订单内容 -->
+			</if>
+			<if test="project_id != null">
+		          project_id = #{project_id, jdbcType=VARCHAR},  <!-- 项目编号 -->
+			</if>
+			<if test="shop_id != null">
+		          shop_id = #{shop_id, jdbcType=VARCHAR},  <!-- 店铺编号 -->
+			</if>
+			<if test="custom_user_id != null">
+		          custom_user_id = #{custom_user_id, jdbcType=VARCHAR},  <!-- 消费者编号 -->
+			</if>
+			<if test="subscribe_time != null">
+		          subscribe_time = #{subscribe_time, jdbcType=VARCHAR},  <!-- 预约时间 -->
+			</if>
+			<if test="order_type != null">
+		          order_type = #{order_type, jdbcType=VARCHAR},  <!-- 订单类型 1美研币 2礼包3项目 -->
+			</if>
+			<if test="order_money != null">
+		          order_money = #{order_money, jdbcType=VARCHAR},  <!-- 订单金额 -->
+			</if>
+			<if test="buy_num != null">
+		          buy_num = #{buy_num, jdbcType=INTEGER},  <!-- 购买数量 -->
+			</if>
+			<if test="pay_money != null">
+		          pay_money = #{pay_money, jdbcType=VARCHAR},  <!-- 实际支付金额 -->
+			</if>
+			<if test="extend_beauty_num != null">
+		          extend_beauty_num = #{extend_beauty_num, jdbcType=INTEGER},  <!-- 消耗美研币数量 -->
+			</if>
+			<if test="cash_income != null">
+		          cash_income = #{cash_income, jdbcType=VARCHAR},  <!-- 现金收入 -->
+			</if>
+			<if test="extend_income != null">
+		          extend_income = #{extend_income, jdbcType=VARCHAR},  <!-- 消耗收入 -->
+			</if>
+			<if test="pay_way != null">
+		          pay_way = #{pay_way, jdbcType=VARCHAR},  <!-- 支付方式1 微信 2支付宝 3美颜币 4套餐 -->
+			</if>
+			<if test="pay_time != null">
+		          pay_time = #{pay_time, jdbcType=VARCHAR},  <!-- 支付时间 -->
+			</if>
+			<if test="check_code != null">
+		          check_code = #{check_code, jdbcType=VARCHAR},  <!-- 美研币支付验证码 -->
+			</if>
+			<if test="order_status != null">
+		          order_status = #{order_status, jdbcType=VARCHAR},  <!-- 订单状态 -->
+			</if>
+			<if test="order_remark != null">
+		          order_remark = #{order_remark, jdbcType=VARCHAR},  <!-- 订单备注 -->
+			</if>
+			<if test="server_user_id != null">
+		          server_user_id = #{server_user_id, jdbcType=VARCHAR},  <!-- server_user_id -->
+			</if>
+			<if test="handle_user_id != null">
+		          handle_user_id = #{handle_user_id, jdbcType=VARCHAR},  <!-- 经手员工编号 -->
+			</if>
+			<if test="create_time != null">
+		          create_time = #{create_time, jdbcType=VARCHAR},  <!-- 订单创建时间 -->
+			</if>
+			<if test="service_time != null">
+		          service_time = #{service_time, jdbcType=VARCHAR},  <!-- 服务时间 -->
+			</if>
+			<if test="cancel_time != null">
+		          cancel_time = #{cancel_time, jdbcType=VARCHAR},  <!-- 撤销时间 -->
+			</if>
+			<if test="cancel_type != null">
+		          cancel_type = #{cancel_type, jdbcType=VARCHAR},  <!-- cancel_type -->
+			</if>
+			<if test="finish_time != null">
+		          finish_time = #{finish_time, jdbcType=VARCHAR},  <!-- 订单完成时间 -->
+			</if>
+			<if test="order_source != null">
+		          order_source = #{order_source, jdbcType=VARCHAR},  <!-- 订单所属 1平台 2商家 -->
+			</if>
+			<if test="modify_status != null">
+		          modify_status = #{modify_status, jdbcType=VARCHAR},  <!-- 修改状态 1已经修改0未修改 -->
+			</if>
+			<if test="free_num != null">
+		          free_num = #{free_num, jdbcType=INTEGER},  <!-- 免费美研币 -->
+			</if>
+		</set>
+		WHERE  order_id = #{order_id}
+	</update>
+	
+	<!-- 根据主键删除数据持久化对象 -->
+	<delete id="deleteByKey">
+		DELETE FROM bis_business_order WHERE  order_id = #{order_id}
+	</delete>
+	
+	<!-- 批量根据主键删除数据持久化对象 -->
+	<delete id="batchDeleteByKey"  parameterType="java.lang.String">
+		DELETE FROM bis_business_order WHERE order_id IN 
+		<foreach item="order_id" index="index" collection="list" separator="," open="(" close=")">
+		#{order_id}
+	    </foreach>
+	</delete>
+
+	<!-- 根据主键查询并返回数据持久化对象 -->
+	<select id="selectByKey" resultType="com.beauty.common.po.BusinessOrderPO">
+		SELECT
+		<include refid="column" />
+		FROM bis_business_order WHERE  order_id = #{order_id}
+	</select>
+
+	<!-- 根据唯一组合条件查询并返回数据持久化对象 -->
+	<select id="selectOne" parameterType="Dto" resultType="com.beauty.common.po.BusinessOrderPO">
+		SELECT
+		    <include refid="column" />
+		FROM bis_business_order
+		<where>
+		    <include refid="equal" />
+		</where>		
+	</select>
+
+	<!-- 根据Dto查询并返回数据持久化对象集合 -->
+	<select id="list" parameterType="Dto" resultType="com.beauty.common.po.BusinessOrderPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_business_order
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto查询并返回分页数据持久化对象集合 -->
+	<select id="listPage" parameterType="Dto" resultType="com.beauty.common.po.BusinessOrderPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_business_order
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto模糊查询并返回数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="like" parameterType="Dto" resultType="com.beauty.common.po.BusinessOrderPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_business_order
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto模糊查询并返回分页数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="likePage" parameterType="Dto" resultType="com.beauty.common.po.BusinessOrderPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_business_order
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto统计行数 -->
+	<select id="rows" resultType="Integer" parameterType="Dto">
+		SELECT COUNT(1) AS rows_ FROM bis_business_order
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	<!-- 根据数学表达式进行数学运算 -->
+	<select id="calc" parameterType="Dto" resultType="String">
+		SELECT
+			${_expr}
+		FROM bis_business_order
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	
+	
+	<!-- 表字段 -->
+	<sql id="column">
+		  order_id,  <!-- 订单编号 -->
+		  order_content,  <!-- 订单内容 -->
+		  project_id,  <!-- 项目编号 -->
+		  shop_id,  <!-- 店铺编号 -->
+		  custom_user_id,  <!-- 消费者编号 -->
+		  subscribe_time,  <!-- 预约时间 -->
+		  order_type,  <!-- 订单类型 1美研币 2礼包3项目 -->
+		  order_money,  <!-- 订单金额 -->
+		  buy_num,  <!-- 购买数量 -->
+		  pay_money,  <!-- 实际支付金额 -->
+		  extend_beauty_num,  <!-- 消耗美研币数量 -->
+		  cash_income,  <!-- 现金收入 -->
+		  extend_income,  <!-- 消耗收入 -->
+		  pay_way,  <!-- 支付方式1 微信 2支付宝 3美颜币 4套餐 -->
+		  pay_time,  <!-- 支付时间 -->
+		  check_code,  <!-- 美研币支付验证码 -->
+		  order_status,  <!-- 订单状态 -->
+		  order_remark,  <!-- 订单备注 -->
+		  server_user_id,  <!-- server_user_id -->
+		  handle_user_id,  <!-- 经手员工编号 -->
+		  create_time,  <!-- 订单创建时间 -->
+		  service_time,  <!-- 服务时间 -->
+		  cancel_time,  <!-- 撤销时间 -->
+		  cancel_type,  <!-- cancel_type -->
+		  finish_time,  <!-- 订单完成时间 -->
+		  order_source,  <!-- 订单所属 1平台 2商家 -->
+		  modify_status,  <!-- 修改状态 1已经修改0未修改 -->
+		  free_num  <!-- 免费美研币 -->
+	</sql>
+	
+	<!-- 表字段(用于外表的关联时引用) -->
+	<sql id="column2">
+		  bis_business_order.order_id,  <!-- 订单编号 -->
+		  bis_business_order.order_content,  <!-- 订单内容 -->
+		  bis_business_order.project_id,  <!-- 项目编号 -->
+		  bis_business_order.shop_id,  <!-- 店铺编号 -->
+		  bis_business_order.custom_user_id,  <!-- 消费者编号 -->
+		  bis_business_order.subscribe_time,  <!-- 预约时间 -->
+		  bis_business_order.order_type,  <!-- 订单类型 1美研币 2礼包3项目 -->
+		  bis_business_order.order_money,  <!-- 订单金额 -->
+		  bis_business_order.buy_num,  <!-- 购买数量 -->
+		  bis_business_order.pay_money,  <!-- 实际支付金额 -->
+		  bis_business_order.extend_beauty_num,  <!-- 消耗美研币数量 -->
+		  bis_business_order.cash_income,  <!-- 现金收入 -->
+		  bis_business_order.extend_income,  <!-- 消耗收入 -->
+		  bis_business_order.pay_way,  <!-- 支付方式1 微信 2支付宝 3美颜币 4套餐 -->
+		  bis_business_order.pay_time,  <!-- 支付时间 -->
+		  bis_business_order.check_code,  <!-- 美研币支付验证码 -->
+		  bis_business_order.order_status,  <!-- 订单状态 -->
+		  bis_business_order.order_remark,  <!-- 订单备注 -->
+		  bis_business_order.server_user_id,  <!-- server_user_id -->
+		  bis_business_order.handle_user_id,  <!-- 经手员工编号 -->
+		  bis_business_order.create_time,  <!-- 订单创建时间 -->
+		  bis_business_order.service_time,  <!-- 服务时间 -->
+		  bis_business_order.cancel_time,  <!-- 撤销时间 -->
+		  bis_business_order.cancel_type,  <!-- cancel_type -->
+		  bis_business_order.finish_time,  <!-- 订单完成时间 -->
+		  bis_business_order.order_source,  <!-- 订单所属 1平台 2商家 -->
+		  bis_business_order.modify_status,  <!-- 修改状态 1已经修改0未修改 -->
+		  bis_business_order.free_num  <!-- 免费美研币 -->
+	</sql>
+
+	<!-- Where精确匹配字段 -->
+	<sql id="equal">
+	    <if test="order_id != null and order_id != ''">
+		      AND order_id = #{order_id}  <!-- 订单编号 -->
+		</if>
+	    <if test="order_content != null and order_content != ''">
+		      AND order_content = #{order_content}  <!-- 订单内容 -->
+		</if>
+	    <if test="project_id != null and project_id != ''">
+		      AND project_id = #{project_id}  <!-- 项目编号 -->
+		</if>
+	    <if test="shop_id != null and shop_id != ''">
+		      AND shop_id = #{shop_id}  <!-- 店铺编号 -->
+		</if>
+	    <if test="custom_user_id != null and custom_user_id != ''">
+		      AND custom_user_id = #{custom_user_id}  <!-- 消费者编号 -->
+		</if>
+	    <if test="subscribe_time != null and subscribe_time != ''">
+		      AND subscribe_time = #{subscribe_time}  <!-- 预约时间 -->
+		</if>
+	    <if test="order_type != null and order_type != ''">
+		      AND order_type = #{order_type}  <!-- 订单类型 1美研币 2礼包3项目 -->
+		</if>
+	    <if test="order_money != null and order_money != ''">
+		      AND order_money = #{order_money}  <!-- 订单金额 -->
+		</if>
+	   <if test="buy_num != null ">
+		      AND buy_num = #{buy_num}  <!-- 购买数量 -->
+		</if>
+	    <if test="pay_money != null and pay_money != ''">
+		      AND pay_money = #{pay_money}  <!-- 实际支付金额 -->
+		</if>
+	   <if test="extend_beauty_num != null ">
+		      AND extend_beauty_num = #{extend_beauty_num}  <!-- 消耗美研币数量 -->
+		</if>
+	    <if test="cash_income != null and cash_income != ''">
+		      AND cash_income = #{cash_income}  <!-- 现金收入 -->
+		</if>
+	    <if test="extend_income != null and extend_income != ''">
+		      AND extend_income = #{extend_income}  <!-- 消耗收入 -->
+		</if>
+	    <if test="pay_way != null and pay_way != ''">
+		      AND pay_way = #{pay_way}  <!-- 支付方式1 微信 2支付宝 3美颜币 4套餐 -->
+		</if>
+	    <if test="pay_time != null and pay_time != ''">
+		      AND pay_time = #{pay_time}  <!-- 支付时间 -->
+		</if>
+	    <if test="check_code != null and check_code != ''">
+		      AND check_code = #{check_code}  <!-- 美研币支付验证码 -->
+		</if>
+	    <if test="order_status != null and order_status != ''">
+		      AND order_status = #{order_status}  <!-- 订单状态 -->
+		</if>
+	    <if test="order_remark != null and order_remark != ''">
+		      AND order_remark = #{order_remark}  <!-- 订单备注 -->
+		</if>
+	    <if test="server_user_id != null and server_user_id != ''">
+		      AND server_user_id = #{server_user_id}  <!-- server_user_id -->
+		</if>
+	    <if test="handle_user_id != null and handle_user_id != ''">
+		      AND handle_user_id = #{handle_user_id}  <!-- 经手员工编号 -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time = #{create_time}  <!-- 订单创建时间 -->
+		</if>
+	    <if test="service_time != null and service_time != ''">
+		      AND service_time = #{service_time}  <!-- 服务时间 -->
+		</if>
+	    <if test="cancel_time != null and cancel_time != ''">
+		      AND cancel_time = #{cancel_time}  <!-- 撤销时间 -->
+		</if>
+	    <if test="cancel_type != null and cancel_type != ''">
+		      AND cancel_type = #{cancel_type}  <!-- cancel_type -->
+		</if>
+	    <if test="finish_time != null and finish_time != ''">
+		      AND finish_time = #{finish_time}  <!-- 订单完成时间 -->
+		</if>
+	    <if test="order_source != null and order_source != ''">
+		      AND order_source = #{order_source}  <!-- 订单所属 1平台 2商家 -->
+		</if>
+	    <if test="modify_status != null and modify_status != ''">
+		      AND modify_status = #{modify_status}  <!-- 修改状态 1已经修改0未修改 -->
+		</if>
+	   <if test="free_num != null ">
+		      AND free_num = #{free_num}  <!-- 免费美研币 -->
+		</if>
+	</sql>
+	
+	<!-- Where模糊匹配字段 -->
+	<sql id="like">
+	    <if test="order_id != null and order_id != ''">
+		      AND order_id LIKE '%${order_id}%'  <!-- 订单编号 -->
+		</if>
+	    <if test="order_content != null and order_content != ''">
+		      AND order_content LIKE '%${order_content}%'  <!-- 订单内容 -->
+		</if>
+	    <if test="project_id != null and project_id != ''">
+		      AND project_id LIKE '%${project_id}%'  <!-- 项目编号 -->
+		</if>
+	    <if test="shop_id != null and shop_id != ''">
+		      AND shop_id LIKE '%${shop_id}%'  <!-- 店铺编号 -->
+		</if>
+	    <if test="custom_user_id != null and custom_user_id != ''">
+		      AND custom_user_id LIKE '%${custom_user_id}%'  <!-- 消费者编号 -->
+		</if>
+	    <if test="subscribe_time != null and subscribe_time != ''">
+		      AND subscribe_time LIKE '%${subscribe_time}%'  <!-- 预约时间 -->
+		</if>
+	    <if test="order_type != null and order_type != ''">
+		      AND order_type LIKE '%${order_type}%'  <!-- 订单类型 1美研币 2礼包3项目 -->
+		</if>
+	    <if test="order_money != null and order_money != ''">
+		      AND order_money LIKE '%${order_money}%'  <!-- 订单金额 -->
+		</if>
+	    <if test="pay_money != null and pay_money != ''">
+		      AND pay_money LIKE '%${pay_money}%'  <!-- 实际支付金额 -->
+		</if>
+	    <if test="cash_income != null and cash_income != ''">
+		      AND cash_income LIKE '%${cash_income}%'  <!-- 现金收入 -->
+		</if>
+	    <if test="extend_income != null and extend_income != ''">
+		      AND extend_income LIKE '%${extend_income}%'  <!-- 消耗收入 -->
+		</if>
+	    <if test="pay_way != null and pay_way != ''">
+		      AND pay_way LIKE '%${pay_way}%'  <!-- 支付方式1 微信 2支付宝 3美颜币 4套餐 -->
+		</if>
+	    <if test="pay_time != null and pay_time != ''">
+		      AND pay_time LIKE '%${pay_time}%'  <!-- 支付时间 -->
+		</if>
+	    <if test="check_code != null and check_code != ''">
+		      AND check_code LIKE '%${check_code}%'  <!-- 美研币支付验证码 -->
+		</if>
+	    <if test="order_status != null and order_status != ''">
+		      AND order_status LIKE '%${order_status}%'  <!-- 订单状态 -->
+		</if>
+	    <if test="order_remark != null and order_remark != ''">
+		      AND order_remark LIKE '%${order_remark}%'  <!-- 订单备注 -->
+		</if>
+	    <if test="server_user_id != null and server_user_id != ''">
+		      AND server_user_id LIKE '%${server_user_id}%'  <!-- server_user_id -->
+		</if>
+	    <if test="handle_user_id != null and handle_user_id != ''">
+		      AND handle_user_id LIKE '%${handle_user_id}%'  <!-- 经手员工编号 -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time LIKE '%${create_time}%'  <!-- 订单创建时间 -->
+		</if>
+	    <if test="service_time != null and service_time != ''">
+		      AND service_time LIKE '%${service_time}%'  <!-- 服务时间 -->
+		</if>
+	    <if test="cancel_time != null and cancel_time != ''">
+		      AND cancel_time LIKE '%${cancel_time}%'  <!-- 撤销时间 -->
+		</if>
+	    <if test="cancel_type != null and cancel_type != ''">
+		      AND cancel_type LIKE '%${cancel_type}%'  <!-- cancel_type -->
+		</if>
+	    <if test="finish_time != null and finish_time != ''">
+		      AND finish_time LIKE '%${finish_time}%'  <!-- 订单完成时间 -->
+		</if>
+	    <if test="order_source != null and order_source != ''">
+		      AND order_source LIKE '%${order_source}%'  <!-- 订单所属 1平台 2商家 -->
+		</if>
+	    <if test="modify_status != null and modify_status != ''">
+		      AND modify_status LIKE '%${modify_status}%'  <!-- 修改状态 1已经修改0未修改 -->
+		</if>
+	</sql>
+	
+</mapper>

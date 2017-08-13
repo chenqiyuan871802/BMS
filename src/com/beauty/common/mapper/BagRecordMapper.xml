@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 购买礼包记录[bis_bag_record]SQLMapper自动映射 -->
+<!--  注意:此文件由系统平台自动生成-禁止手工修改 2017-06-20 21:54:27 -->
+<mapper namespace="com.beauty.common.mapper.BagRecordMapper">
+	
+	<!-- 插入一个数据持久化对象(插入字段为传入PO实体的非空属性) -->
+	<insert id="insert"  parameterType="com.beauty.common.po.BagRecordPO">
+		INSERT INTO bis_bag_record 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="bag_id != null and bag_id != ''">
+	         bag_id, <!-- 礼包名称 -->
+		</if>
+		<if test="valid_day != null">
+	         valid_day, <!-- 有效时间 -->
+		</if>
+		<if test="custom_user_id != null and custom_user_id != ''">
+	         custom_user_id, <!-- 用户编号 -->
+		</if>
+		<if test="buy_num != null">
+	         buy_num, <!-- 购买数量 -->
+		</if>
+		<if test="share_num != null">
+	         share_num, <!-- 记录创建时间 -->
+		</if>
+		<if test="create_time != null and create_time != ''">
+	         create_time, <!-- 礼包开始生效时间 -->
+		</if>
+		<if test="order_id != null and order_id != ''">
+	         order_id, <!-- order_id -->
+		</if>
+		<if test="share_user_id != null and share_user_id != ''">
+	         share_user_id, <!-- share_user_id -->
+		</if>
+		<if test="bag_time != null and bag_time != ''">
+	         bag_time, <!-- 分享时间 -->
+		</if>
+		<if test="record_type != null and record_type != ''">
+	         record_type, <!-- 1 购买礼包项目 2分享领取礼包项目 -->
+		</if>
+		<if test="status != null and status != ''">
+	         status, <!-- 1有效 2过期 -->
+		</if>
+		<if test="receive_status != null and receive_status != ''">
+	         receive_status, <!-- 领取状态 0未领取 1已领取 -->
+		</if>
+		<if test="record_id != null and record_id != ''">
+	          record_id  <!-- record_id -->
+	    </if>
+        </trim>
+	    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+		<if test="bag_id != null and bag_id != ''">
+	          #{bag_id, jdbcType=VARCHAR}, <!-- 礼包名称 -->
+	    </if>
+		<if test="valid_day != null">
+	          #{valid_day, jdbcType=INTEGER}, <!-- 有效时间 -->
+	    </if>
+		<if test="custom_user_id != null and custom_user_id != ''">
+	          #{custom_user_id, jdbcType=VARCHAR}, <!-- 用户编号 -->
+	    </if>
+		<if test="buy_num != null">
+	          #{buy_num, jdbcType=INTEGER}, <!-- 购买数量 -->
+	    </if>
+		<if test="share_num != null">
+	          #{share_num, jdbcType=INTEGER}, <!-- 记录创建时间 -->
+	    </if>
+		<if test="create_time != null and create_time != ''">
+	          #{create_time, jdbcType=VARCHAR}, <!-- 礼包开始生效时间 -->
+	    </if>
+		<if test="order_id != null and order_id != ''">
+	          #{order_id, jdbcType=VARCHAR}, <!-- order_id -->
+	    </if>
+		<if test="share_user_id != null and share_user_id != ''">
+	          #{share_user_id, jdbcType=VARCHAR}, <!-- share_user_id -->
+	    </if>
+		<if test="bag_time != null and bag_time != ''">
+	          #{bag_time, jdbcType=VARCHAR}, <!-- 分享时间 -->
+	    </if>
+		<if test="record_type != null and record_type != ''">
+	          #{record_type, jdbcType=VARCHAR}, <!-- 1 购买礼包项目 2分享领取礼包项目 -->
+	    </if>
+		<if test="status != null and status != ''">
+	          #{status, jdbcType=VARCHAR}, <!-- 1有效 2过期 -->
+	    </if>
+		<if test="receive_status != null and receive_status != ''">
+	          #{receive_status, jdbcType=VARCHAR}, <!-- 领取状态 0未领取 1已领取 -->
+	    </if>
+		<if test="record_id != null and record_id != ''">
+		     #{record_id, jdbcType=VARCHAR}  <!-- record_id -->
+	    </if>
+		</trim>
+		
+	</insert>
+	
+	<!-- 插入一个数据持久化对象(含所有字段) -->
+	<insert id="insertAll"  parameterType="com.beauty.common.po.BagRecordPO">
+		INSERT INTO bis_bag_record (
+          record_id,  <!-- record_id -->
+		  bag_id,  <!-- 礼包名称 -->
+		  valid_day,  <!-- 有效时间 -->
+		  custom_user_id,  <!-- 用户编号 -->
+		  buy_num,  <!-- 购买数量 -->
+		  share_num,  <!-- 记录创建时间 -->
+		  create_time,  <!-- 礼包开始生效时间 -->
+		  order_id,  <!-- order_id -->
+		  share_user_id,  <!-- share_user_id -->
+		  bag_time,  <!-- 分享时间 -->
+		  record_type,  <!-- 1 购买礼包项目 2分享领取礼包项目 -->
+		  status,  <!-- 1有效 2过期 -->
+		  receive_status  <!-- 领取状态 0未领取 1已领取 -->
+		)
+		VALUES (
+            #{record_id, jdbcType=VARCHAR},   <!-- record_id -->
+		    #{bag_id, jdbcType=VARCHAR},  <!-- 礼包名称 -->
+		    #{valid_day, jdbcType=INTEGER},  <!-- 有效时间 -->
+		    #{custom_user_id, jdbcType=VARCHAR},  <!-- 用户编号 -->
+		    #{buy_num, jdbcType=INTEGER},  <!-- 购买数量 -->
+		    #{share_num, jdbcType=INTEGER},  <!-- 记录创建时间 -->
+		    #{create_time, jdbcType=VARCHAR},  <!-- 礼包开始生效时间 -->
+		    #{order_id, jdbcType=VARCHAR},  <!-- order_id -->
+		    #{share_user_id, jdbcType=VARCHAR},  <!-- share_user_id -->
+		    #{bag_time, jdbcType=VARCHAR},  <!-- 分享时间 -->
+		    #{record_type, jdbcType=VARCHAR},  <!-- 1 购买礼包项目 2分享领取礼包项目 -->
+		    #{status, jdbcType=VARCHAR},  <!-- 1有效 2过期 -->
+		    #{receive_status, jdbcType=VARCHAR}  <!-- 领取状态 0未领取 1已领取 -->
+		)
+	</insert>
+
+	<!-- 根据主键修改数据持久化对象 -->
+	<update id="updateByKey" parameterType="com.beauty.common.po.BagRecordPO">
+		UPDATE bis_bag_record
+		<set>
+			<if test="bag_id != null">
+		          bag_id = #{bag_id, jdbcType=VARCHAR},  <!-- 礼包名称 -->
+			</if>
+			<if test="valid_day != null">
+		          valid_day = #{valid_day, jdbcType=INTEGER},  <!-- 有效时间 -->
+			</if>
+			<if test="custom_user_id != null">
+		          custom_user_id = #{custom_user_id, jdbcType=VARCHAR},  <!-- 用户编号 -->
+			</if>
+			<if test="buy_num != null">
+		          buy_num = #{buy_num, jdbcType=INTEGER},  <!-- 购买数量 -->
+			</if>
+			<if test="share_num != null">
+		          share_num = #{share_num, jdbcType=INTEGER},  <!-- 记录创建时间 -->
+			</if>
+			<if test="create_time != null">
+		          create_time = #{create_time, jdbcType=VARCHAR},  <!-- 礼包开始生效时间 -->
+			</if>
+			<if test="order_id != null">
+		          order_id = #{order_id, jdbcType=VARCHAR},  <!-- order_id -->
+			</if>
+			<if test="share_user_id != null">
+		          share_user_id = #{share_user_id, jdbcType=VARCHAR},  <!-- share_user_id -->
+			</if>
+			<if test="bag_time != null">
+		          bag_time = #{bag_time, jdbcType=VARCHAR},  <!-- 分享时间 -->
+			</if>
+			<if test="record_type != null">
+		          record_type = #{record_type, jdbcType=VARCHAR},  <!-- 1 购买礼包项目 2分享领取礼包项目 -->
+			</if>
+			<if test="status != null">
+		          status = #{status, jdbcType=VARCHAR},  <!-- 1有效 2过期 -->
+			</if>
+			<if test="receive_status != null">
+		          receive_status = #{receive_status, jdbcType=VARCHAR},  <!-- 领取状态 0未领取 1已领取 -->
+			</if>
+		</set>
+		WHERE  record_id = #{record_id}
+	</update>
+	
+	<!-- 根据主键删除数据持久化对象 -->
+	<delete id="deleteByKey">
+		DELETE FROM bis_bag_record WHERE  record_id = #{record_id}
+	</delete>
+	
+	<!-- 批量根据主键删除数据持久化对象 -->
+	<delete id="batchDeleteByKey"  parameterType="java.lang.String">
+		DELETE FROM bis_bag_record WHERE record_id IN 
+		<foreach item="record_id" index="index" collection="list" separator="," open="(" close=")">
+		#{record_id}
+	    </foreach>
+	</delete>
+
+	<!-- 根据主键查询并返回数据持久化对象 -->
+	<select id="selectByKey" resultType="com.beauty.common.po.BagRecordPO">
+		SELECT
+		<include refid="column" />
+		FROM bis_bag_record WHERE  record_id = #{record_id}
+	</select>
+
+	<!-- 根据唯一组合条件查询并返回数据持久化对象 -->
+	<select id="selectOne" parameterType="Dto" resultType="com.beauty.common.po.BagRecordPO">
+		SELECT
+		    <include refid="column" />
+		FROM bis_bag_record
+		<where>
+		    <include refid="equal" />
+		</where>		
+	</select>
+
+	<!-- 根据Dto查询并返回数据持久化对象集合 -->
+	<select id="list" parameterType="Dto" resultType="com.beauty.common.po.BagRecordPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_bag_record
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto查询并返回分页数据持久化对象集合 -->
+	<select id="listPage" parameterType="Dto" resultType="com.beauty.common.po.BagRecordPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_bag_record
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto模糊查询并返回数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="like" parameterType="Dto" resultType="com.beauty.common.po.BagRecordPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_bag_record
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto模糊查询并返回分页数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="likePage" parameterType="Dto" resultType="com.beauty.common.po.BagRecordPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_bag_record
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto统计行数 -->
+	<select id="rows" resultType="Integer" parameterType="Dto">
+		SELECT COUNT(1) AS rows_ FROM bis_bag_record
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	<!-- 根据数学表达式进行数学运算 -->
+	<select id="calc" parameterType="Dto" resultType="String">
+		SELECT
+			${_expr}
+		FROM bis_bag_record
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	
+	
+	<!-- 表字段 -->
+	<sql id="column">
+		  record_id,  <!-- record_id -->
+		  bag_id,  <!-- 礼包名称 -->
+		  valid_day,  <!-- 有效时间 -->
+		  custom_user_id,  <!-- 用户编号 -->
+		  buy_num,  <!-- 购买数量 -->
+		  share_num,  <!-- 记录创建时间 -->
+		  create_time,  <!-- 礼包开始生效时间 -->
+		  order_id,  <!-- order_id -->
+		  share_user_id,  <!-- share_user_id -->
+		  bag_time,  <!-- 分享时间 -->
+		  record_type,  <!-- 1 购买礼包项目 2分享领取礼包项目 -->
+		  status,  <!-- 1有效 2过期 -->
+		  receive_status  <!-- 领取状态 0未领取 1已领取 -->
+	</sql>
+	
+	<!-- 表字段(用于外表的关联时引用) -->
+	<sql id="column2">
+		  bis_bag_record.record_id,  <!-- record_id -->
+		  bis_bag_record.bag_id,  <!-- 礼包名称 -->
+		  bis_bag_record.valid_day,  <!-- 有效时间 -->
+		  bis_bag_record.custom_user_id,  <!-- 用户编号 -->
+		  bis_bag_record.buy_num,  <!-- 购买数量 -->
+		  bis_bag_record.share_num,  <!-- 记录创建时间 -->
+		  bis_bag_record.create_time,  <!-- 礼包开始生效时间 -->
+		  bis_bag_record.order_id,  <!-- order_id -->
+		  bis_bag_record.share_user_id,  <!-- share_user_id -->
+		  bis_bag_record.bag_time,  <!-- 分享时间 -->
+		  bis_bag_record.record_type,  <!-- 1 购买礼包项目 2分享领取礼包项目 -->
+		  bis_bag_record.status,  <!-- 1有效 2过期 -->
+		  bis_bag_record.receive_status  <!-- 领取状态 0未领取 1已领取 -->
+	</sql>
+
+	<!-- Where精确匹配字段 -->
+	<sql id="equal">
+	    <if test="record_id != null and record_id != ''">
+		      AND record_id = #{record_id}  <!-- record_id -->
+		</if>
+	    <if test="bag_id != null and bag_id != ''">
+		      AND bag_id = #{bag_id}  <!-- 礼包名称 -->
+		</if>
+	   <if test="valid_day != null ">
+		      AND valid_day = #{valid_day}  <!-- 有效时间 -->
+		</if>
+	    <if test="custom_user_id != null and custom_user_id != ''">
+		      AND custom_user_id = #{custom_user_id}  <!-- 用户编号 -->
+		</if>
+	   <if test="buy_num != null ">
+		      AND buy_num = #{buy_num}  <!-- 购买数量 -->
+		</if>
+	   <if test="share_num != null ">
+		      AND share_num = #{share_num}  <!-- 记录创建时间 -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time = #{create_time}  <!-- 礼包开始生效时间 -->
+		</if>
+	    <if test="order_id != null and order_id != ''">
+		      AND order_id = #{order_id}  <!-- order_id -->
+		</if>
+	    <if test="share_user_id != null and share_user_id != ''">
+		      AND share_user_id = #{share_user_id}  <!-- share_user_id -->
+		</if>
+	    <if test="bag_time != null and bag_time != ''">
+		      AND bag_time = #{bag_time}  <!-- 分享时间 -->
+		</if>
+	    <if test="record_type != null and record_type != ''">
+		      AND record_type = #{record_type}  <!-- 1 购买礼包项目 2分享领取礼包项目 -->
+		</if>
+	    <if test="status != null and status != ''">
+		      AND status = #{status}  <!-- 1有效 2过期 -->
+		</if>
+	    <if test="receive_status != null and receive_status != ''">
+		      AND receive_status = #{receive_status}  <!-- 领取状态 0未领取 1已领取 -->
+		</if>
+	</sql>
+	
+	<!-- Where模糊匹配字段 -->
+	<sql id="like">
+	    <if test="record_id != null and record_id != ''">
+		      AND record_id LIKE '%${record_id}%'  <!-- record_id -->
+		</if>
+	    <if test="bag_id != null and bag_id != ''">
+		      AND bag_id LIKE '%${bag_id}%'  <!-- 礼包名称 -->
+		</if>
+	    <if test="custom_user_id != null and custom_user_id != ''">
+		      AND custom_user_id LIKE '%${custom_user_id}%'  <!-- 用户编号 -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time LIKE '%${create_time}%'  <!-- 礼包开始生效时间 -->
+		</if>
+	    <if test="order_id != null and order_id != ''">
+		      AND order_id LIKE '%${order_id}%'  <!-- order_id -->
+		</if>
+	    <if test="share_user_id != null and share_user_id != ''">
+		      AND share_user_id LIKE '%${share_user_id}%'  <!-- share_user_id -->
+		</if>
+	    <if test="bag_time != null and bag_time != ''">
+		      AND bag_time LIKE '%${bag_time}%'  <!-- 分享时间 -->
+		</if>
+	    <if test="record_type != null and record_type != ''">
+		      AND record_type LIKE '%${record_type}%'  <!-- 1 购买礼包项目 2分享领取礼包项目 -->
+		</if>
+	    <if test="status != null and status != ''">
+		      AND status LIKE '%${status}%'  <!-- 1有效 2过期 -->
+		</if>
+	    <if test="receive_status != null and receive_status != ''">
+		      AND receive_status LIKE '%${receive_status}%'  <!-- 领取状态 0未领取 1已领取 -->
+		</if>
+	</sql>
+	
+</mapper>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui-slide.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    <script type="text/javascript" src="../../js/jquery-1.8.3.min.js" ></script>
+    <script type="text/javascript" src="../../js/aui-tab.js" ></script>
+    <style type="text/css">
+        html,body{background:#f7f7f7;}
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <span class="top-left-back" onClick="javascript:history.go(-1)">返回</span>
+        <h2>订单列表</h2>
+    </header>
+    <div class="h88"></div>
+    <div class="order-list">
+        <div class="aui-tab" id="tab">
+            <div class="aui-tab-item"><span>护理记录</span></div>
+            <div class="aui-tab-item aui-active"><span>购买礼包记录</span></div>
+        </div>
+        <div class="order-detail mt20">
+            <div class="top">
+                <div class="state">
+                    <span class="fl">已过期</span>
+                    <span class="fr">俏佳人美容院（珠江新城店）</span>
+                </div>
+                <div class="box">
+                    <img class="fl" src="../../images/temp/temp03.jpg">
+                    <div class="intro fl">
+                        <h3>SN美白护肤2.0套装</h3>
+                        <span class="subheading">SN美白1.0 + ST紧肤1.0</span>
+                        <p>￥480</p>
+                    </div>
+                    <div class="fr">
+                        <span>x99</span>
+                    </div>
+                </div>
+                <div class="operate">
+                    <div class="fl">
+                        <span>到店时间</span>
+                        <span>2017-2-30  15:30</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../js/jav-ui.js"></script>
+<script type="text/javascript">
+    /*切换*/
+    var tab = new auiTab({
+        element:document.getElementById("tab"),
+    });
+</script>
+</html>

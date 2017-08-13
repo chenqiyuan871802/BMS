@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 护理类型信息表[bis_nurse_type]SQLMapper自动映射 -->
+<!--  注意:此文件由系统平台自动生成-禁止手工修改 2017-04-17 12:04:13 -->
+<mapper namespace="com.beauty.common.mapper.NurseTypeMapper">
+	
+	<!-- 插入一个数据持久化对象(插入字段为传入PO实体的非空属性) -->
+	<insert id="insert"  parameterType="com.beauty.common.po.NurseTypePO">
+		INSERT INTO bis_nurse_type 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="type_name != null and type_name != ''">
+	         type_name, <!-- 类型名称 -->
+		</if>
+		<if test="sort_no != null">
+	         sort_no, <!-- 排序号 -->
+		</if>
+		<if test="type_remark != null and type_remark != ''">
+	         type_remark, <!-- 备注 -->
+		</if>
+		<if test="create_time != null and create_time != ''">
+	         create_time, <!-- 创建时间 -->
+		</if>
+		<if test="create_user_id != null and create_user_id != ''">
+	         create_user_id, <!-- 创建人ID -->
+		</if>
+		<if test="modify_time != null and modify_time != ''">
+	         modify_time, <!-- 修改时间 -->
+		</if>
+		<if test="modify_user_id != null and modify_user_id != ''">
+	         modify_user_id, <!-- 修改用户ID -->
+		</if>
+		<if test="type_id != null and type_id != ''">
+	          type_id  <!-- 类型编号 -->
+	    </if>
+        </trim>
+	    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+		<if test="type_name != null and type_name != ''">
+	          #{type_name, jdbcType=VARCHAR}, <!-- 类型名称 -->
+	    </if>
+	    <if test="sort_no != null">
+	          #{sort_no, jdbcType=INTEGER}, <!-- 排序号 -->
+	    </if>
+		<if test="type_remark != null and type_remark != ''">
+	          #{type_remark, jdbcType=VARCHAR}, <!-- 备注 -->
+	    </if>
+		<if test="create_time != null and create_time != ''">
+	          #{create_time, jdbcType=VARCHAR}, <!-- 创建时间 -->
+	    </if>
+		<if test="create_user_id != null and create_user_id != ''">
+	          #{create_user_id, jdbcType=VARCHAR}, <!-- 创建人ID -->
+	    </if>
+		<if test="modify_time != null and modify_time != ''">
+	          #{modify_time, jdbcType=VARCHAR}, <!-- 修改时间 -->
+	    </if>
+		<if test="modify_user_id != null and modify_user_id != ''">
+	          #{modify_user_id, jdbcType=VARCHAR}, <!-- 修改用户ID -->
+	    </if>
+		<if test="type_id != null and type_id != ''">
+		     #{type_id, jdbcType=VARCHAR}  <!-- 类型编号 -->
+	    </if>
+		</trim>
+		
+	</insert>
+	
+	<!-- 插入一个数据持久化对象(含所有字段) -->
+	<insert id="insertAll"  parameterType="com.beauty.common.po.NurseTypePO">
+		INSERT INTO bis_nurse_type (
+          type_id,  <!-- 类型编号 -->
+		  type_name,  <!-- 类型名称 -->
+		  sort_no,  <!-- 排序号 -->
+		  type_remark,  <!-- 备注 -->
+		  create_time,  <!-- 创建时间 -->
+		  create_user_id,  <!-- 创建人ID -->
+		  modify_time,  <!-- 修改时间 -->
+		  modify_user_id  <!-- 修改用户ID -->
+		)
+		VALUES (
+            #{type_id, jdbcType=VARCHAR},   <!-- 类型编号 -->
+		    #{type_name, jdbcType=VARCHAR},  <!-- 类型名称 -->
+		    #{sort_no, jdbcType=INTEGER},  <!-- 排序号 -->
+		    #{type_remark, jdbcType=VARCHAR},  <!-- 备注 -->
+		    #{create_time, jdbcType=VARCHAR},  <!-- 创建时间 -->
+		    #{create_user_id, jdbcType=VARCHAR},  <!-- 创建人ID -->
+		    #{modify_time, jdbcType=VARCHAR},  <!-- 修改时间 -->
+		    #{modify_user_id, jdbcType=VARCHAR}  <!-- 修改用户ID -->
+		)
+	</insert>
+
+	<!-- 根据主键修改数据持久化对象 -->
+	<update id="updateByKey" parameterType="com.beauty.common.po.NurseTypePO">
+		UPDATE bis_nurse_type
+		<set>
+			<if test="type_name != null">
+		          type_name = #{type_name, jdbcType=VARCHAR},  <!-- 类型名称 -->
+			</if>
+			<if test="sort_no != null">
+		          sort_no = #{sort_no, jdbcType=INTEGER},  <!-- 排序号 -->
+			</if>
+			<if test="type_remark != null">
+		          type_remark = #{type_remark, jdbcType=VARCHAR},  <!-- 备注 -->
+			</if>
+			<if test="create_time != null">
+		          create_time = #{create_time, jdbcType=VARCHAR},  <!-- 创建时间 -->
+			</if>
+			<if test="create_user_id != null">
+		          create_user_id = #{create_user_id, jdbcType=VARCHAR},  <!-- 创建人ID -->
+			</if>
+			<if test="modify_time != null">
+		          modify_time = #{modify_time, jdbcType=VARCHAR},  <!-- 修改时间 -->
+			</if>
+			<if test="modify_user_id != null">
+		          modify_user_id = #{modify_user_id, jdbcType=VARCHAR},  <!-- 修改用户ID -->
+			</if>
+		</set>
+		WHERE  type_id = #{type_id}
+	</update>
+	
+	<!-- 根据主键删除数据持久化对象 -->
+	<delete id="deleteByKey">
+		DELETE FROM bis_nurse_type WHERE  type_id = #{type_id}
+	</delete>
+	
+	<!-- 批量根据主键删除数据持久化对象 -->
+	<delete id="batchDeleteByKey"  parameterType="java.lang.String">
+		DELETE FROM bis_nurse_type WHERE type_id IN 
+		<foreach item="type_id" index="index" collection="list" separator="," open="(" close=")">
+		#{type_id}
+	    </foreach>
+	</delete>
+
+	<!-- 根据主键查询并返回数据持久化对象 -->
+	<select id="selectByKey" resultType="com.beauty.common.po.NurseTypePO">
+		SELECT
+		<include refid="column" />
+		FROM bis_nurse_type WHERE  type_id = #{type_id}
+	</select>
+
+	<!-- 根据唯一组合条件查询并返回数据持久化对象 -->
+	<select id="selectOne" parameterType="Dto" resultType="com.beauty.common.po.NurseTypePO">
+		SELECT
+		    <include refid="column" />
+		FROM bis_nurse_type
+		<where>
+		    <include refid="equal" />
+		</where>		
+	</select>
+
+	<!-- 根据Dto查询并返回数据持久化对象集合 -->
+	<select id="list" parameterType="Dto" resultType="com.beauty.common.po.NurseTypePO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_nurse_type
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto查询并返回分页数据持久化对象集合 -->
+	<select id="listPage" parameterType="Dto" resultType="com.beauty.common.po.NurseTypePO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_nurse_type
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto模糊查询并返回数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="like" parameterType="Dto" resultType="com.beauty.common.po.NurseTypePO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_nurse_type
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto模糊查询并返回分页数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="likePage" parameterType="Dto" resultType="com.beauty.common.po.NurseTypePO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_nurse_type
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto统计行数 -->
+	<select id="rows" resultType="Integer" parameterType="Dto">
+		SELECT COUNT(1) AS rows_ FROM bis_nurse_type
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	<!-- 根据数学表达式进行数学运算 -->
+	<select id="calc" parameterType="Dto" resultType="String">
+		SELECT
+			${_expr}
+		FROM bis_nurse_type
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	
+	
+	<!-- 表字段 -->
+	<sql id="column">
+		  type_id,  <!-- 类型编号 -->
+		  type_name,  <!-- 类型名称 -->
+		  sort_no,  <!-- 排序号 -->
+		  type_remark,  <!-- 备注 -->
+		  create_time,  <!-- 创建时间 -->
+		  create_user_id,  <!-- 创建人ID -->
+		  modify_time,  <!-- 修改时间 -->
+		  modify_user_id  <!-- 修改用户ID -->
+	</sql>
+	
+	<!-- 表字段(用于外表的关联时引用) -->
+	<sql id="column2">
+		  bis_nurse_type.type_id,  <!-- 类型编号 -->
+		  bis_nurse_type.type_name,  <!-- 类型名称 -->
+		  bis_nurse_type.sort_no,  <!-- 排序号 -->
+		  bis_nurse_type.type_remark,  <!-- 备注 -->
+		  bis_nurse_type.create_time,  <!-- 创建时间 -->
+		  bis_nurse_type.create_user_id,  <!-- 创建人ID -->
+		  bis_nurse_type.modify_time,  <!-- 修改时间 -->
+		  bis_nurse_type.modify_user_id  <!-- 修改用户ID -->
+	</sql>
+
+	<!-- Where精确匹配字段 -->
+	<sql id="equal">
+	    <if test="type_id != null and type_id != ''">
+		      AND type_id = #{type_id}  <!-- 类型编号 -->
+		</if>
+	    <if test="type_name != null and type_name != ''">
+		      AND type_name = #{type_name}  <!-- 类型名称 -->
+		</if>
+		 <if test="sort_no != null ">
+		      AND sort_no = #{sort_no}  <!-- 排序号 -->
+		</if>
+	    <if test="type_remark != null and type_remark != ''">
+		      AND type_remark = #{type_remark}  <!-- 备注 -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time = #{create_time}  <!-- 创建时间 -->
+		</if>
+	    <if test="create_user_id != null and create_user_id != ''">
+		      AND create_user_id = #{create_user_id}  <!-- 创建人ID -->
+		</if>
+	    <if test="modify_time != null and modify_time != ''">
+		      AND modify_time = #{modify_time}  <!-- 修改时间 -->
+		</if>
+	    <if test="modify_user_id != null and modify_user_id != ''">
+		      AND modify_user_id = #{modify_user_id}  <!-- 修改用户ID -->
+		</if>
+	</sql>
+	
+	<!-- Where模糊匹配字段 -->
+	<sql id="like">
+	    <if test="type_id != null and type_id != ''">
+		      AND type_id LIKE '%${type_id}%'  <!-- 类型编号 -->
+		</if>
+	    <if test="type_name != null and type_name != ''">
+		      AND type_name LIKE '%${type_name}%'  <!-- 类型名称 -->
+		</if>
+		
+	    <if test="type_remark != null and type_remark != ''">
+		      AND type_remark LIKE '%${type_remark}%'  <!-- 备注 -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time LIKE '%${create_time}%'  <!-- 创建时间 -->
+		</if>
+	    <if test="create_user_id != null and create_user_id != ''">
+		      AND create_user_id LIKE '%${create_user_id}%'  <!-- 创建人ID -->
+		</if>
+	    <if test="modify_time != null and modify_time != ''">
+		      AND modify_time LIKE '%${modify_time}%'  <!-- 修改时间 -->
+		</if>
+	    <if test="modify_user_id != null and modify_user_id != ''">
+		      AND modify_user_id LIKE '%${modify_user_id}%'  <!-- 修改用户ID -->
+		</if>
+	</sql>
+	
+</mapper>

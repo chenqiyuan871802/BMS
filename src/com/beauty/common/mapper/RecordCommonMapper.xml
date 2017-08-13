@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 记录通用处理 -->
+<mapper namespace="RecordCommonMapper">
+	<!--查询个人美研币统计 -->
+	<select id="queryBeautySum" parameterType="Dto" resultType="Dto"
+		useCache="false">
+		SELECT IFNULL(SUM(t.give_num),0) AS
+		total_give_num,IFNULL(SUM(t.beauty_num),0) AS total_beauty_num
+		FROM bis_beauty_record t
+		<where>
+			<if test="vaild_status != null and vaild_status != ''">
+				AND t.vaild_status = #{vaild_status}  <!-- 用户类型 1 店主 2员工 -->
+			</if>
+			<if test="record_type != null and record_type!= ''">
+				AND t.record_type in ('${record_type}')  <!-- 店铺编号 -->
+			</if>
+			<if test="custom_user_id != null and custom_user_id!= ''">
+				AND t.custom_user_id =#{custom_user_id} <!-- 店铺编号 -->
+			</if>
+		</where>
+	</select>
+	<!--查询个人美研币统计 -->
+	<select id="queryBeautyRecordPage" parameterType="Dto"
+		resultType="Dto" useCache="false">
+		SELECT a.*,(a.beauty_num+IFNULL(a.give_num,0))
+		total_beauty_num,b.shop_name,b.short_name FROM bis_beauty_record a
+		LEFT JOIN bis_shop b ON a.shop_id=b.shop_id
+		<where>
+			<if test="vaild_status != null and vaild_status != ''">
+				AND a.vaild_status = #{vaild_status}  <!-- 用户类型 1 店主 2员工 -->
+			</if>
+			<if test="record_type != null and record_type!= ''">
+				AND a.record_type in ('${record_type}')  <!-- 店铺编号 -->
+			</if>
+			<if test="custom_user_id != null and custom_user_id!= ''">
+				AND a.custom_user_id =#{custom_user_id} <!-- 店铺编号 -->
+			</if>
+		</where>
+	</select>
+	<!--查询过期美丽币 -->
+	<select id="listOverdueBeauty" parameterType="Integer"
+		resultType="com.beauty.common.po.BeautyRecordPO" useCache="false">
+		SELECT a.* FROM bis_beauty_record a WHERE a.vaild_status='1' AND
+		a.remain_num>0 AND a.record_type IN (1,2) AND
+		DATEDIFF(NOW(),a.pay_time)>#{overdueDay}
+	</select>
+	<!--查询预约过期订单-->
+	<select id="listOverdueOrder" parameterType="Integer"
+		resultType="com.beauty.common.po.BusinessOrderPO" useCache="false">
+		SELECT a.* FROM bis_business_order a WHERE a.order_type='1' AND a.order_status='1' 
+		 AND TIMESTAMPDIFF(MINUTE,a.subscribe_time,NOW())>#{overdueTime}
+	</select>
+	<!--查询过期礼包-->
+	<select id="listOverdueBag" parameterType="Integer"
+		resultType="com.beauty.common.po.BagRecordPO" useCache="false">
+		SELECT a.* FROM bis_bag_record a WHERE a.status='1' AND a.receive_status='1'
+		 AND DATEDIFF(NOW(),a.create_time)>a.valid_day
+	</select>
+</mapper>

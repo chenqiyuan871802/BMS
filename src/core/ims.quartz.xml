@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd"
+	default-lazy-init="true">
+	<bean id="beautyJob" class="com.beauty.job.BeautyJob">
+	</bean>
+	<bean name="checkOverdueBeautyTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+			<property name="targetObject">
+				<ref bean="beautyJob" />
+			</property>
+			<property name="targetMethod">
+				<value>checkOverdueBeauty</value>
+			</property>
+	</bean>
+	<bean name="checkOverdueOrderTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+			<property name="targetObject">
+				<ref bean="beautyJob" />
+			</property>
+			<property name="targetMethod">
+				<value>checkOverdueOrder</value>
+			</property>
+	</bean>
+	<bean name="checkOverdueBagTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+			<property name="targetObject">
+				<ref bean="beautyJob" />
+			</property>
+			<property name="targetMethod">
+				<value>checkOverdueBag</value>
+			</property>
+	</bean>
+	<!-- 触发器 -->
+	<bean id="checkOverdueBeautyTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<!-- 指向我们的任务 -->
+		<property name="jobDetail" ref="checkOverdueBeautyTask" />
+		<property name="cronExpression" value="0 10 1 * * ?" />
+
+	</bean>
+	<!-- 触发器 -->
+	<bean id="checkOverdueOrderTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<!-- 指向我们的任务 -->
+		<property name="jobDetail" ref="checkOverdueOrderTask" />
+		<property name="cronExpression" value="0 0/5 * * * ?" />
+
+	</bean>
+	<!-- 触发器 -->
+	<bean id="checkOverdueBagTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<!-- 指向我们的任务 -->
+		<property name="jobDetail" ref="checkOverdueBagTask" />
+		<property name="cronExpression" value="0 30 1 * * ?" />
+
+	</bean>
+	<!-- 调度器  -->
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean" autowire="no" lazy-init="false">
+		<property name="triggers">
+			<list>
+				<!--  触发器列表 -->
+				<ref bean="checkOverdueBeautyTime" />
+				<ref bean="checkOverdueOrderTime" />
+				<ref bean="checkOverdueBagTime" />
+			</list>
+		</property>
+	</bean>
+</beans>

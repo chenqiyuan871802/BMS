@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 键值参数[sys_param]SQLMapper自动映射 -->
+<!--  注意:此文件由系统平台自动生成-禁止手工修改 2016-09-25 10:21:40 -->
+<mapper namespace="com.ims.common.system.modules.mapper.ParamMapper">
+	
+	<!-- 插入一个数据持久化对象(插入字段为传入PO实体的非空属性) -->
+	<insert id="insert"  parameterType="com.ims.common.system.modules.po.ParamPO">
+		INSERT INTO sys_param 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="param_name != null and param_name != ''">
+	         param_name, <!-- 参数名称 -->
+		</if>
+		<if test="param_key != null and param_key != ''">
+	         param_key, <!-- 参数键名 -->
+		</if>
+		<if test="param_value != null and param_value != ''">
+	         param_value, <!-- 参数键值 -->
+		</if>
+		<if test="catalog_id != null and catalog_id != ''">
+	         catalog_id, <!-- 目录ID -->
+		</if>
+		<if test="catalog_cascade_id != null and catalog_cascade_id != ''">
+	         catalog_cascade_id, <!-- 分类科目语义ID -->
+		</if>
+		<if test="param_remark != null and param_remark != ''">
+	         param_remark, <!-- 参数备注 -->
+		</if>
+		<if test="status != null and status != ''">
+	         status, <!-- 当前状态(0:停用;1:启用) -->
+		</if>
+		<if test="edit_mode != null and edit_mode != ''">
+	         edit_mode, <!-- 编辑模式(0:只读;1:可编辑) -->
+		</if>
+		<if test="create_time != null and create_time != ''">
+	         create_time, <!-- 创建时间 -->
+		</if>
+		<if test="create_user_id != null and create_user_id != ''">
+	         create_user_id, <!-- 创建用户ID -->
+		</if>
+		<if test="modify_time != null and modify_time != ''">
+	         modify_time, <!-- 修改时间 -->
+		</if>
+		<if test="modify_user_id != null and modify_user_id != ''">
+	         modify_user_id, <!-- 修改用户ID -->
+		</if>
+		<if test="param_id != null and param_id != ''">
+	          param_id  <!-- 参数编号 -->
+	    </if>
+        </trim>
+	    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+		<if test="param_name != null and param_name != ''">
+	          #{param_name, jdbcType=VARCHAR}, <!-- 参数名称 -->
+	    </if>
+		<if test="param_key != null and param_key != ''">
+	          #{param_key, jdbcType=VARCHAR}, <!-- 参数键名 -->
+	    </if>
+		<if test="param_value != null and param_value != ''">
+	          #{param_value, jdbcType=VARCHAR}, <!-- 参数键值 -->
+	    </if>
+		<if test="catalog_id != null and catalog_id != ''">
+	          #{catalog_id, jdbcType=VARCHAR}, <!-- 目录ID -->
+	    </if>
+		<if test="catalog_cascade_id != null and catalog_cascade_id != ''">
+	          #{catalog_cascade_id, jdbcType=VARCHAR}, <!-- 分类科目语义ID -->
+	    </if>
+		<if test="param_remark != null and param_remark != ''">
+	          #{param_remark, jdbcType=VARCHAR}, <!-- 参数备注 -->
+	    </if>
+		<if test="status != null and status != ''">
+	          #{status, jdbcType=VARCHAR}, <!-- 当前状态(0:停用;1:启用) -->
+	    </if>
+		<if test="edit_mode != null and edit_mode != ''">
+	          #{edit_mode, jdbcType=VARCHAR}, <!-- 编辑模式(0:只读;1:可编辑) -->
+	    </if>
+		<if test="create_time != null and create_time != ''">
+	          #{create_time, jdbcType=VARCHAR}, <!-- 创建时间 -->
+	    </if>
+		<if test="create_user_id != null and create_user_id != ''">
+	          #{create_user_id, jdbcType=VARCHAR}, <!-- 创建用户ID -->
+	    </if>
+		<if test="modify_time != null and modify_time != ''">
+	          #{modify_time, jdbcType=VARCHAR}, <!-- 修改时间 -->
+	    </if>
+		<if test="modify_user_id != null and modify_user_id != ''">
+	          #{modify_user_id, jdbcType=VARCHAR}, <!-- 修改用户ID -->
+	    </if>
+		<if test="param_id != null and param_id != ''">
+		     #{param_id, jdbcType=VARCHAR}  <!-- 参数编号 -->
+	    </if>
+		</trim>
+		
+	</insert>
+	
+	<!-- 插入一个数据持久化对象(含所有字段) -->
+	<insert id="insertAll"  parameterType="com.ims.common.system.modules.po.ParamPO">
+		INSERT INTO sys_param (
+          param_id,  <!-- 参数编号 -->
+		  param_name,  <!-- 参数名称 -->
+		  param_key,  <!-- 参数键名 -->
+		  param_value,  <!-- 参数键值 -->
+		  catalog_id,  <!-- 目录ID -->
+		  catalog_cascade_id,  <!-- 分类科目语义ID -->
+		  param_remark,  <!-- 参数备注 -->
+		  status,  <!-- 当前状态(0:停用;1:启用) -->
+		  edit_mode,  <!-- 编辑模式(0:只读;1:可编辑) -->
+		  create_time,  <!-- 创建时间 -->
+		  create_user_id,  <!-- 创建用户ID -->
+		  modify_time,  <!-- 修改时间 -->
+		  modify_user_id  <!-- 修改用户ID -->
+		)
+		VALUES (
+            #{param_id, jdbcType=VARCHAR},   <!-- 参数编号 -->
+		    #{param_name, jdbcType=VARCHAR},  <!-- 参数名称 -->
+		    #{param_key, jdbcType=VARCHAR},  <!-- 参数键名 -->
+		    #{param_value, jdbcType=VARCHAR},  <!-- 参数键值 -->
+		    #{catalog_id, jdbcType=VARCHAR},  <!-- 目录ID -->
+		    #{catalog_cascade_id, jdbcType=VARCHAR},  <!-- 分类科目语义ID -->
+		    #{param_remark, jdbcType=VARCHAR},  <!-- 参数备注 -->
+		    #{status, jdbcType=VARCHAR},  <!-- 当前状态(0:停用;1:启用) -->
+		    #{edit_mode, jdbcType=VARCHAR},  <!-- 编辑模式(0:只读;1:可编辑) -->
+		    #{create_time, jdbcType=VARCHAR},  <!-- 创建时间 -->
+		    #{create_user_id, jdbcType=VARCHAR},  <!-- 创建用户ID -->
+		    #{modify_time, jdbcType=VARCHAR},  <!-- 修改时间 -->
+		    #{modify_user_id, jdbcType=VARCHAR}  <!-- 修改用户ID -->
+		)
+	</insert>
+
+	<!-- 根据主键修改数据持久化对象 -->
+	<update id="updateByKey" parameterType="com.ims.common.system.modules.po.ParamPO">
+		UPDATE sys_param
+		<set>
+			<if test="param_name != null">
+		          param_name = #{param_name, jdbcType=VARCHAR},  <!-- 参数名称 -->
+			</if>
+			<if test="param_key != null">
+		          param_key = #{param_key, jdbcType=VARCHAR},  <!-- 参数键名 -->
+			</if>
+			<if test="param_value != null">
+		          param_value = #{param_value, jdbcType=VARCHAR},  <!-- 参数键值 -->
+			</if>
+			<if test="catalog_id != null">
+		          catalog_id = #{catalog_id, jdbcType=VARCHAR},  <!-- 目录ID -->
+			</if>
+			<if test="catalog_cascade_id != null">
+		          catalog_cascade_id = #{catalog_cascade_id, jdbcType=VARCHAR},  <!-- 分类科目语义ID -->
+			</if>
+			<if test="param_remark != null">
+		          param_remark = #{param_remark, jdbcType=VARCHAR},  <!-- 参数备注 -->
+			</if>
+			<if test="status != null">
+		          status = #{status, jdbcType=VARCHAR},  <!-- 当前状态(0:停用;1:启用) -->
+			</if>
+			<if test="edit_mode != null">
+		          edit_mode = #{edit_mode, jdbcType=VARCHAR},  <!-- 编辑模式(0:只读;1:可编辑) -->
+			</if>
+			<if test="create_time != null">
+		          create_time = #{create_time, jdbcType=VARCHAR},  <!-- 创建时间 -->
+			</if>
+			<if test="create_user_id != null">
+		          create_user_id = #{create_user_id, jdbcType=VARCHAR},  <!-- 创建用户ID -->
+			</if>
+			<if test="modify_time != null">
+		          modify_time = #{modify_time, jdbcType=VARCHAR},  <!-- 修改时间 -->
+			</if>
+			<if test="modify_user_id != null">
+		          modify_user_id = #{modify_user_id, jdbcType=VARCHAR},  <!-- 修改用户ID -->
+			</if>
+		</set>
+		WHERE  param_id = #{param_id}
+	</update>
+	
+	<!-- 根据主键删除数据持久化对象 -->
+	<delete id="deleteByKey">
+		DELETE FROM sys_param WHERE  param_id = #{param_id}
+	</delete>
+	
+	<!-- 批量根据主键删除数据持久化对象 -->
+	<delete id="batchDeleteByKey"  parameterType="java.lang.String">
+		DELETE FROM sys_param WHERE param_id IN 
+		<foreach item="param_id" index="index" collection="list" separator="," open="(" close=")">
+		#{param_id}
+	    </foreach>
+	</delete>
+
+	<!-- 根据主键查询并返回数据持久化对象 -->
+	<select id="selectByKey" resultType="com.ims.common.system.modules.po.ParamPO">
+		SELECT
+		<include refid="column" />
+		FROM sys_param WHERE  param_id = #{param_id}
+	</select>
+
+	<!-- 根据唯一组合条件查询并返回数据持久化对象 -->
+	<select id="selectOne" parameterType="Dto" resultType="com.ims.common.system.modules.po.ParamPO">
+		SELECT
+		    <include refid="column" />
+		FROM sys_param
+		<where>
+		    <include refid="equal" />
+		</where>		
+	</select>
+
+	<!-- 根据Dto查询并返回数据持久化对象集合 -->
+	<select id="list" parameterType="Dto" resultType="com.ims.common.system.modules.po.ParamPO">
+		SELECT
+			<include refid="column" />	
+		FROM sys_param
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto查询并返回分页数据持久化对象集合 -->
+	<select id="listPage" parameterType="Dto" resultType="com.ims.common.system.modules.po.ParamPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM sys_param
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto模糊查询并返回数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="like" parameterType="Dto" resultType="com.ims.common.system.modules.po.ParamPO">
+		SELECT
+			<include refid="column" />	
+		FROM sys_param
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto模糊查询并返回分页数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="likePage" parameterType="Dto" resultType="com.ims.common.system.modules.po.ParamPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM sys_param
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto统计行数 -->
+	<select id="rows" resultType="Integer" parameterType="Dto">
+		SELECT COUNT(1) AS rows_ FROM sys_param
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	<!-- 根据数学表达式进行数学运算 -->
+	<select id="calc" parameterType="Dto" resultType="String">
+		SELECT
+			${_expr}
+		FROM sys_param
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	
+	
+	<!-- 表字段 -->
+	<sql id="column">
+		  param_id,  <!-- 参数编号 -->
+		  param_name,  <!-- 参数名称 -->
+		  param_key,  <!-- 参数键名 -->
+		  param_value,  <!-- 参数键值 -->
+		  catalog_id,  <!-- 目录ID -->
+		  (SELECT a.catalog_name FROM sys_catalog a WHERE a.catalog_id =sys_param.catalog_id) catalog_name ,
+		  catalog_cascade_id,  <!-- 分类科目语义ID -->
+		  param_remark,  <!-- 参数备注 -->
+		  status,  <!-- 当前状态(0:停用;1:启用) -->
+		  edit_mode,  <!-- 编辑模式(0:只读;1:可编辑) -->
+		  create_time,  <!-- 创建时间 -->
+		  create_user_id,  <!-- 创建用户ID -->
+		  modify_time,  <!-- 修改时间 -->
+		  modify_user_id  <!-- 修改用户ID -->
+	</sql>
+	
+	<!-- 表字段(用于外表的关联时引用) -->
+	<sql id="column2">
+		  sys_param.param_id,  <!-- 参数编号 -->
+		  sys_param.param_name,  <!-- 参数名称 -->
+		  sys_param.param_key,  <!-- 参数键名 -->
+		  sys_param.param_value,  <!-- 参数键值 -->
+		  sys_param.catalog_id,  <!-- 目录ID -->
+		  sys_param.catalog_cascade_id,  <!-- 分类科目语义ID -->
+		  sys_param.param_remark,  <!-- 参数备注 -->
+		  sys_param.status,  <!-- 当前状态(0:停用;1:启用) -->
+		  sys_param.edit_mode,  <!-- 编辑模式(0:只读;1:可编辑) -->
+		  sys_param.create_time,  <!-- 创建时间 -->
+		  sys_param.create_user_id,  <!-- 创建用户ID -->
+		  sys_param.modify_time,  <!-- 修改时间 -->
+		  sys_param.modify_user_id  <!-- 修改用户ID -->
+	</sql>
+
+	<!-- Where精确匹配字段 -->
+	<sql id="equal">
+	    <if test="param_id != null and param_id != ''">
+		      AND param_id = #{param_id}  <!-- 参数编号 -->
+		</if>
+	    <if test="param_name != null and param_name != ''">
+		      AND param_name = #{param_name}  <!-- 参数名称 -->
+		</if>
+	    <if test="param_key != null and param_key != ''">
+		      AND param_key = #{param_key}  <!-- 参数键名 -->
+		</if>
+	    <if test="param_value != null and param_value != ''">
+		      AND param_value = #{param_value}  <!-- 参数键值 -->
+		</if>
+	    <if test="catalog_id != null and catalog_id != ''">
+		      AND catalog_id = #{catalog_id}  <!-- 目录ID -->
+		</if>
+	    <if test="catalog_cascade_id != null and catalog_cascade_id != ''">
+		      AND catalog_cascade_id = #{catalog_cascade_id}  <!-- 分类科目语义ID -->
+		</if>
+	    <if test="param_remark != null and param_remark != ''">
+		      AND param_remark = #{param_remark}  <!-- 参数备注 -->
+		</if>
+	    <if test="status != null and status != ''">
+		      AND status = #{status}  <!-- 当前状态(0:停用;1:启用) -->
+		</if>
+	    <if test="edit_mode != null and edit_mode != ''">
+		      AND edit_mode = #{edit_mode}  <!-- 编辑模式(0:只读;1:可编辑) -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time = #{create_time}  <!-- 创建时间 -->
+		</if>
+	    <if test="create_user_id != null and create_user_id != ''">
+		      AND create_user_id = #{create_user_id}  <!-- 创建用户ID -->
+		</if>
+	    <if test="modify_time != null and modify_time != ''">
+		      AND modify_time = #{modify_time}  <!-- 修改时间 -->
+		</if>
+	    <if test="modify_user_id != null and modify_user_id != ''">
+		      AND modify_user_id = #{modify_user_id}  <!-- 修改用户ID -->
+		</if>
+	</sql>
+	
+	<!-- Where模糊匹配字段 -->
+	<sql id="like">
+	    <if test="param_id != null and param_id != ''">
+		      AND param_id like '%${param_id}%'  <!-- 参数编号 -->
+		</if>
+	    <if test="param_name != null and param_name != ''">
+		      AND param_name like '%${param_name}%'  <!-- 参数名称 -->
+		</if>
+	    <if test="param_key != null and param_key != ''">
+		      AND param_key like '%${param_key}%'  <!-- 参数键名 -->
+		</if>
+	    <if test="param_value != null and param_value != ''">
+		      AND param_value like '%${param_value}%'  <!-- 参数键值 -->
+		</if>
+	    <if test="catalog_id != null and catalog_id != ''">
+		      AND catalog_id like '%${catalog_id}%'  <!-- 目录ID -->
+		</if>
+	    <if test="catalog_cascade_id != null and catalog_cascade_id != ''">
+		      AND catalog_cascade_id like '%${catalog_cascade_id}%'  <!-- 分类科目语义ID -->
+		</if>
+	    <if test="param_remark != null and param_remark != ''">
+		      AND param_remark like '%${param_remark}%'  <!-- 参数备注 -->
+		</if>
+	    <if test="status != null and status != ''">
+		      AND status like '%${status}%'  <!-- 当前状态(0:停用;1:启用) -->
+		</if>
+	    <if test="edit_mode != null and edit_mode != ''">
+		      AND edit_mode like '%${edit_mode}%'  <!-- 编辑模式(0:只读;1:可编辑) -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time like '%${create_time}%'  <!-- 创建时间 -->
+		</if>
+	    <if test="create_user_id != null and create_user_id != ''">
+		      AND create_user_id like '%${create_user_id}%'  <!-- 创建用户ID -->
+		</if>
+	    <if test="modify_time != null and modify_time != ''">
+		      AND modify_time like '%${modify_time}%'  <!-- 修改时间 -->
+		</if>
+	    <if test="modify_user_id != null and modify_user_id != ''">
+		      AND modify_user_id like '%${modify_user_id}%'  <!-- 修改用户ID -->
+		</if>
+	</sql>
+	
+</mapper>

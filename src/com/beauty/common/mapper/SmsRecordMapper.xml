@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 短信记录[bis_sms_record]SQLMapper自动映射 -->
+<!--  注意:此文件由系统平台自动生成-禁止手工修改 2017-05-12 00:26:48 -->
+<mapper namespace="com.beauty.common.mapper.SmsRecordMapper">
+	
+	<!-- 插入一个数据持久化对象(插入字段为传入PO实体的非空属性) -->
+	<insert id="insert"  parameterType="com.beauty.common.po.SmsRecordPO">
+		INSERT INTO bis_sms_record 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="mobile != null and mobile != ''">
+	         mobile, <!-- 手机号码 -->
+		</if>
+		<if test="content != null and content != ''">
+	         content, <!-- 内容 -->
+		</if>
+		<if test="sms_type != null and sms_type != ''">
+	         sms_type, <!-- 短信类型 1普通短信 2验证短信 3支付验证短信 -->
+		</if>
+		<if test="send_user_id != null and send_user_id != ''">
+	         send_user_id, <!-- 发送用户编号， -->
+		</if>
+		<if test="user_type != null and user_type != ''">
+	         user_type, <!-- 用户类型 1员工 2顾客 -->
+		</if>
+		<if test="create_user_id != null and create_user_id != ''">
+	         create_user_id, <!-- create_user_id -->
+		</if>
+		<if test="create_time != null and create_time != ''">
+	         create_time, <!-- create_time -->
+		</if>
+		<if test="status != null and status != ''">
+	         status, <!-- 短信状态  0失败 1成功 -->
+		</if>
+		<if test="send_time != null and send_time != ''">
+	         send_time, <!-- 发送时间 -->
+		</if>
+		<if test="failure_cause != null and failure_cause != ''">
+	         failure_cause, <!-- 失败原因 -->
+		</if>
+		<if test="record_id != null and record_id != ''">
+	          record_id  <!-- 记录编号 -->
+	    </if>
+        </trim>
+	    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+		<if test="mobile != null and mobile != ''">
+	          #{mobile, jdbcType=VARCHAR}, <!-- 手机号码 -->
+	    </if>
+		<if test="content != null and content != ''">
+	          #{content, jdbcType=VARCHAR}, <!-- 内容 -->
+	    </if>
+		<if test="sms_type != null and sms_type != ''">
+	          #{sms_type, jdbcType=VARCHAR}, <!-- 短信类型 1普通短信 2验证短信 3支付验证短信 -->
+	    </if>
+		<if test="send_user_id != null and send_user_id != ''">
+	          #{send_user_id, jdbcType=VARCHAR}, <!-- 发送用户编号， -->
+	    </if>
+		<if test="user_type != null and user_type != ''">
+	          #{user_type, jdbcType=VARCHAR}, <!-- 用户类型 1员工 2顾客 -->
+	    </if>
+		<if test="create_user_id != null and create_user_id != ''">
+	          #{create_user_id, jdbcType=VARCHAR}, <!-- create_user_id -->
+	    </if>
+		<if test="create_time != null and create_time != ''">
+	          #{create_time, jdbcType=VARCHAR}, <!-- create_time -->
+	    </if>
+		<if test="status != null and status != ''">
+	          #{status, jdbcType=VARCHAR}, <!-- 短信状态  0失败 1成功 -->
+	    </if>
+		<if test="send_time != null and send_time != ''">
+	          #{send_time, jdbcType=VARCHAR}, <!-- 发送时间 -->
+	    </if>
+		<if test="failure_cause != null and failure_cause != ''">
+	          #{failure_cause, jdbcType=VARCHAR}, <!-- 失败原因 -->
+	    </if>
+		<if test="record_id != null and record_id != ''">
+		     #{record_id, jdbcType=VARCHAR}  <!-- 记录编号 -->
+	    </if>
+		</trim>
+		
+	</insert>
+	
+	<!-- 插入一个数据持久化对象(含所有字段) -->
+	<insert id="insertAll"  parameterType="com.beauty.common.po.SmsRecordPO">
+		INSERT INTO bis_sms_record (
+          record_id,  <!-- 记录编号 -->
+		  mobile,  <!-- 手机号码 -->
+		  content,  <!-- 内容 -->
+		  sms_type,  <!-- 短信类型 1普通短信 2验证短信 3支付验证短信 -->
+		  send_user_id,  <!-- 发送用户编号， -->
+		  user_type,  <!-- 用户类型 1员工 2顾客 -->
+		  create_user_id,  <!-- create_user_id -->
+		  create_time,  <!-- create_time -->
+		  status,  <!-- 短信状态  0失败 1成功 -->
+		  send_time,  <!-- 发送时间 -->
+		  failure_cause  <!-- 失败原因 -->
+		)
+		VALUES (
+            #{record_id, jdbcType=VARCHAR},   <!-- 记录编号 -->
+		    #{mobile, jdbcType=VARCHAR},  <!-- 手机号码 -->
+		    #{content, jdbcType=VARCHAR},  <!-- 内容 -->
+		    #{sms_type, jdbcType=VARCHAR},  <!-- 短信类型 1普通短信 2验证短信 3支付验证短信 -->
+		    #{send_user_id, jdbcType=VARCHAR},  <!-- 发送用户编号， -->
+		    #{user_type, jdbcType=VARCHAR},  <!-- 用户类型 1员工 2顾客 -->
+		    #{create_user_id, jdbcType=VARCHAR},  <!-- create_user_id -->
+		    #{create_time, jdbcType=VARCHAR},  <!-- create_time -->
+		    #{status, jdbcType=VARCHAR},  <!-- 短信状态  0失败 1成功 -->
+		    #{send_time, jdbcType=VARCHAR},  <!-- 发送时间 -->
+		    #{failure_cause, jdbcType=VARCHAR}  <!-- 失败原因 -->
+		)
+	</insert>
+
+	<!-- 根据主键修改数据持久化对象 -->
+	<update id="updateByKey" parameterType="com.beauty.common.po.SmsRecordPO">
+		UPDATE bis_sms_record
+		<set>
+			<if test="mobile != null">
+		          mobile = #{mobile, jdbcType=VARCHAR},  <!-- 手机号码 -->
+			</if>
+			<if test="content != null">
+		          content = #{content, jdbcType=VARCHAR},  <!-- 内容 -->
+			</if>
+			<if test="sms_type != null">
+		          sms_type = #{sms_type, jdbcType=VARCHAR},  <!-- 短信类型 1普通短信 2验证短信 3支付验证短信 -->
+			</if>
+			<if test="send_user_id != null">
+		          send_user_id = #{send_user_id, jdbcType=VARCHAR},  <!-- 发送用户编号， -->
+			</if>
+			<if test="user_type != null">
+		          user_type = #{user_type, jdbcType=VARCHAR},  <!-- 用户类型 1员工 2顾客 -->
+			</if>
+			<if test="create_user_id != null">
+		          create_user_id = #{create_user_id, jdbcType=VARCHAR},  <!-- create_user_id -->
+			</if>
+			<if test="create_time != null">
+		          create_time = #{create_time, jdbcType=VARCHAR},  <!-- create_time -->
+			</if>
+			<if test="status != null">
+		          status = #{status, jdbcType=VARCHAR},  <!-- 短信状态  0失败 1成功 -->
+			</if>
+			<if test="send_time != null">
+		          send_time = #{send_time, jdbcType=VARCHAR},  <!-- 发送时间 -->
+			</if>
+			<if test="failure_cause != null">
+		          failure_cause = #{failure_cause, jdbcType=VARCHAR},  <!-- 失败原因 -->
+			</if>
+		</set>
+		WHERE  record_id = #{record_id}
+	</update>
+	
+	<!-- 根据主键删除数据持久化对象 -->
+	<delete id="deleteByKey">
+		DELETE FROM bis_sms_record WHERE  record_id = #{record_id}
+	</delete>
+	
+	<!-- 批量根据主键删除数据持久化对象 -->
+	<delete id="batchDeleteByKey"  parameterType="java.lang.String">
+		DELETE FROM bis_sms_record WHERE record_id IN 
+		<foreach item="record_id" index="index" collection="list" separator="," open="(" close=")">
+		#{record_id}
+	    </foreach>
+	</delete>
+
+	<!-- 根据主键查询并返回数据持久化对象 -->
+	<select id="selectByKey" resultType="com.beauty.common.po.SmsRecordPO">
+		SELECT
+		<include refid="column" />
+		FROM bis_sms_record WHERE  record_id = #{record_id}
+	</select>
+
+	<!-- 根据唯一组合条件查询并返回数据持久化对象 -->
+	<select id="selectOne" parameterType="Dto" resultType="com.beauty.common.po.SmsRecordPO">
+		SELECT
+		    <include refid="column" />
+		FROM bis_sms_record
+		<where>
+		    <include refid="equal" />
+		</where>		
+	</select>
+
+	<!-- 根据Dto查询并返回数据持久化对象集合 -->
+	<select id="list" parameterType="Dto" resultType="com.beauty.common.po.SmsRecordPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_sms_record
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto查询并返回分页数据持久化对象集合 -->
+	<select id="listPage" parameterType="Dto" resultType="com.beauty.common.po.SmsRecordPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_sms_record
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto模糊查询并返回数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="like" parameterType="Dto" resultType="com.beauty.common.po.SmsRecordPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_sms_record
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto模糊查询并返回分页数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="likePage" parameterType="Dto" resultType="com.beauty.common.po.SmsRecordPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_sms_record
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto统计行数 -->
+	<select id="rows" resultType="Integer" parameterType="Dto">
+		SELECT COUNT(1) AS rows_ FROM bis_sms_record
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	<!-- 根据数学表达式进行数学运算 -->
+	<select id="calc" parameterType="Dto" resultType="String">
+		SELECT
+			${_expr}
+		FROM bis_sms_record
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	
+	
+	<!-- 表字段 -->
+	<sql id="column">
+		  record_id,  <!-- 记录编号 -->
+		  mobile,  <!-- 手机号码 -->
+		  content,  <!-- 内容 -->
+		  sms_type,  <!-- 短信类型 1普通短信 2验证短信 3支付验证短信 -->
+		  send_user_id,  <!-- 发送用户编号， -->
+		  user_type,  <!-- 用户类型 1员工 2顾客 -->
+		  create_user_id,  <!-- create_user_id -->
+		  create_time,  <!-- create_time -->
+		  status,  <!-- 短信状态  0失败 1成功 -->
+		  send_time,  <!-- 发送时间 -->
+		  failure_cause  <!-- 失败原因 -->
+	</sql>
+	
+	<!-- 表字段(用于外表的关联时引用) -->
+	<sql id="column2">
+		  bis_sms_record.record_id,  <!-- 记录编号 -->
+		  bis_sms_record.mobile,  <!-- 手机号码 -->
+		  bis_sms_record.content,  <!-- 内容 -->
+		  bis_sms_record.sms_type,  <!-- 短信类型 1普通短信 2验证短信 3支付验证短信 -->
+		  bis_sms_record.send_user_id,  <!-- 发送用户编号， -->
+		  bis_sms_record.user_type,  <!-- 用户类型 1员工 2顾客 -->
+		  bis_sms_record.create_user_id,  <!-- create_user_id -->
+		  bis_sms_record.create_time,  <!-- create_time -->
+		  bis_sms_record.status,  <!-- 短信状态  0失败 1成功 -->
+		  bis_sms_record.send_time,  <!-- 发送时间 -->
+		  bis_sms_record.failure_cause  <!-- 失败原因 -->
+	</sql>
+
+	<!-- Where精确匹配字段 -->
+	<sql id="equal">
+	    <if test="record_id != null and record_id != ''">
+		      AND record_id = #{record_id}  <!-- 记录编号 -->
+		</if>
+	    <if test="mobile != null and mobile != ''">
+		      AND mobile = #{mobile}  <!-- 手机号码 -->
+		</if>
+	    <if test="content != null and content != ''">
+		      AND content = #{content}  <!-- 内容 -->
+		</if>
+	    <if test="sms_type != null and sms_type != ''">
+		      AND sms_type = #{sms_type}  <!-- 短信类型 1普通短信 2验证短信 3支付验证短信 -->
+		</if>
+	    <if test="send_user_id != null and send_user_id != ''">
+		      AND send_user_id = #{send_user_id}  <!-- 发送用户编号， -->
+		</if>
+	    <if test="user_type != null and user_type != ''">
+		      AND user_type = #{user_type}  <!-- 用户类型 1员工 2顾客 -->
+		</if>
+	    <if test="create_user_id != null and create_user_id != ''">
+		      AND create_user_id = #{create_user_id}  <!-- create_user_id -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time = #{create_time}  <!-- create_time -->
+		</if>
+	    <if test="status != null and status != ''">
+		      AND status = #{status}  <!-- 短信状态  0失败 1成功 -->
+		</if>
+	    <if test="send_time != null and send_time != ''">
+		      AND send_time = #{send_time}  <!-- 发送时间 -->
+		</if>
+	    <if test="failure_cause != null and failure_cause != ''">
+		      AND failure_cause = #{failure_cause}  <!-- 失败原因 -->
+		</if>
+	</sql>
+	
+	<!-- Where模糊匹配字段 -->
+	<sql id="like">
+	    <if test="record_id != null and record_id != ''">
+		      AND record_id LIKE '%${record_id}%'  <!-- 记录编号 -->
+		</if>
+	    <if test="mobile != null and mobile != ''">
+		      AND mobile LIKE '%${mobile}%'  <!-- 手机号码 -->
+		</if>
+	    <if test="content != null and content != ''">
+		      AND content LIKE '%${content}%'  <!-- 内容 -->
+		</if>
+	    <if test="sms_type != null and sms_type != ''">
+		      AND sms_type LIKE '%${sms_type}%'  <!-- 短信类型 1普通短信 2验证短信 3支付验证短信 -->
+		</if>
+	    <if test="send_user_id != null and send_user_id != ''">
+		      AND send_user_id LIKE '%${send_user_id}%'  <!-- 发送用户编号， -->
+		</if>
+	    <if test="user_type != null and user_type != ''">
+		      AND user_type LIKE '%${user_type}%'  <!-- 用户类型 1员工 2顾客 -->
+		</if>
+	    <if test="create_user_id != null and create_user_id != ''">
+		      AND create_user_id LIKE '%${create_user_id}%'  <!-- create_user_id -->
+		</if>
+	    <if test="create_time != null and create_time != ''">
+		      AND create_time LIKE '%${create_time}%'  <!-- create_time -->
+		</if>
+	    <if test="status != null and status != ''">
+		      AND status LIKE '%${status}%'  <!-- 短信状态  0失败 1成功 -->
+		</if>
+	    <if test="send_time != null and send_time != ''">
+		      AND send_time LIKE '%${send_time}%'  <!-- 发送时间 -->
+		</if>
+	    <if test="failure_cause != null and failure_cause != ''">
+		      AND failure_cause LIKE '%${failure_cause}%'  <!-- 失败原因 -->
+		</if>
+	</sql>
+	
+</mapper>

@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 现金流水[bis_cash_record]SQLMapper自动映射 -->
+<!--  注意:此文件由系统平台自动生成-禁止手工修改 2017-05-07 22:45:48 -->
+<mapper namespace="com.beauty.common.mapper.CashRecordMapper">
+	
+	<!-- 插入一个数据持久化对象(插入字段为传入PO实体的非空属性) -->
+	<insert id="insert"  parameterType="com.beauty.common.po.CashRecordPO">
+		INSERT INTO bis_cash_record 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="order_id != null and order_id != ''">
+	         order_id, <!-- 订单编号 -->
+		</if>
+		<if test="custom_user_id != null and custom_user_id != ''">
+	         custom_user_id, <!-- 购买人编号 -->
+		</if>
+		<if test="beauty_num != null">
+	         beauty_num, <!-- 美研币数量 -->
+		</if>
+		<if test="money != null and money != ''">
+	         money, <!-- 金额 -->
+		</if>
+		<if test="pay_way != null and pay_way != ''">
+	         pay_way, <!-- 支付方式1 微信 2支付宝 -->
+		</if>
+		<if test="cash_type != null and cash_type != ''">
+	         cash_type, <!-- 流水类型1收入 2支出 -->
+		</if>
+		<if test="record_type != null and record_type != ''">
+	         record_type, <!-- 记录类型1购买美丽币2购买套餐 3使用消费4 预约 -->
+		</if>
+		<if test="pay_time != null and pay_time != ''">
+	         pay_time, <!-- 支付时间 -->
+		</if>
+		<if test="record_id != null and record_id != ''">
+	          record_id  <!-- 流水号 -->
+	    </if>
+        </trim>
+	    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+		<if test="order_id != null and order_id != ''">
+	          #{order_id, jdbcType=VARCHAR}, <!-- 订单编号 -->
+	    </if>
+		<if test="custom_user_id != null and custom_user_id != ''">
+	          #{custom_user_id, jdbcType=VARCHAR}, <!-- 购买人编号 -->
+	    </if>
+		<if test="beauty_num != null">
+	          #{beauty_num, jdbcType=INTEGER}, <!-- 美研币数量 -->
+	    </if>
+		<if test="money != null and money != ''">
+	          #{money, jdbcType=VARCHAR}, <!-- 金额 -->
+	    </if>
+		<if test="pay_way != null and pay_way != ''">
+	          #{pay_way, jdbcType=VARCHAR}, <!-- 支付方式1 微信 2支付宝 -->
+	    </if>
+		<if test="cash_type != null and cash_type != ''">
+	          #{cash_type, jdbcType=VARCHAR}, <!-- 流水类型1收入 2支出 -->
+	    </if>
+		<if test="record_type != null and record_type != ''">
+	          #{record_type, jdbcType=VARCHAR}, <!-- 记录类型1购买美丽币2购买套餐 3使用消费4 预约 -->
+	    </if>
+		<if test="pay_time != null and pay_time != ''">
+	          #{pay_time, jdbcType=VARCHAR}, <!-- 支付时间 -->
+	    </if>
+		<if test="record_id != null and record_id != ''">
+		     #{record_id, jdbcType=VARCHAR}  <!-- 流水号 -->
+	    </if>
+		</trim>
+		
+	</insert>
+	
+	<!-- 插入一个数据持久化对象(含所有字段) -->
+	<insert id="insertAll"  parameterType="com.beauty.common.po.CashRecordPO">
+		INSERT INTO bis_cash_record (
+          record_id,  <!-- 流水号 -->
+		  order_id,  <!-- 订单编号 -->
+		  custom_user_id,  <!-- 购买人编号 -->
+		  beauty_num,  <!-- 美研币数量 -->
+		  money,  <!-- 金额 -->
+		  pay_way,  <!-- 支付方式1 微信 2支付宝 -->
+		  cash_type,  <!-- 流水类型1收入 2支出 -->
+		  record_type,  <!-- 记录类型1购买美丽币2购买套餐 3使用消费4 预约 -->
+		  pay_time  <!-- 支付时间 -->
+		)
+		VALUES (
+            #{record_id, jdbcType=VARCHAR},   <!-- 流水号 -->
+		    #{order_id, jdbcType=VARCHAR},  <!-- 订单编号 -->
+		    #{custom_user_id, jdbcType=VARCHAR},  <!-- 购买人编号 -->
+		    #{beauty_num, jdbcType=INTEGER},  <!-- 美研币数量 -->
+		    #{money, jdbcType=VARCHAR},  <!-- 金额 -->
+		    #{pay_way, jdbcType=VARCHAR},  <!-- 支付方式1 微信 2支付宝 -->
+		    #{cash_type, jdbcType=VARCHAR},  <!-- 流水类型1收入 2支出 -->
+		    #{record_type, jdbcType=VARCHAR},  <!-- 记录类型1购买美丽币2购买套餐 3使用消费4 预约 -->
+		    #{pay_time, jdbcType=VARCHAR}  <!-- 支付时间 -->
+		)
+	</insert>
+
+	<!-- 根据主键修改数据持久化对象 -->
+	<update id="updateByKey" parameterType="com.beauty.common.po.CashRecordPO">
+		UPDATE bis_cash_record
+		<set>
+			<if test="order_id != null">
+		          order_id = #{order_id, jdbcType=VARCHAR},  <!-- 订单编号 -->
+			</if>
+			<if test="custom_user_id != null">
+		          custom_user_id = #{custom_user_id, jdbcType=VARCHAR},  <!-- 购买人编号 -->
+			</if>
+			<if test="beauty_num != null">
+		          beauty_num = #{beauty_num, jdbcType=INTEGER},  <!-- 美研币数量 -->
+			</if>
+			<if test="money != null">
+		          money = #{money, jdbcType=VARCHAR},  <!-- 金额 -->
+			</if>
+			<if test="pay_way != null">
+		          pay_way = #{pay_way, jdbcType=VARCHAR},  <!-- 支付方式1 微信 2支付宝 -->
+			</if>
+			<if test="cash_type != null">
+		          cash_type = #{cash_type, jdbcType=VARCHAR},  <!-- 流水类型1收入 2支出 -->
+			</if>
+			<if test="record_type != null">
+		          record_type = #{record_type, jdbcType=VARCHAR},  <!-- 记录类型1购买美丽币2购买套餐 3使用消费4 预约 -->
+			</if>
+			<if test="pay_time != null">
+		          pay_time = #{pay_time, jdbcType=VARCHAR},  <!-- 支付时间 -->
+			</if>
+		</set>
+		WHERE  record_id = #{record_id}
+	</update>
+	
+	<!-- 根据主键删除数据持久化对象 -->
+	<delete id="deleteByKey">
+		DELETE FROM bis_cash_record WHERE  record_id = #{record_id}
+	</delete>
+	
+	<!-- 批量根据主键删除数据持久化对象 -->
+	<delete id="batchDeleteByKey"  parameterType="java.lang.String">
+		DELETE FROM bis_cash_record WHERE record_id IN 
+		<foreach item="record_id" index="index" collection="list" separator="," open="(" close=")">
+		#{record_id}
+	    </foreach>
+	</delete>
+
+	<!-- 根据主键查询并返回数据持久化对象 -->
+	<select id="selectByKey" resultType="com.beauty.common.po.CashRecordPO">
+		SELECT
+		<include refid="column" />
+		FROM bis_cash_record WHERE  record_id = #{record_id}
+	</select>
+
+	<!-- 根据唯一组合条件查询并返回数据持久化对象 -->
+	<select id="selectOne" parameterType="Dto" resultType="com.beauty.common.po.CashRecordPO">
+		SELECT
+		    <include refid="column" />
+		FROM bis_cash_record
+		<where>
+		    <include refid="equal" />
+		</where>		
+	</select>
+
+	<!-- 根据Dto查询并返回数据持久化对象集合 -->
+	<select id="list" parameterType="Dto" resultType="com.beauty.common.po.CashRecordPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_cash_record
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto查询并返回分页数据持久化对象集合 -->
+	<select id="listPage" parameterType="Dto" resultType="com.beauty.common.po.CashRecordPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_cash_record
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto模糊查询并返回数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="like" parameterType="Dto" resultType="com.beauty.common.po.CashRecordPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_cash_record
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto模糊查询并返回分页数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="likePage" parameterType="Dto" resultType="com.beauty.common.po.CashRecordPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_cash_record
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto统计行数 -->
+	<select id="rows" resultType="Integer" parameterType="Dto">
+		SELECT COUNT(1) AS rows_ FROM bis_cash_record
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	<!-- 根据数学表达式进行数学运算 -->
+	<select id="calc" parameterType="Dto" resultType="String">
+		SELECT
+			${_expr}
+		FROM bis_cash_record
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	
+	
+	<!-- 表字段 -->
+	<sql id="column">
+		  record_id,  <!-- 流水号 -->
+		  order_id,  <!-- 订单编号 -->
+		  custom_user_id,  <!-- 购买人编号 -->
+		  beauty_num,  <!-- 美研币数量 -->
+		  money,  <!-- 金额 -->
+		  pay_way,  <!-- 支付方式1 微信 2支付宝 -->
+		  cash_type,  <!-- 流水类型1收入 2支出 -->
+		  record_type,  <!-- 记录类型1购买美丽币2购买套餐 3使用消费4 预约 -->
+		  pay_time  <!-- 支付时间 -->
+	</sql>
+	
+	<!-- 表字段(用于外表的关联时引用) -->
+	<sql id="column2">
+		  bis_cash_record.record_id,  <!-- 流水号 -->
+		  bis_cash_record.order_id,  <!-- 订单编号 -->
+		  bis_cash_record.custom_user_id,  <!-- 购买人编号 -->
+		  bis_cash_record.beauty_num,  <!-- 美研币数量 -->
+		  bis_cash_record.money,  <!-- 金额 -->
+		  bis_cash_record.pay_way,  <!-- 支付方式1 微信 2支付宝 -->
+		  bis_cash_record.cash_type,  <!-- 流水类型1收入 2支出 -->
+		  bis_cash_record.record_type,  <!-- 记录类型1购买美丽币2购买套餐 3使用消费4 预约 -->
+		  bis_cash_record.pay_time  <!-- 支付时间 -->
+	</sql>
+
+	<!-- Where精确匹配字段 -->
+	<sql id="equal">
+	    <if test="record_id != null and record_id != ''">
+		      AND record_id = #{record_id}  <!-- 流水号 -->
+		</if>
+	    <if test="order_id != null and order_id != ''">
+		      AND order_id = #{order_id}  <!-- 订单编号 -->
+		</if>
+	    <if test="custom_user_id != null and custom_user_id != ''">
+		      AND custom_user_id = #{custom_user_id}  <!-- 购买人编号 -->
+		</if>
+	   <if test="beauty_num != null ">
+		      AND beauty_num = #{beauty_num}  <!-- 美研币数量 -->
+		</if>
+	    <if test="money != null and money != ''">
+		      AND money = #{money}  <!-- 金额 -->
+		</if>
+	    <if test="pay_way != null and pay_way != ''">
+		      AND pay_way = #{pay_way}  <!-- 支付方式1 微信 2支付宝 -->
+		</if>
+	    <if test="cash_type != null and cash_type != ''">
+		      AND cash_type = #{cash_type}  <!-- 流水类型1收入 2支出 -->
+		</if>
+	    <if test="record_type != null and record_type != ''">
+		      AND record_type = #{record_type}  <!-- 记录类型1购买美丽币2购买套餐 3使用消费4 预约 -->
+		</if>
+	    <if test="pay_time != null and pay_time != ''">
+		      AND pay_time = #{pay_time}  <!-- 支付时间 -->
+		</if>
+	</sql>
+	
+	<!-- Where模糊匹配字段 -->
+	<sql id="like">
+	    <if test="record_id != null and record_id != ''">
+		      AND record_id LIKE '%${record_id}%'  <!-- 流水号 -->
+		</if>
+	    <if test="order_id != null and order_id != ''">
+		      AND order_id LIKE '%${order_id}%'  <!-- 订单编号 -->
+		</if>
+	    <if test="custom_user_id != null and custom_user_id != ''">
+		      AND custom_user_id LIKE '%${custom_user_id}%'  <!-- 购买人编号 -->
+		</if>
+	    <if test="money != null and money != ''">
+		      AND money LIKE '%${money}%'  <!-- 金额 -->
+		</if>
+	    <if test="pay_way != null and pay_way != ''">
+		      AND pay_way LIKE '%${pay_way}%'  <!-- 支付方式1 微信 2支付宝 -->
+		</if>
+	    <if test="cash_type != null and cash_type != ''">
+		      AND cash_type LIKE '%${cash_type}%'  <!-- 流水类型1收入 2支出 -->
+		</if>
+	    <if test="record_type != null and record_type != ''">
+		      AND record_type LIKE '%${record_type}%'  <!-- 记录类型1购买美丽币2购买套餐 3使用消费4 预约 -->
+		</if>
+	    <if test="pay_time != null and pay_time != ''">
+		      AND pay_time LIKE '%${pay_time}%'  <!-- 支付时间 -->
+		</if>
+	</sql>
+	
+</mapper>

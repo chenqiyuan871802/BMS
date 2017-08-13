@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 礼包项目[bis_project_record]SQLMapper自动映射 -->
+<!--  注意:此文件由系统平台自动生成-禁止手工修改 2017-06-21 00:56:36 -->
+<mapper namespace="com.beauty.common.mapper.ProjectRecordMapper">
+	
+	<!-- 插入一个数据持久化对象(插入字段为传入PO实体的非空属性) -->
+	<insert id="insert"  parameterType="com.beauty.common.po.ProjectRecordPO">
+		INSERT INTO bis_project_record 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="project_id != null and project_id != ''">
+	         project_id, <!-- 项目编号 -->
+		</if>
+		<if test="bag_record_id != null and bag_record_id != ''">
+	         bag_record_id, <!-- 礼包编号 -->
+		</if>
+		<if test="shop_id != null and shop_id != ''">
+	         shop_id, <!-- 消费店铺 -->
+		</if>
+		<if test="project_status != null and project_status != ''">
+	         project_status, <!-- 1 未使用 2 已使用 3 已过期 -->
+		</if>
+		<if test="draw_time != null and draw_time != ''">
+	         draw_time, <!-- 领取时间 -->
+		</if>
+		<if test="use_time != null and use_time != ''">
+	         use_time, <!-- 使用时间 -->
+		</if>
+		<if test="record_id != null and record_id != ''">
+	          record_id  <!-- 记录项目 -->
+	    </if>
+        </trim>
+	    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+		<if test="project_id != null and project_id != ''">
+	          #{project_id, jdbcType=VARCHAR}, <!-- 项目编号 -->
+	    </if>
+		<if test="bag_record_id != null and bag_record_id != ''">
+	          #{bag_record_id, jdbcType=VARCHAR}, <!-- 礼包编号 -->
+	    </if>
+		<if test="shop_id != null and shop_id != ''">
+	          #{shop_id, jdbcType=VARCHAR}, <!-- 消费店铺 -->
+	    </if>
+		<if test="project_status != null and project_status != ''">
+	          #{project_status, jdbcType=VARCHAR}, <!-- 1 未使用 2 已使用 3 已过期 -->
+	    </if>
+		<if test="draw_time != null and draw_time != ''">
+	          #{draw_time, jdbcType=VARCHAR}, <!-- 领取时间 -->
+	    </if>
+		<if test="use_time != null and use_time != ''">
+	          #{use_time, jdbcType=VARCHAR}, <!-- 使用时间 -->
+	    </if>
+		<if test="record_id != null and record_id != ''">
+		     #{record_id, jdbcType=VARCHAR}  <!-- 记录项目 -->
+	    </if>
+		</trim>
+		
+	</insert>
+	
+	<!-- 插入一个数据持久化对象(含所有字段) -->
+	<insert id="insertAll"  parameterType="com.beauty.common.po.ProjectRecordPO">
+		INSERT INTO bis_project_record (
+          record_id,  <!-- 记录项目 -->
+		  project_id,  <!-- 项目编号 -->
+		  bag_record_id,  <!-- 礼包编号 -->
+		  shop_id,  <!-- 消费店铺 -->
+		  project_status,  <!-- 1 未使用 2 已使用 3 已过期 -->
+		  draw_time,  <!-- 领取时间 -->
+		  use_time  <!-- 使用时间 -->
+		)
+		VALUES (
+            #{record_id, jdbcType=VARCHAR},   <!-- 记录项目 -->
+		    #{project_id, jdbcType=VARCHAR},  <!-- 项目编号 -->
+		    #{bag_record_id, jdbcType=VARCHAR},  <!-- 礼包编号 -->
+		    #{shop_id, jdbcType=VARCHAR},  <!-- 消费店铺 -->
+		    #{project_status, jdbcType=VARCHAR},  <!-- 1 未使用 2 已使用 3 已过期 -->
+		    #{draw_time, jdbcType=VARCHAR},  <!-- 领取时间 -->
+		    #{use_time, jdbcType=VARCHAR}  <!-- 使用时间 -->
+		)
+	</insert>
+
+	<!-- 根据主键修改数据持久化对象 -->
+	<update id="updateByKey" parameterType="com.beauty.common.po.ProjectRecordPO">
+		UPDATE bis_project_record
+		<set>
+			<if test="project_id != null">
+		          project_id = #{project_id, jdbcType=VARCHAR},  <!-- 项目编号 -->
+			</if>
+			<if test="bag_record_id != null">
+		          bag_record_id = #{bag_record_id, jdbcType=VARCHAR},  <!-- 礼包编号 -->
+			</if>
+			<if test="shop_id != null">
+		          shop_id = #{shop_id, jdbcType=VARCHAR},  <!-- 消费店铺 -->
+			</if>
+			<if test="project_status != null">
+		          project_status = #{project_status, jdbcType=VARCHAR},  <!-- 1 未使用 2 已使用 3 已过期 -->
+			</if>
+			<if test="draw_time != null">
+		          draw_time = #{draw_time, jdbcType=VARCHAR},  <!-- 领取时间 -->
+			</if>
+			<if test="use_time != null">
+		          use_time = #{use_time, jdbcType=VARCHAR},  <!-- 使用时间 -->
+			</if>
+		</set>
+		WHERE  record_id = #{record_id}
+	</update>
+	
+	<!-- 根据主键删除数据持久化对象 -->
+	<delete id="deleteByKey">
+		DELETE FROM bis_project_record WHERE  record_id = #{record_id}
+	</delete>
+	
+	<!-- 批量根据主键删除数据持久化对象 -->
+	<delete id="batchDeleteByKey"  parameterType="java.lang.String">
+		DELETE FROM bis_project_record WHERE record_id IN 
+		<foreach item="record_id" index="index" collection="list" separator="," open="(" close=")">
+		#{record_id}
+	    </foreach>
+	</delete>
+
+	<!-- 根据主键查询并返回数据持久化对象 -->
+	<select id="selectByKey" resultType="com.beauty.common.po.ProjectRecordPO">
+		SELECT
+		<include refid="column" />
+		FROM bis_project_record WHERE  record_id = #{record_id}
+	</select>
+
+	<!-- 根据唯一组合条件查询并返回数据持久化对象 -->
+	<select id="selectOne" parameterType="Dto" resultType="com.beauty.common.po.ProjectRecordPO">
+		SELECT
+		    <include refid="column" />
+		FROM bis_project_record
+		<where>
+		    <include refid="equal" />
+		</where>		
+	</select>
+
+	<!-- 根据Dto查询并返回数据持久化对象集合 -->
+	<select id="list" parameterType="Dto" resultType="com.beauty.common.po.ProjectRecordPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_project_record
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto查询并返回分页数据持久化对象集合 -->
+	<select id="listPage" parameterType="Dto" resultType="com.beauty.common.po.ProjectRecordPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_project_record
+		<where>
+		    <include refid="equal" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto模糊查询并返回数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="like" parameterType="Dto" resultType="com.beauty.common.po.ProjectRecordPO">
+		SELECT
+			<include refid="column" />	
+		FROM bis_project_record
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+
+	<!-- 根据Dto模糊查询并返回分页数据持久化对象集合(字符型字段模糊匹配，其余字段精确匹配) -->
+	<select id="likePage" parameterType="Dto" resultType="com.beauty.common.po.ProjectRecordPO" useCache="false">
+	    SELECT
+			<include refid="column" />	
+		FROM bis_project_record
+		<where>
+		    <include refid="like" />
+		</where>	
+	</select>
+	
+	<!-- 根据Dto统计行数 -->
+	<select id="rows" resultType="Integer" parameterType="Dto">
+		SELECT COUNT(1) AS rows_ FROM bis_project_record
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	<!-- 根据数学表达式进行数学运算 -->
+	<select id="calc" parameterType="Dto" resultType="String">
+		SELECT
+			${_expr}
+		FROM bis_project_record
+		<where>
+		    <include refid="equal" />
+		</where>
+	</select>
+	
+	
+	<!-- 表字段 -->
+	<sql id="column">
+		  record_id,  <!-- 记录项目 -->
+		  project_id,  <!-- 项目编号 -->
+		  bag_record_id,  <!-- 礼包编号 -->
+		  shop_id,  <!-- 消费店铺 -->
+		  project_status,  <!-- 1 未使用 2 已使用 3 已过期 -->
+		  draw_time,  <!-- 领取时间 -->
+		  use_time  <!-- 使用时间 -->
+	</sql>
+	
+	<!-- 表字段(用于外表的关联时引用) -->
+	<sql id="column2">
+		  bis_project_record.record_id,  <!-- 记录项目 -->
+		  bis_project_record.project_id,  <!-- 项目编号 -->
+		  bis_project_record.bag_record_id,  <!-- 礼包编号 -->
+		  bis_project_record.shop_id,  <!-- 消费店铺 -->
+		  bis_project_record.project_status,  <!-- 1 未使用 2 已使用 3 已过期 -->
+		  bis_project_record.draw_time,  <!-- 领取时间 -->
+		  bis_project_record.use_time  <!-- 使用时间 -->
+	</sql>
+
+	<!-- Where精确匹配字段 -->
+	<sql id="equal">
+	    <if test="record_id != null and record_id != ''">
+		      AND record_id = #{record_id}  <!-- 记录项目 -->
+		</if>
+	    <if test="project_id != null and project_id != ''">
+		      AND project_id = #{project_id}  <!-- 项目编号 -->
+		</if>
+	    <if test="bag_record_id != null and bag_record_id != ''">
+		      AND bag_record_id = #{bag_record_id}  <!-- 礼包编号 -->
+		</if>
+	    <if test="shop_id != null and shop_id != ''">
+		      AND shop_id = #{shop_id}  <!-- 消费店铺 -->
+		</if>
+	    <if test="project_status != null and project_status != ''">
+		      AND project_status = #{project_status}  <!-- 1 未使用 2 已使用 3 已过期 -->
+		</if>
+	    <if test="draw_time != null and draw_time != ''">
+		      AND draw_time = #{draw_time}  <!-- 领取时间 -->
+		</if>
+	    <if test="use_time != null and use_time != ''">
+		      AND use_time = #{use_time}  <!-- 使用时间 -->
+		</if>
+	</sql>
+	
+	<!-- Where模糊匹配字段 -->
+	<sql id="like">
+	    <if test="record_id != null and record_id != ''">
+		      AND record_id LIKE '%${record_id}%'  <!-- 记录项目 -->
+		</if>
+	    <if test="project_id != null and project_id != ''">
+		      AND project_id LIKE '%${project_id}%'  <!-- 项目编号 -->
+		</if>
+	    <if test="bag_record_id != null and bag_record_id != ''">
+		      AND bag_record_id LIKE '%${bag_record_id}%'  <!-- 礼包编号 -->
+		</if>
+	    <if test="shop_id != null and shop_id != ''">
+		      AND shop_id LIKE '%${shop_id}%'  <!-- 消费店铺 -->
+		</if>
+	    <if test="project_status != null and project_status != ''">
+		      AND project_status LIKE '%${project_status}%'  <!-- 1 未使用 2 已使用 3 已过期 -->
+		</if>
+	    <if test="draw_time != null and draw_time != ''">
+		      AND draw_time LIKE '%${draw_time}%'  <!-- 领取时间 -->
+		</if>
+	    <if test="use_time != null and use_time != ''">
+		      AND use_time LIKE '%${use_time}%'  <!-- 使用时间 -->
+		</if>
+	</sql>
+	
+</mapper>

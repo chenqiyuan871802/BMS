@@ -1,0 +1,1041 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 订单管理通用处理 -->
+<mapper namespace="com.beauty.common.mapper.OrderManageMapper">
+	<!-- 查询营业订单 -->
+	<select id="listBusinessRecordPage" parameterType="Dto"
+		resultType="Dto" useCache="false">
+		SELECT a.*,b.mobile,b.username,c.username AS
+		server_name,d.account,d.username AS handle_name,
+		s.shop_name,s.short_name,s.shop_address,s.gps_x,s.gps_y,s.shop_image,s.shop_detail_image
+		FROM bis_business_order a
+		INNER JOIN bis_custom_user b ON
+		a.custom_user_id=b.custom_user_id LEFT JOIN bis_shop s ON
+		a.shop_id=s.shop_id
+		LEFT JOIN bis_shop_user c ON
+		a.server_user_id=c.shop_user_id LEFT JOIN
+		bis_shop_user d ON
+		a.handle_user_id=d.shop_user_id
+		<where>
+			a.order_status>3
+			<if test="shop_id != null and shop_id != ''">
+				AND a.shop_id=#{shop_id}  <!-- 店铺编号 -->
+			</if>
+			<if test="order_type != null and order_type  != ''">
+				AND a.order_type =#{order_type}  <!-- 订单类型 -->
+			</if>
+			<if test="order_id != null and order_id != ''">
+				AND a.order_id LIKE '%${order_id}%'  <!-- 手机号码 -->
+			</if>
+			<if test="custom_user_id!= null and custom_user_id!= ''">
+				AND a.custom_user_id=#{custom_user_id}
+			</if>
+			<if test="mobile != null and mobile != ''">
+				AND b.mobile LIKE '%${mobile}%'  <!-- 手机号码 -->
+			</if>
+			<if test="username != null and username != ''">
+				AND b.username LIKE '%${username}%'
+			</if>
+
+			<if test="account != null and account != ''">
+				AND d.account LIKE '%${account}%'  <!-- 商家简称 -->
+			</if>
+
+			<if test="order_content != null and order_content != ''">
+				AND a.order_content LIKE '%${order_content}%'  <!-- 手机号码 -->
+			</if>
+			<if test="pay_way != null and pay_way!= ''">
+				AND a.pay_way=#{pay_way}  <!-- 电话 -->
+			</if>
+
+			<if test="order_status != null and order_status != ''">
+				AND a.order_status=#{order_status}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+
+			<if test="pay_time_begin != null and pay_time_begin != ''">
+				AND a.pay_time &gt;=#{pay_time_begin}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="pay_time_end!= null and pay_time_end != ''">
+				AND a.pay_time &lt;=#{pay_time_end}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+		</where>
+	</select>
+	<!-- 查询所有营业订单 -->
+	<select id="listAllRecordPage" parameterType="Dto" resultType="Dto"
+		useCache="false">
+		SELECT a.*,b.mobile,b.username,c.username AS
+		server_name,d.account,d.username AS
+		handle_name,s.shop_name,s.short_name FROM bis_business_order a
+		INNER
+		JOIN bis_custom_user b ON a.custom_user_id=b.custom_user_id LEFT JOIN
+		bis_shop s ON a.shop_id=s.shop_id
+		LEFT JOIN bis_shop_user c ON
+		a.server_user_id=c.shop_user_id LEFT JOIN
+		bis_shop_user d ON
+		a.handle_user_id=d.shop_user_id
+		<where>
+			a.order_status!='0'
+			<if test="shop_id != null and shop_id != ''">
+				AND a.shop_id=#{shop_id}  <!-- 店铺编号 -->
+			</if>
+			<if test="order_source!= null and order_source != ''">
+				AND a.order_source=#{order_source}  <!-- 店铺编号 -->
+			</if>
+			<if test="order_type != null and order_type  != ''">
+				AND a.order_type =#{order_type}  <!-- 订单类型 -->
+			</if>
+			<if test="order_id != null and order_id != ''">
+				AND a.order_id LIKE '%${order_id}%'  <!-- 手机号码 -->
+			</if>
+			<if test="custom_user_id!= null and custom_user_id!= ''">
+				AND a.custom_user_id=#{custom_user_id}
+			</if>
+			<if test="server_user_id!= null and server_user_id!= ''">
+				AND a.server_user_id=#{server_user_id}
+			</if>
+			<if test="mobile != null and mobile != ''">
+				AND b.mobile LIKE '%${mobile}%'  <!-- 手机号码 -->
+			</if>
+			<if test="username != null and username != ''">
+				AND b.username LIKE '%${username}%'
+			</if>
+
+			<if test="server_name != null and server_name != ''">
+				AND c.username LIKE '%${server_name}%'  <!-- 商家简称 -->
+			</if>
+			<if test="account != null and account != ''">
+				AND d.account LIKE '%${account}%'  <!-- 商家简称 -->
+			</if>
+
+			<if test="handle_name != null and handle_name != ''">
+				AND d.username LIKE '%${handle_name}%'  <!-- 商家简称 -->
+			</if>
+
+			<if test="order_content != null and order_content != ''">
+				AND a.order_content LIKE '%${order_content}%'  <!-- 手机号码 -->
+			</if>
+			<if test="pay_way != null and pay_way!= ''">
+				AND a.pay_way=#{pay_way}  <!-- 电话 -->
+			</if>
+
+			<if test="order_status != null and order_status != ''">
+				AND a.order_status=#{order_status}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+
+			<if test="pay_time_begin != null and pay_time_begin != ''">
+				AND DATE_FORMAT(a.pay_time,"%Y-%m-%d") &gt;=#{pay_time_begin}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="pay_time_end!= null and pay_time_end != ''">
+				AND DATE_FORMAT(a.pay_time,"%Y-%m-%d") &lt;=#{pay_time_end}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="finish_time_begin != null and finish_time_begin != ''">
+				AND DATE_FORMAT(a.finish_time,"%Y-%m-%d") &gt;=#{finish_time_begin}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="finish_time_end!= null and finish_time_end != ''">
+				AND DATE_FORMAT(a.finish_time,"%Y-%m-%d") &lt;=#{finish_time_end}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="total_month != null and total_month != ''">
+				AND date_format(a.finish_time,'%Y-%m')=#{total_month}  <!-- 商家简称 -->
+			</if>
+		</where>
+	</select>
+	<!-- 查询没有服务记录-->
+	<select id="listNoServerRecordPage" parameterType="Dto" resultType="Dto"
+		useCache="false">
+		SELECT a.*,b.mobile,b.username,c.username AS
+		server_name,d.account,d.username AS
+		handle_name,s.shop_name,s.short_name FROM bis_business_order a
+		INNER
+		JOIN bis_custom_user b ON a.custom_user_id=b.custom_user_id LEFT JOIN
+		bis_shop s ON a.shop_id=s.shop_id
+		LEFT JOIN bis_shop_user c ON
+		a.server_user_id=c.shop_user_id LEFT JOIN
+		bis_shop_user d ON
+		a.handle_user_id=d.shop_user_id
+		<where>
+			a.order_status in ('1','6','7')
+			<if test="shop_id != null and shop_id != ''">
+				AND a.shop_id=#{shop_id}  <!-- 店铺编号 -->
+			</if>
+			<if test="order_source!= null and order_source != ''">
+				AND a.order_source=#{order_source}  <!-- 店铺编号 -->
+			</if>
+			<if test="order_type != null and order_type  != ''">
+				AND a.order_type =#{order_type}  <!-- 订单类型 -->
+			</if>
+			<if test="order_id != null and order_id != ''">
+				AND a.order_id LIKE '%${order_id}%'  <!-- 手机号码 -->
+			</if>
+			<if test="custom_user_id!= null and custom_user_id!= ''">
+				AND a.custom_user_id=#{custom_user_id}
+			</if>
+			<if test="server_user_id!= null and server_user_id!= ''">
+				AND a.server_user_id=#{server_user_id}
+			</if>
+			<if test="mobile != null and mobile != ''">
+				AND b.mobile LIKE '%${mobile}%'  <!-- 手机号码 -->
+			</if>
+			<if test="username != null and username != ''">
+				AND b.username LIKE '%${username}%'
+			</if>
+
+			<if test="server_name != null and server_name != ''">
+				AND c.username LIKE '%${server_name}%'  <!-- 商家简称 -->
+			</if>
+			<if test="account != null and account != ''">
+				AND d.account LIKE '%${account}%'  <!-- 商家简称 -->
+			</if>
+
+			<if test="handle_name != null and handle_name != ''">
+				AND d.username LIKE '%${handle_name}%'  <!-- 商家简称 -->
+			</if>
+
+			<if test="order_content != null and order_content != ''">
+				AND a.order_content LIKE '%${order_content}%'  <!-- 手机号码 -->
+			</if>
+			<if test="pay_way != null and pay_way!= ''">
+				AND a.pay_way=#{pay_way}  <!-- 电话 -->
+			</if>
+
+			<if test="order_status != null and order_status != ''">
+				AND a.order_status=#{order_status}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+
+			<if test="create_time_begin != null and create_time_begin != ''">
+				AND DATE_FORMAT(a.create_time,"%Y-%m-%d") &gt;=#{create_time_begin}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="create_time_end!= null and create_time_end != ''">
+				AND DATE_FORMAT(a.create_time,"%Y-%m-%d") &lt;=#{create_time_end}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="pay_time_begin != null and pay_time_begin != ''">
+				AND DATE_FORMAT(a.pay_time,"%Y-%m-%d") &gt;=#{pay_time_begin}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="pay_time_end!= null and pay_time_end != ''">
+				AND DATE_FORMAT(a.pay_time,"%Y-%m-%d") &lt;=#{pay_time_end}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="finish_time_begin != null and finish_time_begin != ''">
+				AND DATE_FORMAT(a.finish_time,"%Y-%m-%d") &gt;=#{finish_time_begin}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="finish_time_end!= null and finish_time_end != ''">
+				AND DATE_FORMAT(a.finish_time,"%Y-%m-%d") &lt;=#{finish_time_end}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="total_month != null and total_month != ''">
+				AND date_format(a.finish_time,'%Y-%m')=#{total_month}  <!-- 商家简称 -->
+			</if>
+		</where>
+	</select>
+	<!-- 查询所有营业订单 -->
+	<select id="listShopRecordPage" parameterType="Dto" resultType="Dto"
+		useCache="false">
+		SELECT a.*,b.mobile,b.username,c.username AS
+		server_name,d.account,d.username AS
+		handle_name,s.shop_name,s.short_name FROM bis_business_order a
+		INNER
+		JOIN bis_custom_user b ON a.custom_user_id=b.custom_user_id LEFT JOIN
+		bis_shop s ON a.shop_id=s.shop_id
+		LEFT JOIN bis_shop_user c ON
+		a.server_user_id=c.shop_user_id LEFT JOIN
+		bis_shop_user d ON
+		a.handle_user_id=d.shop_user_id
+		<where>
+			a.order_status IN ('4','5')
+			<if test="shop_id != null and shop_id != ''">
+				AND a.shop_id=#{shop_id}  <!-- 店铺编号 -->
+			</if>
+			<if test="order_source!= null and order_source != ''">
+				AND a.order_source=#{order_source}  <!-- 店铺编号 -->
+			</if>
+			<if test="order_type != null and order_type  != ''">
+				AND a.order_type =#{order_type}  <!-- 订单类型 -->
+			</if>
+			<if test="order_id != null and order_id != ''">
+				AND a.order_id LIKE '%${order_id}%'  <!-- 手机号码 -->
+			</if>
+			<if test="custom_user_id!= null and custom_user_id!= ''">
+				AND a.custom_user_id=#{custom_user_id}
+			</if>
+			<if test="mobile != null and mobile != ''">
+				AND b.mobile LIKE '%${mobile}%'  <!-- 手机号码 -->
+			</if>
+			<if test="username != null and username != ''">
+				AND b.username LIKE '%${username}%'
+			</if>
+
+			<if test="server_name != null and server_name != ''">
+				AND c.username LIKE '%${server_name}%'  <!-- 商家简称 -->
+			</if>
+			<if test="account != null and account != ''">
+				AND d.account LIKE '%${account}%'  <!-- 商家简称 -->
+			</if>
+
+			<if test="handle_name != null and handle_name != ''">
+				AND d.username LIKE '%${handle_name}%'  <!-- 商家简称 -->
+			</if>
+
+			<if test="order_content != null and order_content != ''">
+				AND a.order_content LIKE '%${order_content}%'  <!-- 手机号码 -->
+			</if>
+			<if test="pay_way != null and pay_way!= ''">
+				AND a.pay_way=#{pay_way}  <!-- 电话 -->
+			</if>
+
+			<if test="order_status != null and order_status != ''">
+				AND a.order_status=#{order_status}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+
+			<if test="pay_time_begin != null and pay_time_begin != ''">
+				AND DATE_FORMAT(a.pay_time,"%Y-%m-%d") &gt;=#{pay_time_begin}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="pay_time_end!= null and pay_time_end != ''">
+				AND DATE_FORMAT(a.pay_time,"%Y-%m-%d") &lt;=#{pay_time_end}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="finish_time_begin != null and finish_time_begin != ''">
+				AND DATE_FORMAT(a.finish_time,"%Y-%m-%d") &gt;=#{finish_time_begin}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="finish_time_end!= null and finish_time_end != ''">
+				AND DATE_FORMAT(a.finish_time,"%Y-%m-%d") &lt;=#{finish_time_end}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+		</where>
+	</select>
+	<!-- 导出营业订单 -->
+	<select id="listShopRecord" parameterType="Dto" resultType="Dto"
+		useCache="false">
+		SELECT a.*,b.mobile,b.username,c.username AS
+		server_name,d.account,d.username AS
+		handle_name,s.shop_name,s.short_name FROM bis_business_order a
+		INNER
+		JOIN bis_custom_user b ON a.custom_user_id=b.custom_user_id LEFT JOIN
+		bis_shop s ON a.shop_id=s.shop_id
+		LEFT JOIN bis_shop_user c ON
+		a.server_user_id=c.shop_user_id LEFT JOIN
+		bis_shop_user d ON
+		a.handle_user_id=d.shop_user_id
+		<where>
+			a.order_status IN ('4','5')
+			<if test="shop_id != null and shop_id != ''">
+				AND a.shop_id=#{shop_id}  <!-- 店铺编号 -->
+			</if>
+			<if test="order_source!= null and order_source != ''">
+				AND a.order_source=#{order_source}  <!-- 店铺编号 -->
+			</if>
+			<if test="order_type != null and order_type  != ''">
+				AND a.order_type =#{order_type}  <!-- 订单类型 -->
+			</if>
+			<if test="order_id != null and order_id != ''">
+				AND a.order_id LIKE '%${order_id}%'  <!-- 手机号码 -->
+			</if>
+			<if test="custom_user_id!= null and custom_user_id!= ''">
+				AND a.custom_user_id=#{custom_user_id}
+			</if>
+			<if test="mobile != null and mobile != ''">
+				AND b.mobile LIKE '%${mobile}%'  <!-- 手机号码 -->
+			</if>
+			<if test="username != null and username != ''">
+				AND b.username LIKE '%${username}%'
+			</if>
+
+			<if test="server_name != null and server_name != ''">
+				AND c.username LIKE '%${server_name}%'  <!-- 商家简称 -->
+			</if>
+			<if test="account != null and account != ''">
+				AND d.account LIKE '%${account}%'  <!-- 商家简称 -->
+			</if>
+
+			<if test="handle_name != null and handle_name != ''">
+				AND d.username LIKE '%${handle_name}%'  <!-- 商家简称 -->
+			</if>
+
+			<if test="order_content != null and order_content != ''">
+				AND a.order_content LIKE '%${order_content}%'  <!-- 手机号码 -->
+			</if>
+			<if test="pay_way != null and pay_way!= ''">
+				AND a.pay_way=#{pay_way}  <!-- 电话 -->
+			</if>
+
+			<if test="order_status != null and order_status != ''">
+				AND a.order_status=#{order_status}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+
+			<if test="create_time_begin != null and create_time_begin != ''">
+				AND a.pay_time &gt;=#{create_time_begin}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="create_time_end!= null and create_time_end != ''">
+				AND a.pay_time &lt;=#{create_time_end}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="finish_time_begin != null and finish_time_begin != ''">
+				AND a.finish_time &gt;=#{finish_time_begin}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="finish_time_end!= null and finish_time_end != ''">
+				AND a.finish_time &lt;=#{finish_time_end}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+		</where>
+	</select>
+	<!-- 查询所有营业订单 -->
+	<select id="listAllRecord" parameterType="Dto" resultType="Dto"
+		useCache="false">
+		SELECT a.*,b.mobile,b.username,c.username AS
+		server_name,d.account,d.username AS
+		handle_name,s.shop_name,s.short_name FROM bis_business_order a
+		INNER
+		JOIN bis_custom_user b ON a.custom_user_id=b.custom_user_id LEFT JOIN
+		bis_shop s ON a.shop_id=s.shop_id
+		LEFT JOIN bis_shop_user c ON
+		a.server_user_id=c.shop_user_id LEFT JOIN
+		bis_shop_user d ON
+		a.handle_user_id=d.shop_user_id
+		<where>
+			a.order_status!='0'
+			<if test="shop_id != null and shop_id != ''">
+				AND a.shop_id=#{shop_id}  <!-- 店铺编号 -->
+			</if>
+			<if test="order_source!= null and order_source != ''">
+				AND a.order_source=#{order_source}  <!-- 店铺编号 -->
+			</if>
+			<if test="order_type != null and order_type  != ''">
+				AND a.order_type =#{order_type}  <!-- 订单类型 -->
+			</if>
+			<if test="order_id != null and order_id != ''">
+				AND a.order_id LIKE '%${order_id}%'  <!-- 手机号码 -->
+			</if>
+			<if test="custom_user_id!= null and custom_user_id!= ''">
+				AND a.custom_user_id=#{custom_user_id}
+			</if>
+			<if test="mobile != null and mobile != ''">
+				AND b.mobile LIKE '%${mobile}%'  <!-- 手机号码 -->
+			</if>
+			<if test="username != null and username != ''">
+				AND b.username LIKE '%${username}%'
+			</if>
+
+			<if test="server_name != null and server_name != ''">
+				AND c.username LIKE '%${server_name}%'  <!-- 商家简称 -->
+			</if>
+			<if test="account != null and account != ''">
+				AND d.account LIKE '%${account}%'  <!-- 商家简称 -->
+			</if>
+
+			<if test="handle_name != null and handle_name != ''">
+				AND d.username LIKE '%${handle_name}%'  <!-- 商家简称 -->
+			</if>
+
+			<if test="order_content != null and order_content != ''">
+				AND a.order_content LIKE '%${order_content}%'  <!-- 手机号码 -->
+			</if>
+			<if test="pay_way != null and pay_way!= ''">
+				AND a.pay_way=#{pay_way}  <!-- 电话 -->
+			</if>
+
+			<if test="order_status != null and order_status != ''">
+				AND a.order_status=#{order_status}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+
+			<if test="pay_time_begin != null and pay_time_begin != ''">
+				AND a.pay_time &gt;=#{pay_time_begin}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="pay_time_end!= null and pay_time_end != ''">
+				AND a.pay_time &lt;=#{pay_time_end}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="finish_time_begin != null and finish_time_begin != ''">
+				AND a.finish_time &gt;=#{finish_time_begin}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="finish_time_end!= null and finish_time_end != ''">
+				AND a.finish_time &lt;=#{finish_time_end}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+		</where>
+	</select>
+
+	<!-- 查询财务总况 -->
+	<select id="listFinancePage" parameterType="Dto" resultType="Dto"
+		useCache="false">
+		SELECT a.*,b.mobile,b.username,c.username AS
+		server_name,d.account,d.username AS handle_name FROM
+		bis_business_order a
+		INNER JOIN bis_custom_user b ON
+		a.custom_user_id=b.custom_user_id
+		LEFT JOIN bis_shop_user c ON
+		a.server_user_id=c.shop_user_id LEFT JOIN
+		bis_shop_user d ON
+		a.handle_user_id=d.shop_user_id
+		<where>
+			a.order_status IN ('4','5')
+			<if test="shop_id != null and shop_id != ''">
+				AND a.shop_id=#{shop_id}  <!-- 店铺编号 -->
+			</if>
+			<if test="order_type != null and order_type  != ''">
+				AND a.order_type =#{order_type}  <!-- 订单类型 -->
+			</if>
+			<if test="order_id != null and order_id != ''">
+				AND a.order_id LIKE '%${order_id}%'  <!-- 手机号码 -->
+			</if>
+			<if test="custom_user_id!= null and custom_user_id!= ''">
+				AND a.custom_user_id=#{custom_user_id}
+			</if>
+			<if test="mobile != null and mobile != ''">
+				AND b.mobile LIKE '%${mobile}%'  <!-- 手机号码 -->
+			</if>
+			<if test="username != null and username != ''">
+				AND b.username LIKE '%${username}%'
+			</if>
+
+			<if test="account != null and account != ''">
+				AND d.account LIKE '%${account}%'  <!-- 商家简称 -->
+			</if>
+
+			<if test="order_content != null and order_content != ''">
+				AND a.order_content LIKE '%${order_content}%'  <!-- 手机号码 -->
+			</if>
+			<if test="pay_way != null and pay_way!= ''">
+				AND a.pay_way=#{pay_way}  <!-- 电话 -->
+			</if>
+
+			<if test="order_status != null and order_status != ''">
+				AND a.order_status=#{order_status}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+
+			<if test="pay_time_begin != null and pay_time_begin != ''">
+				AND a.pay_time &gt;=#{pay_time_begin}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="pay_time_end!= null and pay_time_end != ''">
+				AND a.pay_time &lt;=#{pay_time_end}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="total_month != null and total_month != ''">
+				AND date_format(a.pay_time,'%Y-%m')=#{total_month}  <!-- 商家简称 -->
+			</if>
+		</where>
+	</select>
+	<!-- 查询财务总况 -->
+	<select id="queryFinanceTotal" parameterType="Dto" resultType="Dto"
+		useCache="false">
+		SELECT IFNULL(SUM(a.cash_income),0) AS total_cash_income,
+		IFNULL(SUM(a.extend_income),0) AS total_extend_income
+		FROM
+		bis_business_order a
+		<where>
+			a.order_status IN ('4','5')
+			<if test="shop_id != null and shop_id != ''">
+				AND a.shop_id=#{shop_id}  <!-- 店铺编号 -->
+			</if>
+			<if test="total_month != null and total_month != ''">
+				AND date_format(a.pay_time,'%Y-%m')=#{total_month}  <!-- 商家简称 -->
+			</if>
+		</where>
+
+	</select>
+
+	<!-- 查询财务总况 -->
+	<select id="listFinance" parameterType="Dto" resultType="Dto"
+		useCache="false">
+		SELECT a.*,b.mobile,b.username,c.username AS
+		server_name,d.account,d.username AS handle_name FROM
+		bis_business_order a
+		INNER JOIN bis_custom_user b ON
+		a.custom_user_id=b.custom_user_id
+		LEFT JOIN bis_shop_user c ON
+		a.server_user_id=c.shop_user_id LEFT JOIN
+		bis_shop_user d ON
+		a.handle_user_id=d.shop_user_id
+		<where>
+			a.order_status IN ('4','5')
+			<if test="shop_id != null and shop_id != ''">
+				AND a.shop_id=#{shop_id}  <!-- 店铺编号 -->
+			</if>
+			<if test="order_type != null and order_type  != ''">
+				AND a.order_type =#{order_type}  <!-- 订单类型 -->
+			</if>
+			<if test="order_id != null and order_id != ''">
+				AND a.order_id LIKE '%${order_id}%'  <!-- 手机号码 -->
+			</if>
+			<if test="custom_user_id!= null and custom_user_id!= ''">
+				AND a.custom_user_id=#{custom_user_id}
+			</if>
+			<if test="mobile != null and mobile != ''">
+				AND b.mobile LIKE '%${mobile}%'  <!-- 手机号码 -->
+			</if>
+			<if test="username != null and username != ''">
+				AND b.username LIKE '%${username}%'
+			</if>
+
+			<if test="account != null and account != ''">
+				AND d.account LIKE '%${account}%'  <!-- 商家简称 -->
+			</if>
+
+			<if test="order_content != null and order_content != ''">
+				AND a.order_content LIKE '%${order_content}%'  <!-- 手机号码 -->
+			</if>
+			<if test="pay_way != null and pay_way!= ''">
+				AND a.pay_way=#{pay_way}  <!-- 电话 -->
+			</if>
+
+			<if test="order_status != null and order_status != ''">
+				AND a.order_status=#{order_status}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+
+			<if test="pay_time_begin != null and pay_time_begin != ''">
+				AND a.pay_time &gt;=#{pay_time_begin}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="pay_time_end!= null and pay_time_end != ''">
+				AND a.pay_time &lt;=#{pay_time_end}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="total_month != null and total_month != ''">
+				AND date_format(a.pay_time,'%Y-%m')=#{total_month}  <!-- 商家简称 -->
+			</if>
+		</where>
+	</select>
+	<!-- 查询护理订单 -->
+	<select id="listNurseOrderPage" parameterType="Dto" resultType="Dto"
+		useCache="false">
+		SELECT
+		a.*,b.username,b.mobile,IFNULL(c.deposit_money,0) AS deposit_money,c.deposit_status,c.pay_time as
+		deposit_pay_time,d.project_name,d.rmb_price,d.beauty_price,d.cover_photo,
+		e.shop_address,e.shop_name,e.short_name FROM bis_business_order a
+		INNER JOIN bis_custom_user b ON a.custom_user_id=b.custom_user_id
+		
+		INNER JOIN
+		bis_nurse_project d ON a.project_id=d.project_id INNER JOIN
+		bis_shop e
+		ON a.shop_id=e.shop_id LEFT JOIN bis_order_deposit c ON a.order_id =c.order_id
+		<where>
+			a.order_status!='0' AND a.order_type='1'
+			<if test="shop_id != null and shop_id != ''">
+				AND a.shop_id=#{shop_id}  <!-- 店铺编号 -->
+			</if>
+			<if test="order_source!= null and order_source != ''">
+				AND a.order_source=#{order_source}  <!-- 店铺编号 -->
+			</if>
+			<if test="order_id != null and order_id != ''">
+				AND a.order_id LIKE '%${order_id}%'  <!-- 手机号码 -->
+			</if>
+			<if test="custom_user_id!= null and custom_user_id!= ''">
+				AND a.custom_user_id=#{custom_user_id}
+			</if>
+			<if test="mobile != null and mobile != ''">
+				AND b.mobile LIKE '%${mobile}%'  <!-- 手机号码 -->
+			</if>
+			<if test="username != null and username != ''">
+				AND b.username LIKE '%${username}%'
+			</if>
+
+			<if test="pay_way != null and pay_way!= ''">
+				AND a.pay_way=#{pay_way}  <!-- 电话 -->
+			</if>
+
+			<if test="order_status != null and order_status != ''">
+				AND a.order_status=#{order_status}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+
+			<if test="pay_time_begin != null and pay_time_begin != ''">
+				AND a.pay_time &gt;=#{pay_time_begin}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="pay_time_end!= null and pay_time_end != ''">
+				AND a.pay_time &lt;=#{pay_time_end}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="finish_time_begin != null and finish_time_begin != ''">
+				AND a.finish_time &gt;=#{finish_time_begin}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="finish_time_end!= null and finish_time_end != ''">
+				AND a.finish_time &lt;=#{finish_time_end}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+		</where>
+	</select>
+	<!-- 查询购买礼包订单 -->
+	<select id="listBagOrderPage" parameterType="Dto" resultType="Dto"
+		useCache="false">
+		SELECT
+		a.*,b.username,b.mobile,c.create_time AS buy_time
+		,date_add(c.create_time, interval c.valid_day day) AS overdue_date,
+		d.bag_name,d.cover_photo,d.cover_big_photo,
+		(SELECT
+		GROUP_CONCAT(project_name SEPARATOR '+')
+		FROM bis_bag_project p INNER
+		JOIN bis_nurse_project n ON
+		p.project_id=n.project_id
+		WHERE
+		p.bag_id=c.bag_id) AS project_content
+		FROM bis_business_order a
+		INNER
+		JOIN bis_custom_user b ON
+		a.custom_user_id=b.custom_user_id INNER JOIN
+		bis_bag_record c
+		ON a.order_id=c.order_id
+		INNER JOIN bis_nurse_bag d ON
+		c.bag_id=d.bag_id LEFT JOIN bis_shop s ON a.shop_id=s.shop_id
+		<where>
+			a.order_status!='0' AND a.order_type='3'
+			<if test="shop_id != null and shop_id != ''">
+				AND a.shop_id=#{shop_id}  <!-- 店铺编号 -->
+			</if>
+			<if test="order_source!= null and order_source != ''">
+				AND a.order_source=#{order_source}  <!-- 店铺编号 -->
+			</if>
+			<if test="order_id != null and order_id != ''">
+				AND a.order_id LIKE '%${order_id}%'  <!-- 手机号码 -->
+			</if>
+			<if test="custom_user_id!= null and custom_user_id!= ''">
+				AND a.custom_user_id=#{custom_user_id}
+			</if>
+			<if test="mobile != null and mobile != ''">
+				AND b.mobile LIKE '%${mobile}%'  <!-- 手机号码 -->
+			</if>
+			<if test="username != null and username != ''">
+				AND b.username LIKE '%${username}%'
+			</if>
+
+			<if test="pay_way != null and pay_way!= ''">
+				AND a.pay_way=#{pay_way}  <!-- 电话 -->
+			</if>
+
+			<if test="order_status != null and order_status != ''">
+				AND a.order_status=#{order_status}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+
+			<if test="pay_time_begin != null and pay_time_begin != ''">
+				AND a.pay_time &gt;=#{pay_time_begin}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="pay_time_end!= null and pay_time_end != ''">
+				AND a.pay_time &lt;=#{pay_time_end}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="finish_time_begin != null and finish_time_begin != ''">
+				AND a.finish_time &gt;=#{finish_time_begin}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="finish_time_end!= null and finish_time_end != ''">
+				AND a.finish_time &lt;=#{finish_time_end}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+		</where>
+	</select>
+	<!-- 查询 我的礼包 -->
+	<select id="listMyBag" parameterType="Dto" resultType="Dto"
+		useCache="false">
+		SELECT a.*,date_add(a.create_time, interval a.valid_day day) AS
+		overdue_date,b.bag_name,b.bag_total_price,b.bag_introduce,b.cover_big_photo,b.cover_photo
+		FROM bis_bag_record a
+		INNER JOIN bis_nurse_bag b ON a.bag_id=b.bag_id
+		<where>
+
+			<if test="custom_user_id != null and custom_user_id != ''">
+				AND a.custom_user_id = #{custom_user_id}  <!-- 用户编号 -->
+			</if>
+			<if test="status != null and status != ''">
+				AND a.status = #{status}  <!-- 1有效 2过期 -->
+			</if>
+			<if test="receive_status != null and receive_status != ''">
+				AND a.receive_status = #{receive_status}  <!-- 领取状态 0未领取 1已领取 -->
+			</if>
+		</where>
+	</select>
+	<!-- 查询 我的项目 -->
+	<select id="listMyProjectPage" parameterType="Dto" resultType="Dto"
+		useCache="false">
+		SELECT ab.* FROM (SELECT a.*,date_add(r.create_time, interval
+		r.valid_day day) AS
+		overdue_date,r.valid_day,b.project_name,b.cover_photo,b.cover_big_photo,b.rmb_price,b.beauty_price,b.content,c.shop_name,c.short_name,c.shop_address
+		FROM bis_project_record a INNER JOIN bis_bag_record r ON
+		a.bag_record_id=r.record_id INNER JOIN bis_nurse_project b
+		ON
+		a.project_id=b.project_id LEFT JOIN bis_shop c ON a.shop_id=c.shop_id
+		<where>
+
+			<if test="custom_user_id != null and custom_user_id != ''">
+				AND r.custom_user_id = #{custom_user_id}  <!-- 用户编号 -->
+			</if>
+			<if test="project_status != null and project_status != ''">
+				AND a.project_status = #{project_status}  <!-- 1有效 2过期 -->
+			</if>
+
+			) ab
+		</where>
+	</select>
+	<!-- 查询 我的项目 -->
+	<select id="listProject" parameterType="Dto" resultType="Dto"
+		useCache="false">
+		SELECT ab.* FROM (SELECT a.*,date_add(r.create_time, interval
+		r.valid_day day) AS
+		overdue_date,r.valid_day,b.project_name,b.cover_photo,b.cover_big_photo,b.rmb_price,b.beauty_price,b.content,c.shop_name,c.short_name,c.shop_address
+		FROM bis_project_record a INNER JOIN bis_bag_record r ON
+		a.bag_record_id=r.record_id INNER JOIN bis_nurse_project b
+		ON
+		a.project_id=b.project_id LEFT JOIN bis_shop c ON a.shop_id=c.shop_id
+		<where>
+
+			<if test="custom_user_id != null and custom_user_id != ''">
+				AND r.custom_user_id = #{custom_user_id}  <!-- 用户编号 -->
+			</if>
+			<if test="project_status != null and project_status != ''">
+				AND a.project_status = #{project_status}  <!-- 1有效 2过期 -->
+			</if>
+
+			) ab
+		</where>
+	</select>
+	<!-- 查询 我的项目 -->
+	<select id="listMyProject" parameterType="Dto" resultType="Dto"
+		useCache="false">
+		SELECT
+		a.*,b.project_name,b.beauty_price,b.rmb_price,b.cover_big_photo,b.cover_photo
+		FROM bis_project_record a
+		INNER JOIN bis_nurse_project b ON
+		a.project_id=b.project_id
+		<where>
+
+			<if test="record_id != null and record_id != ''">
+				AND a.record_id = #{record_id}  <!-- 记录项目 -->
+			</if>
+			<if test="project_id != null and project_id != ''">
+				AND a.project_id = #{project_id}  <!-- 项目编号 -->
+			</if>
+			<if test="bag_record_id != null and bag_record_id != ''">
+				AND a.bag_record_id = #{bag_record_id}  <!-- 礼包编号 -->
+			</if>
+			<if test="shop_id != null and shop_id != ''">
+				AND a.shop_id = #{shop_id}  <!-- 消费店铺 -->
+			</if>
+			<if test="project_status != null and project_status != ''">
+				AND a.project_status = #{project_status}  <!-- 1 未使用 2 已使用 3 已过期 -->
+			</if>
+			<if test="draw_time != null and draw_time != ''">
+				AND a.draw_time = #{draw_time}  <!-- 领取时间 -->
+			</if>
+			<if test="use_time != null and use_time != ''">
+				AND use_time = #{use_time}  <!-- 使用时间 -->
+			</if>
+		</where>
+	</select>
+	<!-- 查询 我的礼包 -->
+	<select id="listBagProject" parameterType="String" resultType="Dto"
+		useCache="false">
+		SELECT a.* FROM bis_bag_project a WHERE a.bag_id=#{bag_id}
+	</select>
+	<!-- 查询预约订单 -->
+	<select id="listSubscribeOrderPage" parameterType="Dto"
+		resultType="Dto" useCache="false">
+		SELECT
+		a.*,b.mobile,b.username,d.deposit_id,d.pay_account,d.deposit_money,d.deposit_status,d.back_time,
+		s.shop_name,s.short_name,s.shop_address,s.gps_x,s.gps_y,s.shop_image,s.shop_detail_image
+		FROM bis_business_order a INNER JOIN bis_custom_user b ON
+		a.custom_user_id=b.custom_user_id INNER JOIN bis_shop s ON
+		a.shop_id=s.shop_id LEFT JOIN bis_order_deposit d ON
+		a.order_id=d.order_id
+		<where>
+			a.order_status IN ('1','2')
+			<if test="shop_id != null and shop_id != ''">
+				AND a.shop_id=#{shop_id}  <!-- 店铺编号 -->
+			</if>
+			<if test="order_type != null and order_type  != ''">
+				AND a.order_type =#{order_type}  <!-- 订单类型 -->
+			</if>
+			<if test="order_id != null and order_id != ''">
+				AND a.order_id LIKE '%${order_id}%'  <!-- 手机号码 -->
+			</if>
+			<if test="mobile != null and mobile != ''">
+				AND b.mobile LIKE '%${mobile}%'  <!-- 手机号码 -->
+			</if>
+			<if test="username != null and username != ''">
+				AND b.username LIKE '%${username}%'
+			</if>
+			<if test="order_content != null and order_content != ''">
+				AND a.order_content LIKE '%${order_content}%'  <!-- 手机号码 -->
+			</if>
+			<if test="pay_way != null and pay_way!= ''">
+				AND a.pay_way=#{pay_way}  <!-- 电话 -->
+			</if>
+			<if test="custom_user_id!= null and custom_user_id!= ''">
+				AND a.custom_user_id=#{custom_user_id}
+			</if>
+			<if test="order_status != null and order_status != ''">
+				AND a.order_status=#{order_status}  <!-- 状态0:禁用1:启用 0:离职 1:在职 -->
+			</if>
+			<if test="query_date!= null and query_date != ''">
+				AND DATE_FORMAT(a.subscribe_time,"%Y-%m-%d")=#{query_date}  <!-- 状态0:禁用1:启用 
+					0:离职 1:在职 -->
+			</if>
+
+		</where>
+	</select>
+	<!-- 查询有效的美研币 -->
+	<select id="listVaildBeauty" parameterType="Dto"
+		resultType="com.beauty.common.po.BeautyRecordPO">
+		SELECT a.* FROM bis_beauty_record a
+		<where>
+			a.record_type !='3' AND a.remain_num>0 AND a.vaild_status='1'
+			<if test="custom_user_id != null and custom_user_id!= ''">
+				AND a.custom_user_id=#{custom_user_id}  <!-- 电话 -->
+			</if>
+		</where>
+	</select>
+	<!-- 查询分组统计的预约时间 -->
+	<select id="queryGroupCountTime" parameterType="Dto" resultType="Dto">
+		SELECT count_time, count(*) as count FROM (SELECT
+		DATE_FORMAT(a.subscribe_time,'%H%i') count_time
+		FROM bis_business_order
+		a
+		<where>
+			a.order_status='1' AND a.order_type='1'
+			<if test="shop_id != null and shop_id!= ''">
+				AND a.shop_id=#{shop_id}
+			</if>
+			<if test="subscribe_date != null and subscribe_date!= ''">
+				AND
+				DATE_FORMAT(a.subscribe_time,"%Y-%c-%e")=#{subscribe_date}
+			</if>
+		</where>
+		) ab GROUP BY ab.count_time
+	</select>
+	<!-- 查询订单详情 -->
+	<select id="queryOrderDetail" parameterType="String" resultType="Dto"
+		useCache="false">
+		SELECT a.*,b.mobile,b.username,c.username AS
+		server_name,d.account,d.username AS
+		handle_name,shop_name,s.short_name,s.shop_address,s.gps_x,s.gps_y,s.shop_image,s.shop_detail_image
+		FROM bis_business_order a
+		INNER
+		JOIN bis_custom_user b ON
+		a.custom_user_id=b.custom_user_id LEFT JOIN
+		bis_shop s ON
+		a.shop_id=s.shop_id
+		LEFT JOIN bis_shop_user c ON
+		a.server_user_id=c.shop_user_id LEFT JOIN
+		bis_shop_user d ON
+		a.handle_user_id=d.shop_user_id
+		WHERE a.order_id=#{order_id}
+	</select>
+	<!-- 查询订单详情 -->
+	<select id="queryShopCustom" parameterType="Dto" resultType="Dto"
+		useCache="false">
+		SELECT a.custom_user_id,a.recent_time,a.shop_id FROM
+		bis_shop_custom a WHERE
+		a.shop_id=#{shop_id} AND
+		a.custom_user_id=#{custom_user_id}
+	</select>
+	<!-- 查询可支付的项目 -->
+	<select id="queryPayProject" parameterType="Dto" resultType="Dto"
+		useCache="false">
+		SELECT ab.* FROM (SELECT a.*,date_add(r.create_time, interval
+		r.valid_day
+		day) AS
+		overdue_date,r.valid_day,b.project_name,b.cover_photo,b.cover_big_photo,b.rmb_price,b.beauty_price,b.content
+		FROM bis_project_record a INNER JOIN bis_bag_record r ON
+		a.bag_record_id=r.record_id INNER JOIN bis_nurse_project b
+		ON
+		a.project_id=b.project_id WHERE a.project_status='1'
+		AND
+		a.project_id=#{project_id} AND r.custom_user_id=#{custom_user_id}
+		) ab
+		ORDER BY ab.overdue_date ASC
+	</select>
+	<!-- 查询可支付的项目 -->
+	<select id="queryBagProject" parameterType="Dto" resultType="Dto"
+		useCache="false">
+		SELECT a.* FROM bis_bag_project a WHERE a.bag_id=#{bag_id}
+		AND a.project_id=#{project_id}
+	</select>
+	<!-- 查询员工工资统计 -->
+	<select id="listShopUserCountPage" parameterType="Dto"
+		resultType="Dto" useCache="false">
+		SELECT ab.*
+		,u.shop_user_id,u.account,u.username,u.post_code,u.work_number,u.mobile,p.post_name
+		FROM (SELECT a.server_user_id,SUM(IFNULL(a.cash_income,0))
+		total_cash_income,SUM(IFNULL(a.extend_income,0)) total_extend_income,
+		SUM( IFNULL((case WHEN a.pay_way='1' OR a.pay_way='2' THEN
+		b.manual_price ELSE b.active_price END ) ,0)) AS manual_money FROM
+		bis_business_order a INNER JOIN bis_nurse_project b ON
+		a.project_id=b.project_id
+		<where>
+			a.order_status='5'
+			<if test="shop_id != null and shop_id!= ''">
+				AND a.shop_id=#{shop_id}
+			</if>
+			<if test="total_month != null and total_month != ''">
+				AND date_format(a.finish_time,'%Y-%m')=#{total_month}  <!-- 商家简称 -->
+			</if>
+		</where>
+		GROUP BY
+		a.server_user_id ) ab INNER JOIN bis_shop_user u ON
+		ab.server_user_id=u.shop_user_id
+		INNER JOIN bis_shop_post p ON
+		u.post_code=p.post_code
+		<where>
+			<if test="server_name != null and server_name!= ''">
+				AND u.username LIKE '%${server_name}%'  <!-- 手机号码 -->
+			</if>
+		</where>
+
+	</select>
+	
+	<!-- 查询员工工资统计 -->
+	<select id="listShopUserCount" parameterType="Dto"
+		resultType="Dto" useCache="false">
+		SELECT ab.*
+		,u.shop_user_id,u.account,u.username,u.post_code,u.work_number,u.mobile,p.post_name
+		FROM (SELECT a.server_user_id,SUM(IFNULL(a.cash_income,0))
+		total_cash_income,SUM(IFNULL(a.extend_income,0)) total_extend_income,
+		SUM( IFNULL((case WHEN a.pay_way='1' OR a.pay_way='2' THEN
+		b.manual_price ELSE b.active_price END ) ,0)) AS manual_money FROM
+		bis_business_order a INNER JOIN bis_nurse_project b ON
+		a.project_id=b.project_id
+		<where>
+			a.order_status='5'
+			<if test="shop_id != null and shop_id!= ''">
+				AND a.shop_id=#{shop_id}
+			</if>
+			<if test="total_month != null and total_month != ''">
+				AND date_format(a.finish_time,'%Y-%m')=#{total_month}  <!-- 商家简称 -->
+			</if>
+		</where>
+		GROUP BY
+		a.server_user_id ) ab INNER JOIN bis_shop_user u ON
+		ab.server_user_id=u.shop_user_id
+		INNER JOIN bis_shop_post p ON
+		u.post_code=p.post_code
+		<where>
+			<if test="server_name != null and server_name!= ''">
+				AND u.username LIKE '%${server_name}%'  <!-- 手机号码 -->
+			</if>
+		</where>
+
+	</select>
+	<!-- 查询员工工资统计 -->
+	<select id="queryShopSum" parameterType="Dto" resultType="Dto"
+		useCache="false">
+		SELECT SUM(IFNULL(a.cash_income,0))
+		total_cash_income,SUM(IFNULL(a.extend_income,0)) total_extend_income,
+		SUM( IFNULL((case WHEN a.pay_way='1' OR a.pay_way='2' THEN
+		b.manual_price ELSE b.active_price END ) ,0)) AS manual_money FROM
+		bis_business_order a INNER JOIN bis_nurse_project b ON
+		a.project_id=b.project_id
+		<where>
+			a.order_status='5'
+			<if test="shop_id != null and shop_id!= ''">
+				AND a.shop_id=#{shop_id}
+			</if>
+			<if test="total_month != null and total_month != ''">
+				AND date_format(a.finish_time,'%Y-%m')=#{total_month}  <!-- 商家简称 -->
+			</if>
+		</where>
+
+	</select>
+	<!-- 插入一个数据持久化对象(含所有字段) -->
+	<insert id="saveShopCustom" parameterType="Dto">
+		INSERT INTO
+		bis_shop_custom (
+		shop_id,
+		custom_user_id,
+		recent_time,
+		create_time
+		)
+		VALUES (
+		#{shop_id, jdbcType=VARCHAR},
+		#{custom_user_id,
+		jdbcType=VARCHAR},
+		#{recent_time, jdbcType=VARCHAR},
+		#{create_time,
+		jdbcType=VARCHAR}
+		)
+	</insert>
+	<!-- 插入一个数据持久化对象(含所有字段) -->
+	<insert id="updateShopCustom" parameterType="Dto">
+		UPDATE
+		bis_shop_custom SET recent_time=#{recent_time} WHERE
+		shop_id=#{shop_id} AND custom_user_id=#{custom_user_id}
+	</insert>
+</mapper>

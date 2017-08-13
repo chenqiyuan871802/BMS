@@ -1,0 +1,275 @@
+.layui-header .layui-logo-box {
+	display: block;
+	float: left;
+	left: 20px;
+	width: 173px;
+}
+
+.layui-header.logo img {
+	width: 143px;
+	height: 60px;
+}
+
+.layui-header .layui-main-menu {
+	left: 200px;
+	float: left;
+}
+
+.layui-header .header-right {
+	float: right;
+}
+
+.layui-header .header-right .right-menu {
+	right: 70px;
+}
+
+.layui-header .header-right .exit-btn {
+	position: absolute;
+	right: 10px;
+	top: 8px;
+}
+
+.layui-nav .layui-nav-item a {
+	display: block;
+	padding: 0 20px;
+	color: #FFFFFF;
+	transition: all .3s;
+	-webkit-transition: all .3s;
+}
+
+.layui-header .layui-nav {
+	top: 0;
+	padding: 0;
+	background: none;
+}
+
+.layui-header .layui-nav .layui-nav-item {
+	margin: 0px;
+}
+
+.layui-nav * {
+	font-size: 20px;
+}
+
+.layui-header .layui-nav .layui-nav-item a.msg {
+	position: relative;
+}
+.header-right .layui-nav-item .layui-nav-child a{
+	color:#000000 !important;
+}
+
+.header-right .layui-nav-child {
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 60px;
+	line-height: 36px;
+	padding: 5px 0;
+	border: 1px solid #d2d2d2;
+	background-color: #fff;
+	z-index: 100;
+	border-radius: 2px;
+	white-space: nowrap;
+}
+
+.header-right .layui-nav .layui-nav-item {
+	margin: 0 20px;
+	line-height: 66px;
+}
+/**
+   * 内容部分
+   */
+.layui-layout-admin .layui-body {
+	top: 65px;
+	bottom: 30px;
+	left: 0px;
+	overflow: hidden;
+}
+
+.layui-body .layui-tab {
+	margin: 0;
+}
+.layui-tab-content {
+	padding:0;
+}
+
+.layui-layout-admin .layui-main {
+	margin: 0 5px;
+}
+
+.product-tab {
+	height: calc(100% - 10px);
+	width: 100%;
+	margin-bottom: 0px;
+}
+
+.product-content {
+	width: 100%;
+	height: calc(100% - 38px);
+	margin-top: 0px;
+	background-color: #e6e6e6;
+	padding-left: 0px;
+	overflow-y: auto;
+}
+
+.layui-tab {
+	margin-top: 5px;
+}
+
+.layui-tab-title li {
+	color: #32c24d
+}
+
+.product-tab .layui-tab-title .layui-this {
+	color: #32c24d;
+	background-color: #E6E6E6;
+}
+
+.menu-tab .layui-tab-item {
+	height: 100%;
+}
+
+.layui-layout-content {
+	height: 100%;
+}
+
+.layui-layout-admin .layui-tab-title .layui-this:after {
+	border-bottom-color: #E6E6E6;
+}
+
+.shop-home i.layui-icon {
+	display: none;
+}
+
+.layui-layout-content .layui-bg-black {
+	background-color: #FFFFFF;
+	width: 270px;
+	height: 100%;
+	color: #000000;
+}
+
+.layui-layout-content .layui-body {
+	left: 0px;
+	padding: 0px 0px 0px 0px;
+	height: 100%;
+	background-color: #FFFFFF;
+}
+
+.layui-layout-content .layui-side-scroll {
+	width: 270px;
+}
+
+.layui-tab-title .layui-this:after {
+	height: 31px;
+}
+
+.layui-tab-title li {
+	line-height: 30px;
+}
+
+.layui-tab-title {
+	height: 30px;
+	padding-left: 5px;
+}
+/**
+     * 底部
+     */
+.main-footer {
+	position: fixed;
+	left: 0px;
+	right: 0;
+	bottom: 0;
+	height: 25px;
+	background-color: #eee;
+}
+
+.foot {
+	height: 30px;
+	padding: 5px 0;
+	line-height: 30px;
+	text-align: center;
+	color: #666;
+	font-weight: 300;
+	border-left: 1px solid #1AA094;
+	border-top: 1px solid #DDD;
+	z-index: 998;
+}
+.foot1 {
+	height: 50px;
+	padding: 5px 0;
+	line-height: 30px;
+	text-align: center;
+	color: #666;
+	font-weight: 300;
+	border-left: 1px solid #1AA094;
+	border-top: 1px solid #DDD;
+	z-index: 998;
+}
+
+.main-copyright .layui {
+	display: none;
+}
+
+@media screen and (max-width:54.8571rem) {
+	.layui-header .layuilogo-box {
+		width: 2.57rem;
+	}
+	.layui-header .layui-logo-box .logo {
+		display: none;
+	}
+	.layui-header .layui-side {
+		width: 0;
+	}
+}
+
+@media screen and (max-width:45.7142rem) {
+	.main-copyright .layui {
+		display: none;
+	}
+}
+.uk-layui-form{
+	height: calc(100% - 60px);
+	padding-top:10px;
+	overflow-y: auto;
+}
+
+.uk-form .layui-form-label{
+	line-height:30px;
+	width:100px;
+    padding: 3px 5px 5px 15px;	
+}
+.uk-form  .layui-input-block{
+	margin-left:200px;
+}
+.uk-form  .layui-input-inline{
+	margin-left:5px;
+	width: 250px;
+}
+.uk-form  .layui-form-mid {
+    float: left;
+    display: block;
+    line-height: 30px;
+    padding-top:0px;
+    margin-right: 10px;
+    width:250px;
+}
+.uk-form .layui-form-switch{
+	margin-top:0px;
+}
+.uk-layui-form{
+	height: calc(100% - 60px);
+	padding-top:10px;
+	overflow-y: auto;
+}
+.layui-button-block{
+	text-align: center;
+}
+.layui-form-button{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    margin: 0px auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #e6e6e6;
+}
