@@ -9,7 +9,7 @@
 微信端![输入图片说明](https://git.oschina.net/uploads/images/2017/0813/195100_4b790346_436510.png "屏幕截图.png")
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0813/195121_4680d6f0_436510.png "屏幕截图.png")
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0813/195135_5e581ad9_436510.png "屏幕截图.png")
-![输入图片说明](https://git.oschina.net/uploads/images/2017/0814/110345_cf060d53_436510.png "屏幕截图.png")![输入图片说明](https://git.oschina.net/uploads/images/2017/0814/110355_c406e6d7_436510.png "屏幕截图.png")
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0814/110345_cf060d53_436510.png "屏幕截图.png")![输入图片说明]
 项目离不开大家的支持，请作者喝杯奶茶吧，你的鼓励将是我最大的动力
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0814/110746_ccc17898_436510.jpeg "IMG_4555.JPG")
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0814/110706_75ee9e5e_436510.jpeg "IMG_4556.JPG")
