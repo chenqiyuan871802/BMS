@@ -4,10 +4,10 @@
 
 ### QQ交流群：223660747 
 ** 
-后台访问地址http://localhost:8080/BMS 超级管理账号super/super
+后台访问地址http://14.116.205.228:8887/BMS 超级管理账号super/super
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0813/194429_9c70e35e_436510.png "屏幕截图.png")
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0813/194521_e07ce4c8_436510.png "屏幕截图.png")![输入图片说明]
-商家端访问地址http://localhost:8080/BMS/shop.jsp 账号 dz/dz yg/yg cw/cw
+商家端访问地址http://14.116.205.228:8887/BMS/shop.jsp 账号 dz/dz yg/yg cw/cw
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0813/194632_35eacb1e_436510.png "屏幕截图.png")
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0813/194752_e1cf802a_436510.png "屏幕截图.png")
 微信端![输入图片说明](https://git.oschina.net/uploads/images/2017/0813/195100_4b790346_436510.png "屏幕截图.png")
