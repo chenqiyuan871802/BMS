@@ -27,7 +27,7 @@ public class IMSInitListener implements ServletContextListener {
 		// 设置redis是否在线 true 在线，false是不在线 进行全局缓存，因为每次判断JedisUtil.isLive 太耗时间了
 		Boolean isLive = JedisUtil.isLive();
 		if (isLive) {
-			IMSCxt.flushDB(); // 每次启动都清空redis缓存
+			//IMSCxt.flushDB(); // 每次启动都清空redis缓存
 		}
 		IMSCxt.refreshCache(); // 清除Ehcache缓存
 		System.setProperty(IMSCons.REDIS_ISLIVE_KEY, isLive.toString());
