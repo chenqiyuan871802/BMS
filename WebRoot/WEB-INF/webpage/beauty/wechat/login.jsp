@@ -48,7 +48,7 @@
 	</div>
 </body>
 <script type="text/javascript">
-	var mobileReg = /^1[3|4|5|8|9]\d{9}$/;
+	var mobileReg = /^(13[0-9]|14[5-9]|15[012356789]|166|17[0-8]|18[0-9]|19[189])[0-9]{8}$/;
 
 	var toast = new auiToast();
 	function login() {
