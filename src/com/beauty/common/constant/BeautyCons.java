@@ -106,6 +106,8 @@ public class BeautyCons {
 	public final static String PAY_WAY_BEAUTY="3";
 	//礼包项目
 	public final static String PAY_WAY_BAG="4";
+	//礼包项目
+	public final static String PAY_WAY_OTHER="5";
 	/**
 	 * 定金支付
 	 */

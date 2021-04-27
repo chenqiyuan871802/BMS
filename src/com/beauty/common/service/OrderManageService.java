@@ -14,7 +14,6 @@ import com.beauty.common.mapper.BusinessOrderMapper;
 import com.beauty.common.mapper.CashRecordMapper;
 import com.beauty.common.mapper.CustomUserMapper;
 import com.beauty.common.mapper.NurseBagMapper;
-import com.beauty.common.mapper.NurseProjectMapper;
 import com.beauty.common.mapper.OrderDepositMapper;
 import com.beauty.common.mapper.OrderManageMapper;
 import com.beauty.common.mapper.OrderPayMapper;
@@ -59,8 +58,9 @@ public class OrderManageService {
 	private ShopUserMapper shopUserMapper;
 	@Autowired
 	private BusinessOrderMapper businessOrderMapper;
-	@Autowired
-	private NurseProjectMapper nurseProjectMapper;
+	/*
+	 * @Autowired private NurseProjectMapper nurseProjectMapper;
+	 */
 
 	/**
 	 * 消费者业务逻辑处理类
@@ -379,31 +379,65 @@ public class OrderManageService {
 			outDto.setAppMsg("经手员工账号已被禁用。");
 			return outDto;
 		}
-
-		String password = inDto.getString("password");
-		String decryptPassword = IMSCodec.decrypt(userPO.getPassword(), IMSCons.PASSWORD_KEY);
-		if (password.equals(decryptPassword)) { // 判断密码是否一致
+		/*
+		 * String password = inDto.getString("password"); String decryptPassword =
+		 * IMSCodec.decrypt(userPO.getPassword(), IMSCons.PASSWORD_KEY); if
+		 * (password.equals(decryptPassword)) { // 判断密码是否一致
+		 */			String orderId=inDto.getString("order_id");
+			BusinessOrderPO orderDB= businessOrderMapper.selectByKey(orderId);
 			String operateWay = inDto.getString("operateWay"); // 订单操作方式
-			BusinessOrderPO order = new BusinessOrderPO();
-			order.setOrder_id(inDto.getString("order_id"));
-			order.setOrder_remark(inDto.getString("order_remark"));
-			order.setServer_user_id(inDto.getString("server_user_id"));
-			order.setHandle_user_id(userPO.getShop_user_id());
+			BusinessOrderPO orderPO = new BusinessOrderPO();
+			//String order_content = "消费护理项目(" + orderDB.getOrder_content() + ")";
+			orderPO.setOrder_id(orderId);
+			orderPO.setOrder_remark(inDto.getString("order_remark"));
+			orderPO.setServer_user_id(inDto.getString("server_user_id"));
+			orderPO.setHandle_user_id(userPO.getShop_user_id());
 			if ("2".equals(operateWay)) { // 操作完成
-				order.setOrder_status(BeautyCons.ORDER_STATUS_COMPLETE);
-				order.setFinish_time(IMSUtils.getDateTime());
+				orderPO.setOrder_status(BeautyCons.ORDER_STATUS_COMPLETE);
+				orderPO.setFinish_time(IMSUtils.getDateTime());
+				OrderPayPO orderPayPO = new OrderPayPO();
+				orderPayPO.setPay_id(IMSId.appId());
+				orderPayPO.setOrder_id(orderId);
+				orderPayPO.setPay_code("");
+				orderPayPO.setPay_way(BeautyCons.PAY_WAY_OTHER);
+				orderPayPO.setPay_status(BeautyCons.PAY_STATUS_YES);
+				orderPayPO.setCreate_time(IMSUtils.getDateTime());
+				orderPayPO.setPay_money(orderDB.getOrder_money());
+				orderPayPO.setPay_type(BeautyCons.PAY_RECORD_TYPE_PAY);
+				orderPayPO.setPay_back(BeautyCons.PAY_BACK_YES);
+				orderPayPO.setPay_time(IMSUtils.getDateTime());
+				orderPayMapper.insert(orderPayPO);
+
+				// 增加消耗记录
+				CashRecordPO cashRecordPO = new CashRecordPO();
+				cashRecordPO.setCustom_user_id(orderDB.getCustom_user_id());
+				cashRecordPO.setOrder_id(orderPayPO.getOrder_id());
+				cashRecordPO.setMoney(orderPayPO.getPay_money());
+				cashRecordPO.setPay_way(orderPayPO.getPay_way());
+				cashRecordPO.setRecord_id(IMSId.appId());
+				cashRecordPO.setPay_time(IMSUtils.getDateTime());
+				cashRecordPO.setCash_type(BeautyCons.PAY_RECORD_TYPE_PAY); // 收入
+				cashRecordPO.setRecord_type(BeautyCons.CASH_RECORD_TYPE_EXPENSE);
+				cashRecordMapper.insert(cashRecordPO);
+				orderPO.setPay_money(orderPayPO.getPay_money());
+				orderPO.setPay_way(BeautyCons.PAY_WAY_OTHER);
+				orderPO.setPay_time(IMSUtils.getDateTime());
+				orderPO.setCash_income(orderPayPO.getPay_money());
+				orderPO.setExtend_income(orderPayPO.getPay_money());
+				
+				
 			}else{
-				order.setModify_status("1");
+				orderPO.setModify_status("1");
 			}
-			businessOrderMapper.updateByKey(order);
+			businessOrderMapper.updateByKey(orderPO);
 			outDto.setAppCode(IMSCons.SUCCESS);
 			outDto.setAppMsg("信息保存成功。");
 			return outDto;
-		} else {
+	/*	} else {
 			outDto.setAppCode(IMSCons.WARN);
 			outDto.setAppMsg("经手员工密码输入不正确。");
 			return outDto;
-		}
+		}*/
 	}
 
 	/**
@@ -450,17 +484,16 @@ public class OrderManageService {
 			if (BeautyCons.PAY_STATUS_YES.equals(deposit_status)) { // 支付成功的进行退款处理
 				String pay_id = IMSId.appId();
 				String out_refund_no = BeautyCons.PAY_TYPE_REFUND + pay_id;
-				String out_trade_no = BeautyCons.PAY_TYPE_DEPOSIT + depositPO.getDeposit_id();
-				Double refund_money = depositPO.getDeposit_money();
-				Map<String, String> resultMap = PayUtil.appRefundOrder(out_trade_no, refund_money, out_refund_no);
-				String payStatus = resultMap.get("status");
-				if ("500".equals(payStatus)) { // 定金预约退款失败
-					outDto.setAppCode(IMSCons.ERROR);
-					outDto.setAppMsg("开始服务失败：预约定金退款失败");
-					return outDto;
-				}
-				String refund_id = resultMap.get("refund_id");
-				String out_transaction_id = resultMap.get("out_transaction_id");
+				//String out_trade_no = BeautyCons.PAY_TYPE_DEPOSIT + depositPO.getDeposit_id();
+				//Double refund_money = depositPO.getDeposit_money();
+				/*
+				 * Map<String, String> resultMap = PayUtil.appRefundOrder(out_trade_no,
+				 * refund_money, out_refund_no); String payStatus = resultMap.get("status"); if
+				 * ("500".equals(payStatus)) { // 定金预约退款失败 outDto.setAppCode(IMSCons.ERROR);
+				 * outDto.setAppMsg("开始服务失败：预约定金退款失败"); return outDto; } String refund_id =
+				 * resultMap.get("refund_id"); String out_transaction_id =
+				 * resultMap.get("out_transaction_id")
+				 */;
 				// 增加消耗记录
 				CashRecordPO cashRecordPO = new CashRecordPO();
 				cashRecordPO.setCustom_user_id(depositPO.getCustom_user_id());
@@ -484,8 +517,8 @@ public class OrderManageService {
 				orderPayPO.setPay_money(depositPO.getDeposit_money());
 				orderPayPO.setPay_type(BeautyCons.PAY_RECORD_TYPE_REFUND);
 				orderPayPO.setPay_back(BeautyCons.PAY_BACK_YES);
-				orderPayPO.setRefund_id(refund_id);
-				orderPayPO.setOut_transaction_id(out_transaction_id);
+				orderPayPO.setRefund_id("");
+				orderPayPO.setOut_transaction_id("");
 				orderPayPO.setPay_time(IMSUtils.getDateTime());
 				orderPayMapper.insert(orderPayPO);
 				// 定金信息更新

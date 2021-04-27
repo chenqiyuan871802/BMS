@@ -76,7 +76,7 @@
     <div class="package-detail-bottom">
         <span class="orang">共节省<fmt:formatNumber
 									value="${remainTotalPrice}" type="number" />元</span>
-        <a href="#" onclick="robBag(${bag.bag_id})">马上抢</a>
+        <a href="#" onclick="robBag(${bag.bag_id})">免费抢</a>
     </div>
 </body>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>

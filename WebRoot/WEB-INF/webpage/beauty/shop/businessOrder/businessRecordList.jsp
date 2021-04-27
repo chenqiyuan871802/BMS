@@ -39,7 +39,7 @@ var user_type='${shopUserInfo.user_type }'
 	 showWindow('modifyOrderWindow','${ctx}/shop/orderManage/goModifyOrder.jhtml?operateWay=1&order_id='+order_id);
  }
  function completeOrder(order_id,order_type,order_status){
-	 showWindow('modifyOrderWindow','${ctx}/shop/orderManage/goModifyOrder.jhtml?operateWay=2&order_id='+order_id);
+	 showWindow('completeOrderWindow','${ctx}/shop/orderManage/goModifyOrder.jhtml?operateWay=2&order_id='+order_id);
  }
  function  loadSuccess(){
 		$('.button-complete').linkbutton({ 
@@ -126,6 +126,7 @@ var user_type='${shopUserInfo.user_type }'
 				<th field="mobile" width="7%"   align="center">顾客账号 </th>
 				<th field="username" width="5%"   align="center">顾客姓名</th>
 				<th field="order_content" width="7%"   align="center">消费内容</th>
+				<th field="order_remark" width="15%"   align="center">订单备注</th>
 				<th field="order_type" formatter="order_typeFormatter" width="6%"   align="center">消费类型</th>
 				<th field="order_money" width="4%"   align="center">价格<br/>（元）</th>
 				<th field="pay_money" width="5%" align="center">实付金额<br/>（元）</th>

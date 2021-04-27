@@ -126,6 +126,7 @@ function  loadSuccess(){
 				<th field="mobile" width="7%"   align="center">顾客账号 </th>
 				<th field="username" width="5%"   align="center">顾客姓名</th>
 				<th field="order_content" width="7%"   align="center">消费内容</th>
+				<th field="order_remark" width="15%"   align="center">订单备注</th>
 				<th field="order_type" formatter="order_typeFormatter" width="6%"   align="center">消费类型</th>
 				<th field="order_money" width="4%"   align="center">价格<br/>（元）</th>
 				<th field="pay_money" width="5%" align="center">实付金额<br/>（元）</th>

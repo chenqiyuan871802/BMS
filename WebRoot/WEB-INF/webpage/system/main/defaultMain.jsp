@@ -6,6 +6,11 @@
 <head>
 <title>IMS信息系统综合平台</title>
 <IMS:codeStore fields="sex,layout_style"/>
+<style>
+.panel-body panel-body-noborder accordion-body{
+
+}
+</style>
 <link rel="shortcut icon"
 	href="${ctx }/static/common/images/favicon.ico">
 	<script type="text/javascript">
@@ -79,12 +84,12 @@
 	</div>
 	<div class="easyui-panel" region="west" split="true" title="功能菜单"
 		iconCls="function_menu"
-		style="width: 200px; overflow: hidden; font-size: 26px;">
+		style="width: 200px !important; overflow: hidden; font-size: 26px;">
 		<div style="width: 100%; height: 100%; border: 0px">
 			<div class="easyui-accordion" fit="true" border="false">
 				<c:forEach var="cardMenu" items="${cardMenus}">
 					<div title="${cardMenu.menuName }" iconCls="${cardMenu.iconCls }"
-						border="false" style="text-align: center; overflow: hide;">
+						border="false" style="text-align: center; overflow: hide;height: 200px !important;">
 						<ul class="menuson">
 							<c:forEach var="menu" items="${cardMenu.subMenu}">
 								<li><cite></cite> <a target="mainFrame"

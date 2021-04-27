@@ -114,12 +114,12 @@
     </div>
     <div class="appointment-bottom">
         <div class="tips-text">
-            <p>*预约需交定金，到店消费后，定金原路退回。如当天没来，则预约过期，扣除定金</p>
-            <p>*每次只预约一个项目，如需多个，请致电与店内人员沟通。</p>
+            <!-- <p>*预约需交定金，到店消费后，定金原路退回。如当天没来，则预约过期，扣除定金</p>
+            <p>*每次只预约一个项目，如需多个，请致电与店内人员沟通。</p> -->
         </div>
         <div class="bottom-bar">
-            <span class="fl">支付定金:<i>￥<IMS:paramOut paramKey="subscribe_deposit"/></i></span>
-            <a class="btn fr"  style="padding:0"  href="#" onclick="saveSubscribeOrder()">立即支付</a>
+            <span class="fl">&nbsp;&nbsp;<i>&nbsp;&nbsp;</i></span>
+            <a class="btn fr"  style="padding:0"  href="#" onclick="saveSubscribeOrder()">立即预约</a>
         </div>
     </div>
    
@@ -210,8 +210,13 @@ function comfrinSelect(){
 				
 				if (data) {
 					if (data.appcode == "1") {
-						var token_id=data.token_id
-					    window.location.href = 'https://pay.swiftpass.cn/pay/jspay?token_id='+token_id+'&showwxtitle=1';
+						toast.success({
+						    title:'预约成功',
+						    duration:2000
+						});
+						//var token_id=data.token_id
+					    window.location.href="${ctx}/wechat/order/goMyOrder.jhtml?index=1"
+						//window.location.href = 'https://pay.swiftpass.cn/pay/jspay?token_id='+token_id+'&showwxtitle=1';
 					} else {
 						toast.fail({
 							title : data.appmsg,

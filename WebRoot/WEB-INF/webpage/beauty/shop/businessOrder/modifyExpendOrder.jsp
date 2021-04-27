@@ -68,11 +68,11 @@
 							<td class="kv-content"><input   name="account" prompt="请输入经手员工账号"   autocomplete="off"	class="easyui-textbox" required="true" style="width: 250px; height: 30px" ></td>
 						</tr>
 						
-						<tr>
+					<!-- 	<tr>
 							<td class="kv-label">操作密码</td>
 							<td class="kv-content" >  <input   name="password" prompt="请输入对应员工密码"   autocomplete="off"	class="easyui-passwordbox" required="true" 
 							 style="width: 250px; height: 30px" ></td>
-						</tr>
+						</tr> -->
 					
 					
 					</tbody>

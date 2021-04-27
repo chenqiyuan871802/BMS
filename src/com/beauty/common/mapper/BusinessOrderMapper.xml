@@ -28,19 +28,19 @@
 		<if test="order_type != null and order_type != ''">
 	         order_type, <!-- 订单类型 1美研币 2礼包3项目 -->
 		</if>
-		<if test="order_money != null and order_money != ''">
+		<if test="order_money != null">
 	         order_money, <!-- 订单金额 -->
 		</if>
 		<if test="buy_num != null">
 	         buy_num, <!-- 购买数量 -->
 		</if>
-		<if test="pay_money != null and pay_money != ''">
+		<if test="pay_money != null">
 	         pay_money, <!-- 实际支付金额 -->
 		</if>
 		<if test="extend_beauty_num != null">
 	         extend_beauty_num, <!-- 消耗美研币数量 -->
 		</if>
-		<if test="cash_income != null and cash_income != ''">
+		<if test="cash_income != null">
 	         cash_income, <!-- 现金收入 -->
 		</if>
 		<if test="extend_income != null and extend_income != ''">
@@ -114,23 +114,23 @@
 		<if test="order_type != null and order_type != ''">
 	          #{order_type, jdbcType=VARCHAR}, <!-- 订单类型 1美研币 2礼包3项目 -->
 	    </if>
-		<if test="order_money != null and order_money != ''">
-	          #{order_money, jdbcType=VARCHAR}, <!-- 订单金额 -->
+		<if test="order_money != null">
+	          #{order_money}, <!-- 订单金额 -->
 	    </if>
 		<if test="buy_num != null">
 	          #{buy_num, jdbcType=INTEGER}, <!-- 购买数量 -->
 	    </if>
-		<if test="pay_money != null and pay_money != ''">
-	          #{pay_money, jdbcType=VARCHAR}, <!-- 实际支付金额 -->
+		<if test="pay_money != null">
+	          #{pay_money}, <!-- 实际支付金额 -->
 	    </if>
 		<if test="extend_beauty_num != null">
 	          #{extend_beauty_num, jdbcType=INTEGER}, <!-- 消耗美研币数量 -->
 	    </if>
-		<if test="cash_income != null and cash_income != ''">
-	          #{cash_income, jdbcType=VARCHAR}, <!-- 现金收入 -->
+		<if test="cash_income != null">
+	          #{cash_income}, <!-- 现金收入 -->
 	    </if>
-		<if test="extend_income != null and extend_income != ''">
-	          #{extend_income, jdbcType=VARCHAR}, <!-- 消耗收入 -->
+		<if test="extend_income != null">
+	          #{extend_income}, <!-- 消耗收入 -->
 	    </if>
 		<if test="pay_way != null and pay_way != ''">
 	          #{pay_way, jdbcType=VARCHAR}, <!-- 支付方式1 微信 2支付宝 3美颜币 4套餐 -->

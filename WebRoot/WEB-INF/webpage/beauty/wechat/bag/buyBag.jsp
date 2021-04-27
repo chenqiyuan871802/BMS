@@ -36,8 +36,7 @@
             <div class="h30"></div>
         </div>
         <div class="payfor-bottom">
-            <span class="fl">待支付：<i id="showMoney">￥<fmt:formatNumber
-						value="${bag.bag_total_price*bag.min_buy_num }" type="number" /></i></span>
+            <span class="fl">&nbsp;<i id="showMoney">&nbsp;</i></span>
             <div class="fr">
                 <span class="num" id="num">数量x${bag.min_buy_num}</span>
                 <a class="btn fr" href="#" onclick="buyBagPay(${bag.bag_id})">确定</a>
@@ -110,8 +109,8 @@ $(document).ready (function(){
 	 var money=parseFloat(total_money.toFixed(2));
 	 $("#buy_num").val(num);
      $("#num").html('数量x'+num);
-     $("#showMoney").html('￥'+money);
-     $("#order_money").val(total_money);
+    
+     $("#order_money").val(0);
      
   }
   function toThousands(num) {
@@ -134,18 +133,18 @@ $(document).ready (function(){
         })
         $.ajax({
 			type : 'post',
-			url : '${ctx}/wechat/order/saveBuyBagOrder.jhtml',
+			url : '${ctx}/wechat/order/saveFreeBagOrder.jhtml',
 			data : {
 				bag_id:bag_id,
-				order_money:order_money,
+				order_money:0,
 				buy_num:buy_num
 			},
 			dataType : 'json',
 			success : function(data) {
 				if (data) {
 					if (data.appcode == "1") {
-						var token_id=data.token_id
-					    window.location.href = 'https://pay.swiftpass.cn/pay/jspay?token_id='+token_id+'&showwxtitle=1';
+						//var token_id=data.token_id
+					    window.location.href = '${ctx}/wechat/order/goMyOrder.jhtml?index=2';
 					} else {
 						toast.fail({
 							title : data.appmsg,

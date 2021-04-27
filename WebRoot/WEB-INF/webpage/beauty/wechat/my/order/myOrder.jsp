@@ -148,8 +148,8 @@ html, body {
 						+ row.order_id + ')">取消订单</a></div>'
 			} else if (order_status == '2') {
 				status_name = '服务中';
-				butStr = '<div class="fr"><a class="btn" href="#" onclick="goPayOrder('
-						+ row.order_id + ')">去支付</a></div>'
+				/* butStr = '<div class="fr"><a class="btn" href="#" onclick="goPayOrder('
+						+ row.order_id + ')">去支付</a></div>' */
 			} else if (order_status == '3') {
 				status_name = '待支付';
 			} else if (order_status == '4') {
@@ -175,8 +175,8 @@ html, body {
 			html += '<h3>' + row.project_name + '</h3>';
 			html += '<span class="nurse-price">￥' + row.rmb_price + ' /'
 					+ row.beauty_price + '个颜值</span>';
-			html += '<span class="earnest">定金: ￥' + row.deposit_money
-					+ '</span>';
+			/* html += '<span class="earnest">定金: ￥' + row.deposit_money
+					+ '</span>'; */
 			html += '</div>';
 			html += '<div class="fr">';
 			html += '<span>x' + row.buy_num + '</span>';

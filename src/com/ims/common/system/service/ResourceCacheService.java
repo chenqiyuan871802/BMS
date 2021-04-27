@@ -3,10 +3,7 @@ package com.ims.common.system.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import net.sf.ehcache.Cache;
-import net.sf.ehcache.Element;
-import redis.clients.jedis.Jedis;
+import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -27,6 +24,10 @@ import com.ims.common.system.modules.mapper.ParamMapper;
 import com.ims.common.system.modules.po.DictionaryPO;
 import com.ims.common.system.modules.po.ParamPO;
 import com.ims.common.system.modules.service.SystemService;
+
+import net.sf.ehcache.Cache;
+import net.sf.ehcache.Element;
+import redis.clients.jedis.Jedis;
 
 /**
  * 
@@ -287,6 +288,11 @@ public class ResourceCacheService {
 	 * @return 说明
 	 */
 	public void cacheParamDataToRedis() {
+		Jedis jedis = JedisUtil.getJedisClient();
+		Set<String> keySet=jedis.keys(IMSCons.CACHE_PREFIX.PARAM+"*");
+		for(String key:keySet){
+			jedis.del(key);
+		}
 		Dto pDto = Dtos.newDto();
 		pDto.put("status", DicCons.ENABLED_YES);
 		List<ParamPO> paramPOList = paramMapper.list(pDto);
@@ -295,10 +301,11 @@ public class ResourceCacheService {
 			cacheMap.put(paramPO.getParam_key(), IMSJson.toJson(paramPO));
 		}
 		if (IMSUtils.isNotEmpty(cacheMap)) {
-			Jedis jedis = JedisUtil.getJedisClient();
+			
 			jedis.hmset(IMSCons.CACHE_PREFIX.PARAM, cacheMap);
-			JedisUtil.close(jedis);
+			
 		}
+		JedisUtil.close(jedis);
 	}
 
 	/***
@@ -354,10 +361,15 @@ public class ResourceCacheService {
 	 * @return 说明
 	 */
 	public void cacheDicDataToRedis() {
+		Jedis jedis = JedisUtil.getJedisClient();
+		   Set<String> keySet=jedis.keys(IMSCons.CACHE_PREFIX.DIC+"*");
+		    for(String key:keySet){
+		    	jedis.del(key);
+		    }
 		Dto pDto = Dtos.newDto();
 		pDto.put("status", DicCons.ENABLED_YES);
 		List<DictionaryPO> dicList = this.getDics(pDto);
-		Jedis jedis = JedisUtil.getJedisClient();
+		
 		// 将字典对照项目载入缓存
 		for (DictionaryPO dictionaryPO : dicList) {
 			jedis.rpush(IMSCons.CACHE_PREFIX.DIC + dictionaryPO.getDic_key(), IMSJson.toJson(dictionaryPO));

@@ -344,6 +344,23 @@ public class WechatOrderController{
 		 String outString=IMSJson.toJson(outDto);
 		 IMSCxt.write(response, outString);
 	}
+	
+	/**
+	 * 
+	 * 简要说明：保存礼包购买信息
+	 * 编写者：陈骑元
+	 * 创建时间：2017年6月3日 下午9:29:27
+	 * @param 说明
+	 * @return 说明
+	 */
+	@RequestMapping("saveFreeBagOrder")
+	public void saveFreeBagOrder(HttpServletRequest request, HttpServletResponse response,HttpSession session){
+		 Dto inDto=Dtos.newDto(request);
+		 CustomUserPO customUserPO=IMSCxt.getCustomUserInfo(session);
+		 Dto outDto=wechatOrderService.saveFreeBagOrder(inDto, customUserPO);
+		 String outString=IMSJson.toJson(outDto);
+		 IMSCxt.write(response, outString);
+	}
 	/**
 	 * 
 	 * 简要说明：搜索护理订单

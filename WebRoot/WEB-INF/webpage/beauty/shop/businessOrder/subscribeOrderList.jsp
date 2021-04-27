@@ -20,14 +20,16 @@ function handleFunction(value, row, index){
 	    var scanCodeStr="scanCodeOrder("+order_id+","+order_type+","+order_status+")";
 	    var unifiedStr="unifiedOrder("+order_id+","+order_type+","+order_status+")";
 	    var cancelStr="cancelOrder("+order_id+","+order_type+","+order_status+")";
+	    var completeStr="completeOrder("+order_id+","+order_type+","+order_status+")";
 	    if(order_status =='1'){
 	    	str+="<a href='#' onclick='"+cancelStr+"' class='button-complete button-danger'>撤销</a>&nbsp;"
 	    	str+="<a href='#' onclick='"+startStr+"' class='button-complete button-success'>开始</a>&nbsp;"
 	    	
 	    }else{
-	        str+="<a href='#' onclick='"+handleStr+"' class='button-detail button-default'>收款</a>&nbsp;"
+	    	str+="<a href='#' onclick='"+completeStr+"' class='button-complete button-success'>完成</a>&nbsp;"
+	        /* str+="<a href='#' onclick='"+handleStr+"' class='button-detail button-default'>收款</a>&nbsp;"
 	       	str+="<a href='#' onclick='"+scanCodeStr+"' class='button-edit button-warning'>扫码</a>&nbsp;"
-	       	str+="<a href='#' onclick='"+unifiedStr+"' class='button-edit button-warning'>扫码枪扫码</a>&nbsp;"
+	       	str+="<a href='#' onclick='"+unifiedStr+"' class='button-edit button-warning'>扫码枪扫码</a>&nbsp;" */
 	    }
 	    str+="<a href='#' onclick='"+showStr+"' class='button-detail button-default'>详情</a>&nbsp;"
 		return str;
@@ -236,6 +238,7 @@ refreshOrder();
 				<th field="mobile" width="7%"   align="center">顾客账号 </th>
 				<th field="username" width="5%"   align="center">顾客姓名</th>
 				<th field="order_content" formatter="formatCellTooltip"  width="8%"   align="center">护理项目</th>
+				<th field="order_remark" width="15%"   align="center">订单备注</th>
 				<th field="order_type" formatter="order_typeFormatter" width="6%"   align="center">消费类型</th>
 				<th field="order_money" width="5%"   align="center">价格（元）</th>
 				<th field="deposit_money" width="5%" align="center">定金（元）</th>
@@ -282,6 +285,9 @@ refreshOrder();
    <div id="showPayProjectWindow" class="easyui-window" title="支付项目列表"
 		data-options="collapsible:false,shadow:false,minimizable:false,maximizable:false,modal:true,closed:true,cls:'theme-panel-orange'"
 		style="width:500px; height: 350px; background-color: #FFFFFF"></div>
+ <div id="modifyOrderWindow" class="easyui-window" title="完成订单"
+		data-options="collapsible:false,shadow:false,minimizable:false,maximizable:false,modal:true,closed:true,cls:'theme-panel-orange'"
+		style="width:800px; height: 440px; background-color: #FFFFFF"></div>
     
 </body>
 

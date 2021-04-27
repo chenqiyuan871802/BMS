@@ -29,10 +29,10 @@ public class IMSInitListener implements ServletContextListener {
 		if (isLive) {
 			//IMSCxt.flushDB(); // 每次启动都清空redis缓存
 		}
-		IMSCxt.refreshCache(); // 清除Ehcache缓存
+		//IMSCxt.refreshCache(); // 清除Ehcache缓存
 		System.setProperty(IMSCons.REDIS_ISLIVE_KEY, isLive.toString());
 		IMSCxt.cacheParamData();
-		IMSCxt.cacheDicData();
+	    IMSCxt.cacheDicData();
 
 	}
 

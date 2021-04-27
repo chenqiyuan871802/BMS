@@ -28,7 +28,6 @@ import com.beauty.common.po.BeautyConfigPO;
 import com.beauty.common.po.BeautyRecordPO;
 import com.beauty.common.po.BusinessOrderPO;
 import com.beauty.common.po.CashRecordPO;
-import com.beauty.common.po.CouponActivePO;
 import com.beauty.common.po.CustomUserPO;
 import com.beauty.common.po.NurseBagPO;
 import com.beauty.common.po.NurseProjectPO;
@@ -36,14 +35,12 @@ import com.beauty.common.po.OrderDepositPO;
 import com.beauty.common.po.OrderPayPO;
 import com.beauty.common.po.ProjectRecordPO;
 import com.beauty.common.po.ShopPO;
-import com.beauty.common.service.CustomUserService;
 import com.beauty.common.utils.IdUtil;
 import com.beauty.pay.util.PayUtil;
 import com.beauty.wechat.util.WechatCxt;
 import com.google.common.collect.Lists;
 import com.ims.common.core.asset.IMSCons;
 import com.ims.common.core.asset.IMSCxt;
-import com.ims.common.core.asset.IMSJson;
 import com.ims.common.core.asset.IMSUtils;
 import com.ims.common.core.id.IMSId;
 import com.ims.common.core.matatype.Dto;
@@ -218,49 +215,51 @@ public class WechatOrderService {
 	public Dto saveAppSubscribeOrder(Dto inDto, CustomUserPO customUserPO) {
 		
 		Dto outDto = Dtos.newDto();
-		String request_url = IMSCxt.getParamValue(BeautyCons.REQUEST_URL_KEY); // 系统请求的地址
-		String back_url=request_url+"/wechat/order/goMyOrder.jhtml?index=1";
+		//String request_url = IMSCxt.getParamValue(BeautyCons.REQUEST_URL_KEY); // 系统请求的地址
+		//String back_url=request_url+"/wechat/order/goMyOrder.jhtml?index=1";
 		String project_id = inDto.getString("project_id");
 		NurseProjectPO nurseProjectPO = nurseProjectMapper.selectByKey(project_id);
-		String pay_id = IMSId.appId();
-		String outTradeNo = BeautyCons.PAY_TYPE_DEPOSIT + pay_id;
-		String depositStr = IMSCxt.getParamValue(BeautyCons.SUBSCRIBE_DEPOSIT);
-		Double deposit = Double.parseDouble(depositStr); // 等到定金
-		String order_content = "预约护理项目(" + nurseProjectPO.getProject_name() + ")定金";
-		String openid = customUserPO.getOpenid();
-		Map<String, String> resultMap = PayUtil.appPayOrder(outTradeNo, deposit, order_content, openid, back_url);
-		String payStatus = resultMap.get("status");
-		if ("500".equals(payStatus)) { // 定金预约申请支付失败
-			outDto.setAppCode(IMSCons.ERROR);
-			outDto.setAppMsg("预约支付失败：请确认是否关注了商家服务号");
-			return outDto;
-		}
+		//String pay_id = IMSId.appId();
+		//String outTradeNo = BeautyCons.PAY_TYPE_DEPOSIT + pay_id;
+		//String depositStr = IMSCxt.getParamValue(BeautyCons.SUBSCRIBE_DEPOSIT);
+		//Double deposit = Double.parseDouble(depositStr); // 等到定金
+		//String order_content = "预约护理项目(" + nurseProjectPO.getProject_name() + ")定金";
+		//String openid = customUserPO.getOpenid();
+		/*
+		 * Map<String, String> resultMap = PayUtil.appPayOrder(outTradeNo, deposit,
+		 * order_content, openid, back_url); String payStatus = resultMap.get("status");
+		 * if ("500".equals(payStatus)) { // 定金预约申请支付失败
+		 * outDto.setAppCode(IMSCons.ERROR); outDto.setAppMsg("预约支付失败：请确认是否关注了商家服务号");
+		 * return outDto; }
+		 */
 		String shop_id = inDto.getString("shop_id");
 		String custom_user_id = customUserPO.getCustom_user_id();
 		String order_id = IdUtil.createOrderId();
 		// 保存支付记录信息
-		OrderPayPO orderPayPO = new OrderPayPO();
-		orderPayPO.setPay_id(pay_id);
-		orderPayPO.setOrder_id(order_id);
-		orderPayPO.setBuy_account(openid);
-		orderPayPO.setPay_code(outTradeNo);
-		orderPayPO.setPay_way(BeautyCons.PAY_WAY_WECHAT);
-		orderPayPO.setPay_status(BeautyCons.PAY_STATUS_UNPAY);
-		orderPayPO.setCreate_time(IMSUtils.getDateTime());
-		orderPayPO.setPay_money(deposit);
-		orderPayPO.setPay_type(BeautyCons.PAY_RECORD_TYPE_PAY);
-		orderPayPO.setPay_back(BeautyCons.PAY_BACK_NO);
-		orderPayMapper.insert(orderPayPO);
+		/*
+		 * OrderPayPO orderPayPO = new OrderPayPO(); orderPayPO.setPay_id(pay_id);
+		 * orderPayPO.setOrder_id(order_id); orderPayPO.setBuy_account(openid);
+		 * orderPayPO.setPay_code(outTradeNo);
+		 * orderPayPO.setPay_way(BeautyCons.PAY_WAY_WECHAT);
+		 * orderPayPO.setPay_status(BeautyCons.PAY_STATUS_UNPAY);
+		 * orderPayPO.setCreate_time(IMSUtils.getDateTime());
+		 * orderPayPO.setPay_money(deposit);
+		 * orderPayPO.setPay_type(BeautyCons.PAY_RECORD_TYPE_PAY);
+		 * orderPayPO.setPay_back(BeautyCons.PAY_BACK_NO);
+		 * orderPayMapper.insert(orderPayPO);
+		 */
 		// 保存定金信息
-		OrderDepositPO depositPO = new OrderDepositPO(); // 定金支付信息
-		depositPO.setDeposit_id(pay_id);
-		depositPO.setDeposit_money(deposit);
-		depositPO.setOrder_id(order_id);
-		depositPO.setPay_way(BeautyCons.PAY_WAY_WECHAT);
-		depositPO.setPay_account(openid);
-		depositPO.setCustom_user_id(custom_user_id);
-		depositPO.setDeposit_status(BeautyCons.PAY_STATUS_UNPAY);
-		orderDepositMapper.insert(depositPO);
+		/*
+		 * OrderDepositPO depositPO = new OrderDepositPO(); // 定金支付信息
+		 * depositPO.setDeposit_id(pay_id); depositPO.setDeposit_money(deposit);
+		 * depositPO.setOrder_id(order_id);
+		 * depositPO.setPay_way(BeautyCons.PAY_WAY_WECHAT);
+		 * depositPO.setPay_time(IMSUtils.getDateTime());
+		 * depositPO.setPay_account(openid);
+		 * depositPO.setCustom_user_id(custom_user_id);
+		 * depositPO.setDeposit_status(BeautyCons.PAY_STATUS_YES);
+		 * orderDepositMapper.insert(depositPO);
+		 */
 		// 保存订单信息
 		BusinessOrderPO orderPO = new BusinessOrderPO();
 		orderPO.setOrder_id(order_id);
@@ -271,10 +270,12 @@ public class WechatOrderService {
 		orderPO.setShop_id(shop_id);
 		orderPO.setSubscribe_time(inDto.getTimestamp("subscribe_time")); //暂时的
 		orderPO.setCreate_time(IMSUtils.getDateTime());
-		orderPO.setOrder_status(BeautyCons.ORDER_STATUS_DRAFT);
+		//orderPO.setOrder_status(BeautyCons.ORDER_STATUS_DRAFT);
+		orderPO.setOrder_status(BeautyCons.ORDER_STATUS_SUBSCRIBE);
 		orderPO.setOrder_source(BeautyCons.ORDER_SOURCE_SYSTEM);
 		orderPO.setOrder_type(BeautyCons.ORDER_TYPE_PROJECT);
 		orderPO.setBuy_num(1);
+		
 		Dto scDto = Dtos.newDto();
 		scDto.put("shop_id", shop_id);
 		scDto.put("custom_user_id", custom_user_id);
@@ -289,7 +290,8 @@ public class WechatOrderService {
 		int row = businessOrderMapper.insert(orderPO);
 		if (row > 0) {
 			outDto.setAppCode(IMSCons.SUCCESS);
-			outDto.put("token_id", resultMap.get("token_id"));
+			//outDto.put("token_id", resultMap.get("token_id"));
+			
 			outDto.setAppMsg("操作完成,请进行支付。");
 		} else {
 			outDto.setAppCode(IMSCons.ERROR);
@@ -874,7 +876,146 @@ public class WechatOrderService {
 		}
 		return outDto;
 	}
+	/**
+	 * 
+	 * 简要说明：保存礼包支付订单
+	 * 编写者：陈骑元
+	 * 创建时间：2017年6月18日 下午1:18:19
+	 * @param 说明
+	 * @return 说明
+	 */
+	@Transactional
+	public Dto saveFreeBagOrder(Dto inDto, CustomUserPO customUserPO) {
+		Dto outDto = Dtos.newDto();
+		String bag_id = inDto.getString("bag_id");
+		Dto countDto=Dtos.newDto();
+		countDto.put("custom_user_id", customUserPO.getCustom_user_id());
+		countDto.put("bag_id", bag_id);
+		countDto.put("record_type", BeautyCons.BAG_RECORD_TYPE_GM);
+		NurseBagPO nurseBagPO = nurseBagMapper.selectByKey(bag_id);
+		int buy_count=nurseBagPO.getBuy_count();
+		int count=bagRecordMapper.rows(countDto);
+		if(count>=buy_count){
+			outDto.setAppCode(IMSCons.ERROR);
+			outDto.setAppMsg("该礼包已抢到最大次数！");
+			return outDto;
+		}
+	
+		
+		int buy_num=inDto.getInteger("buy_num");
+		Double order_money=0d;
+		
+		int remain_num=nurseBagPO.getRemain_num();
+		if(buy_num>remain_num){
+			outDto.setAppCode(IMSCons.ERROR);
+			outDto.setAppMsg("购买礼包失败：礼包余量不足");
+			return outDto;
+		}
+		
+		/*
+		 * String pay_id = IMSId.appId(); String request_url =
+		 * IMSCxt.getParamValue(BeautyCons.REQUEST_URL_KEY); // 系统请求的地址 String
+		 * back_url=request_url+"/wechat/order/goMyOrder.jhtml?index=2";
+		 */
+		
+		
+		/*
+		 * String outTradeNo = BeautyCons.PAY_TYPE_BAG + pay_id; String order_content =
+		 * "购买"+buy_num+"份"+nurseBagPO.getBag_name(); String openid =
+		 * customUserPO.getOpenid(); Map<String, String> resultMap =
+		 * PayUtil.appPayOrder(outTradeNo, order_money, order_content, openid,
+		 * back_url); String payStatus = resultMap.get("status"); if
+		 * ("500".equals(payStatus)) { // 购买礼包失败 outDto.setAppCode(IMSCons.ERROR);
+		 * outDto.setAppMsg("购买礼包失败：发起申请支付请求失败"); return outDto; }
+		 */
+		//增加礼包记录
+		 String record_id = IMSId.appId();
+		 String order_content ="免费抢"+buy_num+"份"+nurseBagPO.getBag_name();
+		 String order_id = IdUtil.createOrderId();
+		 String custom_user_id = customUserPO.getCustom_user_id();
+ 	        BagRecordPO bagRecordPO=new BagRecordPO();
+		    bagRecordPO.setRecord_id(record_id);
+		    bagRecordPO.setBag_id(nurseBagPO.getBag_id());
+		    bagRecordPO.setValid_day(nurseBagPO.getOverdue_time());
+		    bagRecordPO.setCustom_user_id(custom_user_id);
+		    bagRecordPO.setBuy_num(buy_num);
+		    bagRecordPO.setShare_num(buy_num-1);
+		    bagRecordPO.setCreate_time(IMSUtils.getDateTime());
+		    bagRecordPO.setOrder_id(order_id);
+		    bagRecordPO.setRecord_type(BeautyCons.BAG_RECORD_TYPE_GM);
+		    bagRecordPO.setStatus(BeautyCons.VAILD_STATUS_YES);
+		    bagRecordPO.setReceive_status(BeautyCons.RECEIVE_STATUS_YES);
+	    	bagRecordPO.setBag_time(IMSUtils.getDateTime());
+	    	bagRecordPO.setShare_user_id(bagRecordPO.getCustom_user_id());
+		    bagRecordMapper.insert(bagRecordPO);
+		    nurseBagPO.setRemain_num(remain_num);
+		    nurseBagMapper.updateByKey(nurseBagPO);
+		
+		/*
+		 * // 保存支付记录信息 OrderPayPO orderPayPO = new OrderPayPO();
+		 * 
+		 * orderPayPO.setPay_id(pay_id); orderPayPO.setOrder_id(order_id);
+		 * orderPayPO.setBuy_account(openid); orderPayPO.setPay_code(outTradeNo);
+		 * orderPayPO.setPay_way(BeautyCons.PAY_WAY_WECHAT);
+		 * orderPayPO.setPay_status(BeautyCons.PAY_STATUS_UNPAY);
+		 * orderPayPO.setCreate_time(IMSUtils.getDateTime());
+		 * orderPayPO.setPay_money(order_money);
+		 * orderPayPO.setPay_type(BeautyCons.PAY_RECORD_TYPE_PAY);
+		 * orderPayPO.setPay_back(BeautyCons.PAY_BACK_NO);
+		 * orderPayPO.setBuy_account(openid); orderPayMapper.insert(orderPayPO);
+		 */
 
+		// 保存订单信息
+		BusinessOrderPO orderPO = new BusinessOrderPO();
+		orderPO.setOrder_id(order_id);
+		orderPO.setProject_id(bag_id);
+		orderPO.setCustom_user_id(custom_user_id);
+		orderPO.setOrder_content(order_content);
+		orderPO.setOrder_money(order_money);
+		orderPO.setCreate_time(IMSUtils.getDateTime());
+		orderPO.setOrder_source(BeautyCons.ORDER_SOURCE_SYSTEM);
+		orderPO.setOrder_type(BeautyCons.ORDER_TYPE_BAG);
+		orderPO.setBuy_num(buy_num);
+		orderPO.setOrder_status(BeautyCons.ORDER_STATUS_PAY);
+		orderPO.setPay_way(BeautyCons.PAY_WAY_OTHER);
+		orderPO.setPay_time(IMSUtils.getDateTime());
+		orderPO.setPay_money(order_money);
+		orderPO.setCash_income(order_money); //现金收入
+		orderPO.setFinish_time(IMSUtils.getDateTime());
+		int row = businessOrderMapper.insert(orderPO);
+		if (row > 0) {
+			int bag_num=customUserPO.getBag_num()+1;
+        	customUserPO.setBag_num(bag_num);
+        	customUserMapper.updateByKey(customUserPO); //更新个人礼包
+        	List<Dto> bagProjectList=orderManageMapper.listBagProject(bag_id);
+        	for(int i=0;i<bagProjectList.size();i++){
+        		Dto bagProjectDto=bagProjectList.get(i);
+        		String project_num=bagProjectDto.getString("project_num");
+        		String project_id=bagProjectDto.getString("project_id");
+        		int num=1;
+        		if(IMSUtils.isNotEmpty(project_num)){
+        			num=Integer.parseInt(project_num);
+        		}
+        		for(int j=0;j<num;j++){
+        			ProjectRecordPO projectRecordPO=new ProjectRecordPO();
+        			projectRecordPO.setRecord_id(IMSId.appId());
+        			projectRecordPO.setBag_record_id(record_id);
+        			projectRecordPO.setProject_id(project_id);
+        			projectRecordPO.setDraw_time(IMSUtils.getDateTime());
+        			projectRecordPO.setProject_status(BeautyCons.PROJECT_STATUS_NOUSE);
+        			projectRecordMapper.insert(projectRecordPO);
+        		}
+        	}
+			outDto.setAppCode(IMSCons.SUCCESS);
+			//outDto.put("token_id", resultMap.get("token_id"));
+			outDto.setAppMsg("操作完成,请进行支付。");
+		} else {
+			outDto.setAppCode(IMSCons.ERROR);
+			outDto.setAppMsg("操作完成，购买礼包失败，礼包订单无法保存成功。");
+		}
+		return outDto;
+	}
+	
 	/**
 	 * 
 	 * 简要说明：保存礼包支付订单
