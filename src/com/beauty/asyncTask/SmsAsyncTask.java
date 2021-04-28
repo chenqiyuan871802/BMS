@@ -9,10 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
+import com.aliyuncs.CommonRequest;
+import com.aliyuncs.CommonResponse;
+import com.aliyuncs.DefaultAcsClient;
+import com.aliyuncs.IAcsClient;
+import com.aliyuncs.http.MethodType;
+import com.aliyuncs.profile.DefaultProfile;
 import com.beauty.common.constant.BeautyCons;
 import com.beauty.common.mapper.SmsRecordMapper;
 import com.beauty.common.po.SmsRecordPO;
-import com.beauty.common.service.SmsRecordService;
 import com.ims.common.core.asset.IMSCons;
 import com.ims.common.core.asset.IMSCxt;
 import com.ims.common.core.asset.IMSJson;
@@ -122,7 +127,7 @@ public class SmsAsyncTask {
 		String content = checkCode ;
 		Dto jsonDto = Dtos.newDto(check_code_key, content);
 		String templateJson = IMSJson.toJson(jsonDto);
-		String returnMsg = sendSms(mobile, templateCode, templateJson);
+		String returnMsg = sendAliSms(mobile, templateCode, templateJson);
 		SmsRecordPO smsRecordPO = new SmsRecordPO();
 		smsRecordPO.setRecord_id(IMSId.uuid());
 		smsRecordPO.setMobile(mobile);
@@ -146,15 +151,73 @@ public class SmsAsyncTask {
 				jedis.expire(checkKey, 3600);
 			}
 			JedisUtil.close(jedis);
-			log.info("阿里大于发送登陆验证码[" + content + "]到手机[" + mobile + "]成功");
+			log.info("阿里云发送登陆验证码[" + content + "]到手机[" + mobile + "]成功");
 		} else {
 			smsRecordPO.setStatus(IMSCons.SMS_STATUS_FAILURE);
 			smsRecordPO.setFailure_cause(returnMsg);
-			log.error("阿里大于发送登陆验证码[" + content + "]到手机[" + mobile + "]失败:" + returnMsg);
+			log.error("阿里云发送登陆验证码[" + content + "]到手机[" + mobile + "]失败:" + returnMsg);
 		}
 		smsRecordMapper.insert(smsRecordPO);
 	}
+    
+	/**
+	 * 
+	 * 简要说明：短信发送接口 编写者：陈骑元 创建时间：2017年5月12日 上午1:52:33
+	 * 
+	 * @param 说明
+	 * @return 说明
+	 */
+	public String sendAliSms(String mobile, String templateCode, String templateJson) {
+		if (IMSUtils.isEmpty(mobile)) {
+			log.error("阿里云短信接口发送失败：手机号码为空");
+			return "手机号码为空";
 
+		}
+		if (IMSUtils.isEmpty(templateJson)) {
+			log.error("阿里云短信接口发送失败：短信模板为空");
+			return "短信模板内容为空";
+
+		}
+		String appKey = IMSCxt.getParamValue(BeautyCons.SMS_APP_KEY);// 短信应用ID
+		String appSrcret = IMSCxt.getParamValue(BeautyCons.SMS_APP_SRCRET);// 短信加密秘钥
+		String sign= IMSCxt.getParamValue(BeautyCons.SMS_SIGNE); // 短信签名
+		DefaultProfile profile = DefaultProfile.getProfile("cn-qingdao",appKey, appSrcret);
+        IAcsClient client = new DefaultAcsClient(profile);
+
+        CommonRequest request = new CommonRequest();
+        request.setSysMethod(MethodType.POST);
+        request.setSysDomain("dysmsapi.aliyuncs.com");
+        request.setSysVersion("2017-05-25");
+        request.setSysAction("SendSms");
+        request.putQueryParameter("PhoneNumbers",mobile);
+        request.putQueryParameter("SignName", sign);
+        request.putQueryParameter("TemplateCode", templateCode);
+        request.putQueryParameter("TemplateParam", templateJson);
+       
+		try {
+			
+			 CommonResponse response = client.getCommonResponse(request);
+			 String repStr=response.getData();
+			log.info("阿里大于短信发送接口返回信息：" + repStr);
+			if (IMSUtils.isNotEmpty(repStr)) { // 说明发送成功
+				Dto dataDto = IMSJson.fromJson(repStr, HashDto.class);
+				if("OK".equals(dataDto.getString("Code"))) {
+					return "success";
+				}else {
+					
+					return "阿里云短信接口返回错误代码Code="+dataDto.getString("Code")+"，错误信息Message="+dataDto.getString("Message");
+				}
+				
+			} else {
+				
+				return "阿里云短信接口发送异常";
+			}
+
+		} catch (Exception e) {
+			log.error("阿里云短信接口发送异常：" + e);
+		}
+		return "阿里云短信接口发送异常";
+	}
 	/**
 	 * 
 	 * 简要说明：短信发送接口 编写者：陈骑元 创建时间：2017年5月12日 上午1:52:33

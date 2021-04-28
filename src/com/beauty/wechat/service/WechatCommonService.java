@@ -155,7 +155,7 @@ public class WechatCommonService {
 		String checkKey = templateCode+BeautyCons.REDIS_CHECK_CODE_KEY + mobile;
 		String checkCodeCache=jedis.get(checkKey);//获取验证码
 		JedisUtil.close(jedis);
-		if(!checkCode.equals("666666")){
+		if(!checkCode.equals(checkCodeCache)){
 			 outDto.setAppCode(IMSCons.ERROR);
 			 outDto.setAppMsg("验证码不正确");
 			 return outDto;
