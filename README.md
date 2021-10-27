@@ -3,6 +3,7 @@
  **
 
 ### 微信号：lanfeng19871102
+手机微信同步：13802907704
 ** 
 后台访问地址http://14.116.205.228:8887/BMS 超级管理账号super/super
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0813/194429_9c70e35e_436510.png "屏幕截图.png")
